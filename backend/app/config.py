@@ -19,6 +19,10 @@ class Settings(BaseSettings):
     analysis_model: str = "openai/gpt-oss-120b"
     live_model: str = "openai/gpt-oss-20b"
 
+    # On-disk response cache and daily usage counters, so dev re-runs cost no quota.
+    llm_cache_dir: str = ".cache/llm"
+    llm_cache_enabled: bool = True
+
     deepgram_api_key: str = ""
     voyage_api_key: str = ""
 
