@@ -28,6 +28,8 @@ class Settings(BaseSettings):
 
     # SEC EDGAR requires a descriptive User-Agent with a contact email.
     sec_user_agent: str = ""
+    # Downloaded source documents (gitignored).
+    raw_data_dir: str = "../data/raw"
 
 
 settings = Settings()

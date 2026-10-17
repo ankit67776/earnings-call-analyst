@@ -32,7 +32,14 @@ Three Q3 2020 earnings calls from US 10-K filers with calendar fiscal years, one
 | Hershey (HSY) | Consumer goods | 4385939 | Q3 2020 (Q&A only), 51 min | 12 MB | [0000047111-21-000007](https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm), filed 2021-02-17 |
 | ConocoPhillips (COP) | Energy | 4382825 | Q3 2020, 63 min | 45 MB | [0001562762-21-000027](https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm), filed 2021-02-16 |
 
-10-K primary documents are saved as `data/raw/10k/<TICKER>_10-K_FY2020.htm`.
+Download the 10-Ks (saved as `data/raw/10k/<TICKER>_10-K_FY2020.htm` with a `.json` of filing metadata next to each) and inspect the parsed sections:
+
+```bash
+cd backend
+uv run python -m app.filings fetch SITM HSY COP --year 2020
+uv run python -m app.filings show ../data/raw/10k/HSY_10-K_FY2020.htm               # list Items
+uv run python -m app.filings show ../data/raw/10k/HSY_10-K_FY2020.htm --section 1A  # paragraphs
+```
 
 Notes:
 - Illumina (4375653) looks like a Q3 earnings call in the metadata but is the GRAIL acquisition call, so it's not used.
