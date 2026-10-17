@@ -1,3 +1,5 @@
+import asyncio
+
 import pytest
 
 from app.llm.ratelimit import RateLimiter, estimate_tokens
@@ -41,6 +43,22 @@ async def test_waits_for_request_slots() -> None:
         await limiter.acquire(MODEL, 1)
     await limiter.acquire(MODEL, 1)
     assert time.now == pytest.approx(60.0)
+
+
+async def test_a_waiting_call_starts_as_soon_as_another_settles() -> None:
+    time = FakeTime()
+    limiter = make_limiter(time)
+    first = await limiter.acquire(MODEL, 900)
+
+    async def settle_later() -> None:
+        while time.now < 3:
+            await asyncio.sleep(0)
+        limiter.settle(first, 200)
+
+    task = asyncio.create_task(settle_later())
+    await limiter.acquire(MODEL, 700)
+    await task
+    assert time.now < 5
 
 
 async def test_rejects_a_request_bigger_than_the_minute_budget() -> None:

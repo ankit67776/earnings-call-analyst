@@ -1,8 +1,10 @@
+import asyncio
+
 from app.llm.types import CompletionRequest, Limits, ProviderResult
 
 
 class FakeTime:
-    """Manual clock; sleeping advances it instantly."""
+    """Manual clock; sleeping advances it instantly (and lets other tasks run)."""
 
     def __init__(self) -> None:
         self.now = 0.0
@@ -14,6 +16,7 @@ class FakeTime:
     async def sleep(self, seconds: float) -> None:
         self.sleeps.append(seconds)
         self.now += seconds
+        await asyncio.sleep(0)
 
 
 class FakeProvider:

@@ -11,6 +11,7 @@ from pathlib import Path
 from app.llm.types import BudgetExceededError, CompletionRequest, Limits
 
 WINDOW_SECONDS = 60.0
+POLL_SECONDS = 1.0
 
 
 def estimate_tokens(request: CompletionRequest) -> int:
@@ -91,7 +92,8 @@ class RateLimiter:
                 wait = self._wait_for_room(window, tokens, limits, now)
                 if wait <= 0:
                     break
-                await self._sleep(wait)
+                # Re-check often: a call settling below its estimate can free room early.
+                await self._sleep(min(wait, POLL_SECONDS))
 
             entry = _Entry(now, tokens)
             window.append(entry)
