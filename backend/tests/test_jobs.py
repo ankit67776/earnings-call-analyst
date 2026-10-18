@@ -182,6 +182,9 @@ async def test_analyze_filing_end_to_end_resuming_after_quota_runs_out(pool, tmp
     row = await status(pool, job_id)
     assert row["status"] == "done"
     assert set(row["result"]["runs"]) == {"1A", "7"}
+    progress = row["progress"]
+    assert (progress["step"], progress["section"], progress["done"]) == ("extracting", "7", ["1A"])
+    assert progress["chunks_done"] == progress["chunks"] > 0
     assert all("Section: Item 7." in p for p in second.prompts)
     async with pool.acquire() as conn:
         found = await conn.fetch(
@@ -216,6 +219,8 @@ async def test_api_queues_analyses_and_reports_job_status(pool) -> None:
             assert job["payload"] == {"ticker": "SITM", "fiscal_year": 2020, "sections": ["1A"]}
 
             assert (await client.get("/api/jobs/999999")).status_code == 404
+            [listed] = (await client.get("/api/jobs")).json()
+            assert (listed["id"], listed["progress"]) == (job["id"], None)
             bad = {"ticker": "SITM", "fiscal_year": 2020, "sections": ["99"]}
             assert (await client.post("/api/analyses", json=bad)).status_code == 422
     finally:

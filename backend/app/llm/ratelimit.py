@@ -5,7 +5,7 @@ import time
 from collections import defaultdict, deque
 from collections.abc import Awaitable, Callable
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from app.llm.types import BudgetExceededError, CompletionRequest, Limits
@@ -109,6 +109,23 @@ class RateLimiter:
         daily = self._daily_usage(reservation.model)
         daily["tokens"] = max(0, daily["tokens"] + delta)
         self._save_usage()
+
+    def usage(self, model: str) -> dict[str, int | str]:
+        """Today's token and request totals for `model`, and when they reset. Read from
+        the usage file when there is one: a worker in another process may be spending."""
+        if self._usage_file is not None:
+            _, daily = self._load_usage()
+            counts = daily.get(model, {"tokens": 0, "requests": 0})
+        else:
+            counts = self._daily_usage(model)
+        day = self._today()
+        resets = datetime.fromisoformat(day).replace(tzinfo=UTC) + timedelta(days=1)
+        return {
+            "day": day,
+            "tokens": counts["tokens"],
+            "requests": counts["requests"],
+            "resets_at": resets.isoformat(),
+        }
 
     def pause(self, model: str, seconds: float) -> None:
         """Hold all calls to `model`, e.g. for a 429's retry-after."""

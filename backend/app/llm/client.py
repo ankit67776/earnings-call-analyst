@@ -196,6 +196,22 @@ class LLMClient:
             return error.retry_after
         return min(2.0 ** (attempt - 1), 30.0) + random.uniform(0, 0.5)
 
+    def usage(self, model: str | None = None) -> dict[str, int | str | None]:
+        """Today's use of `model` against the provider's daily budget. Totals are zero
+        without a rate limiter, which is what tracks them."""
+        model = model or self.default_model
+        limits = self.provider.limits(model)
+        used = self._limiter.usage(model) if self._limiter else {"tokens": 0, "requests": 0}
+        return {
+            "model": model,
+            "day": used.get("day"),
+            "tokens": used["tokens"],
+            "requests": used["requests"],
+            "token_limit": limits.tpd,
+            "request_limit": limits.rpd,
+            "resets_at": used.get("resets_at"),
+        }
+
     async def aclose(self) -> None:
         await self.provider.aclose()
 

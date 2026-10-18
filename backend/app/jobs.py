@@ -17,7 +17,7 @@ import os
 import socket
 import sys
 from collections.abc import Awaitable, Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import UTC, datetime, time, timedelta
 from pathlib import Path
 from typing import Any
@@ -68,6 +68,8 @@ class Context:
     llm: LLMClient
     edgar: EdgarClient
     raw_dir: Path
+    # The job being run, set by run_job so its handler can report progress.
+    job_id: int | None = None
 
 
 Handler = Callable[[Context, dict[str, Any]], Awaitable[dict[str, Any]]]
@@ -146,6 +148,18 @@ async def fail(conn: asyncpg.Connection, job_id: int, error: str, *, permanent: 
     )
 
 
+async def report(ctx: Context, progress: dict[str, Any]) -> None:
+    """Record how far the running job has got, for the UI. Best effort: a failed write
+    never fails the job."""
+    if ctx.job_id is None:
+        return
+    try:
+        async with ctx.pool.acquire() as conn:
+            await conn.execute("update jobs set progress = $2 where id = $1", ctx.job_id, progress)
+    except (asyncpg.PostgresError, OSError):
+        logger.warning("couldn't record progress for job %d", ctx.job_id, exc_info=True)
+
+
 async def defer(
     conn: asyncpg.Connection,
     job_id: int,
@@ -176,7 +190,7 @@ async def run_job(ctx: Context, job: Job) -> None:
         fn = HANDLERS.get(job.kind)
         if fn is None:
             raise PermanentError(f"no handler for job kind {job.kind!r}")
-        result = await fn(ctx, job.payload)
+        result = await fn(replace(ctx, job_id=job.id), job.payload)
     except RetryLater as e:
         logger.info("job %d deferred until %s: %s", job.id, e.run_after, e)
         async with ctx.pool.acquire() as conn:
@@ -250,6 +264,7 @@ async def analyze_filing(ctx: Context, payload: dict[str, Any]) -> dict[str, Any
     sections = payload.get("sections") or list(FOCUS_SECTIONS)
     done: dict[str, int] = dict(payload.get("done", {}))
 
+    await report(ctx, {"step": "fetching", "sections": sections, "done": list(done)})
     ref = await ctx.edgar.find_annual_report(ticker, year)
     path = await ctx.edgar.download(ref, ctx.raw_dir / "10k")
     doc = parse_10k(path.read_bytes())
@@ -261,8 +276,28 @@ async def analyze_filing(ctx: Context, payload: dict[str, Any]) -> dict[str, Any
         section = doc.section(item)
         if section is None or item in done:
             continue
+        started_at = datetime.now(UTC).isoformat()
+
+        async def progress(
+            chunks_done: int, chunks: int, item: str = item, started_at: str = started_at
+        ) -> None:
+            await report(
+                ctx,
+                {
+                    "step": "extracting",
+                    "sections": sections,
+                    "done": list(done),
+                    "section": item,
+                    "chunks_done": chunks_done,
+                    "chunks": chunks,
+                    "started_at": started_at,
+                },
+            )
+
         try:
-            analysis = await analyze_section(ctx.llm, section, company=ref.company)
+            analysis = await analyze_section(
+                ctx.llm, section, company=ref.company, on_progress=progress
+            )
         except (BudgetExceededError, RateLimitedError) as e:
             run_after = _quota_reset(e)
             raise RetryLater(run_after, str(e), payload | {"done": done}) from e

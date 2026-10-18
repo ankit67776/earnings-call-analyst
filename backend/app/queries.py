@@ -25,7 +25,9 @@ async def list_documents(conn: asyncpg.Connection) -> list[dict[str, Any]]:
                coalesce(array_agg(l.section order by l.section)
                         filter (where l.section is not null), '{}') as analyzed_sections,
                (select count(*) from findings f join latest l2 on f.run_id = l2.id
-                where l2.document_id = d.id and f.verified) as findings
+                where l2.document_id = d.id and f.verified) as findings,
+               (select count(*) from findings f join latest l2 on f.run_id = l2.id
+                where l2.document_id = d.id and not f.verified) as rejected
         from documents d
         left join latest l on l.document_id = d.id
         group by d.id

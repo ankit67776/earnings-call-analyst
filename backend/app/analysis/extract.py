@@ -10,6 +10,7 @@ import asyncio
 import logging
 import re
 import time
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from enum import StrEnum
 
@@ -204,21 +205,32 @@ async def analyze_section(
     max_chars: int = DEFAULT_MAX_CHARS,
     max_chunks: int | None = None,
     concurrency: int = 4,
+    on_progress: Callable[[int, int], Awaitable[None]] | None = None,
 ) -> SectionAnalysis:
+    """`on_progress(done, total)` is awaited before the first chunk and after each one."""
     started = time.perf_counter()
     chunks = chunk_section(section, max_chars=max_chars)[:max_chunks]
     gate = asyncio.Semaphore(concurrency)
+    finished = 0
+    if on_progress is not None:
+        await on_progress(0, len(chunks))
 
     async def run(i: int, chunk: Chunk):
+        nonlocal finished
         async with gate:
             try:
-                return await extract_chunk(client, chunk, company=company, model=model)
+                result = await extract_chunk(client, chunk, company=company, model=model)
             except (BudgetExceededError, RateLimitedError):
                 # Out of quota: the rest of the chunks would fail too, so stop the run.
                 raise
             except LLMError as e:
                 logger.warning("chunk %d of Item %s failed: %s", i, section.id, e)
-                return e
+                result = e
+        # Outside the gate, so reporting doesn't hold up the next LLM call.
+        finished += 1
+        if on_progress is not None:
+            await on_progress(finished, len(chunks))
+        return result
 
     results = await asyncio.gather(*(run(i, c) for i, c in enumerate(chunks)))
 

@@ -88,6 +88,23 @@ async def test_daily_budget_persists_across_instances_and_resets_next_day(tmp_pa
     await make_limiter(time, usage, today=lambda: "2026-10-18").acquire(MODEL, 900)
 
 
+async def test_usage_reads_todays_totals_from_the_shared_file(tmp_path) -> None:
+    usage = tmp_path / "usage.json"
+    time = FakeTime()
+    worker = make_limiter(time, usage)
+    worker.settle(await worker.acquire(MODEL, 900), 400)
+
+    # Another process (the API) sees what the worker spent.
+    assert make_limiter(time, usage).usage(MODEL) == {
+        "day": "2026-10-17",
+        "tokens": 400,
+        "requests": 1,
+        "resets_at": "2026-10-18T00:00:00+00:00",
+    }
+    tomorrow = make_limiter(time, usage, today=lambda: "2026-10-18").usage(MODEL)
+    assert (tomorrow["tokens"], tomorrow["requests"]) == (0, 0)
+
+
 def test_estimate_counts_prompt_schema_and_output_allowance() -> None:
     request = CompletionRequest(
         model=MODEL,

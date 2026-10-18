@@ -3,8 +3,11 @@ import pytest
 
 from app.analysis.extract import ChunkResult, Citation, ClaimType, Finding, SectionAnalysis
 from app.filings.tenk import parse_10k
-from app.main import app, get_pool
+from app.llm.client import LLMClient
+from app.llm.ratelimit import RateLimiter
+from app.main import app, get_llm, get_pool
 from app.store import save_analysis, save_filing
+from tests.fakes import FakeProvider, FakeTime
 from tests.test_db import REF
 from tests.test_tenk import FLOWING
 
@@ -50,7 +53,8 @@ async def client(pool):
 
 async def test_list_and_get_documents(client) -> None:
     [doc] = (await client.get("/api/documents")).json()
-    assert (doc["ticker"], doc["analyzed_sections"], doc["findings"]) == ("ACME", ["7"], 1)
+    assert (doc["ticker"], doc["analyzed_sections"]) == ("ACME", ["7"])
+    assert (doc["findings"], doc["rejected"]) == (1, 1)
 
     detail = (await client.get(f"/api/documents/{client.document_id}")).json()
     assert [s["item"] for s in detail["sections"]] == ["1A", "7", "7A"]
@@ -85,3 +89,30 @@ async def test_section_paragraphs(client) -> None:
     ]
     missing = await client.get(f"/api/documents/{client.document_id}/sections/99")
     assert missing.status_code == 404
+
+
+async def test_usage_reports_todays_tokens_against_the_daily_limit(tmp_path) -> None:
+    provider = FakeProvider()
+    time = FakeTime()
+    limiter = RateLimiter(
+        provider.limits, tmp_path / "usage.json", clock=time.clock, today=lambda: "2026-10-17"
+    )
+    limiter.settle(await limiter.acquire("openai/gpt-oss-120b", 500), 1_234)
+    app.dependency_overrides[get_llm] = lambda: LLMClient(
+        provider, default_model="openai/gpt-oss-120b", limiter=limiter
+    )
+    transport = httpx2.ASGITransport(app=app)
+    try:
+        async with httpx2.AsyncClient(transport=transport, base_url="http://test") as c:
+            usage = (await c.get("/api/usage")).json()
+    finally:
+        app.dependency_overrides.clear()
+    assert usage == {
+        "model": "openai/gpt-oss-120b",
+        "day": "2026-10-17",
+        "tokens": 1_234,
+        "requests": 1,
+        "token_limit": 1_000_000,
+        "request_limit": 10_000,
+        "resets_at": "2026-10-18T00:00:00+00:00",
+    }

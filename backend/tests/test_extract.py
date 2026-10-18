@@ -127,6 +127,17 @@ async def test_a_failed_chunk_is_reported_and_the_rest_still_run() -> None:
     assert len(analysis.findings) == 2
 
 
+async def test_reports_progress_before_and_after_each_chunk() -> None:
+    seen: list[tuple[int, int]] = []
+
+    async def progress(done: int, total: int) -> None:
+        seen.append((done, total))
+
+    provider = ByContentProvider(REPLIES)
+    await analyze_section(make_client(provider), SECTION, max_chars=200, on_progress=progress)
+    assert seen == [(0, 2), (1, 2), (2, 2)]
+
+
 async def test_running_out_of_daily_budget_stops_the_run() -> None:
     provider = ByContentProvider({"[7-": BudgetExceededError("daily budget used up")})
     with pytest.raises(BudgetExceededError):
