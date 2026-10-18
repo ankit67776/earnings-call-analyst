@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\nSection: Item 1A. RISK FACTORS\n(Continues under the heading \"Our international operations may not achieve projected growth objectives, which could adversely impact our overall business and results of operations.\")\n\n[1A-3caaf684] •Political and economic instability, including the possibility of civil unrest, terrorism, mass violence or armed conflict;\n\n[1A-58c7cff5] •Nationalization of our properties by foreign governments;\n\n[1A-cb9bb155] •Tax rates that may exceed those in the United States and earnings that may be subject to withholding requirements and incremental taxes upon repatriation;\n\n[1A-0a97e281] •Potentially negative consequences from changes in tax laws;\n\n[1A-4b9aa614] •The imposition of tariffs, quotas, trade barriers, other trade protection measures and import or export licensing requirements;\n\n[1A-2a835ca8] •Increased costs, disruptions in shipping or reduced availability of freight transportation;\n\n[1A-c5156b74] •The impact of currency exchange rate fluctuations between the U.S. dollar and foreign currencies;\n\n[1A-0221894d] •Failure to gain sufficient profitable scale in certain international markets resulting in an inability to cover manufacturing fixed costs or resulting in losses from impairment or sale of assets; and\n\n[1A-be98f135] •Failure to recruit, retain and build a talented and engaged global workforce.\n\n[1A-884d3274] If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations, there could be a negative impact on our financial condition and results of operations.\n\n[1A-904eb683] We may not fully realize the expected costs savings and/or operating efficiencies associated with our strategic initiatives or restructuring programs, which may have an adverse impact on our business.\n\n[1A-571f5551] We depend on our ability to evolve and grow, and as changes in our business environment occur, we may adjust our business plans by introducing new strategic initiatives or restructuring programs to meet these changes. Recently introduced strategic initiatives include our efforts to continue to expand our presence in digital commerce, to transform our manufacturing, commercial and corporate operations through digital technologies and to enhance our data analytics capabilities to develop new commercial insights. If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights, our business performance may be impacted, which may negatively impact our financial condition and results of operations."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-3caaf684\",\n      \"quote\": \"Political and economic instability, including the possibility of civil unrest, terrorism, mass violence or armed conflict;\",\n      \"claim\": \"Political and economic instability, including civil unrest, terrorism, mass violence or armed conflict, could affect the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-58c7cff5\",\n      \"quote\": \"Nationalization of our properties by foreign governments;\",\n      \"claim\": \"The company could face nationalization of its properties by foreign governments.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-cb9bb155\",\n      \"quote\": \"Tax rates that may exceed those in the United States and earnings that may be subject to withholding requirements and incremental taxes upon repatriation;\",\n      \"claim\": \"Tax rates higher than U.S. rates and withholding or incremental taxes on repatriated earnings may affect the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-0a97e281\",\n      \"quote\": \"Potentially negative consequences from changes in tax laws;\",\n      \"claim\": \"Changes in tax laws could have potentially negative consequences for the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-4b9aa614\",\n      \"quote\": \"The imposition of tariffs, quotas, trade barriers, other trade protection measures and import or export licensing requirements;\",\n      \"claim\": \"Tariffs, quotas, trade barriers, other protection measures and licensing requirements could impact the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-2a835ca8\",\n      \"quote\": \"Increased costs, disruptions in shipping or reduced availability of freight transportation;\",\n      \"claim\": \"Increased costs, shipping disruptions, or reduced freight availability could affect the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-c5156b74\",\n      \"quote\": \"The impact of currency exchange rate fluctuations between the U.S. dollar and foreign currencies;\",\n      \"claim\": \"Currency exchange rate fluctuations between the U.S. dollar and foreign currencies could impact the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-0221894d\",\n      \"quote\": \"Failure to gain sufficient profitable scale in certain international markets resulting in an inability to cover manufacturing fixed costs or resulting in losses from impairment or sale of assets; and\",\n      \"claim\": \"Failure to achieve profitable scale in some international markets could prevent covering manufacturing fixed costs and cause asset impairments or sales.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-be98f135\",\n      \"quote\": \"Failure to recruit, retain and build a talented and engaged global workforce.\",\n      \"claim\": \"The company may fail to recruit, retain, and build a talented global workforce.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-884d3274\",\n      \"quote\": \"If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations, there could be a negative impact on our financial condition and results of operations.\",\n      \"claim\": \"Not achieving projected international growth objectives and mitigating associated risks could negatively impact the company's financial condition and results.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-904eb683\",\n      \"quote\": \"We may not fully realize the expected costs savings and/or operating efficiencies associated with our strategic initiatives or restructuring programs, which may have an adverse impact on our business.\",\n      \"claim\": \"The company may not fully realize expected cost savings or operating efficiencies from strategic initiatives or restructuring, which could adversely affect the business.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-571f5551\",\n      \"quote\": \"If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights, our business performance may be impacted, which may negatively impact our financial condition and results of operations.\",\n      \"claim\": \"Failure to capture digital commerce market share, leverage technology for efficiencies, or develop data analytics capabilities could negatively impact business performance and financial results.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1044,
+  "completion_tokens": 1046,
+  "latency_ms": 2679.38079999999,
+  "attempts": 1
+ }
+}

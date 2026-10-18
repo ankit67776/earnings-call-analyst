@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\nSection: Item 1A. Risk Factors\n\n[1A-32d29b84] We might not be able to utilize a significant portion of our net operating loss carryforwards and research and development tax credit carryforwards.\n\n[1A-1227d704] As of December 31, 2020, we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively, and U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively. The U.S. federal NOL carryforwards begin to expire in 2025 and the state NOL carryforwards begin to expire in 2028. The U.S. federal research and development tax credit carryforwards begin to expire in 2025 and the state research and development tax credit carryforwards carry forward indefinitely. These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities. In addition, under Section 382 of the Internal Revenue Code of 1986, as amended (the “Code”), and corresponding provisions of California state law, if a corporation undergoes an “ownership change,” which is generally defined as a greater than 50% change, by value, in its equity ownership over a three-year period, the corporation’s ability to use its pre-change net operating loss carryforwards and other pre-change tax attributes to offset its post-change income may be limited. We completed a Section 382 analysis and determined an ownership change occurred in 2014 and concluded that it had no impact on U.S. federal and California net operating losses or on U.S. federal research and development credits. Our initial public offering in November 2019 did not result in a change in ownership of greater than 50% under Section 382. We also had a follow-on offering on June 16, 2020, which resulted in greater than 50% change under Section 382. We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards. We may experience ownership changes in the future as a result of subsequent shifts in our stock ownership, some of which may be outside of our control. If we determine that an ownership change has occurred and our ability to use our historical net operating loss and tax credit carryforwards is materially limited, it would harm our future business, financial condition, and results of operations by effectively increasing our future tax obligations. In addition, under the Tax Act, federal NOLs incurred in 2018 and in future years may be carried forward indefinitely but generally may not be carried back and the deductibility of such NOLs is limited to 80% of taxable income."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-32d29b84\",\n      \"quote\": \"We might not be able to utilize a significant portion of our net operating loss carryforwards and research and development tax credit carryforwards.\",\n      \"claim\": \"SITIME Corp may be unable to utilize a significant portion of its net operating loss and research and development tax credit carryforwards.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-1227d704\",\n      \"quote\": \"These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities.\",\n      \"claim\": \"SITIME Corp's net operating loss and federal tax credit carryforwards could expire unused or be unavailable to offset future income tax liabilities.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1094,
+  "completion_tokens": 300,
+  "latency_ms": 1111.7797999999084,
+  "attempts": 1
+ }
+}

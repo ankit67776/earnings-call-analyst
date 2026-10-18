@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\nSection: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\n(Continues under the heading \"Contingencies\")\n\n[7-33e910f7] Our legal organization applies its knowledge, experience and professional judgment to the specific characteristics of our cases, employing a litigation management process to manage and monitor the legal proceedings against us. Our process facilitates the early evaluation and quantification of potential exposures in individual cases. This process also enables us to track those cases that have been scheduled for trial and/or mediation. Based on professional judgment and experience in using these litigation management tools and available information about current developments in all our cases, our legal organization regularly assesses the adequacy of current accruals and determines if adjustment of existing accruals, or establishment of new accruals, is required. See Note 18—Income Taxes, in the Notes to Consolidated Financial Statements, for additional information about income tax-related contingencies.\n\n[7-0cff40b6] Environmental We are subject to the same numerous international, federal, state and local environmental laws and regulations as other companies in our industry. The most significant of these environmental laws and regulations include, among others, the:\n\n[7-2ddb8154] ● U.S. Federal Clean Air Act, which governs air emissions.\n\n[7-0850af15] ● U.S. Federal Clean Water Act, which governs discharges to water bodies.\n\n[7-8f830b9e] ● European Union Regulation for Registration, Evaluation, Authorization and Restriction of Chemicals (REACH).\n\n[7-f62e8453] ● U.S. Federal Comprehensive Environmental Response, Compensation and Liability Act (CERCLA or Superfund), which imposes liability on generators, transporters and arrangers of hazardous substances at sites where hazardous substance releases have occurred or are threatening to occur.\n\n[7-8d49c66b] ● U.S. Federal Resource Conservation and Recovery Act (RCRA), which governs the treatment, storage and disposal of solid waste.\n\n[7-663de18e] ● U.S. Federal Oil Pollution Act of 1990 (OPA90), under which owners and operators of onshore facilities and pipelines, lessees or permittees of an area in which an offshore facility is located, and owners and operators of vessels are liable for removal costs and damages that result from a discharge of oil into navigable waters of the U.S.\n\n[7-13f68996] ● U.S. Federal Emergency Planning and Community Right-to-Know Act (EPCRA), which requires facilities to report toxic chemical inventories with local emergency planning committees and response departments.\n\n[7-2ed927e9] ● U.S. Federal Safe Drinking Water Act, which governs the disposal of wastewater in underground injection wells."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-0cff40b6\",\n      \"quote\": \"We are subject to the same numerous international, federal, state and local environmental laws and regulations as other companies in our industry.\",\n      \"claim\": \"ConocoPhillips is subject to numerous international, federal, state and local environmental laws and regulations.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1077,
+  "completion_tokens": 178,
+  "latency_ms": 899.7282000000268,
+  "attempts": 1
+ }
+}

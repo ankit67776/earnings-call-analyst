@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\nSection: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\n\n[7-df3f004a] Customer Demand and Product Life Cycles\n\n[7-b380f03c] Once customers design our silicon timing systems solutions into their products, we closely monitor all aspects of their demand cycle, including the initial design phase, prototype production, volume production, and inventories, as well as end-market demand, including seasonality, cyclicality, and the competitive landscape. Given our customer relationships and the long-term aspects of our solutions, we benefit from visibility into customer demand. This in turn provides an opportunity for us to monitor and refine our business fundamentals.\n\n[7-e5c1954e] Product Adoption within New Markets and Applications\n\n[7-a686158d] As we evaluate new market opportunities and bring new products to market, we pay particular attention to forecasts by industry analysts and the adoption curve of technology. We also analyze in detail potential competing forces that could hinder such adoption. If we fail to anticipate or respond to technological shifts or market demands, or to timely develop new or enhanced products or technologies in response to the same, it could result in decreased revenue and the loss of our design wins to our competitors.\n\n[7-17b756ec] Pricing, Product Cost, and Product Mix\n\n[7-330c8b6f] The ASPs of our products vary significantly. While the ASP of any individual product generally decreases over time, our average ASPs have remained relatively flat as we continue to introduce new higher-end products with higher ASPs. Our pricing and margins depend on the volumes and the features of the timing devices we provide to our customers. We continually monitor and work to reduce the cost of our products and improve the potential value our solutions provide to our customers as we target new design win opportunities and manage the product life cycles of our existing customer designs. Since we rely on third-party wafer foundries and assembly and test contractors to manufacture, assemble, and test our products, we maintain a close relationship with our suppliers to improve quality, increase yields, and lower manufacturing costs."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\"claims\":[{\"type\":\"risk\",\"paragraph_id\":\"7-a686158d\",\"quote\":\"If we fail to anticipate or respond to technological shifts or market demands, or to timely develop new or enhanced products or technologies in response to the same, it could result in decreased revenue and the loss of our design wins to our competitors.\",\"claim\":\"The company risks decreased revenue and loss of design wins if it fails to anticipate or respond to technological shifts or market demands.\"},{\"type\":\"guidance\",\"paragraph_id\":\"7-330c8b6f\",\"quote\":\"We continually monitor and work to reduce the cost of our products and improve the potential value our solutions provide to our customers as we target new design win opportunities and manage the product life cycles of our existing customer designs.\",\"claim\":\"The company plans to continually reduce product costs and improve value by targeting new design win opportunities and managing product life cycles.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 930,
+  "completion_tokens": 372,
+  "latency_ms": 771.5109999999186,
+  "attempts": 1
+ }
+}

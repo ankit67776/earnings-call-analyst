@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\nSection: Item 1A. RISK FACTORS\n\n[1A-0c729e0d] Complications with the design or implementation of our new enterprise resource planning system could adversely impact our business and operations.\n\n[1A-0367aeee] We rely extensively on information systems and technology to manage our business and summarize operating results. We are in the process of a multi-year implementation of a new global enterprise resource planning (“ERP”) system. This ERP system will replace our existing operating and financial systems. The ERP system is designed to accurately maintain the Company’s financial records, enhance operational functionality and provide timely information to the Company’s management team related to the operation of the business. The ERP system implementation process has required, and will continue to require, the investment of significant personnel and financial resources. We may not be able to successfully implement the ERP system without experiencing further delays, increased costs and other difficulties. We selectively paused certain aspects of the ERP system implementation due to resource constraints and challenges associated with the critical design phase during these uncertain times. We expect this to delay our overall ERP implementation by approximately one year. If we are unable to successfully design and implement the new ERP system as planned, our financial positions, results of operations and cash flows could be negatively impacted. Additionally, if we do not effectively implement the ERP system as planned or the ERP system does not operate as intended, the effectiveness of our internal control over financial reporting could be adversely affected or our ability to assess those controls adequately could be further delayed."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\"claims\":[{\"type\":\"risk\",\"paragraph_id\":\"1A-0c729e0d\",\"quote\":\"Complications with the design or implementation of our new enterprise resource planning system could adversely impact our business and operations.\",\"claim\":\"Complications with the design or implementation of Hershey’s new ERP system could adversely impact its business and operations.\"},{\"type\":\"risk\",\"paragraph_id\":\"1A-0367aeee\",\"quote\":\"We may not be able to successfully implement the ERP system without experiencing further delays, increased costs and other difficulties.\",\"claim\":\"Hershey may not successfully implement its ERP system without further delays, increased costs, and other difficulties.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 809,
+  "completion_tokens": 169,
+  "latency_ms": 530.0341999998182,
+  "attempts": 1
+ }
+}

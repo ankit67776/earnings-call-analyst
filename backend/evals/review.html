@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Golden set review</title>
+<style>
+  :root {
+    --canvas: #f6f7f9; --rail: #eef0f3; --sheet: #fff; --line: #e3e6ea; --line-2: #d0d5db;
+    --ink: #12161b; --ink-2: #555e69; --accent: #2f3fd0; --tint: #eef0fd;
+    --mark: #ffd84d; --mark-soft: #fff5cc; --mark-line: #e0bf4f;
+    --ok: #16794c; --warn: #99540a; --bad: #b42318;
+    --ui: system-ui, -apple-system, "Segoe UI", sans-serif; --doc: Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.45 var(--ui); color: var(--ink); background: var(--canvas); }
+  button, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+  .app { display: grid; grid-template-columns: 15rem minmax(0, 1fr) 24rem; height: 100vh; }
+  nav { background: var(--rail); border-right: 1px solid var(--line); overflow-y: auto; padding: 12px 8px; }
+  nav h1 { font-size: 14px; margin: 4px 8px 2px; }
+  nav .sum { margin: 0 8px 12px; color: var(--ink-2); font-size: 12px; }
+  nav button { display: flex; justify-content: space-between; gap: 8px; width: 100%; text-align: left;
+    border: 0; background: none; padding: 6px 8px; border-radius: 6px; color: var(--ink-2); }
+  nav button:hover { background: #e4e7eb; color: var(--ink); }
+  nav button[aria-current="true"] { background: var(--sheet); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+  nav .n { font: 11px ui-monospace, monospace; }
+  nav .done { color: var(--ok); }
+  main { overflow-y: auto; padding: 20px 28px 80px; }
+  .meta { color: var(--ink-2); margin: 0 0 4px; }
+  main h2 { font: 600 20px/1.3 var(--ui); margin: 0 0 4px; }
+  details.guide { background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; margin: 12px 0 18px; color: var(--ink-2); }
+  details.guide summary { cursor: pointer; color: var(--ink); }
+  details.guide li { margin: 4px 0; }
+  .sheet { background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; }
+  .ctx { color: var(--ink-2); font-style: italic; margin: 0 0 14px; }
+  .p { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 12px; margin: 0 0 14px; }
+  .pid { font: 11px ui-monospace, monospace; color: var(--ink-2); padding-top: 4px; }
+  .pt { font: 16px/1.7 var(--doc); }
+  .p.heading .pt { font-weight: 700; }
+  .q { text-decoration: underline 1.5px var(--mark-line); text-underline-offset: 4px; cursor: pointer; }
+  .q.alt { text-decoration-style: dashed; }
+  .q.on { background: var(--mark); text-decoration: none; }
+  aside { background: var(--sheet); border-left: 1px solid var(--line); overflow-y: auto; padding: 16px 14px 80px; }
+  aside h3 { margin: 0 0 4px; font-size: 14px; }
+  aside .hint { color: var(--ink-2); font-size: 12px; margin: 0 0 12px; }
+  .claim { border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin: 0 0 10px; }
+  .claim.sel { border-color: var(--mark-line); background: var(--mark-soft); }
+  .claim.rejected { opacity: .55; }
+  .claim.rejected textarea { text-decoration: line-through; }
+  .row { display: flex; align-items: center; gap: 6px; }
+  .num { font: 11px ui-monospace, monospace; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-2);
+    display: grid; place-items: center; background: var(--sheet); cursor: pointer; }
+  .claim.sel .num { background: var(--mark); border-color: var(--mark-line); }
+  .claim select { border: 1px solid var(--line-2); border-radius: 6px; padding: 2px 4px; background: var(--sheet); }
+  .status { margin-left: auto; font-size: 12px; color: var(--ink-2); }
+  .status.accepted, .status.edited, .status.added { color: var(--ok); }
+  .status.rejected { color: var(--bad); }
+  textarea { width: 100%; margin: 8px 0 6px; border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 8px; resize: vertical; min-height: 3.2em; background: var(--sheet); }
+  .quote { font: 13px/1.5 var(--doc); color: var(--ink-2); margin: 0 0 8px; }
+  .alts { font-size: 12px; color: var(--ink-2); margin: -4px 0 8px; }
+  .alts button { border: 0; background: none; color: var(--bad); padding: 0 4px; }
+  .acts { display: flex; gap: 6px; }
+  .acts button { border: 1px solid var(--line-2); background: var(--sheet); border-radius: 6px; padding: 3px 10px; }
+  .acts .yes { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .acts button:hover { filter: brightness(.96); }
+  .empty { color: var(--ink-2); border: 1px dashed var(--line-2); border-radius: 8px; padding: 10px; }
+  #pop { position: fixed; display: none; gap: 6px; background: var(--ink); color: #fff; border-radius: 8px; padding: 6px; z-index: 10;
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / .45); }
+  #pop button { border: 0; border-radius: 6px; background: #2a3038; color: #fff; padding: 4px 10px; }
+  #pop button:hover { background: #3a414a; }
+  #saved { position: fixed; right: 16px; bottom: 12px; font-size: 12px; color: var(--ink-2); background: var(--sheet);
+    border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; }
+  #saved.err { color: var(--bad); border-color: var(--bad); }
+  kbd { font: 11px ui-monospace, monospace; border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; background: var(--sheet); }
+</style>
+</head>
+<body>
+<div class="app">
+  <nav><h1>Golden set review</h1><p class="sum" id="sum"></p><div id="list"></div></nav>
+  <main>
+    <p class="meta" id="meta"></p>
+    <h2 id="title"></h2>
+    <details class="guide">
+      <summary>What counts as a claim</summary>
+      <ul>
+        <li><b>risk</b>: a specific risk the company says could hurt it. One claim per distinct risk; each item of a risk list is its own claim. A sentence that only restates a consequence is not a new claim.</li>
+        <li><b>guidance</b>: a forward-looking target, plan or expectation about the company's own results, spending, timing or exposure, including "we do not expect..." statements. Strategy with no target, amount or date is not guidance.</li>
+        <li><b>metric</b>: a reported number about the company's results or its operating environment (e.g. benchmark prices). Dates alone are not metrics.</li>
+        <li><b>event</b>: a completed or announced corporate action: acquisition, divestiture, offering, dividend or buyback change, restructuring, impairment.</li>
+        <li>Never: disclaimers, generic boilerplate, definitions, cross-references, lists of laws. A heading is never a claim on its own, but a risk-factor heading that states a labeled risk is an alternative quote for it (dashed underline).</li>
+        <li>Quote: the clause that states the claim, exactly as filed, at most ~40 words. Add an alternative quote when the claim is also stated elsewhere.</li>
+      </ul>
+    </details>
+    <div class="sheet" id="sheet"></div>
+  </main>
+  <aside>
+    <h3 id="ctitle">Claims</h3>
+    <p class="hint">Accept, edit or reject each claim. Select text in the passage to add a missed claim or an alternative quote. <kbd>N</kbd> / <kbd>P</kbd> next and previous passage.</p>
+    <div id="claims"></div>
+  </aside>
+</div>
+<div id="pop"><button id="addNew">New claim from selection</button><button id="addAlt">Alt quote for claim</button></div>
+<div id="saved">Loading…</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+let data, at = 0, sel = null, pending = null, timer = null;
+
+const live = (c) => c.status !== "rejected";
+const reviewed = (c) => c.status !== "draft";
+
+async function load() {
+  data = await (await fetch("/api/golden")).json();
+  at = Math.max(0, data.passages.findIndex((p) => p.claims.some((c) => !reviewed(c))));
+  $("#saved").textContent = "All changes save automatically";
+  render();
+}
+
+function save() {
+  $("#saved").textContent = "Saving…";
+  $("#saved").className = "";
+  clearTimeout(timer);
+  timer = setTimeout(async () => {
+    const r = await fetch("/api/golden", { method: "PUT", headers: { "content-type": "application/json" }, body: JSON.stringify(data) });
+    if (r.ok) { $("#saved").textContent = "Saved"; return; }
+    const body = await r.json().catch(() => ({}));
+    $("#saved").className = "err";
+    $("#saved").textContent = "Not saved: " + (body.problems || [r.status]).slice(0, 2).join("; ");
+  }, 400);
+}
+
+function spans(p, claims) {
+  // Every labeled span in this paragraph: [start, end, claimIndex, isAlt].
+  const out = [];
+  claims.forEach((c, i) => {
+    if (!live(c)) return;
+    [{ paragraph_id: c.paragraph_id, quote: c.quote }, ...(c.alt_quotes || [])].forEach((q, k) => {
+      if (q.paragraph_id !== p.id) return;
+      const s = p.text.indexOf(q.quote);
+      if (s >= 0) out.push([s, s + q.quote.length, i, k > 0]);
+    });
+  });
+  return out;
+}
+
+function paragraphHTML(p, claims) {
+  const ss = spans(p, claims);
+  const cuts = new Set([0, p.text.length]);
+  ss.forEach(([s, e]) => { cuts.add(s); cuts.add(e); });
+  const pts = [...cuts].sort((a, b) => a - b);
+  let html = "";
+  for (let i = 0; i < pts.length - 1; i++) {
+    const [a, b] = [pts[i], pts[i + 1]];
+    const cover = ss.filter(([s, e]) => s <= a && e >= b);
+    const text = esc(p.text.slice(a, b));
+    if (!cover.length) { html += text; continue; }
+    const pick = cover.find(([, , k]) => k === sel) || cover[0];
+    const cls = ["q", pick[3] ? "alt" : "", cover.some(([, , k]) => k === sel) ? "on" : ""].join(" ");
+    html += `<span class="${cls}" data-c="${pick[2]}">${text}</span>`;
+  }
+  return html;
+}
+
+function render() {
+  const P = data.passages[at];
+  const all = data.passages.flatMap((p) => p.claims);
+  $("#sum").textContent = `${all.filter(live).length} claims, ${all.filter(reviewed).length} of ${all.length} reviewed`;
+  $("#list").innerHTML = data.passages.map((p, i) => {
+    const done = p.claims.every(reviewed);
+    return `<button data-go="${i}" aria-current="${i === at}"><span>${p.id}</span><span class="n ${done ? "done" : ""}">${p.claims.filter(reviewed).length}/${p.claims.length}</span></button>`;
+  }).join("");
+  $("#meta").textContent = `${P.company} · 10-K FY${P.fiscal_year} · Item ${P.section}`;
+  $("#title").textContent = P.section_title;
+  $("#sheet").innerHTML = (P.context_heading ? `<p class="ctx">Continues under the heading “${esc(P.context_heading)}”</p>` : "") +
+    P.paragraphs.map((p) => `<div class="p ${p.kind}"><span class="pid">${p.id}</span><div class="pt" data-p="${p.id}">${paragraphHTML(p, P.claims)}</div></div>`).join("");
+  $("#ctitle").textContent = `Claims in ${P.id}`;
+  $("#claims").innerHTML = P.claims.length ? P.claims.map((c, i) => `
+    <div class="claim ${i === sel ? "sel" : ""} ${c.status}" data-i="${i}">
+      <div class="row">
+        <span class="num" data-pick="${i}">${i + 1}</span>
+        <select data-type="${i}">${["risk", "guidance", "metric", "event"].map((t) => `<option ${t === c.type ? "selected" : ""}>${t}</option>`).join("")}</select>
+        <span class="status ${c.status}">${c.status}</span>
+      </div>
+      <textarea data-text="${i}" rows="2" placeholder="One plain sentence stating the claim">${esc(c.claim)}</textarea>
+      <p class="quote">“${esc(c.quote)}” <span class="pid">${c.paragraph_id}</span></p>
+      ${(c.alt_quotes || []).length ? `<div class="alts">${c.alt_quotes.map((q, k) => `<div>Also: “${esc(q.quote)}” <span class="pid">${q.paragraph_id}</span><button data-dropalt="${i}:${k}" title="Remove this alternative">remove</button></div>`).join("")}</div>` : ""}
+      <div class="acts">
+        ${c.status === "rejected"
+          ? `<button data-undo="${i}">Undo reject</button>`
+          : `<button class="yes" data-accept="${i}">${c.status === "draft" ? "Accept" : "Accepted"}</button><button data-reject="${i}">Reject</button>`}
+      </div>
+    </div>`).join("") : `<p class="empty">No claims drafted for this passage. If it has one, select its quote in the passage to add it.</p>`;
+}
+
+function setStatus(c, next) {
+  if (c.status === "added" && next !== "rejected") return; // stays "added"
+  c.status = next;
+}
+
+document.addEventListener("click", (e) => {
+  const t = e.target.closest("[data-go],[data-pick],[data-accept],[data-reject],[data-undo],[data-dropalt],.q");
+  if (!t) return;
+  const P = data.passages[at];
+  if (t.dataset.go) { at = +t.dataset.go; sel = null; render(); $("main").scrollTop = 0; return; }
+  if (t.classList.contains("q")) { sel = +t.dataset.c; render(); document.querySelector(`.claim[data-i="${sel}"]`)?.scrollIntoView({ block: "nearest" }); return; }
+  if (t.dataset.pick) { sel = +t.dataset.pick; render(); document.querySelector(".q.on")?.scrollIntoView({ block: "center" }); return; }
+  if (t.dataset.accept) { const c = P.claims[+t.dataset.accept]; if (c.status === "draft") setStatus(c, "accepted"); }
+  if (t.dataset.reject) setStatus(P.claims[+t.dataset.reject], "rejected");
+  if (t.dataset.undo) P.claims[+t.dataset.undo].status = "draft";
+  if (t.dataset.dropalt) { const [i, k] = t.dataset.dropalt.split(":").map(Number); const c = P.claims[i]; c.alt_quotes.splice(k, 1); if (!c.alt_quotes.length) delete c.alt_quotes; if (c.status !== "added") c.status = "edited"; }
+  render(); save();
+});
+
+document.addEventListener("change", (e) => {
+  const P = data.passages[at];
+  if (e.target.dataset.type) { const c = P.claims[+e.target.dataset.type]; c.type = e.target.value; setStatus(c, "edited"); render(); save(); }
+});
+document.addEventListener("input", (e) => {
+  const P = data.passages[at];
+  if (e.target.dataset.text) { const c = P.claims[+e.target.dataset.text]; c.claim = e.target.value; setStatus(c, "edited"); e.target.closest(".claim").querySelector(".status").textContent = c.status; save(); }
+});
+
+// Selecting text inside one paragraph offers to add it as a claim or an alternative quote.
+document.addEventListener("mouseup", () => setTimeout(() => {
+  const s = window.getSelection();
+  const box = s.rangeCount ? s.getRangeAt(0) : null;
+  const pt = box && box.startContainer.parentElement?.closest(".pt");
+  if (!box || s.isCollapsed || !pt || pt !== box.endContainer.parentElement?.closest(".pt")) { $("#pop").style.display = "none"; pending = null; return; }
+  const before = document.createRange();
+  before.setStart(pt, 0);
+  before.setEnd(box.startContainer, box.startOffset);
+  const p = data.passages[at].paragraphs.find((x) => x.id === pt.dataset.p);
+  let start = before.toString().length, end = start + s.toString().length;
+  while (start < end && /\s/.test(p.text[start])) start++;
+  while (end > start && /\s/.test(p.text[end - 1])) end--;
+  if (end - start < 3) return;
+  pending = { paragraph_id: p.id, quote: p.text.slice(start, end) };
+  const r = box.getBoundingClientRect();
+  const pop = $("#pop");
+  pop.style.display = "flex";
+  pop.style.left = Math.max(8, r.left) + "px";
+  pop.style.top = Math.max(8, r.top - 44) + "px";
+  const c = sel !== null ? data.passages[at].claims[sel] : null;
+  $("#addAlt").style.display = c ? "" : "none";
+  $("#addAlt").textContent = c ? `Alt quote for claim ${sel + 1}` : "";
+}, 0));
+
+$("#addNew").addEventListener("click", () => {
+  if (!pending) return;
+  const P = data.passages[at];
+  P.claims.push({ type: "risk", paragraph_id: pending.paragraph_id, quote: pending.quote, claim: "", status: "added" });
+  sel = P.claims.length - 1;
+  $("#pop").style.display = "none"; window.getSelection().removeAllRanges();
+  render();
+  // Saved once its claim text is typed.
+  document.querySelector(`textarea[data-text="${sel}"]`)?.focus();
+});
+$("#addAlt").addEventListener("click", () => {
+  if (!pending || sel === null) return;
+  const c = data.passages[at].claims[sel];
+  (c.alt_quotes ||= []).push({ paragraph_id: pending.paragraph_id, quote: pending.quote });
+  if (c.status !== "added") c.status = "edited";
+  $("#pop").style.display = "none"; window.getSelection().removeAllRanges();
+  render(); save();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.target.matches("textarea, select, input")) return;
+  if (e.key === "n" && at < data.passages.length - 1) { at++; sel = null; render(); $("main").scrollTop = 0; }
+  if (e.key === "p" && at > 0) { at--; sel = null; render(); $("main").scrollTop = 0; }
+});
+
+load();
+</script>
+</body>
+</html>

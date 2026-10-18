@@ -1,0 +1,1460 @@
+{
+  "version": 1,
+  "max_chars": 2500,
+  "seed": 2020,
+  "passages": [
+    {
+      "id": "HSY-1A-02",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": "Our business and financial results may be negatively impacted by the failure to successfully manage a disruption in consumer and trade patterns, as well as operational challenges associated with the actual or perceived effects of a disease outbreak, including epidemics, pandemics or similar widespread public health concerns, such as, the current coronavirus disease 2019 (\"COVID-19\") global pandemic.",
+      "paragraphs": [
+        {
+          "id": "1A-f736f0b0",
+          "kind": "text",
+          "text": "With respect to COVID-19, the situation remains dynamic and subject to rapid and possibly material change. The Company's efforts to manage and mitigate these factors may be unsuccessful, and the effectiveness of these efforts depends on factors beyond our control, including the duration and severity of any disease outbreak, as well as third-party actions taken to contain its spread and mitigate public health effects."
+        },
+        {
+          "id": "1A-01be8cd3",
+          "kind": "heading",
+          "text": "Risks Related to Our Business and Operations"
+        },
+        {
+          "id": "1A-6513a74f",
+          "kind": "heading",
+          "text": "Our Company’s reputation or brand image might be impacted as a result of issues or concerns relating to the quality and safety of our products, ingredients or packaging, human and workplace rights, and other environmental, social or governance matters, which in turn could result in litigation or otherwise negatively impact our operating results."
+        },
+        {
+          "id": "1A-cc27b387",
+          "kind": "text",
+          "text": "In order to sell our iconic, branded products, we need to maintain a good reputation with our customers, consumers, suppliers, vendors and employees, among others. Issues related to the quality and safety of our products, ingredients or packaging could jeopardize our Company’s image and reputation. We have in the past and may in the future need to recall products if any of our products become unfit for consumption. Negative publicity related to these types of concerns, or related to product contamination or product tampering, whether valid or not, could decrease demand for our products or cause production and delivery disruptions. In addition, negative publicity related to our environmental, social or governance practices could also impact our reputation with customers, consumers, suppliers and vendors."
+        },
+        {
+          "id": "1A-014603c4",
+          "kind": "text",
+          "text": "We have in the past and in the future could potentially be subject to litigation or government actions as a result of issues or concerns relating to the quality and safety of our products, ingredients or packaging, human and workplace rights, and other environmental, social or governance matters, which could result in payments of fines or damages. Costs associated with these potential actions, as well as the potential impact on our reputation or ability to sell our products, could negatively affect our operating results."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-f736f0b0",
+          "quote": "The Company's efforts to manage and mitigate these factors may be unsuccessful, and the effectiveness of these efforts depends on factors beyond our control, including the duration and severity of any disease outbreak",
+          "claim": "Hershey's efforts to manage and mitigate the effects of COVID-19 may be unsuccessful and depend on factors beyond its control, such as the outbreak's duration and severity.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-f736f0b0",
+              "quote": "With respect to COVID-19, the situation remains dynamic and subject to rapid and possibly material change."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-cc27b387",
+          "quote": "Issues related to the quality and safety of our products, ingredients or packaging could jeopardize our Company’s image and reputation.",
+          "claim": "Problems with the quality or safety of Hershey's products, ingredients or packaging could damage its image and reputation.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-6513a74f",
+              "quote": "Our Company’s reputation or brand image might be impacted as a result of issues or concerns relating to the quality and safety of our products, ingredients or packaging, human and workplace rights, and other environmental, social or governance matters"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-cc27b387",
+          "quote": "We have in the past and may in the future need to recall products if any of our products become unfit for consumption.",
+          "claim": "Hershey may need to recall products that become unfit for consumption, as it has in the past.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-cc27b387",
+          "quote": "Negative publicity related to these types of concerns, or related to product contamination or product tampering, whether valid or not, could decrease demand for our products or cause production and delivery disruptions.",
+          "claim": "Negative publicity about product safety, contamination or tampering, valid or not, could reduce demand for Hershey's products or disrupt production and delivery.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-cc27b387",
+          "quote": "negative publicity related to our environmental, social or governance practices could also impact our reputation with customers, consumers, suppliers and vendors.",
+          "claim": "Negative publicity about Hershey's environmental, social or governance practices could hurt its reputation with customers, consumers, suppliers and vendors.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-cc27b387",
+              "quote": "negative publicity related to our environmental, social or governance practices could also impact our reputation with customers, consumers, suppliers and vendors"
+            },
+            {
+              "paragraph_id": "1A-6513a74f",
+              "quote": "Our Company’s reputation or brand image might be impacted as a result of issues or concerns relating to the quality and safety of our products, ingredients or packaging, human and workplace rights, and other environmental, social or governance matters"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-014603c4",
+          "quote": "We have in the past and in the future could potentially be subject to litigation or government actions as a result of issues or concerns relating to the quality and safety of our products, ingredients or packaging",
+          "claim": "Hershey could face litigation or government action over product quality and safety, workplace rights or ESG matters, leading to fines or damages.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-014603c4",
+              "quote": "which could result in payments of fines or damages"
+            },
+            {
+              "paragraph_id": "1A-6513a74f",
+              "quote": "which in turn could result in litigation or otherwise negatively impact our operating results"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "HSY-1A-09",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": "Our international operations may not achieve projected growth objectives, which could adversely impact our overall business and results of operations.",
+      "paragraphs": [
+        {
+          "id": "1A-3caaf684",
+          "kind": "text",
+          "text": "•Political and economic instability, including the possibility of civil unrest, terrorism, mass violence or armed conflict;"
+        },
+        {
+          "id": "1A-58c7cff5",
+          "kind": "text",
+          "text": "•Nationalization of our properties by foreign governments;"
+        },
+        {
+          "id": "1A-cb9bb155",
+          "kind": "text",
+          "text": "•Tax rates that may exceed those in the United States and earnings that may be subject to withholding requirements and incremental taxes upon repatriation;"
+        },
+        {
+          "id": "1A-0a97e281",
+          "kind": "text",
+          "text": "•Potentially negative consequences from changes in tax laws;"
+        },
+        {
+          "id": "1A-4b9aa614",
+          "kind": "text",
+          "text": "•The imposition of tariffs, quotas, trade barriers, other trade protection measures and import or export licensing requirements;"
+        },
+        {
+          "id": "1A-2a835ca8",
+          "kind": "text",
+          "text": "•Increased costs, disruptions in shipping or reduced availability of freight transportation;"
+        },
+        {
+          "id": "1A-c5156b74",
+          "kind": "text",
+          "text": "•The impact of currency exchange rate fluctuations between the U.S. dollar and foreign currencies;"
+        },
+        {
+          "id": "1A-0221894d",
+          "kind": "text",
+          "text": "•Failure to gain sufficient profitable scale in certain international markets resulting in an inability to cover manufacturing fixed costs or resulting in losses from impairment or sale of assets; and"
+        },
+        {
+          "id": "1A-be98f135",
+          "kind": "text",
+          "text": "•Failure to recruit, retain and build a talented and engaged global workforce."
+        },
+        {
+          "id": "1A-884d3274",
+          "kind": "text",
+          "text": "If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations, there could be a negative impact on our financial condition and results of operations."
+        },
+        {
+          "id": "1A-904eb683",
+          "kind": "heading",
+          "text": "We may not fully realize the expected costs savings and/or operating efficiencies associated with our strategic initiatives or restructuring programs, which may have an adverse impact on our business."
+        },
+        {
+          "id": "1A-571f5551",
+          "kind": "text",
+          "text": "We depend on our ability to evolve and grow, and as changes in our business environment occur, we may adjust our business plans by introducing new strategic initiatives or restructuring programs to meet these changes. Recently introduced strategic initiatives include our efforts to continue to expand our presence in digital commerce, to transform our manufacturing, commercial and corporate operations through digital technologies and to enhance our data analytics capabilities to develop new commercial insights. If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights, our business performance may be impacted, which may negatively impact our financial condition and results of operations."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-3caaf684",
+          "quote": "Political and economic instability, including the possibility of civil unrest, terrorism, mass violence or armed conflict;",
+          "claim": "Political and economic instability abroad, including civil unrest, terrorism or armed conflict, threatens Hershey's international operations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-3caaf684",
+              "quote": "Political and economic instability, including the possibility of civil unrest, terrorism, mass violence or armed conflict"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-58c7cff5",
+          "quote": "Nationalization of our properties by foreign governments;",
+          "claim": "Foreign governments could nationalize Hershey's properties.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-58c7cff5",
+              "quote": "Nationalization of our properties by foreign governments"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-cb9bb155",
+          "quote": "Tax rates that may exceed those in the United States and earnings that may be subject to withholding requirements and incremental taxes upon repatriation;",
+          "claim": "Hershey's international earnings may face higher foreign tax rates, withholding requirements and extra taxes on repatriation.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-cb9bb155",
+              "quote": "Tax rates that may exceed those in the United States and earnings that may be subject to withholding requirements and incremental taxes upon repatriation"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-0a97e281",
+          "quote": "Potentially negative consequences from changes in tax laws;",
+          "claim": "Changes in tax laws could hurt Hershey's international operations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-0a97e281",
+              "quote": "Potentially negative consequences from changes in tax laws"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-4b9aa614",
+          "quote": "The imposition of tariffs, quotas, trade barriers, other trade protection measures and import or export licensing requirements;",
+          "claim": "Tariffs, quotas, trade barriers and import or export licensing requirements could hurt Hershey's international operations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-4b9aa614",
+              "quote": "The imposition of tariffs, quotas, trade barriers, other trade protection measures and import or export licensing requirements"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-2a835ca8",
+          "quote": "Increased costs, disruptions in shipping or reduced availability of freight transportation;",
+          "claim": "Higher shipping costs, shipping disruptions or reduced freight availability could hurt Hershey's international operations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-2a835ca8",
+              "quote": "Increased costs, disruptions in shipping or reduced availability of freight transportation"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-c5156b74",
+          "quote": "The impact of currency exchange rate fluctuations between the U.S. dollar and foreign currencies;",
+          "claim": "Exchange rate swings between the U.S. dollar and foreign currencies affect Hershey's international results.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-c5156b74",
+              "quote": "The impact of currency exchange rate fluctuations between the U.S. dollar and foreign currencies"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-0221894d",
+          "quote": "Failure to gain sufficient profitable scale in certain international markets resulting in an inability to cover manufacturing fixed costs or resulting in losses from impairment or sale of assets",
+          "claim": "Without enough profitable scale in some international markets, Hershey may not cover manufacturing fixed costs or may take impairment or asset-sale losses.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-be98f135",
+          "quote": "Failure to recruit, retain and build a talented and engaged global workforce.",
+          "claim": "Hershey may fail to recruit, retain and build a talented global workforce.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-be98f135",
+              "quote": "Failure to recruit, retain and build a talented and engaged global workforce"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-571f5551",
+          "quote": "If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities",
+          "claim": "If Hershey fails to win its share of digital commerce, use technology to improve efficiency or build data analytics capabilities, its business performance may suffer.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-571f5551",
+              "quote": "If we are not able to capture our share of the expanding digital commerce market"
+            },
+            {
+              "paragraph_id": "1A-904eb683",
+              "quote": "We may not fully realize the expected costs savings and/or operating efficiencies associated with our strategic initiatives or restructuring programs, which may have an adverse impact on our business."
+            },
+            {
+              "paragraph_id": "1A-571f5551",
+              "quote": "if we do not adequately leverage technology to improve operating efficiencies"
+            },
+            {
+              "paragraph_id": "1A-904eb683",
+              "quote": "We may not fully realize the expected costs savings and/or operating efficiencies associated with our strategic initiatives or restructuring programs"
+            },
+            {
+              "paragraph_id": "1A-571f5551",
+              "quote": "if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "HSY-1A-14",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "1A-0c729e0d",
+          "kind": "heading",
+          "text": "Complications with the design or implementation of our new enterprise resource planning system could adversely impact our business and operations."
+        },
+        {
+          "id": "1A-0367aeee",
+          "kind": "text",
+          "text": "We rely extensively on information systems and technology to manage our business and summarize operating results. We are in the process of a multi-year implementation of a new global enterprise resource planning (“ERP”) system. This ERP system will replace our existing operating and financial systems. The ERP system is designed to accurately maintain the Company’s financial records, enhance operational functionality and provide timely information to the Company’s management team related to the operation of the business. The ERP system implementation process has required, and will continue to require, the investment of significant personnel and financial resources. We may not be able to successfully implement the ERP system without experiencing further delays, increased costs and other difficulties. We selectively paused certain aspects of the ERP system implementation due to resource constraints and challenges associated with the critical design phase during these uncertain times. We expect this to delay our overall ERP implementation by approximately one year. If we are unable to successfully design and implement the new ERP system as planned, our financial positions, results of operations and cash flows could be negatively impacted. Additionally, if we do not effectively implement the ERP system as planned or the ERP system does not operate as intended, the effectiveness of our internal control over financial reporting could be adversely affected or our ability to assess those controls adequately could be further delayed."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-0367aeee",
+          "quote": "We may not be able to successfully implement the ERP system without experiencing further delays, increased costs and other difficulties.",
+          "claim": "Hershey's new ERP system may face further delays, higher costs and other implementation difficulties.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-0367aeee",
+              "quote": "If we are unable to successfully design and implement the new ERP system as planned, our financial positions, results of operations and cash flows could be negatively impacted."
+            },
+            {
+              "paragraph_id": "1A-0c729e0d",
+              "quote": "Complications with the design or implementation of our new enterprise resource planning system could adversely impact our business and operations."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "1A-0367aeee",
+          "quote": "We expect this to delay our overall ERP implementation by approximately one year.",
+          "claim": "Hershey expects pausing parts of the ERP project to delay the overall implementation by about one year.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-0367aeee",
+          "quote": "if we do not effectively implement the ERP system as planned or the ERP system does not operate as intended, the effectiveness of our internal control over financial reporting could be adversely affected",
+          "claim": "A flawed ERP implementation could weaken Hershey's internal control over financial reporting.",
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "HSY-7-28",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "7-bd3a79c9",
+          "kind": "heading",
+          "text": "Guarantees and Other Off-Balance Sheet Arrangements"
+        },
+        {
+          "id": "7-e1cb4f12",
+          "kind": "text",
+          "text": "We do not have guarantees or other off-balance sheet financing arrangements, including variable interest entities, that we believe could have a material impact on our financial condition or liquidity."
+        },
+        {
+          "id": "7-115afd89",
+          "kind": "heading",
+          "text": "Contractual Obligations"
+        },
+        {
+          "id": "7-8c4994c5",
+          "kind": "text",
+          "text": "The following table summarizes our contractual obligations at December 31, 2020:"
+        },
+        {
+          "id": "7-40e57ec3",
+          "kind": "text",
+          "text": "(1) Includes the net interest payments on fixed rate debt associated with long-term notes."
+        },
+        {
+          "id": "7-91293c6d",
+          "kind": "text",
+          "text": "(2) Includes the minimum rental commitments (including imputed interest) under non-cancelable operating leases primarily for offices, retail stores, warehouses and distribution facilities."
+        },
+        {
+          "id": "7-6d9dd7fe",
+          "kind": "text",
+          "text": "(3) Includes the minimum rental commitments (including imputed interest) under non-cancelable finance leases primarily for offices and warehouse facilities, as well as vehicles."
+        },
+        {
+          "id": "7-7602ceae",
+          "kind": "text",
+          "text": "(4) Represents future pension payments to comply with local funding requirements. Our policy is to fund domestic pension liabilities in accordance with the minimum and maximum limits imposed by the Employee Retirement Income Security Act of 1974 (“ERISA”), federal income tax laws and the funding requirements of the Pension Protection Act of 2006. We fund non-domestic pension liabilities in accordance with laws and regulations applicable to those plans. For more information, see Note 11 to the Consolidated Financial Statements."
+        },
+        {
+          "id": "7-4c2d855c",
+          "kind": "text",
+          "text": "(5) Purchase obligations consist primarily of fixed commitments for the purchase of raw materials to be utilized in the normal course of business. Amounts presented included fixed price forward contracts and unpriced contracts that were valued using market prices as of December 31, 2020. The amounts presented in the table do not include items already recorded in accounts payable or accrued liabilities at year-end 2020, nor does the table reflect cash flows we are likely to incur based on our plans, but are not obligated to incur. Such amounts are part of normal operations and are reflected in historical operating cash flow trends. We do not believe such purchase obligations will adversely affect our liquidity position."
+        }
+      ],
+      "claims": [
+        {
+          "type": "guidance",
+          "paragraph_id": "7-4c2d855c",
+          "quote": "We do not believe such purchase obligations will adversely affect our liquidity position.",
+          "claim": "Hershey does not expect its raw-material purchase obligations to hurt its liquidity.",
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "HSY-7-29",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": "Contractual Obligations",
+      "paragraphs": [
+        {
+          "id": "7-22c6e4b3",
+          "kind": "text",
+          "text": "In entering into contractual obligations, we have assumed the risk that might arise from the possible inability of counterparties to meet the terms of their contracts. We mitigate this risk by performing financial assessments prior to contract execution, conducting periodic evaluations of counterparty performance and maintaining a diverse portfolio of qualified counterparties. Our risk is limited to replacing the contracts at prevailing market rates. We do not expect any significant losses resulting from counterparty defaults."
+        },
+        {
+          "id": "7-6fe26e6c",
+          "kind": "heading",
+          "text": "Asset Retirement Obligations"
+        },
+        {
+          "id": "7-e64680bc",
+          "kind": "text",
+          "text": "We have a number of facilities that contain varying amounts of asbestos in certain locations within the facilities. Our asbestos management program is compliant with current applicable regulations, which require that we handle or dispose of asbestos in a specified manner if such facilities undergo major renovations or are demolished. We do not have sufficient information to estimate the fair value of any asset retirement obligations related to these facilities. We cannot specify the settlement date or range of potential settlement dates and, therefore, sufficient information is not available to apply an expected present value technique. We expect to maintain the facilities with repairs and maintenance activities that would not involve or require the removal of significant quantities of asbestos."
+        }
+      ],
+      "claims": [
+        {
+          "type": "guidance",
+          "paragraph_id": "7-22c6e4b3",
+          "quote": "We do not expect any significant losses resulting from counterparty defaults.",
+          "claim": "Hershey does not expect significant losses from counterparties defaulting on contracts.",
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "7-e64680bc",
+          "quote": "We expect to maintain the facilities with repairs and maintenance activities that would not involve or require the removal of significant quantities of asbestos.",
+          "claim": "Hershey expects to maintain its asbestos-containing facilities without removing significant quantities of asbestos.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-22c6e4b3",
+          "quote": "we have assumed the risk that might arise from the possible inability of counterparties to meet the terms of their contracts",
+          "claim": "Hershey bears the risk that counterparties to its contractual obligations may be unable to meet their contract terms.",
+          "status": "adjudicated"
+        }
+      ]
+    },
+    {
+      "id": "HSY-7-30",
+      "ticker": "HSY",
+      "company": "HERSHEY CO",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/47111/000004711121000007/hsy-20201231.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "7-c79306f1",
+          "kind": "heading",
+          "text": "Income Tax Obligations"
+        },
+        {
+          "id": "7-8e30568c",
+          "kind": "text",
+          "text": "Liabilities for unrecognized income tax benefits are excluded from the table above as we are unable to reasonably predict the ultimate amount or timing of a settlement of these potential liabilities. See Note 10 to the Consolidated Financial Statements for more information."
+        },
+        {
+          "id": "7-8c1255b9",
+          "kind": "heading",
+          "text": "Recent Accounting Pronouncements"
+        },
+        {
+          "id": "7-74abfe89",
+          "kind": "text",
+          "text": "Information on recently adopted and issued accounting standards is included in Note 1 to the Consolidated Financial Statements."
+        },
+        {
+          "id": "7-e970f7f8",
+          "kind": "heading",
+          "text": "CRITICAL ACCOUNTING POLICIES AND ESTIMATES"
+        },
+        {
+          "id": "7-59ac86a5",
+          "kind": "text",
+          "text": "The preparation of financial statements requires management to use judgment and make estimates and assumptions. We believe that our most critical accounting policies and estimates relate to the following:"
+        },
+        {
+          "id": "7-2dd2a711",
+          "kind": "text",
+          "text": "•Accrued Liabilities for Trade Promotion Activities"
+        },
+        {
+          "id": "7-b7f47101",
+          "kind": "text",
+          "text": "•Pension and Other Post-Retirement Benefits Plans"
+        },
+        {
+          "id": "7-c4462f01",
+          "kind": "text",
+          "text": "•Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets"
+        },
+        {
+          "id": "7-b10dc5c3",
+          "kind": "text",
+          "text": "•Income Taxes"
+        },
+        {
+          "id": "7-6882354b",
+          "kind": "text",
+          "text": "Management has discussed the development, selection and disclosure of critical accounting policies and estimates with the Audit Committee of our Board. While we base estimates and assumptions on our knowledge of current events and actions we may undertake in the future, actual results may ultimately differ from these estimates and assumptions. Other significant accounting policies are outlined in Note 1 to the Consolidated Financial Statements."
+        }
+      ],
+      "claims": []
+    },
+    {
+      "id": "SITM-1A-47",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "1A",
+      "section_title": "Risk Factors",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "1A-32d29b84",
+          "kind": "heading",
+          "text": "We might not be able to utilize a significant portion of our net operating loss carryforwards and research and development tax credit carryforwards."
+        },
+        {
+          "id": "1A-1227d704",
+          "kind": "text",
+          "text": "As of December 31, 2020, we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively, and U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively. The U.S. federal NOL carryforwards begin to expire in 2025 and the state NOL carryforwards begin to expire in 2028. The U.S. federal research and development tax credit carryforwards begin to expire in 2025 and the state research and development tax credit carryforwards carry forward indefinitely. These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities. In addition, under Section 382 of the Internal Revenue Code of 1986, as amended (the “Code”), and corresponding provisions of California state law, if a corporation undergoes an “ownership change,” which is generally defined as a greater than 50% change, by value, in its equity ownership over a three-year period, the corporation’s ability to use its pre-change net operating loss carryforwards and other pre-change tax attributes to offset its post-change income may be limited. We completed a Section 382 analysis and determined an ownership change occurred in 2014 and concluded that it had no impact on U.S. federal and California net operating losses or on U.S. federal research and development credits. Our initial public offering in November 2019 did not result in a change in ownership of greater than 50% under Section 382. We also had a follow-on offering on June 16, 2020, which resulted in greater than 50% change under Section 382. We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards. We may experience ownership changes in the future as a result of subsequent shifts in our stock ownership, some of which may be outside of our control. If we determine that an ownership change has occurred and our ability to use our historical net operating loss and tax credit carryforwards is materially limited, it would harm our future business, financial condition, and results of operations by effectively increasing our future tax obligations. In addition, under the Tax Act, federal NOLs incurred in 2018 and in future years may be carried forward indefinitely but generally may not be carried back and the deductibility of such NOLs is limited to 80% of taxable income."
+        }
+      ],
+      "claims": [
+        {
+          "type": "metric",
+          "paragraph_id": "1A-1227d704",
+          "quote": "we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively",
+          "claim": "At December 31, 2020, SiTime had federal and state NOL carryforwards of about $201.5 million and $64.0 million.",
+          "status": "agreed"
+        },
+        {
+          "type": "metric",
+          "paragraph_id": "1A-1227d704",
+          "quote": "U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively",
+          "claim": "At December 31, 2020, SiTime had federal and state R&D tax credit carryforwards of about $3.9 million and $3.6 million.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-1227d704",
+          "quote": "These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities.",
+          "claim": "SiTime's NOL and tax credit carryforwards could expire unused or be unavailable to offset future taxes.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-32d29b84",
+              "quote": "We might not be able to utilize a significant portion of our net operating loss carryforwards and research and development tax credit carryforwards."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-1227d704",
+          "quote": "If we determine that an ownership change has occurred and our ability to use our historical net operating loss and tax credit carryforwards is materially limited, it would harm our future business, financial condition, and results of operations",
+          "claim": "Future ownership changes could limit SiTime's use of its NOLs and tax credits under Section 382, raising its future tax obligations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-1227d704",
+              "quote": "We may experience ownership changes in the future as a result of subsequent shifts in our stock ownership, some of which may be outside of our control."
+            },
+            {
+              "paragraph_id": "1A-1227d704",
+              "quote": "If we determine that an ownership change has occurred and our ability to use our historical net operating loss and tax credit carryforwards is materially limited"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "event",
+          "paragraph_id": "1A-1227d704",
+          "quote": "We also had a follow-on offering on June 16, 2020, which resulted in greater than 50% change under Section 382.",
+          "claim": "SiTime's June 16, 2020 follow-on offering caused an ownership change of more than 50% under Section 382.",
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "1A-1227d704",
+          "quote": "We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards.",
+          "claim": "SiTime determined that the 2020 ownership change will not prevent it from eventually using its carryforwards.",
+          "status": "adjudicated"
+        }
+      ]
+    },
+    {
+      "id": "SITM-1A-53",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "1A",
+      "section_title": "Risk Factors",
+      "context_heading": "We may face intellectual property infringement, misappropriation, or other claims, which could be time-consuming and costly to defend or settle and which could result in the loss of significant rights and harm our relationships with our customers and distributors.",
+      "paragraphs": [
+        {
+          "id": "1A-b4d3044c",
+          "kind": "text",
+          "text": "• pay substantial damages to our customers or end users to discontinue their use of or to replace infringing technology sold to them with non-infringing technology, if available."
+        },
+        {
+          "id": "1A-b8f688f1",
+          "kind": "text",
+          "text": "• Any of the foregoing results could adversely affect our business, financial condition, and results of operations."
+        },
+        {
+          "id": "1A-5146e16a",
+          "kind": "heading",
+          "text": "Any potential dispute involving patents or other intellectual property could affect our customers, which could trigger our indemnification obligations to them and result in substantial expense to us."
+        },
+        {
+          "id": "1A-a738b164",
+          "kind": "text",
+          "text": "In any potential dispute involving patents or other intellectual property, our customers could also become the target of litigation. Our agreements with customers and other third-parties generally include indemnification or other provisions under which we agree to indemnify or otherwise be liable to them for losses suffered or incurred as a result of claims of intellectual property infringement, damages caused by us to property or persons, or other liabilities relating to or arising from our solutions included in their products. Large indemnity payments or damage claims from contractual breach could harm our business, financial condition, and results of operations. From time to time, customers require us to indemnify or otherwise be liable to them for breach of confidentiality or failure to implement adequate security measures with respect to their intellectual property and trade secrets. Although we normally contractually limit our liability with respect to such obligations, we may still incur substantial liability related to them. Any litigation against our customers could trigger technical support and indemnification obligations under some of our agreements, which could result in substantial expense to us."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-b4d3044c",
+          "quote": "pay substantial damages to our customers or end users to discontinue their use of or to replace infringing technology sold to them with non-infringing technology",
+          "claim": "An intellectual property claim could force SiTime to pay customers or end users substantial damages to stop using or replace infringing technology.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-b4d3044c",
+              "quote": "pay substantial damages to our customers or end users to discontinue their use of or to replace infringing technology sold to them with non-infringing technology, if available"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a738b164",
+          "quote": "Any litigation against our customers could trigger technical support and indemnification obligations under some of our agreements, which could result in substantial expense to us.",
+          "claim": "Intellectual property litigation against SiTime's customers could trigger costly indemnification and support obligations.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-a738b164",
+              "quote": "In any potential dispute involving patents or other intellectual property, our customers could also become the target of litigation."
+            },
+            {
+              "paragraph_id": "1A-a738b164",
+              "quote": "Large indemnity payments or damage claims from contractual breach could harm our business, financial condition, and results of operations."
+            },
+            {
+              "paragraph_id": "1A-5146e16a",
+              "quote": "Any potential dispute involving patents or other intellectual property could affect our customers, which could trigger our indemnification obligations to them and result in substantial expense to us."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a738b164",
+          "quote": "From time to time, customers require us to indemnify or otherwise be liable to them for breach of confidentiality or failure to implement adequate security measures with respect to their intellectual property and trade secrets.",
+          "claim": "SiTime may incur substantial liability under customer indemnities for breaches of confidentiality or inadequate security.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-a738b164",
+              "quote": "Although we normally contractually limit our liability with respect to such obligations, we may still incur substantial liability related to them."
+            },
+            {
+              "paragraph_id": "1A-a738b164",
+              "quote": "we may still incur substantial liability related to them"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "SITM-1A-69",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "1A",
+      "section_title": "Risk Factors",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "1A-79b4dabb",
+          "kind": "heading",
+          "text": "We are an emerging growth company, and any decision on our part to comply only with certain reduced reporting and disclosure requirements applicable to emerging growth companies could make our common stock less attractive to investors."
+        },
+        {
+          "id": "1A-82677155",
+          "kind": "text",
+          "text": "We are an “emerging growth company,” as defined in the JOBS Act. We intend to take advantage of certain exemptions under the JOBS Act from various public company reporting requirements, including not being required to have our internal control over financial reporting audited by our independent registered public accounting firm pursuant to Section 404(b) of the Sarbanes-Oxley Act, reduced disclosure obligations regarding executive compensation in our periodic reports and proxy statements, and exemptions from the requirements of holding a nonbinding advisory vote on executive compensation and any golden parachute payments not previously approved. We may take advantage of these exemptions for up to five years or until we are no longer an “emerging growth company,” whichever is earlier."
+        },
+        {
+          "id": "1A-3416943d",
+          "kind": "text",
+          "text": "In addition, Section 107 of the JOBS Act also provides that an emerging growth company can take advantage of the extended transition period provided in Section 7(a)(2)(B) of the Securities Act for complying with new or revised accounting standards. An emerging growth company can therefore delay the adoption of certain accounting standards until those standards would otherwise apply to private companies. However, we are choosing to “opt out” of such extended transition period, and, as a result, we will comply with new or revised accounting standards on the relevant dates on which adoption of such standards is required for non-emerging growth companies. Section 107 of the JOBS"
+        },
+        {
+          "id": "1A-ede93409",
+          "kind": "text",
+          "text": "Act provides that our decision to opt out of the extended transition period for complying with new or revised accounting standards is irrevocable."
+        },
+        {
+          "id": "1A-28f6f110",
+          "kind": "text",
+          "text": "We cannot predict if investors will find our common stock less attractive if we choose to rely on any of the exemptions afforded to emerging growth companies. If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock and the market price of our common stock may be more."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-28f6f110",
+          "quote": "If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock",
+          "claim": "Relying on emerging-growth-company exemptions could make SiTime's stock less attractive to investors and its trading market less active.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-28f6f110",
+              "quote": "We cannot predict if investors will find our common stock less attractive if we choose to rely on any of the exemptions afforded to emerging growth companies."
+            },
+            {
+              "paragraph_id": "1A-79b4dabb",
+              "quote": "We are an emerging growth company, and any decision on our part to comply only with certain reduced reporting and disclosure requirements applicable to emerging growth companies could make our common stock less attractive to investors."
+            },
+            {
+              "paragraph_id": "1A-79b4dabb",
+              "quote": "any decision on our part to comply only with certain reduced reporting and disclosure requirements applicable to emerging growth companies could make our common stock less attractive to investors"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "SITM-7-02",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "7",
+      "section_title": "Management’s Discussion and Analysis of Financial Condition and Results of Operations",
+      "context_heading": "Impact of COVID-19 on our Business",
+      "paragraphs": [
+        {
+          "id": "7-29cb8043",
+          "kind": "text",
+          "text": "We anticipate the global health crisis caused by the COVID-19 pandemic will continue to negatively impact business activity across the globe and will continue to impact our business, employees and operations for the foreseeable future. We believe that the COVID-19 pandemic could cause delay and disruption in the manufacture, shipment, and sales of, and overall demand for, our products. In addition, we believe the production capabilities of our suppliers has been, and may continue to be, impacted as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or WFH orders. For example, on March 16, 2020, the government of Malaysia announced measures to restrict movement in that country to suppress the number of COVID-19 cases. The restrictions have been extended currently until August 2021. These restrictions could limit our suppliers’ ability to operate their manufacturing facilities in that country. Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results, including revenue, gross margins, operating margins, cash flows and other operating results. Further, the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers. To date, we have experienced minimal impact from any supplier disruption. The duration and full magnitude of the COVID-19 pandemic’s impact on credit and financial markets is also unknown, which creates uncertainty as to the financial condition of our distributors or customers. In addition, the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures. We may also experience losses on our holdings of cash and investments due to failures of financial institutions and other parties."
+        }
+      ],
+      "claims": [
+        {
+          "type": "guidance",
+          "paragraph_id": "7-29cb8043",
+          "quote": "We anticipate the global health crisis caused by the COVID-19 pandemic will continue to negatively impact business activity across the globe and will continue to impact our business, employees and operations for the foreseeable future.",
+          "claim": "SiTime expects the COVID-19 pandemic to keep hurting global business activity and its own business for the foreseeable future.",
+          "status": "adjudicated"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "We believe that the COVID-19 pandemic could cause delay and disruption in the manufacture, shipment, and sales of, and overall demand for, our products.",
+          "claim": "COVID-19 could delay and disrupt the manufacture, shipment, sales and demand for SiTime's products.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-29cb8043",
+              "quote": "Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "we believe the production capabilities of our suppliers has been, and may continue to be, impacted as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or WFH orders.",
+          "claim": "Quarantines, facility closures and travel restrictions have hurt, and may keep hurting, SiTime's suppliers' production.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-29cb8043",
+              "quote": "we believe the production capabilities of our suppliers has been, and may continue to be, impacted as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or WFH orders"
+            },
+            {
+              "paragraph_id": "7-29cb8043",
+              "quote": "These restrictions could limit our suppliers’ ability to operate their manufacturing facilities in that country."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "The duration and full magnitude of the COVID-19 pandemic’s impact on credit and financial markets is also unknown, which creates uncertainty as to the financial condition of our distributors or customers.",
+          "claim": "The pandemic's unknown effect on credit markets makes the financial health of SiTime's distributors and customers uncertain.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures.",
+          "claim": "Deteriorating credit markets could limit SiTime's access to outside financing for operations and capital spending.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-29cb8043",
+              "quote": "the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "We may also experience losses on our holdings of cash and investments due to failures of financial institutions and other parties.",
+          "claim": "SiTime could lose money on its cash and investments if financial institutions or other parties fail.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "7-29cb8043",
+          "quote": "the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers",
+          "claim": "A COVID-19 resurgence or delayed return to normal operations could prolong disruption for SiTime, its suppliers and customers.",
+          "status": "adjudicated"
+        }
+      ]
+    },
+    {
+      "id": "SITM-7-05",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "7",
+      "section_title": "Management’s Discussion and Analysis of Financial Condition and Results of Operations",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "7-df3f004a",
+          "kind": "heading",
+          "text": "Customer Demand and Product Life Cycles"
+        },
+        {
+          "id": "7-b380f03c",
+          "kind": "text",
+          "text": "Once customers design our silicon timing systems solutions into their products, we closely monitor all aspects of their demand cycle, including the initial design phase, prototype production, volume production, and inventories, as well as end-market demand, including seasonality, cyclicality, and the competitive landscape. Given our customer relationships and the long-term aspects of our solutions, we benefit from visibility into customer demand. This in turn provides an opportunity for us to monitor and refine our business fundamentals."
+        },
+        {
+          "id": "7-e5c1954e",
+          "kind": "heading",
+          "text": "Product Adoption within New Markets and Applications"
+        },
+        {
+          "id": "7-a686158d",
+          "kind": "text",
+          "text": "As we evaluate new market opportunities and bring new products to market, we pay particular attention to forecasts by industry analysts and the adoption curve of technology. We also analyze in detail potential competing forces that could hinder such adoption. If we fail to anticipate or respond to technological shifts or market demands, or to timely develop new or enhanced products or technologies in response to the same, it could result in decreased revenue and the loss of our design wins to our competitors."
+        },
+        {
+          "id": "7-17b756ec",
+          "kind": "heading",
+          "text": "Pricing, Product Cost, and Product Mix"
+        },
+        {
+          "id": "7-330c8b6f",
+          "kind": "text",
+          "text": "The ASPs of our products vary significantly. While the ASP of any individual product generally decreases over time, our average ASPs have remained relatively flat as we continue to introduce new higher-end products with higher ASPs. Our pricing and margins depend on the volumes and the features of the timing devices we provide to our customers. We continually monitor and work to reduce the cost of our products and improve the potential value our solutions provide to our customers as we target new design win opportunities and manage the product life cycles of our existing customer designs. Since we rely on third-party wafer foundries and assembly and test contractors to manufacture, assemble, and test our products, we maintain a close relationship with our suppliers to improve quality, increase yields, and lower manufacturing costs."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "7-a686158d",
+          "quote": "If we fail to anticipate or respond to technological shifts or market demands, or to timely develop new or enhanced products or technologies in response to the same, it could result in decreased revenue",
+          "claim": "If SiTime fails to anticipate technology shifts or develop new products in time, it could lose revenue and design wins to competitors.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-a686158d",
+              "quote": "If we fail to anticipate or respond to technological shifts or market demands, or to timely develop new or enhanced products or technologies in response to the same"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "SITM-7-14",
+      "ticker": "SITM",
+      "company": "SITIME Corp",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1451809/000156459021005867/sitm-10k_20201231.htm",
+      "section": "7",
+      "section_title": "Management’s Discussion and Analysis of Financial Condition and Results of Operations",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "7-84ff3b2a",
+          "kind": "heading",
+          "text": "Contractual Obligations and Commitments"
+        },
+        {
+          "id": "7-27f2a026",
+          "kind": "text",
+          "text": "Set forth below is information concerning our contractual commitments and obligations as of December 31, 2020:"
+        },
+        {
+          "id": "7-389089c9",
+          "kind": "text",
+          "text": "Obligations under contracts that we can cancel without a significant penalty are not included in the table above. The aggregate amount of our obligations under these contracts is approximately $31.9 million as of December 31, 2020."
+        },
+        {
+          "id": "7-911207df",
+          "kind": "text",
+          "text": "We signed an operating lease agreement for our corporate headquarters in Santa Clara, California that commenced on October 20, 2016 and will expire on December 31, 2026. The agreement provides for an option to renew for an additional five years and for rent payments through the term of the lease payment. We also lease office space in Michigan, Malaysia, Japan, the Netherlands, and Ukraine, all under operating leases with various expiration dates through December 2022."
+        },
+        {
+          "id": "7-bd720287",
+          "kind": "text",
+          "text": "We purchase components and wafers from a variety of suppliers and use several contract manufacturers to provide manufacturing services for its products. A significant portion of our reported purchase commitments arising from these agreements consists of firm, non-cancellable and unconditional purchase commitments once the production has started. In certain instances, these agreements allow us the option to cancel, reschedule, and adjust our requirements based on its business needs prior to firm orders being placed."
+        }
+      ],
+      "claims": [
+        {
+          "type": "metric",
+          "paragraph_id": "7-389089c9",
+          "quote": "The aggregate amount of our obligations under these contracts is approximately $31.9 million as of December 31, 2020.",
+          "claim": "SiTime had about $31.9 million of obligations under cancellable contracts at December 31, 2020.",
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "COP-1A-06",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": "Our business may be adversely affected by price controls, government-imposed limitations on production of crude oil, bitumen, natural gas and NGLs, or the unavailability of adequate gathering, processing, compression, transportation, and pipeline facilities and equipment for our production of crude oil, bitumen, natural gas and NGLs.",
+      "paragraphs": [
+        {
+          "id": "1A-027e064d",
+          "kind": "text",
+          "text": "Our ability to sell and deliver the crude oil, bitumen, natural gas, NGLs and LNG that we produce also depends on the availability, proximity, and capacity of gathering, processing, compression, transportation and pipeline facilities and equipment, as well as any necessary diluents to prepare our crude oil, bitumen, natural gas, NGLs and LNG for transport. The facilities, equipment and diluents we rely on may be temporarily unavailable to us due to market conditions, extreme weather events, regulatory reasons, mechanical reasons or other factors or conditions, many of which are beyond our control. In addition, in certain newer plays, the capacity of necessary facilities, equipment and diluents may not be sufficient to accommodate production from existing and new wells, and construction and permitting delays, permitting costs and regulatory or other constraints could limit or delay the construction, manufacture or other acquisition of new facilities and equipment. If any facilities, equipment or diluents, or any of the transportation methods and channels that we rely on become unavailable for any period of time, we may incur increased costs to transport our crude oil, bitumen, natural gas, NGLs and LNG for sale or we may be forced to curtail our production of crude oil, bitumen, natural gas or NGLs."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-027e064d",
+          "quote": "The facilities, equipment and diluents we rely on may be temporarily unavailable to us due to market conditions, extreme weather events, regulatory reasons, mechanical reasons or other factors or conditions",
+          "claim": "Pipelines, processing facilities, equipment and diluents ConocoPhillips relies on may become unavailable, raising transport costs or forcing production cuts.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-027e064d",
+              "quote": "The facilities, equipment and diluents we rely on may be temporarily unavailable to us due to market conditions, extreme weather events, regulatory reasons, mechanical reasons or other factors or conditions, many of which are beyond our control."
+            },
+            {
+              "paragraph_id": "1A-027e064d",
+              "quote": "we may incur increased costs to transport our crude oil, bitumen, natural gas, NGLs and LNG for sale or we may be forced to curtail our production"
+            },
+            {
+              "paragraph_id": "1A-027e064d",
+              "quote": "If any facilities, equipment or diluents, or any of the transportation methods and channels that we rely on become unavailable for any period of time"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-027e064d",
+          "quote": "in certain newer plays, the capacity of necessary facilities, equipment and diluents may not be sufficient to accommodate production from existing and new wells",
+          "claim": "In newer plays, gathering and transport capacity may be insufficient for production from existing and new wells.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-027e064d",
+          "quote": "construction and permitting delays, permitting costs and regulatory or other constraints could limit or delay the construction, manufacture or other acquisition of new facilities and equipment",
+          "claim": "Construction and permitting delays, permitting costs and regulatory constraints could limit or delay ConocoPhillips' acquisition of new facilities and equipment.",
+          "status": "adjudicated"
+        }
+      ]
+    },
+    {
+      "id": "COP-1A-07",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": null,
+      "paragraphs": [
+        {
+          "id": "1A-745d5f92",
+          "kind": "heading",
+          "text": "Our investments in joint ventures decrease our ability to manage risk."
+        },
+        {
+          "id": "1A-f8a52598",
+          "kind": "text",
+          "text": "We conduct many of our operations through joint ventures in which we may share control with our joint venture partners. There is a risk our joint venture participants may at any time have economic, business or legal interests or goals that are inconsistent with those of the joint venture or us, or our joint venture partners may be unable to meet their economic or other obligations and we may be required to fulfill those obligations alone. Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect on the financial condition or results of operations of our joint ventures and, in turn, our business and operations."
+        },
+        {
+          "id": "1A-2268eff7",
+          "kind": "heading",
+          "text": "Our operations present hazards and risks that require significant and continuous oversight."
+        },
+        {
+          "id": "1A-a17286d8",
+          "kind": "text",
+          "text": "The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks. Our operations may also be adversely affected by unavailability, interruptions or accidents involving services or infrastructure required to develop, produce, process or transport our production, such as contract labor, drilling rigs, pipelines, railcars, tankers, barges or other infrastructure. Our operations are subject to the additional hazards of pollution, releases of toxic gas and other environmental hazards and risks. Offshore activities may pose incrementally greater risks because of complex subsurface conditions such as higher reservoir pressures, water depths and metocean conditions. All such hazards could result in loss of human life, significant property and equipment damage, environmental pollution, impairment of operations, substantial losses to us and damage to our reputation. Further, our business and operations may be disrupted if we do not respond, or are perceived not to respond, in an appropriate manner to any of these hazards and risks or any other major crisis or if we are unable to efficiently restore or replace affected operational components and capacity."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-f8a52598",
+          "quote": "There is a risk our joint venture participants may at any time have economic, business or legal interests or goals that are inconsistent with those of the joint venture or us",
+          "claim": "ConocoPhillips' joint venture partners may have interests or goals inconsistent with the venture's or the company's.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-745d5f92",
+              "quote": "Our investments in joint ventures decrease our ability to manage risk."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-f8a52598",
+          "quote": "our joint venture partners may be unable to meet their economic or other obligations and we may be required to fulfill those obligations alone",
+          "claim": "If joint venture partners can't meet their obligations, ConocoPhillips may have to meet them alone.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a17286d8",
+          "quote": "The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks",
+          "claim": "ConocoPhillips' operations face significant hazards such as explosions, fires, oil spills, severe weather, labor disputes and attacks.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-a17286d8",
+              "quote": "The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks."
+            },
+            {
+              "paragraph_id": "1A-a17286d8",
+              "quote": "All such hazards could result in loss of human life, significant property and equipment damage, environmental pollution, impairment of operations, substantial losses to us and damage to our reputation."
+            },
+            {
+              "paragraph_id": "1A-2268eff7",
+              "quote": "Our operations present hazards and risks that require significant and continuous oversight."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a17286d8",
+          "quote": "Our operations may also be adversely affected by unavailability, interruptions or accidents involving services or infrastructure required to develop, produce, process or transport our production",
+          "claim": "Unavailable or disrupted services and infrastructure, such as drilling rigs, pipelines or tankers, could hurt ConocoPhillips' operations.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a17286d8",
+          "quote": "Our operations are subject to the additional hazards of pollution, releases of toxic gas and other environmental hazards and risks.",
+          "claim": "ConocoPhillips' operations carry environmental hazards including pollution and toxic gas releases.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a17286d8",
+          "quote": "Offshore activities may pose incrementally greater risks because of complex subsurface conditions such as higher reservoir pressures, water depths and metocean conditions.",
+          "claim": "ConocoPhillips' offshore activities carry greater risk from complex subsurface conditions, water depth and metocean conditions.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-a17286d8",
+          "quote": "our business and operations may be disrupted if we do not respond, or are perceived not to respond, in an appropriate manner to any of these hazards and risks or any other major crisis",
+          "claim": "Failing to respond appropriately, or being seen to fail, to a hazard or major crisis could disrupt ConocoPhillips' business.",
+          "status": "agreed"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-f8a52598",
+          "quote": "Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect",
+          "claim": "Failure by ConocoPhillips or its joint ventures to manage risks of operations, acquisitions or dispositions could materially harm the joint ventures and the company.",
+          "status": "adjudicated",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-745d5f92",
+              "quote": "Our investments in joint ventures decrease our ability to manage risk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "COP-1A-13",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "1A",
+      "section_title": "RISK FACTORS",
+      "context_heading": "Domestic and worldwide political and economic developments could damage our operations and materially reduce our profitability and cash flows.",
+      "paragraphs": [
+        {
+          "id": "1A-ad221712",
+          "kind": "text",
+          "text": "One area subject to significant political and regulatory activity is the use of hydraulic fracturing, an essential completion technique that facilitates production of oil and natural gas otherwise trapped in lower permeability rock formations. A range of local, state, federal and national laws and regulations currently govern or, in some hydraulic fracturing operations, prohibit hydraulic fracturing in some jurisdictions. Although hydraulic fracturing has been conducted safely for many decades, a number of new laws, regulations and permitting requirements are under consideration which could result in increased costs, operating restrictions, operational delays or could limit the ability to develop oil and natural gas resources. Certain jurisdictions in which we operate have adopted or are considering regulations that could impose new or more stringent permitting, disclosure or other regulatory requirements on hydraulic fracturing or other oil and natural gas operations, including subsurface water disposal. On January 27, 2021, the new administration signed an executive order directing the Secretary of the Interior to stop issuing new oil and gas leases on federal lands, allowing time to review and reset the Federal Government’s oil and gas leasing program. Existing production and permits already issued on Federal lands were not impacted by this order. If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position."
+        },
+        {
+          "id": "1A-72688255",
+          "kind": "text",
+          "text": "In addition, certain interest groups have also proposed ballot initiatives and constitutional amendments designed to restrict oil and natural gas development generally and hydraulic fracturing in particular. In the event that ballot initiatives, local, state, or national restrictions or prohibitions are adopted and result in more stringent limitations on the production and development of oil and natural gas in areas where we conduct operations, we may incur significant costs to comply with such requirements or may experience delays or curtailment in the permitting or pursuit of exploration, development or production activities. Such compliance costs and delays, curtailments, limitations or prohibitions could have a material adverse effect on our business, prospects, results of operations, financial condition and liquidity."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "1A-ad221712",
+          "quote": "a number of new laws, regulations and permitting requirements are under consideration which could result in increased costs, operating restrictions, operational delays or could limit the ability to develop oil and natural gas resources",
+          "claim": "New laws and permitting rules on hydraulic fracturing could raise ConocoPhillips' costs, restrict or delay operations, or limit development.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-ad221712",
+              "quote": "Certain jurisdictions in which we operate have adopted or are considering regulations that could impose new or more stringent permitting, disclosure or other regulatory requirements on hydraulic fracturing"
+            },
+            {
+              "paragraph_id": "1A-ad221712",
+              "quote": "Certain jurisdictions in which we operate have adopted or are considering regulations that could impose new or more stringent permitting, disclosure or other regulatory requirements on hydraulic fracturing or other oil and natural gas operations, including subsurface water disposal."
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "1A-ad221712",
+          "quote": "If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position.",
+          "claim": "ConocoPhillips believes it could mitigate an extended federal leasing moratorium for a considerable time using existing permits and adjusted development plans.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-ad221712",
+              "quote": "On January 27, 2021, the new administration signed an executive order directing the Secretary of the Interior to stop issuing new oil and gas leases on federal lands"
+            },
+            {
+              "paragraph_id": "1A-ad221712",
+              "quote": "If this temporary moratorium were to be extended indefinitely"
+            },
+            {
+              "paragraph_id": "1A-ad221712",
+              "quote": "we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position"
+            }
+          ],
+          "status": "adjudicated"
+        },
+        {
+          "type": "risk",
+          "paragraph_id": "1A-72688255",
+          "quote": "we may incur significant costs to comply with such requirements or may experience delays or curtailment in the permitting or pursuit of exploration, development or production activities",
+          "claim": "Ballot initiatives or new restrictions on oil and gas development could bring ConocoPhillips significant compliance costs or delays and curtailed activity.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "1A-72688255",
+              "quote": "certain interest groups have also proposed ballot initiatives and constitutional amendments designed to restrict oil and natural gas development generally and hydraulic fracturing in particular"
+            },
+            {
+              "paragraph_id": "1A-72688255",
+              "quote": "In the event that ballot initiatives, local, state, or national restrictions or prohibitions are adopted and result in more stringent limitations on the production and development of oil and natural gas in areas where we conduct operations"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "COP-7-13",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": "Business Environment",
+      "paragraphs": [
+        {
+          "id": "7-85e8a984",
+          "kind": "text",
+          "text": "● Attract, develop and retain a talented work force. We strive to attract, develop and retain individuals with the knowledge and skills to successfully execute our business strategy in a manner exemplifying our core values and ethics. We offer university internships across multiple disciplines to attract the best early career talent. We also recruit experienced hires to fill critical skills and maintain a broad range of expertise and experience. We promote continued learning, development and technical training through structured development programs designed to enhance the technical and functional skills of our employees."
+        },
+        {
+          "id": "7-6f256eeb",
+          "kind": "text",
+          "text": "Other Factors Affecting Profitability Other significant factors that can affect our profitability include:"
+        },
+        {
+          "id": "7-33482b79",
+          "kind": "text",
+          "text": "● Energy commodity prices. Our earnings and operating cash flows generally correlate with industry price levels for crude oil and natural gas. Industry price levels are subject to factors external to the company and over which we have no control, including but not limited to global economic health, supply disruptions or fears thereof caused by civil unrest or military conflicts, actions taken by OPEC and other producing countries, environmental laws, tax regulations, governmental policies and weather-related disruptions. The following graph depicts the average benchmark prices for WTI crude oil, Brent crude oil and U.S. Henry Hub natural gas:"
+        },
+        {
+          "id": "7-3b254323",
+          "kind": "text",
+          "text": "Brent crude oil prices averaged $41.68 per barrel in 2020, a decrease of 35 percent compared with $64.30 per barrel in 2019. Similarly, WTI crude oil prices decreased 31 percent from $57.02 per barrel in 2019 to $39.37 per barrel in 2020. Crude oil prices were lower due to the dual demand and supply shocks. The demand shock was triggered by the COVID-19 pandemic, which continues to have unprecedented social and economic consequences. The supply shock was triggered by disagreements between OPEC and Russia, beginning in early March 2020, which resulted in significant supply coming onto the market and created higher inventory levels."
+        },
+        {
+          "id": "7-0b30ad5c",
+          "kind": "text",
+          "text": "Henry Hub natural gas prices decreased 21 percent from an average of $2.63 per MMBTU in 2019 to $2.08 per MMBTU in 2020. Henry Hub prices were depressed due to high storage levels and weak demand."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "7-33482b79",
+          "quote": "Our earnings and operating cash flows generally correlate with industry price levels for crude oil and natural gas.",
+          "claim": "ConocoPhillips' earnings and operating cash flow track crude oil and natural gas prices, which it cannot control.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-33482b79",
+              "quote": "Industry price levels are subject to factors external to the company and over which we have no control"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "metric",
+          "paragraph_id": "7-3b254323",
+          "quote": "Brent crude oil prices averaged $41.68 per barrel in 2020, a decrease of 35 percent compared with $64.30 per barrel in 2019.",
+          "claim": "Brent crude averaged $41.68 per barrel in 2020, down 35% from $64.30 in 2019.",
+          "status": "agreed"
+        },
+        {
+          "type": "metric",
+          "paragraph_id": "7-3b254323",
+          "quote": "WTI crude oil prices decreased 31 percent from $57.02 per barrel in 2019 to $39.37 per barrel in 2020.",
+          "claim": "WTI crude fell 31% from $57.02 per barrel in 2019 to $39.37 in 2020.",
+          "status": "agreed"
+        },
+        {
+          "type": "metric",
+          "paragraph_id": "7-0b30ad5c",
+          "quote": "Henry Hub natural gas prices decreased 21 percent from an average of $2.63 per MMBTU in 2019 to $2.08 per MMBTU in 2020.",
+          "claim": "Henry Hub natural gas fell 21% from an average of $2.63 per MMBTU in 2019 to $2.08 in 2020.",
+          "status": "agreed"
+        }
+      ]
+    },
+    {
+      "id": "COP-7-38",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": "Contingencies",
+      "paragraphs": [
+        {
+          "id": "7-33e910f7",
+          "kind": "text",
+          "text": "Our legal organization applies its knowledge, experience and professional judgment to the specific characteristics of our cases, employing a litigation management process to manage and monitor the legal proceedings against us. Our process facilitates the early evaluation and quantification of potential exposures in individual cases. This process also enables us to track those cases that have been scheduled for trial and/or mediation. Based on professional judgment and experience in using these litigation management tools and available information about current developments in all our cases, our legal organization regularly assesses the adequacy of current accruals and determines if adjustment of existing accruals, or establishment of new accruals, is required. See Note 18—Income Taxes, in the Notes to Consolidated Financial Statements, for additional information about income tax-related contingencies."
+        },
+        {
+          "id": "7-0cff40b6",
+          "kind": "text",
+          "text": "Environmental We are subject to the same numerous international, federal, state and local environmental laws and regulations as other companies in our industry. The most significant of these environmental laws and regulations include, among others, the:"
+        },
+        {
+          "id": "7-2ddb8154",
+          "kind": "text",
+          "text": "● U.S. Federal Clean Air Act, which governs air emissions."
+        },
+        {
+          "id": "7-0850af15",
+          "kind": "text",
+          "text": "● U.S. Federal Clean Water Act, which governs discharges to water bodies."
+        },
+        {
+          "id": "7-8f830b9e",
+          "kind": "text",
+          "text": "● European Union Regulation for Registration, Evaluation, Authorization and Restriction of Chemicals (REACH)."
+        },
+        {
+          "id": "7-f62e8453",
+          "kind": "text",
+          "text": "● U.S. Federal Comprehensive Environmental Response, Compensation and Liability Act (CERCLA or Superfund), which imposes liability on generators, transporters and arrangers of hazardous substances at sites where hazardous substance releases have occurred or are threatening to occur."
+        },
+        {
+          "id": "7-8d49c66b",
+          "kind": "text",
+          "text": "● U.S. Federal Resource Conservation and Recovery Act (RCRA), which governs the treatment, storage and disposal of solid waste."
+        },
+        {
+          "id": "7-663de18e",
+          "kind": "text",
+          "text": "● U.S. Federal Oil Pollution Act of 1990 (OPA90), under which owners and operators of onshore facilities and pipelines, lessees or permittees of an area in which an offshore facility is located, and owners and operators of vessels are liable for removal costs and damages that result from a discharge of oil into navigable waters of the U.S."
+        },
+        {
+          "id": "7-13f68996",
+          "kind": "text",
+          "text": "● U.S. Federal Emergency Planning and Community Right-to-Know Act (EPCRA), which requires facilities to report toxic chemical inventories with local emergency planning committees and response departments."
+        },
+        {
+          "id": "7-2ed927e9",
+          "kind": "text",
+          "text": "● U.S. Federal Safe Drinking Water Act, which governs the disposal of wastewater in underground injection wells."
+        }
+      ],
+      "claims": []
+    },
+    {
+      "id": "COP-7-42",
+      "ticker": "COP",
+      "company": "CONOCOPHILLIPS",
+      "fiscal_year": 2020,
+      "url": "https://www.sec.gov/Archives/edgar/data/1163165/000156276221000027/cop10k2020.htm",
+      "section": "7",
+      "section_title": "MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS",
+      "context_heading": "Contingencies",
+      "paragraphs": [
+        {
+          "id": "7-14c9f3c7",
+          "kind": "text",
+          "text": "Many of these liabilities result from CERCLA, RCRA and similar state or international laws that require us to undertake certain investigative and remedial activities at sites where we conduct, or once conducted, operations or at sites where ConocoPhillips-generated waste was disposed. The accrual also includes a number of sites we identified that may require environmental remediation, but which are not currently the subject of CERCLA, RCRA or other agency enforcement activities. The laws that require or address environmental remediation may apply retroactively and regardless of fault, the legality of the original activities or the current ownership or control of sites. If applicable, we accrue receivables for probable insurance or other third-party recoveries. In the future, we may incur significant costs under both CERCLA and RCRA."
+        },
+        {
+          "id": "7-05d6d002",
+          "kind": "text",
+          "text": "Remediation activities vary substantially in duration and cost from site to site, depending on the mix of unique site characteristics, evolving remediation technologies, diverse regulatory agencies and enforcement policies, and the presence or absence of potentially liable third parties. Therefore, it is difficult to develop reasonable estimates of future site remediation costs."
+        },
+        {
+          "id": "7-128cde0a",
+          "kind": "text",
+          "text": "At December 31, 2020, our balance sheet included total accrued environmental costs of $180 million, compared with $171 million at December 31, 2019, for remediation activities in the U.S. and Canada. We expect to incur a substantial amount of these expenditures within the next 30 years."
+        },
+        {
+          "id": "7-96dbf4e0",
+          "kind": "text",
+          "text": "Notwithstanding any of the foregoing, and as with other companies engaged in similar businesses, environmental costs and liabilities are inherent concerns in our operations and products, and there can be no assurance that material costs and liabilities will not be incurred. However, we currently do not expect any material adverse effect upon our results of operations or financial position as a result of compliance with current environmental laws and regulations."
+        }
+      ],
+      "claims": [
+        {
+          "type": "risk",
+          "paragraph_id": "7-14c9f3c7",
+          "quote": "In the future, we may incur significant costs under both CERCLA and RCRA.",
+          "claim": "ConocoPhillips may incur significant future remediation costs under CERCLA and RCRA, laws that can apply retroactively and regardless of fault.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-14c9f3c7",
+              "quote": "The laws that require or address environmental remediation may apply retroactively and regardless of fault"
+            }
+          ],
+          "status": "agreed"
+        },
+        {
+          "type": "metric",
+          "paragraph_id": "7-128cde0a",
+          "quote": "At December 31, 2020, our balance sheet included total accrued environmental costs of $180 million, compared with $171 million at December 31, 2019",
+          "claim": "ConocoPhillips' accrued environmental costs were $180 million at December 31, 2020, up from $171 million a year earlier.",
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "7-128cde0a",
+          "quote": "We expect to incur a substantial amount of these expenditures within the next 30 years.",
+          "claim": "ConocoPhillips expects to spend a substantial share of its accrued environmental costs within the next 30 years.",
+          "status": "agreed"
+        },
+        {
+          "type": "guidance",
+          "paragraph_id": "7-96dbf4e0",
+          "quote": "we currently do not expect any material adverse effect upon our results of operations or financial position as a result of compliance with current environmental laws and regulations.",
+          "claim": "ConocoPhillips does not expect compliance with current environmental laws to materially hurt its results or financial position.",
+          "alt_quotes": [
+            {
+              "paragraph_id": "7-96dbf4e0",
+              "quote": "we currently do not expect any material adverse effect upon our results of operations or financial position as a result of compliance with current environmental laws and regulations"
+            }
+          ],
+          "status": "agreed"
+        }
+      ]
+    }
+  ],
+  "labeling": {
+    "first_claims": 60,
+    "second_claims": 70,
+    "matched": 59,
+    "positive_agreement": 0.908,
+    "type_agreement": 0.966,
+    "disagreements": 14
+  }
+}

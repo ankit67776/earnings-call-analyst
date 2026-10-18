@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\nSection: Item 1A. RISK FACTORS\n(Continues under the heading \"Domestic and worldwide political and economic developments could damage our operations and materially reduce our profitability and cash flows.\")\n\n[1A-ad221712] One area subject to significant political and regulatory activity is the use of hydraulic fracturing, an essential completion technique that facilitates production of oil and natural gas otherwise trapped in lower permeability rock formations. A range of local, state, federal and national laws and regulations currently govern or, in some hydraulic fracturing operations, prohibit hydraulic fracturing in some jurisdictions. Although hydraulic fracturing has been conducted safely for many decades, a number of new laws, regulations and permitting requirements are under consideration which could result in increased costs, operating restrictions, operational delays or could limit the ability to develop oil and natural gas resources. Certain jurisdictions in which we operate have adopted or are considering regulations that could impose new or more stringent permitting, disclosure or other regulatory requirements on hydraulic fracturing or other oil and natural gas operations, including subsurface water disposal. On January 27, 2021, the new administration signed an executive order directing the Secretary of the Interior to stop issuing new oil and gas leases on federal lands, allowing time to review and reset the Federal Government’s oil and gas leasing program. Existing production and permits already issued on Federal lands were not impacted by this order. If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position.\n\n[1A-72688255] In addition, certain interest groups have also proposed ballot initiatives and constitutional amendments designed to restrict oil and natural gas development generally and hydraulic fracturing in particular. In the event that ballot initiatives, local, state, or national restrictions or prohibitions are adopted and result in more stringent limitations on the production and development of oil and natural gas in areas where we conduct operations, we may incur significant costs to comply with such requirements or may experience delays or curtailment in the permitting or pursuit of exploration, development or production activities. Such compliance costs and delays, curtailments, limitations or prohibitions could have a material adverse effect on our business, prospects, results of operations, financial condition and liquidity."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-ad221712\",\n      \"quote\": \"A range of local, state, federal and national laws and regulations currently govern or, in some hydraulic fracturing operations, prohibit hydraulic fracturing in some jurisdictions.\",\n      \"claim\": \"New and existing laws and regulations governing hydraulic fracturing could increase costs, impose operating restrictions, cause delays, or limit the ability to develop oil and natural gas resources.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-72688255\",\n      \"quote\": \"In the event that ballot initiatives, local, state, or national restrictions or prohibitions are adopted and result in more stringent limitations on the production and development of oil and natural gas in areas where we conduct operations, we may incur significant costs to comply with such requirements or may experience delays or curtailment in the permitting or pursuit of exploration, development or production activities.\",\n      \"claim\": \"Adoption of ballot initiatives or other restrictions could impose stricter limits on oil and gas production, leading to significant compliance costs, delays, or curtailments of exploration and development activities.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 965,
+  "completion_tokens": 428,
+  "latency_ms": 1614.2995000000155,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\nSection: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\n\n[7-bd3a79c9] Guarantees and Other Off-Balance Sheet Arrangements\n\n[7-e1cb4f12] We do not have guarantees or other off-balance sheet financing arrangements, including variable interest entities, that we believe could have a material impact on our financial condition or liquidity.\n\n[7-115afd89] Contractual Obligations\n\n[7-8c4994c5] The following table summarizes our contractual obligations at December 31, 2020:\n\n[7-40e57ec3] (1) Includes the net interest payments on fixed rate debt associated with long-term notes.\n\n[7-91293c6d] (2) Includes the minimum rental commitments (including imputed interest) under non-cancelable operating leases primarily for offices, retail stores, warehouses and distribution facilities.\n\n[7-6d9dd7fe] (3) Includes the minimum rental commitments (including imputed interest) under non-cancelable finance leases primarily for offices and warehouse facilities, as well as vehicles.\n\n[7-7602ceae] (4) Represents future pension payments to comply with local funding requirements. Our policy is to fund domestic pension liabilities in accordance with the minimum and maximum limits imposed by the Employee Retirement Income Security Act of 1974 (“ERISA”), federal income tax laws and the funding requirements of the Pension Protection Act of 2006. We fund non-domestic pension liabilities in accordance with laws and regulations applicable to those plans. For more information, see Note 11 to the Consolidated Financial Statements.\n\n[7-4c2d855c] (5) Purchase obligations consist primarily of fixed commitments for the purchase of raw materials to be utilized in the normal course of business. Amounts presented included fixed price forward contracts and unpriced contracts that were valued using market prices as of December 31, 2020. The amounts presented in the table do not include items already recorded in accounts payable or accrued liabilities at year-end 2020, nor does the table reflect cash flows we are likely to incur based on our plans, but are not obligated to incur. Such amounts are part of normal operations and are reflected in historical operating cash flow trends. We do not believe such purchase obligations will adversely affect our liquidity position."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"metric\",\n      \"paragraph_id\": \"7-e1cb4f12\",\n      \"quote\": \"We do not have guarantees or other off-balance sheet financing arrangements, including variable interest entities, that we believe could have a material impact on our financial condition or liquidity.\",\n      \"claim\": \"Hershey reports that it has no guarantees or off-balance sheet financing arrangements that could materially affect its financial condition or liquidity.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 990,
+  "completion_tokens": 211,
+  "latency_ms": 963.9614999999822,
+  "attempts": 1
+ }
+}

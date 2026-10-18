@@ -105,6 +105,7 @@ async def test_map_ground_and_reduce() -> None:
         ("7-eee", "exact"),
     ]
     assert apple.citations[0].paragraph_id == "7-ccc"  # re-attributed to the real paragraph
+    assert analysis.misattributed == 1
     assert apple.citations[0].source_text == "Apple accounted for approximately 24% of our revenue"
 
     assert [f.claim for f in analysis.rejected] == ["Foundry risk."]

@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\nSection: Item 1A. RISK FACTORS\n\n[1A-745d5f92] Our investments in joint ventures decrease our ability to manage risk.\n\n[1A-f8a52598] We conduct many of our operations through joint ventures in which we may share control with our joint venture partners. There is a risk our joint venture participants may at any time have economic, business or legal interests or goals that are inconsistent with those of the joint venture or us, or our joint venture partners may be unable to meet their economic or other obligations and we may be required to fulfill those obligations alone. Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect on the financial condition or results of operations of our joint ventures and, in turn, our business and operations.\n\n[1A-2268eff7] Our operations present hazards and risks that require significant and continuous oversight.\n\n[1A-a17286d8] The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks. Our operations may also be adversely affected by unavailability, interruptions or accidents involving services or infrastructure required to develop, produce, process or transport our production, such as contract labor, drilling rigs, pipelines, railcars, tankers, barges or other infrastructure. Our operations are subject to the additional hazards of pollution, releases of toxic gas and other environmental hazards and risks. Offshore activities may pose incrementally greater risks because of complex subsurface conditions such as higher reservoir pressures, water depths and metocean conditions. All such hazards could result in loss of human life, significant property and equipment damage, environmental pollution, impairment of operations, substantial losses to us and damage to our reputation. Further, our business and operations may be disrupted if we do not respond, or are perceived not to respond, in an appropriate manner to any of these hazards and risks or any other major crisis or if we are unable to efficiently restore or replace affected operational components and capacity."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-745d5f92\",\n      \"quote\": \"Our investments in joint ventures decrease our ability to manage risk.\",\n      \"claim\": \"ConocoPhillips' investments in joint ventures decrease its ability to manage risk.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-f8a52598\",\n      \"quote\": \"We conduct many of our operations through joint ventures in which we may share control with our joint venture partners. There is a risk our joint venture participants may at any time have economic, business or legal interests or goals that are inconsistent with those of the joint venture or us, or our joint venture partners may be unable to meet their economic or other obligations and we may be required to fulfill those obligations alone.\",\n      \"claim\": \"ConocoPhillips may be required to fulfill joint venture partners' obligations alone if they cannot meet them, creating a material risk.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-2268eff7\",\n      \"quote\": \"Our operations present hazards and risks that require significant and continuous oversight.\",\n      \"claim\": \"ConocoPhillips' operations present hazards and risks that require significant continuous oversight.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-a17286d8\",\n      \"quote\": \"The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks.\",\n      \"claim\": \"ConocoPhillips' operations face significant hazards and risks such as explosions, fires, spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest, and cyber attacks.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 961,
+  "completion_tokens": 647,
+  "latency_ms": 1865.0760000000446,
+  "attempts": 1
+ }
+}

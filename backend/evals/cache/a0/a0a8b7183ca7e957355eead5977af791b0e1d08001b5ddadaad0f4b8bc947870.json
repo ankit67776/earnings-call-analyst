@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\nSection: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\n(Continues under the heading \"Business Environment\")\n\n[7-85e8a984] ● Attract, develop and retain a talented work force. We strive to attract, develop and retain individuals with the knowledge and skills to successfully execute our business strategy in a manner exemplifying our core values and ethics. We offer university internships across multiple disciplines to attract the best early career talent. We also recruit experienced hires to fill critical skills and maintain a broad range of expertise and experience. We promote continued learning, development and technical training through structured development programs designed to enhance the technical and functional skills of our employees.\n\n[7-6f256eeb] Other Factors Affecting Profitability Other significant factors that can affect our profitability include:\n\n[7-33482b79] ● Energy commodity prices. Our earnings and operating cash flows generally correlate with industry price levels for crude oil and natural gas. Industry price levels are subject to factors external to the company and over which we have no control, including but not limited to global economic health, supply disruptions or fears thereof caused by civil unrest or military conflicts, actions taken by OPEC and other producing countries, environmental laws, tax regulations, governmental policies and weather-related disruptions. The following graph depicts the average benchmark prices for WTI crude oil, Brent crude oil and U.S. Henry Hub natural gas:\n\n[7-3b254323] Brent crude oil prices averaged $41.68 per barrel in 2020, a decrease of 35 percent compared with $64.30 per barrel in 2019. Similarly, WTI crude oil prices decreased 31 percent from $57.02 per barrel in 2019 to $39.37 per barrel in 2020. Crude oil prices were lower due to the dual demand and supply shocks. The demand shock was triggered by the COVID-19 pandemic, which continues to have unprecedented social and economic consequences. The supply shock was triggered by disagreements between OPEC and Russia, beginning in early March 2020, which resulted in significant supply coming onto the market and created higher inventory levels.\n\n[7-0b30ad5c] Henry Hub natural gas prices decreased 21 percent from an average of $2.63 per MMBTU in 2019 to $2.08 per MMBTU in 2020. Henry Hub prices were depressed due to high storage levels and weak demand."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\"claims\":[{\"type\":\"metric\",\"paragraph_id\":\"[7-3b254323]\",\"quote\":\"Brent crude oil prices averaged $41.68 per barrel in 2020, a decrease of 35 percent compared with $64.30 per barrel in 2019.\",\"claim\":\"Brent crude oil averaged $41.68 per barrel in 2020, down 35% from 2019.\"},{\"type\":\"metric\",\"paragraph_id\":\"[7-3b254323]\",\"quote\":\"Similarly, WTI crude oil prices decreased 31 percent from $57.02 per barrel in 2019 to $39.37 per barrel in 2020.\",\"claim\":\"WTI crude oil fell 31% from $57.02 to $39.37 per barrel between 2019 and 2020.\"},{\"type\":\"metric\",\"paragraph_id\":\"[7-0b30ad5c]\",\"quote\":\"Henry Hub natural gas prices decreased 21 percent from an average of $2.63 per MMBTU in 2019 to $2.08 per MMBTU in 2020.\",\"claim\":\"Henry Hub natural gas averaged $2.08 per MMBTU in 2020, down 21% from 2019.\"},{\"type\":\"risk\",\"paragraph_id\":\"[7-33482b79]\",\"quote\":\"Our earnings and operating cash flows generally correlate with industry price levels for crude oil and natural gas.\",\"claim\":\"The company’s earnings and cash flows are highly correlated with crude oil and natural gas price levels.\"},{\"type\":\"risk\",\"paragraph_id\":\"[7-33482b79]\",\"quote\":\"Industry price levels are subject to factors external to the company and over which we have no control, including but not limited to global economic health, supply disruptions or fears thereof caused by civil unrest or military conflicts, actions taken by OPEC and other producing countries, environmental laws, tax regulations, governmental policies and weather-related disruptions.\",\"claim\":\"Crude oil and natural gas price levels are influenced by external factors beyond the company’s control, such as global economic health, supply disruptions, geopolitical events, OPEC actions, regulations, and weather.\"},{\"type\":\"risk\",\"paragraph_id\":\"[7-3b254323]\",\"quote\":\"The demand shock was triggered by the COVID-19 pandemic, which continues to have unprecedented social and economic consequences.\",\"claim\":\"The COVID-19 pandemic triggered a demand shock that continues to affect the company’s operations.\"},{\"type\":\"risk\",\"paragraph_id\":\"[7-3b254323]\",\"quote\":\"The supply shock was triggered by disagreements between OPEC and Russia, beginning in early March 2020, which resulted in significant supply coming onto the market and created higher inventory levels.\",\"claim\":\"Disagreements between OPEC and Russia in early 2020 caused a supply shock, increasing market supply and inventory levels.\"},{\"type\":\"risk\",\"paragraph_id\":\"[7-0b30ad5c]\",\"quote\":\"Henry Hub prices were depressed due to high storage levels and weak demand.\",\"claim\":\"High storage levels and weak demand depressed Henry Hub natural gas prices.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1010,
+  "completion_tokens": 1069,
+  "latency_ms": 1677.0128000000568,
+  "attempts": 1
+ }
+}

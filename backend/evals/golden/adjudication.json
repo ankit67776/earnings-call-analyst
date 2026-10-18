@@ -1,0 +1,184 @@
+{
+  "agreement": {
+    "first_claims": 60,
+    "second_claims": 70,
+    "matched": 59,
+    "positive_agreement": 0.908,
+    "type_agreement": 0.966
+  },
+  "decisions": [
+    {
+      "passage": "HSY-1A-09",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-884d3274",
+      "quote": "If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations",
+      "claim": "Hershey may not achieve its projected international growth objectives or mitigate the risks of its international operations.",
+      "id": "D1",
+      "decision": "drop",
+      "reason": "Summary sentence that only rolls up the bulleted international risks already labeled (claims 1-9) and restates their consequence, which the risk rule says is not a new claim."
+    },
+    {
+      "passage": "HSY-1A-09",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-571f5551",
+      "quote": "if we do not adequately leverage technology to improve operating efficiencies",
+      "claim": "Hershey may not adequately leverage technology to improve operating efficiencies and so may not realize expected savings from its strategic initiatives.",
+      "id": "D2",
+      "decision": "alt_of",
+      "alt_of_agreed": 10,
+      "reason": "Agreed claim 10 already states the failure to leverage technology for operating efficiencies as part of the same sentence, so per the granularity rule this is the same claim in narrower words."
+    },
+    {
+      "passage": "HSY-1A-09",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-571f5551",
+      "quote": "if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights",
+      "claim": "Hershey may be unable to develop the data analytics capabilities needed to generate actionable commercial insights.",
+      "id": "D3",
+      "decision": "alt_of",
+      "alt_of_agreed": 10,
+      "reason": "Agreed claim 10 already states the inability to build data analytics capabilities, so per the granularity rule this is the same claim, not a new one."
+    },
+    {
+      "passage": "HSY-7-29",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "7-22c6e4b3",
+      "quote": "we have assumed the risk that might arise from the possible inability of counterparties to meet the terms of their contracts",
+      "claim": "Hershey bears the risk that counterparties to its contractual obligations may be unable to meet their contract terms.",
+      "id": "D4",
+      "decision": "keep",
+      "type_decided": "risk",
+      "reason": "Counterparty non-performance is a specific risk the company says it bears, distinct from agreed claim 1, which is the guidance expectation of no significant losses."
+    },
+    {
+      "passage": "SITM-1A-47",
+      "question": "include",
+      "type": "guidance",
+      "paragraph_id": "1A-1227d704",
+      "quote": "We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards.",
+      "claim": "SiTime determined that the 2020 ownership change will not prevent it from eventually using its carryforwards.",
+      "id": "D5",
+      "decision": "keep",
+      "type_decided": "guidance",
+      "reason": "A forward-looking conclusion about the company's own tax exposure (the ownership change will not prevent eventual use of carryforwards), distinct from the risk in claim 4 and the event in claim 5."
+    },
+    {
+      "passage": "SITM-1A-53",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-a738b164",
+      "quote": "Large indemnity payments or damage claims from contractual breach could harm our business, financial condition, and results of operations.",
+      "claim": "Large indemnity payments or contractual-breach damage claims could harm SiTime's business and results.",
+      "id": "D6",
+      "decision": "alt_of",
+      "alt_of_agreed": 2,
+      "reason": "Restates the indemnification-cost risk already captured by agreed claim 2 with a generic consequence clause, so under the granularity rule it is the same claim in another sentence."
+    },
+    {
+      "passage": "SITM-7-02",
+      "question": "type",
+      "type": "guidance",
+      "paragraph_id": "7-29cb8043",
+      "quote": "We anticipate the global health crisis caused by the COVID-19 pandemic will continue to negatively impact business activity across the globe and will continue to impact our business, employees and operations for the foreseeable future.",
+      "claim": "SiTime expects the COVID-19 pandemic to keep hurting global business activity and its own business for the foreseeable future.",
+      "types": [
+        "guidance",
+        "risk"
+      ],
+      "id": "D7",
+      "decision": "keep",
+      "type_decided": "guidance",
+      "reason": "An explicit expectation ('we anticipate ... will continue to impact our business') about the company's own operations, which fits guidance's forward-looking expectation rather than a 'could' risk."
+    },
+    {
+      "passage": "SITM-7-02",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "7-29cb8043",
+      "quote": "the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers",
+      "claim": "A COVID-19 resurgence or delayed return to normal operations could prolong disruption for SiTime, its suppliers and customers.",
+      "id": "D8",
+      "decision": "keep",
+      "type_decided": "risk",
+      "reason": "Delayed resumption of normal operations and a COVID-19 resurgence are a distinct uncertainty that could hurt the company, not covered by the initial-disruption risks in claims 1-2."
+    },
+    {
+      "passage": "COP-1A-06",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-027e064d",
+      "quote": "construction and permitting delays, permitting costs and regulatory or other constraints could limit or delay the construction, manufacture or other acquisition of new facilities and equipment",
+      "claim": "Construction and permitting delays, permitting costs and regulatory constraints could limit or delay ConocoPhillips' acquisition of new facilities and equipment.",
+      "id": "D9",
+      "decision": "keep",
+      "type_decided": "risk",
+      "reason": "Construction and permitting delays and costs limiting new facilities are a distinct risk from insufficient existing capacity (claim 2) and temporary unavailability (claim 1)."
+    },
+    {
+      "passage": "COP-1A-07",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "1A-f8a52598",
+      "quote": "Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect",
+      "claim": "Failure by ConocoPhillips or its joint ventures to manage risks of operations, acquisitions or dispositions could materially harm the joint ventures and the company.",
+      "id": "D10",
+      "decision": "keep",
+      "type_decided": "risk",
+      "reason": "Failure by the company or its joint ventures to manage risks of operations, acquisitions or dispositions is a distinct risk from partner-interest conflicts (claim 1) and partner non-performance (claim 2)."
+    },
+    {
+      "passage": "COP-1A-13",
+      "question": "type",
+      "type": "guidance",
+      "paragraph_id": "1A-ad221712",
+      "quote": "If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position.",
+      "claim": "ConocoPhillips believes it could mitigate an extended federal leasing moratorium for a considerable time using existing permits and adjusted development plans.",
+      "types": [
+        "guidance",
+        "risk"
+      ],
+      "id": "D11",
+      "decision": "keep",
+      "type_decided": "guidance",
+      "reason": "States the company's expectation about its own exposure (it can mitigate an extended moratorium for a considerable period), which is guidance rather than a risk."
+    },
+    {
+      "passage": "COP-1A-13",
+      "question": "include",
+      "type": "guidance",
+      "paragraph_id": "1A-ad221712",
+      "quote": "we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position",
+      "claim": "ConocoPhillips believes it can mitigate an indefinite federal leasing moratorium for a considerable period using current permits and adjusted development plans.",
+      "id": "D12",
+      "decision": "alt_of",
+      "alt_of_disputed": "D11",
+      "reason": "Same quote span and same mitigation expectation as kept item D11, so per the granularity rule it is not a new claim."
+    },
+    {
+      "passage": "COP-7-42",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "7-05d6d002",
+      "quote": "it is difficult to develop reasonable estimates of future site remediation costs.",
+      "claim": "Site remediation costs vary widely, making future costs hard to estimate.",
+      "id": "D13",
+      "decision": "drop",
+      "reason": "A statement that remediation costs are hard to estimate is estimate-uncertainty boilerplate (like 'actual results may differ from these estimates'), not a specific risk the company says could hurt it."
+    },
+    {
+      "passage": "COP-7-42",
+      "question": "include",
+      "type": "risk",
+      "paragraph_id": "7-96dbf4e0",
+      "quote": "environmental costs and liabilities are inherent concerns in our operations and products, and there can be no assurance that material costs and liabilities will not be incurred",
+      "claim": "ConocoPhillips could incur material environmental costs and liabilities, which are inherent in its operations and products.",
+      "id": "D14",
+      "decision": "drop",
+      "reason": "Generic 'as with other companies ... there can be no assurance' language, which the guide lists as never a claim."
+    }
+  ]
+}

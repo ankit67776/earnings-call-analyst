@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\nSection: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\n\n[7-c79306f1] Income Tax Obligations\n\n[7-8e30568c] Liabilities for unrecognized income tax benefits are excluded from the table above as we are unable to reasonably predict the ultimate amount or timing of a settlement of these potential liabilities. See Note 10 to the Consolidated Financial Statements for more information.\n\n[7-8c1255b9] Recent Accounting Pronouncements\n\n[7-74abfe89] Information on recently adopted and issued accounting standards is included in Note 1 to the Consolidated Financial Statements.\n\n[7-e970f7f8] CRITICAL ACCOUNTING POLICIES AND ESTIMATES\n\n[7-59ac86a5] The preparation of financial statements requires management to use judgment and make estimates and assumptions. We believe that our most critical accounting policies and estimates relate to the following:\n\n[7-2dd2a711] •Accrued Liabilities for Trade Promotion Activities\n\n[7-b7f47101] •Pension and Other Post-Retirement Benefits Plans\n\n[7-c4462f01] •Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\n\n[7-b10dc5c3] •Income Taxes\n\n[7-6882354b] Management has discussed the development, selection and disclosure of critical accounting policies and estimates with the Audit Committee of our Board. While we base estimates and assumptions on our knowledge of current events and actions we may undertake in the future, actual results may ultimately differ from these estimates and assumptions. Other significant accounting policies are outlined in Note 1 to the Consolidated Financial Statements."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": []\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 864,
+  "completion_tokens": 45,
+  "latency_ms": 700.3363999999692,
+  "attempts": 1
+ }
+}

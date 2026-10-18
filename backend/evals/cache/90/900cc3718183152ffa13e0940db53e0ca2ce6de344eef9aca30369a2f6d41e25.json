@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\nSection: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\n(Continues under the heading \"Contractual Obligations\")\n\n[7-22c6e4b3] In entering into contractual obligations, we have assumed the risk that might arise from the possible inability of counterparties to meet the terms of their contracts. We mitigate this risk by performing financial assessments prior to contract execution, conducting periodic evaluations of counterparty performance and maintaining a diverse portfolio of qualified counterparties. Our risk is limited to replacing the contracts at prevailing market rates. We do not expect any significant losses resulting from counterparty defaults.\n\n[7-6fe26e6c] Asset Retirement Obligations\n\n[7-e64680bc] We have a number of facilities that contain varying amounts of asbestos in certain locations within the facilities. Our asbestos management program is compliant with current applicable regulations, which require that we handle or dispose of asbestos in a specified manner if such facilities undergo major renovations or are demolished. We do not have sufficient information to estimate the fair value of any asset retirement obligations related to these facilities. We cannot specify the settlement date or range of potential settlement dates and, therefore, sufficient information is not available to apply an expected present value technique. We expect to maintain the facilities with repairs and maintenance activities that would not involve or require the removal of significant quantities of asbestos."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-22c6e4b3\",\n      \"quote\": \"We do not expect any significant losses resulting from counterparty defaults.\",\n      \"claim\": \"Hershey does not expect any significant losses from counterparty defaults.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-e64680bc\",\n      \"quote\": \"We do not have sufficient information to estimate the fair value of any asset retirement obligations related to these facilities.\",\n      \"claim\": \"Hershey cannot estimate the fair value of any asset retirement obligations for facilities containing asbestos.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 785,
+  "completion_tokens": 274,
+  "latency_ms": 893.1744999999864,
+  "attempts": 1
+ }
+}

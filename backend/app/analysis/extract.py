@@ -118,6 +118,8 @@ class SectionAnalysis:
     llm_calls: int = 0
     cached_calls: int = 0
     seconds: float = 0.0
+    # Quotes found, but in a different paragraph from the one the model cited.
+    misattributed: int = 0
 
     @property
     def failed_chunks(self) -> list[tuple[int, str]]:
@@ -208,8 +210,30 @@ async def analyze_section(
     on_progress: Callable[[int, int], Awaitable[None]] | None = None,
 ) -> SectionAnalysis:
     """`on_progress(done, total)` is awaited before the first chunk and after each one."""
-    started = time.perf_counter()
     chunks = chunk_section(section, max_chars=max_chars)[:max_chunks]
+    return await analyze_chunks(
+        client,
+        section.id,
+        chunks,
+        company=company,
+        model=model,
+        concurrency=concurrency,
+        on_progress=on_progress,
+    )
+
+
+async def analyze_chunks(
+    client: LLMClient,
+    section_id: str,
+    chunks: list[Chunk],
+    *,
+    company: str | None = None,
+    model: str | None = None,
+    concurrency: int = 4,
+    on_progress: Callable[[int, int], Awaitable[None]] | None = None,
+) -> SectionAnalysis:
+    """Map, ground and reduce over chunks already cut from one section."""
+    started = time.perf_counter()
     gate = asyncio.Semaphore(concurrency)
     finished = 0
     if on_progress is not None:
@@ -224,7 +248,7 @@ async def analyze_section(
                 # Out of quota: the rest of the chunks would fail too, so stop the run.
                 raise
             except LLMError as e:
-                logger.warning("chunk %d of Item %s failed: %s", i, section.id, e)
+                logger.warning("chunk %d of Item %s failed: %s", i, section_id, e)
                 result = e
         # Outside the gate, so reporting doesn't hold up the next LLM call.
         finished += 1
@@ -235,7 +259,7 @@ async def analyze_section(
     results = await asyncio.gather(*(run(i, c) for i, c in enumerate(chunks)))
 
     analysis = SectionAnalysis(
-        section=section.id,
+        section=section_id,
         model=model or client.default_model,
         chunks=len(chunks),
         findings=[],
@@ -264,8 +288,11 @@ async def analyze_section(
         analysis.prompt_tokens += completion.prompt_tokens
         analysis.completion_tokens += completion.completion_tokens
         for claim in claims:
-            finding = Finding(claim.type, claim.claim, [ground(claim, chunk)])
-            (grounded if finding.citations[0].match else analysis.rejected).append(finding)
+            citation = ground(claim, chunk)
+            finding = Finding(claim.type, claim.claim, [citation])
+            (grounded if citation.match else analysis.rejected).append(finding)
+            if citation.match and citation.paragraph_id != claim.paragraph_id:
+                analysis.misattributed += 1
 
     analysis.findings = reduce_findings(grounded)
     analysis.seconds = time.perf_counter() - started

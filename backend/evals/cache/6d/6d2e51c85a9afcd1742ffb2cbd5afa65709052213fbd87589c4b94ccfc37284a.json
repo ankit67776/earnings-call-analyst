@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\nSection: Item 1A. Risk Factors\n(Continues under the heading \"We may face intellectual property infringement, misappropriation, or other claims, which could be time-consuming and costly to defend or settle and which could result in the loss of significant rights and harm our relationships with our customers and distributors.\")\n\n[1A-b4d3044c] • pay substantial damages to our customers or end users to discontinue their use of or to replace infringing technology sold to them with non-infringing technology, if available.\n\n[1A-b8f688f1] • Any of the foregoing results could adversely affect our business, financial condition, and results of operations.\n\n[1A-5146e16a] Any potential dispute involving patents or other intellectual property could affect our customers, which could trigger our indemnification obligations to them and result in substantial expense to us.\n\n[1A-a738b164] In any potential dispute involving patents or other intellectual property, our customers could also become the target of litigation. Our agreements with customers and other third-parties generally include indemnification or other provisions under which we agree to indemnify or otherwise be liable to them for losses suffered or incurred as a result of claims of intellectual property infringement, damages caused by us to property or persons, or other liabilities relating to or arising from our solutions included in their products. Large indemnity payments or damage claims from contractual breach could harm our business, financial condition, and results of operations. From time to time, customers require us to indemnify or otherwise be liable to them for breach of confidentiality or failure to implement adequate security measures with respect to their intellectual property and trade secrets. Although we normally contractually limit our liability with respect to such obligations, we may still incur substantial liability related to them. Any litigation against our customers could trigger technical support and indemnification obligations under some of our agreements, which could result in substantial expense to us."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-b4d3044c\",\n      \"quote\": \"pay substantial damages to our customers or end users to discontinue their use of or to replace infringing technology sold to them with non-infringing technology, if available.\",\n      \"claim\": \"The company may have to pay substantial damages to customers or end users to discontinue or replace infringing technology.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-b8f688f1\",\n      \"quote\": \"Any of the foregoing results could adversely affect our business, financial condition, and results of operations.\",\n      \"claim\": \"Such outcomes could adversely affect the company's business, financial condition, and results of operations.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-5146e16a\",\n      \"quote\": \"Any potential dispute involving patents or other intellectual property could affect our customers, which could trigger our indemnification obligations to them and result in substantial expense to us.\",\n      \"claim\": \"A potential IP dispute could trigger indemnification obligations to customers and result in substantial expense for the company.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"1A-a738b164\",\n      \"quote\": \"In any potential dispute involving patents or other intellectual property, our customers could also become the target of litigation.\",\n      \"claim\": \"In a potential IP dispute, the company's customers could become the target of litigation.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 890,
+  "completion_tokens": 658,
+  "latency_ms": 1893.3987000000343,
+  "attempts": 1
+ }
+}

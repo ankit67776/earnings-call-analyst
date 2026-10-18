@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\nSection: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\n(Continues under the heading \"Impact of COVID-19 on our Business\")\n\n[7-29cb8043] We anticipate the global health crisis caused by the COVID-19 pandemic will continue to negatively impact business activity across the globe and will continue to impact our business, employees and operations for the foreseeable future. We believe that the COVID-19 pandemic could cause delay and disruption in the manufacture, shipment, and sales of, and overall demand for, our products. In addition, we believe the production capabilities of our suppliers has been, and may continue to be, impacted as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or WFH orders. For example, on March 16, 2020, the government of Malaysia announced measures to restrict movement in that country to suppress the number of COVID-19 cases. The restrictions have been extended currently until August 2021. These restrictions could limit our suppliers’ ability to operate their manufacturing facilities in that country. Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results, including revenue, gross margins, operating margins, cash flows and other operating results. Further, the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers. To date, we have experienced minimal impact from any supplier disruption. The duration and full magnitude of the COVID-19 pandemic’s impact on credit and financial markets is also unknown, which creates uncertainty as to the financial condition of our distributors or customers. In addition, the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures. We may also experience losses on our holdings of cash and investments due to failures of financial institutions and other parties."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\n  \"claims\": [\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-29cb8043\",\n      \"quote\": \"We believe that the COVID-19 pandemic could cause delay and disruption in the manufacture, shipment, and sales of, and overall demand for, our products.\",\n      \"claim\": \"The COVID-19 pandemic could cause delay and disruption in the manufacture, shipment, sales, and overall demand for SITIME Corp's products.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-29cb8043\",\n      \"quote\": \"Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results, including revenue, gross margins, operating margins, cash flows and other operating results.\",\n      \"claim\": \"Delays or disruptions in manufacturing, shipment, sales, or demand for SITIME Corp's products could materially impact its revenue, margins, cash flows and other operating results.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-29cb8043\",\n      \"quote\": \"The deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures.\",\n      \"claim\": \"A deterioration in credit markets could limit SITIME Corp's ability to obtain external financing for operations and capital expenditures.\"\n    },\n    {\n      \"type\": \"risk\",\n      \"paragraph_id\": \"7-29cb8043\",\n      \"quote\": \"We may also experience losses on our holdings of cash and investments due to failures of financial institutions and other parties.\",\n      \"claim\": \"SITIME Corp may experience losses on its cash and investment holdings due to failures of financial institutions and other parties.\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 909,
+  "completion_tokens": 460,
+  "latency_ms": 1503.2400000000052,
+  "attempts": 1
+ }
+}

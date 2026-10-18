@@ -1,0 +1,81 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You extract the key claims a company makes in its annual report (Form 10-K).\n\nClaim types:\n- guidance: forward-looking targets, plans or expectations (capital spending plans, production or growth targets, expected costs, outlook).\n- metric: a reported financial or operating result with a number (revenue, margins, cash flow, production, customer concentration, headcount).\n- risk: a specific risk or uncertainty the company says could hurt its business. One claim per distinct risk.\n- event: a completed or announced corporate action (acquisition, divestiture, dividend or buyback change, restructuring, impairment, financing).\n\nRules:\n- Every claim needs a quote copied exactly, character for character, from a single paragraph: the sentence or clause that states the claim, at most about 40 words. Don't paraphrase, shorten with \"...\", fix typos or join text from different paragraphs.\n- paragraph_id is the ID in brackets before the paragraph the quote comes from.\n- claim restates it in one plain sentence that makes sense on its own: name the subject, the period and the number or direction.\n- Skip headings, generic boilerplate (forward-looking statement disclaimers, \"we may be subject to litigation\" without specifics), definitions and cross-references.\n- Return an empty list when the text has no such claims."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\nSection: Item 1A. Risk Factors\n\n[1A-79b4dabb] We are an emerging growth company, and any decision on our part to comply only with certain reduced reporting and disclosure requirements applicable to emerging growth companies could make our common stock less attractive to investors.\n\n[1A-82677155] We are an “emerging growth company,” as defined in the JOBS Act. We intend to take advantage of certain exemptions under the JOBS Act from various public company reporting requirements, including not being required to have our internal control over financial reporting audited by our independent registered public accounting firm pursuant to Section 404(b) of the Sarbanes-Oxley Act, reduced disclosure obligations regarding executive compensation in our periodic reports and proxy statements, and exemptions from the requirements of holding a nonbinding advisory vote on executive compensation and any golden parachute payments not previously approved. We may take advantage of these exemptions for up to five years or until we are no longer an “emerging growth company,” whichever is earlier.\n\n[1A-3416943d] In addition, Section 107 of the JOBS Act also provides that an emerging growth company can take advantage of the extended transition period provided in Section 7(a)(2)(B) of the Securities Act for complying with new or revised accounting standards. An emerging growth company can therefore delay the adoption of certain accounting standards until those standards would otherwise apply to private companies. However, we are choosing to “opt out” of such extended transition period, and, as a result, we will comply with new or revised accounting standards on the relevant dates on which adoption of such standards is required for non-emerging growth companies. Section 107 of the JOBS\n\n[1A-ede93409] Act provides that our decision to opt out of the extended transition period for complying with new or revised accounting standards is irrevocable.\n\n[1A-28f6f110] We cannot predict if investors will find our common stock less attractive if we choose to rely on any of the exemptions afforded to emerging growth companies. If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock and the market price of our common stock may be more."
+   }
+  ],
+  "max_tokens": 3000,
+  "temperature": 0.0,
+  "reasoning_effort": "low",
+  "json_schema": {
+   "$defs": {
+    "ClaimType": {
+     "enum": [
+      "guidance",
+      "metric",
+      "risk",
+      "event"
+     ],
+     "type": "string"
+    },
+    "ExtractedClaim": {
+     "properties": {
+      "type": {
+       "$ref": "#/$defs/ClaimType"
+      },
+      "paragraph_id": {
+       "description": "ID in brackets before the paragraph quoted",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact contiguous text copied from that paragraph",
+       "type": "string"
+      },
+      "claim": {
+       "description": "One self-contained sentence stating the claim",
+       "type": "string"
+      }
+     },
+     "required": [
+      "type",
+      "paragraph_id",
+      "quote",
+      "claim"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "claims": {
+     "items": {
+      "$ref": "#/$defs/ExtractedClaim"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "claims"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Extraction"
+ },
+ "completion": {
+  "text": "{\"claims\":[{\"type\":\"risk\",\"paragraph_id\":\"[1A-79b4dabb]\",\"quote\":\"We are an emerging growth company, and any decision on our part to comply only with certain reduced reporting and disclosure requirements applicable to emerging growth companies could make our common stock less attractive to investors.\",\"claim\":\"SITIME Corp risks that choosing to comply only with reduced reporting requirements for emerging growth companies could make its common stock less attractive to investors.\"},{\"type\":\"risk\",\"paragraph_id\":\"[1A-82677155]\",\"quote\":\"We may take advantage of these exemptions for up to five years or until we are no longer an “emerging growth company,” whichever is earlier.\",\"claim\":\"SITIME Corp may rely on JOBS Act exemptions for up to five years or until it ceases to be an emerging growth company, whichever comes first.\"},{\"type\":\"risk\",\"paragraph_id\":\"[1A-3416943d]\",\"quote\":\"However, we are choosing to “opt out” of such extended transition period, and, as a result, we will comply with new or revised accounting standards on the relevant dates on which adoption of such standards is required for non-emerging growth companies.\",\"claim\":\"SITIME Corp has opted out of the extended transition period for new accounting standards and will adopt them on the dates required for non-emerging growth companies.\"},{\"type\":\"risk\",\"paragraph_id\":\"[1A-ede93409]\",\"quote\":\"Act provides that our decision to opt out of the extended transition period for complying with new or revised accounting standards is irrevocable.\",\"claim\":\"SITIME Corp’s decision to opt out of the extended transition period for new accounting standards is irrevocable.\"},{\"type\":\"risk\",\"paragraph_id\":\"[1A-28f6f110]\",\"quote\":\"If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock and the market price of our common stock may be more.\",\"claim\":\"SITIME Corp may face a less active trading market and a lower market price for its common stock if investors find it less attractive due to reliance on emerging growth company exemptions.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 962,
+  "completion_tokens": 474,
+  "latency_ms": 707.9515999998875,
+  "attempts": 1
+ }
+}

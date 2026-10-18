@@ -1,0 +1,875 @@
+[
+  {
+    "model": "openai/gpt-oss-120b",
+    "prompt_version": 1,
+    "passages": 18,
+    "gold_claims": 64,
+    "unreviewed_gold_claims": 0,
+    "predicted_claims": 55,
+    "precision": 0.691,
+    "recall": 0.594,
+    "f1": 0.639,
+    "type_accuracy": 0.921,
+    "grounding_rate": 1.0,
+    "citation_accuracy": 1.0,
+    "by_type": {
+      "event": {
+        "gold": 1,
+        "predicted": 1,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "guidance": {
+        "gold": 9,
+        "predicted": 1,
+        "precision": 1.0,
+        "recall": 0.111
+      },
+      "metric": {
+        "gold": 7,
+        "predicted": 6,
+        "precision": 0.833,
+        "recall": 0.714
+      },
+      "risk": {
+        "gold": 47,
+        "predicted": 47,
+        "precision": 0.617,
+        "recall": 0.617
+      }
+    },
+    "by_company": {
+      "HSY": {
+        "precision": 0.81,
+        "recall": 0.739
+      },
+      "SITM": {
+        "precision": 0.5,
+        "recall": 0.474
+      },
+      "COP": {
+        "precision": 0.75,
+        "recall": 0.545
+      }
+    },
+    "by_section": {
+      "1A": {
+        "precision": 0.694,
+        "recall": 0.581
+      },
+      "7": {
+        "precision": 0.684,
+        "recall": 0.619
+      }
+    },
+    "prompt_tokens": 16922,
+    "completion_tokens": 7966,
+    "llm_latency_s": 26.2,
+    "errors": [
+      {
+        "passage": "HSY-1A-02",
+        "extra": [],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "Negative publicity about product safety, contamination or tampering, valid or not, could reduce demand for Hershey's products or disrupt production and delivery.",
+            "quote": "Negative publicity related to these types of concerns, or related to product contamination or product tampering, whether valid or not, could decrease demand for our products or cause production and delivery disruptions."
+          },
+          {
+            "type": "risk",
+            "claim": "Negative publicity about Hershey's environmental, social or governance practices could hurt its reputation with customers, consumers, suppliers and vendors.",
+            "quote": "negative publicity related to our environmental, social or governance practices could also impact our reputation with customers, consumers, suppliers and vendors."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-1A-09",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Not achieving projected international growth objectives and mitigating associated risks could negatively impact the company's financial condition and results.",
+            "quote": "If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations, there could be a negative impact on our financial condition and results of operations."
+          },
+          {
+            "type": "risk",
+            "claim": "Failure to capture digital commerce market share, leverage technology for efficiencies, or develop data analytics capabilities could negatively impact business performance and financial results.",
+            "quote": "If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights, our business performance may be impacted, which may negatively impact our financial condition and results of operations."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-1A-14",
+        "extra": [],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "A flawed ERP implementation could weaken Hershey's internal control over financial reporting.",
+            "quote": "if we do not effectively implement the ERP system as planned or the ERP system does not operate as intended, the effectiveness of our internal control over financial reporting could be adversely affected"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": [
+          {
+            "gold": "guidance",
+            "predicted": "risk",
+            "claim": "Hershey expects pausing parts of the ERP project to delay the overall implementation by about one year."
+          }
+        ]
+      },
+      {
+        "passage": "HSY-7-28",
+        "extra": [
+          {
+            "type": "metric",
+            "claim": "Hershey reports that it has no guarantees or off-balance sheet financing arrangements that could materially affect its financial condition or liquidity.",
+            "quote": "We do not have guarantees or other off-balance sheet financing arrangements, including variable interest entities, that we believe could have a material impact on our financial condition or liquidity."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "Hershey does not expect its raw-material purchase obligations to hurt its liquidity.",
+            "quote": "We do not believe such purchase obligations will adversely affect our liquidity position."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-7-29",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Hershey cannot estimate the fair value of any asset retirement obligations for facilities containing asbestos.",
+            "quote": "We do not have sufficient information to estimate the fair value of any asset retirement obligations related to these facilities."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "Hershey expects to maintain its asbestos-containing facilities without removing significant quantities of asbestos.",
+            "quote": "We expect to maintain the facilities with repairs and maintenance activities that would not involve or require the removal of significant quantities of asbestos."
+          },
+          {
+            "type": "risk",
+            "claim": "Hershey bears the risk that counterparties to its contractual obligations may be unable to meet their contract terms.",
+            "quote": "we have assumed the risk that might arise from the possible inability of counterparties to meet the terms of their contracts"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": [
+          {
+            "gold": "guidance",
+            "predicted": "risk",
+            "claim": "Hershey does not expect significant losses from counterparties defaulting on contracts."
+          }
+        ]
+      },
+      {
+        "passage": "SITM-1A-47",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "SITIME Corp's net operating loss and federal tax credit carryforwards could expire unused or be unavailable to offset future income tax liabilities.",
+            "quote": "These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities."
+          }
+        ],
+        "missed": [
+          {
+            "type": "metric",
+            "claim": "At December 31, 2020, SiTime had federal and state NOL carryforwards of about $201.5 million and $64.0 million.",
+            "quote": "we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively"
+          },
+          {
+            "type": "metric",
+            "claim": "At December 31, 2020, SiTime had federal and state R&D tax credit carryforwards of about $3.9 million and $3.6 million.",
+            "quote": "U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively"
+          },
+          {
+            "type": "risk",
+            "claim": "Future ownership changes could limit SiTime's use of its NOLs and tax credits under Section 382, raising its future tax obligations.",
+            "quote": "If we determine that an ownership change has occurred and our ability to use our historical net operating loss and tax credit carryforwards is materially limited, it would harm our future business, financial condition, and results of operations"
+          },
+          {
+            "type": "event",
+            "claim": "SiTime's June 16, 2020 follow-on offering caused an ownership change of more than 50% under Section 382.",
+            "quote": "We also had a follow-on offering on June 16, 2020, which resulted in greater than 50% change under Section 382."
+          },
+          {
+            "type": "guidance",
+            "claim": "SiTime determined that the 2020 ownership change will not prevent it from eventually using its carryforwards.",
+            "quote": "We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-1A-53",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Such outcomes could adversely affect the company's business, financial condition, and results of operations.",
+            "quote": "Any of the foregoing results could adversely affect our business, financial condition, and results of operations."
+          },
+          {
+            "type": "risk",
+            "claim": "In a potential IP dispute, the company's customers could become the target of litigation.",
+            "quote": "In any potential dispute involving patents or other intellectual property, our customers could also become the target of litigation."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "SiTime may incur substantial liability under customer indemnities for breaches of confidentiality or inadequate security.",
+            "quote": "From time to time, customers require us to indemnify or otherwise be liable to them for breach of confidentiality or failure to implement adequate security measures with respect to their intellectual property and trade secrets."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-1A-69",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "The company intends to use JOBS Act exemptions from reporting requirements for up to five years, which could pose a risk.",
+            "quote": "We intend to take advantage of certain exemptions under the JOBS Act from various public company reporting requirements... We may take advantage of these exemptions for up to five years or until we are no longer an “emerging growth company,” whichever is earlier."
+          },
+          {
+            "type": "risk",
+            "claim": "The company is opting out of the extended transition period and will adopt new accounting standards on the same schedule as non‑emerging growth companies.",
+            "quote": "However, we are choosing to “opt out” of such extended transition period, and, as a result, we will comply with new or revised accounting standards on the relevant dates on which adoption of such standards is required for non-emerging growth companies."
+          },
+          {
+            "type": "risk",
+            "claim": "The company’s decision to opt out of the extended transition period for new accounting standards is irrevocable.",
+            "quote": "Act provides that our decision to opt out of the extended transition period for complying with new or revised accounting standards is irrevocable."
+          },
+          {
+            "type": "risk",
+            "claim": "The company warns that reliance on exemptions could make its stock less attractive, leading to a less active market and potentially higher stock price volatility.",
+            "quote": "If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock and the market price of our common stock may be more."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-7-02",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Delays or disruptions in manufacturing, shipment, sales, or demand for SITIME Corp's products could materially impact its revenue, margins, cash flows and other operating results.",
+            "quote": "Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results, including revenue, gross margins, operating margins, cash flows and other operating results."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "SiTime expects the COVID-19 pandemic to keep hurting global business activity and its own business for the foreseeable future.",
+            "quote": "We anticipate the global health crisis caused by the COVID-19 pandemic will continue to negatively impact business activity across the globe and will continue to impact our business, employees and operations for the foreseeable future."
+          },
+          {
+            "type": "risk",
+            "claim": "Quarantines, facility closures and travel restrictions have hurt, and may keep hurting, SiTime's suppliers' production.",
+            "quote": "we believe the production capabilities of our suppliers has been, and may continue to be, impacted as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or WFH orders."
+          },
+          {
+            "type": "risk",
+            "claim": "The pandemic's unknown effect on credit markets makes the financial health of SiTime's distributors and customers uncertain.",
+            "quote": "The duration and full magnitude of the COVID-19 pandemic’s impact on credit and financial markets is also unknown, which creates uncertainty as to the financial condition of our distributors or customers."
+          },
+          {
+            "type": "risk",
+            "claim": "A COVID-19 resurgence or delayed return to normal operations could prolong disruption for SiTime, its suppliers and customers.",
+            "quote": "the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-7-14",
+        "extra": [
+          {
+            "type": "event",
+            "claim": "SITIME Corp signed an operating lease for its Santa Clara headquarters that began on October 20, 2016 and will expire on December 31, 2026.",
+            "quote": "We signed an operating lease agreement for our corporate headquarters in Santa Clara, California that commenced on October 20, 2016 and will expire on December 31, 2026."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-06",
+        "extra": [],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "In newer plays, gathering and transport capacity may be insufficient for production from existing and new wells.",
+            "quote": "in certain newer plays, the capacity of necessary facilities, equipment and diluents may not be sufficient to accommodate production from existing and new wells"
+          },
+          {
+            "type": "risk",
+            "claim": "Construction and permitting delays, permitting costs and regulatory constraints could limit or delay ConocoPhillips' acquisition of new facilities and equipment.",
+            "quote": "construction and permitting delays, permitting costs and regulatory or other constraints could limit or delay the construction, manufacture or other acquisition of new facilities and equipment"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-07",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' operations face significant hazards and risks such as explosions, fires, spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest, and cyber attacks.",
+            "quote": "The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "Unavailable or disrupted services and infrastructure, such as drilling rigs, pipelines or tankers, could hurt ConocoPhillips' operations.",
+            "quote": "Our operations may also be adversely affected by unavailability, interruptions or accidents involving services or infrastructure required to develop, produce, process or transport our production"
+          },
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' operations carry environmental hazards including pollution and toxic gas releases.",
+            "quote": "Our operations are subject to the additional hazards of pollution, releases of toxic gas and other environmental hazards and risks."
+          },
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' offshore activities carry greater risk from complex subsurface conditions, water depth and metocean conditions.",
+            "quote": "Offshore activities may pose incrementally greater risks because of complex subsurface conditions such as higher reservoir pressures, water depths and metocean conditions."
+          },
+          {
+            "type": "risk",
+            "claim": "Failing to respond appropriately, or being seen to fail, to a hazard or major crisis could disrupt ConocoPhillips' business.",
+            "quote": "our business and operations may be disrupted if we do not respond, or are perceived not to respond, in an appropriate manner to any of these hazards and risks or any other major crisis"
+          },
+          {
+            "type": "risk",
+            "claim": "Failure by ConocoPhillips or its joint ventures to manage risks of operations, acquisitions or dispositions could materially harm the joint ventures and the company.",
+            "quote": "Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-13",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "New and existing laws and regulations governing hydraulic fracturing could increase costs, impose operating restrictions, cause delays, or limit the ability to develop oil and natural gas resources.",
+            "quote": "A range of local, state, federal and national laws and regulations currently govern or, in some hydraulic fracturing operations, prohibit hydraulic fracturing in some jurisdictions."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "New laws and permitting rules on hydraulic fracturing could raise ConocoPhillips' costs, restrict or delay operations, or limit development.",
+            "quote": "a number of new laws, regulations and permitting requirements are under consideration which could result in increased costs, operating restrictions, operational delays or could limit the ability to develop oil and natural gas resources"
+          },
+          {
+            "type": "guidance",
+            "claim": "ConocoPhillips believes it could mitigate an extended federal leasing moratorium for a considerable time using existing permits and adjusted development plans.",
+            "quote": "If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-7-13",
+        "extra": [],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' earnings and operating cash flow track crude oil and natural gas prices, which it cannot control.",
+            "quote": "Our earnings and operating cash flows generally correlate with industry price levels for crude oil and natural gas."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-7-38",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips is subject to numerous international, federal, state and local environmental laws and regulations.",
+            "quote": "We are subject to the same numerous international, federal, state and local environmental laws and regulations as other companies in our industry."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-7-42",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips cannot assure that material environmental costs and liabilities will not be incurred.",
+            "quote": "there can be no assurance that material costs and liabilities will not be incurred."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": [
+          {
+            "gold": "guidance",
+            "predicted": "risk",
+            "claim": "ConocoPhillips does not expect compliance with current environmental laws to materially hurt its results or financial position."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "prompt_version": 1,
+    "passages": 18,
+    "gold_claims": 64,
+    "unreviewed_gold_claims": 0,
+    "predicted_claims": 65,
+    "precision": 0.646,
+    "recall": 0.656,
+    "f1": 0.651,
+    "type_accuracy": 0.976,
+    "grounding_rate": 1.0,
+    "citation_accuracy": 0.231,
+    "by_type": {
+      "event": {
+        "gold": 1,
+        "predicted": 1,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "guidance": {
+        "gold": 9,
+        "predicted": 3,
+        "precision": 0.667,
+        "recall": 0.222
+      },
+      "metric": {
+        "gold": 7,
+        "predicted": 5,
+        "precision": 1.0,
+        "recall": 0.714
+      },
+      "risk": {
+        "gold": 47,
+        "predicted": 56,
+        "precision": 0.607,
+        "recall": 0.723
+      }
+    },
+    "by_company": {
+      "HSY": {
+        "precision": 0.773,
+        "recall": 0.739
+      },
+      "SITM": {
+        "precision": 0.565,
+        "recall": 0.684
+      },
+      "COP": {
+        "precision": 0.6,
+        "recall": 0.545
+      }
+    },
+    "by_section": {
+      "1A": {
+        "precision": 0.676,
+        "recall": 0.581
+      },
+      "7": {
+        "precision": 0.607,
+        "recall": 0.81
+      }
+    },
+    "prompt_tokens": 16922,
+    "completion_tokens": 7685,
+    "llm_latency_s": 17.6,
+    "errors": [
+      {
+        "passage": "HSY-1A-02",
+        "extra": [],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "Negative publicity about product safety, contamination or tampering, valid or not, could reduce demand for Hershey's products or disrupt production and delivery.",
+            "quote": "Negative publicity related to these types of concerns, or related to product contamination or product tampering, whether valid or not, could decrease demand for our products or cause production and delivery disruptions."
+          },
+          {
+            "type": "risk",
+            "claim": "Negative publicity about Hershey's environmental, social or governance practices could hurt its reputation with customers, consumers, suppliers and vendors.",
+            "quote": "negative publicity related to our environmental, social or governance practices could also impact our reputation with customers, consumers, suppliers and vendors."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-1A-09",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Failure to achieve projected international growth objectives and mitigate associated risks could negatively impact financial condition and results of operations.",
+            "quote": "If we are not able to achieve our projected international growth objectives and mitigate the numerous risks and uncertainties associated with our international operations, there could be a negative impact on our financial condition and results of operations."
+          },
+          {
+            "type": "risk",
+            "claim": "Failure to capture digital commerce market share, leverage technology for efficiencies, or develop data analytics capabilities could negatively impact business performance and financial condition.",
+            "quote": "If we are not able to capture our share of the expanding digital commerce market, if we do not adequately leverage technology to improve operating efficiencies or if we are unable to develop the data analytics capabilities needed to generate actionable commercial insights, our business performance may be impacted, which may negatively impact our financial condition and results of operations."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-1A-14",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Hershey may not successfully implement its ERP system without further delays, increased costs, and other difficulties.",
+            "quote": "We may not be able to successfully implement the ERP system without experiencing further delays, increased costs and other difficulties."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "Hershey expects pausing parts of the ERP project to delay the overall implementation by about one year.",
+            "quote": "We expect this to delay our overall ERP implementation by approximately one year."
+          },
+          {
+            "type": "risk",
+            "claim": "A flawed ERP implementation could weaken Hershey's internal control over financial reporting.",
+            "quote": "if we do not effectively implement the ERP system as planned or the ERP system does not operate as intended, the effectiveness of our internal control over financial reporting could be adversely affected"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-7-28",
+        "extra": [],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "Hershey does not expect its raw-material purchase obligations to hurt its liquidity.",
+            "quote": "We do not believe such purchase obligations will adversely affect our liquidity position."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "HSY-7-29",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "The company lacks sufficient information to estimate the fair value of asset retirement obligations for its facilities.",
+            "quote": "We do not have sufficient information to estimate the fair value of any asset retirement obligations related to these facilities."
+          },
+          {
+            "type": "risk",
+            "claim": "The company cannot specify settlement dates for asset retirement obligations, making expected present value calculation unavailable.",
+            "quote": "We cannot specify the settlement date or range of potential settlement dates and, therefore, sufficient information is not available to apply an expected present value technique."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "Hershey does not expect significant losses from counterparties defaulting on contracts.",
+            "quote": "We do not expect any significant losses resulting from counterparty defaults."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-1A-47",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "The company’s net operating loss and U.S. federal tax credit carryforwards could expire unused or be unavailable to offset future income tax liabilities.",
+            "quote": "These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities."
+          }
+        ],
+        "missed": [
+          {
+            "type": "metric",
+            "claim": "At December 31, 2020, SiTime had federal and state NOL carryforwards of about $201.5 million and $64.0 million.",
+            "quote": "we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively"
+          },
+          {
+            "type": "metric",
+            "claim": "At December 31, 2020, SiTime had federal and state R&D tax credit carryforwards of about $3.9 million and $3.6 million.",
+            "quote": "U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively"
+          },
+          {
+            "type": "event",
+            "claim": "SiTime's June 16, 2020 follow-on offering caused an ownership change of more than 50% under Section 382.",
+            "quote": "We also had a follow-on offering on June 16, 2020, which resulted in greater than 50% change under Section 382."
+          },
+          {
+            "type": "guidance",
+            "claim": "SiTime determined that the 2020 ownership change will not prevent it from eventually using its carryforwards.",
+            "quote": "We completed an updated Section 382 analysis based on this new change event and determined that it will not prohibit us from eventually utilizing our carryforwards."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-1A-53",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Any of the foregoing results could adversely affect SITIME’s business, financial condition, and results of operations.",
+            "quote": "• Any of the foregoing results could adversely affect our business, financial condition, and results of operations."
+          },
+          {
+            "type": "risk",
+            "claim": "Large indemnity payments or damage claims from contractual breach could harm SITIME’s business, financial condition, and results of operations.",
+            "quote": "Large indemnity payments or damage claims from contractual breach could harm our business, financial condition, and results of operations."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "SiTime may incur substantial liability under customer indemnities for breaches of confidentiality or inadequate security.",
+            "quote": "From time to time, customers require us to indemnify or otherwise be liable to them for breach of confidentiality or failure to implement adequate security measures with respect to their intellectual property and trade secrets."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-1A-69",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "SITIME Corp may rely on JOBS Act exemptions for up to five years or until it ceases to be an emerging growth company, whichever comes first.",
+            "quote": "We may take advantage of these exemptions for up to five years or until we are no longer an “emerging growth company,” whichever is earlier."
+          },
+          {
+            "type": "risk",
+            "claim": "SITIME Corp has opted out of the extended transition period for new accounting standards and will adopt them on the dates required for non-emerging growth companies.",
+            "quote": "However, we are choosing to “opt out” of such extended transition period, and, as a result, we will comply with new or revised accounting standards on the relevant dates on which adoption of such standards is required for non-emerging growth companies."
+          },
+          {
+            "type": "risk",
+            "claim": "SITIME Corp’s decision to opt out of the extended transition period for new accounting standards is irrevocable.",
+            "quote": "Act provides that our decision to opt out of the extended transition period for complying with new or revised accounting standards is irrevocable."
+          },
+          {
+            "type": "risk",
+            "claim": "SITIME Corp may face a less active trading market and a lower market price for its common stock if investors find it less attractive due to reliance on emerging growth company exemptions.",
+            "quote": "If some investors find our common stock less attractive because we rely on any of these exemptions, there may be a less active trading market for our common stock and the market price of our common stock may be more."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-7-02",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Delays or disruptions in manufacturing, shipment, sales, or demand could materially harm SITIME Corp’s revenue, margins, cash flows, and other operating results.",
+            "quote": "Any delay or disruption in the manufacture, shipment and sales of, or overall demand for, our products in turn may negatively and materially impact our operating and financial results, including revenue, gross margins, operating margins, cash flows and other operating results."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "A COVID-19 resurgence or delayed return to normal operations could prolong disruption for SiTime, its suppliers and customers.",
+            "quote": "the resumption of normal business operations after such disruptions may be delayed and a resurgence of COVID-19 could result in continued disruption to us, our suppliers, and/or our customers"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": [
+          {
+            "gold": "guidance",
+            "predicted": "risk",
+            "claim": "SiTime expects the COVID-19 pandemic to keep hurting global business activity and its own business for the foreseeable future."
+          }
+        ]
+      },
+      {
+        "passage": "SITM-7-05",
+        "extra": [
+          {
+            "type": "guidance",
+            "claim": "The company plans to continually reduce product costs and improve value by targeting new design win opportunities and managing product life cycles.",
+            "quote": "We continually monitor and work to reduce the cost of our products and improve the potential value our solutions provide to our customers as we target new design win opportunities and manage the product life cycles of our existing customer designs."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "SITM-7-14",
+        "extra": [
+          {
+            "type": "event",
+            "claim": "The company signed an operating lease for its Santa Clara headquarters that began on October 20, 2016 and ends on December 31, 2026.",
+            "quote": "We signed an operating lease agreement for our corporate headquarters in Santa Clara, California that commenced on October 20, 2016 and will expire on December 31, 2026."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-06",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Our ability to sell and deliver our crude oil, bitumen, natural gas, NGLs and LNG depends on the availability, proximity, and capacity of gathering, processing, compression, transportation and pipeline facilities and equipment, and necessary diluents.",
+            "quote": "Our ability to sell and deliver the crude oil, bitumen, natural gas, NGLs and LNG that we produce also depends on the availability, proximity, and capacity of gathering, processing, compression, transportation and pipeline facilities and equipment, as well as any necessary diluents to prepare our crude oil, bitumen, natural gas, NGLs and LNG for transport."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "Pipelines, processing facilities, equipment and diluents ConocoPhillips relies on may become unavailable, raising transport costs or forcing production cuts.",
+            "quote": "The facilities, equipment and diluents we rely on may be temporarily unavailable to us due to market conditions, extreme weather events, regulatory reasons, mechanical reasons or other factors or conditions"
+          },
+          {
+            "type": "risk",
+            "claim": "In newer plays, gathering and transport capacity may be insufficient for production from existing and new wells.",
+            "quote": "in certain newer plays, the capacity of necessary facilities, equipment and diluents may not be sufficient to accommodate production from existing and new wells"
+          },
+          {
+            "type": "risk",
+            "claim": "Construction and permitting delays, permitting costs and regulatory constraints could limit or delay ConocoPhillips' acquisition of new facilities and equipment.",
+            "quote": "construction and permitting delays, permitting costs and regulatory or other constraints could limit or delay the construction, manufacture or other acquisition of new facilities and equipment"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-07",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips’ operations face hazards such as explosions, fires, spills, severe weather, labor disputes, hostilities, terrorism, sabotage, civil unrest, and cyber attacks.",
+            "quote": "The scope and nature of our operations present a variety of significant hazards and risks, including operational hazards and risks such as explosions, fires, crude oil spills, severe weather, geological events, labor disputes, armed hostilities, terrorist attacks, sabotage, civil unrest or cyber attacks."
+          }
+        ],
+        "missed": [
+          {
+            "type": "risk",
+            "claim": "Unavailable or disrupted services and infrastructure, such as drilling rigs, pipelines or tankers, could hurt ConocoPhillips' operations.",
+            "quote": "Our operations may also be adversely affected by unavailability, interruptions or accidents involving services or infrastructure required to develop, produce, process or transport our production"
+          },
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' operations carry environmental hazards including pollution and toxic gas releases.",
+            "quote": "Our operations are subject to the additional hazards of pollution, releases of toxic gas and other environmental hazards and risks."
+          },
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips' offshore activities carry greater risk from complex subsurface conditions, water depth and metocean conditions.",
+            "quote": "Offshore activities may pose incrementally greater risks because of complex subsurface conditions such as higher reservoir pressures, water depths and metocean conditions."
+          },
+          {
+            "type": "risk",
+            "claim": "Failing to respond appropriately, or being seen to fail, to a hazard or major crisis could disrupt ConocoPhillips' business.",
+            "quote": "our business and operations may be disrupted if we do not respond, or are perceived not to respond, in an appropriate manner to any of these hazards and risks or any other major crisis"
+          },
+          {
+            "type": "risk",
+            "claim": "Failure by ConocoPhillips or its joint ventures to manage risks of operations, acquisitions or dispositions could materially harm the joint ventures and the company.",
+            "quote": "Failure by us, or an entity in which we have a joint venture interest, to adequately manage the risks associated with any operations, acquisitions or dispositions could have a material adverse effect"
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-1A-13",
+        "extra": [],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "ConocoPhillips believes it could mitigate an extended federal leasing moratorium for a considerable time using existing permits and adjusted development plans.",
+            "quote": "If this temporary moratorium were to be extended indefinitely, we believe we can mitigate the impact for a considerable period of time with our current permits and adjusting our development plans across our diverse acreage position."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-7-13",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "Crude oil and natural gas price levels are influenced by external factors beyond the company’s control, such as global economic health, supply disruptions, geopolitical events, OPEC actions, regulations, and weather.",
+            "quote": "Industry price levels are subject to factors external to the company and over which we have no control, including but not limited to global economic health, supply disruptions or fears thereof caused by civil unrest or military conflicts, actions taken by OPEC and other producing countries, environmental laws, tax regulations, governmental policies and weather-related disruptions."
+          },
+          {
+            "type": "risk",
+            "claim": "The COVID-19 pandemic triggered a demand shock that continues to affect the company’s operations.",
+            "quote": "The demand shock was triggered by the COVID-19 pandemic, which continues to have unprecedented social and economic consequences."
+          },
+          {
+            "type": "risk",
+            "claim": "Disagreements between OPEC and Russia in early 2020 caused a supply shock, increasing market supply and inventory levels.",
+            "quote": "The supply shock was triggered by disagreements between OPEC and Russia, beginning in early March 2020, which resulted in significant supply coming onto the market and created higher inventory levels."
+          },
+          {
+            "type": "risk",
+            "claim": "High storage levels and weak demand depressed Henry Hub natural gas prices.",
+            "quote": "Henry Hub prices were depressed due to high storage levels and weak demand."
+          }
+        ],
+        "missed": [],
+        "dropped": [],
+        "type_mismatches": []
+      },
+      {
+        "passage": "COP-7-42",
+        "extra": [
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips finds it difficult to estimate future site remediation costs.",
+            "quote": "Therefore, it is difficult to develop reasonable estimates of future site remediation costs."
+          },
+          {
+            "type": "risk",
+            "claim": "ConocoPhillips cannot assure that material environmental costs and liabilities will not be incurred.",
+            "quote": "there can be no assurance that material costs and liabilities will not be incurred."
+          }
+        ],
+        "missed": [
+          {
+            "type": "guidance",
+            "claim": "ConocoPhillips does not expect compliance with current environmental laws to materially hurt its results or financial position.",
+            "quote": "we currently do not expect any material adverse effect upon our results of operations or financial position as a result of compliance with current environmental laws and regulations."
+          }
+        ],
+        "dropped": [],
+        "type_mismatches": []
+      }
+    ]
+  }
+]

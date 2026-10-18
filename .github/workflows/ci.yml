@@ -33,6 +33,10 @@ jobs:
       - run: uv sync
       - run: uv run ruff check .
       - run: uv run pytest
+      # Replays the recorded responses in evals/cache: no API key, no quota. A prompt or
+      # model change without a fresh live run fails here on the cache miss.
+      - name: Claim extraction eval
+        run: uv run python -m evals.run --offline --min-precision 0.65 --min-recall 0.55 --min-grounding 0.95
 
   frontend:
     runs-on: ubuntu-latest
