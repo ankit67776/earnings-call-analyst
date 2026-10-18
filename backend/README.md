@@ -5,9 +5,9 @@ FastAPI service: ingestion, LLM pipelines, evals.
 - `app/llm/`: the one client every LLM call goes through (rate limits, retries, cache, strict JSON outputs)
 - `app/filings/`: EDGAR download and 10-K parsing into Items and paragraphs with stable IDs
 - `app/analysis/`: map-reduce claim extraction; every quote is located in the source (exact, normalized, elided with "...", then fuzzy) and claims whose quote can't be found are rejected
-
 - `app/store.py`, `app/db.py`, `migrations/`: Postgres schema (plain SQL migrations) and persistence
 - `app/jobs.py`: job queue on a Postgres table, claimed with `FOR UPDATE SKIP LOCKED`; leases renewed by a heartbeat, retries with backoff, and jobs that run out of LLM quota are deferred until it resets
+- `app/main.py`, `app/queries.py`: the API: queue an analysis and poll its job; list filings; a filing's latest findings with citations; a section's paragraphs
 
 ```bash
 uv run python -m app.db migrate                       # create/upgrade tables

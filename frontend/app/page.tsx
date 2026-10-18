@@ -1,69 +1,125 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import AnalyzeForm from "./analyze-form";
+import { api } from "./lib/api";
+import { CLAIM_LABELS, companyName, plural, sectionName } from "./lib/format";
+import type { DocumentSummary, Finding } from "./lib/types";
+
+export default async function Home() {
+  const documents = await api.documents();
+  const example = documents.length > 0 ? await exampleQuote(documents[0]) : null;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="mx-auto max-w-3xl px-6 py-14 sm:py-20">
+      <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">Earnings Call Analyst</h1>
+      <p className="mt-4 max-w-[60ch] text-lg leading-relaxed text-ink-soft">
+        Reads a company&apos;s annual report, pulls out what it claims about results, plans
+        and risks, and shows the exact sentence in the filing behind every claim. Claims
+        whose quote can&apos;t be found in the filing are dropped.
+      </p>
+
+      {example && <Example {...example} />}
+
+      <section aria-labelledby="filings" className="mt-14">
+        <h2 id="filings" className="text-xl font-semibold">
+          Analyzed filings
+        </h2>
+        {documents.length === 0 ? (
+          <p className="mt-3 text-ink-soft">
+            Nothing analyzed yet. Queue a filing below; Hershey (HSY) for 2020 is a good first
+            one.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        ) : (
+          <ul className="mt-4 divide-y divide-rule border-y border-rule">
+            {documents.map((d) => (
+              <li key={d.id}>
+                <Link
+                  href={`/documents/${d.id}`}
+                  className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 px-1 py-4 hover:bg-page/60"
+                >
+                  <span>
+                    <span className="font-medium">{companyName(d.company)}</span>{" "}
+                    <span className="text-ink-soft">
+                      {d.form} for fiscal {d.fiscal_year}
+                    </span>
+                  </span>
+                  <span className="text-sm text-ink-soft">
+                    {d.analyzed_sections.length > 0
+                      ? `${plural(d.findings, "claim")} from ${d.analyzed_sections
+                          .map((s) => sectionName(s).toLowerCase())
+                          .join(" and ")}`
+                      : "Not analyzed yet"}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <section aria-labelledby="analyze" className="mt-14">
+        <h2 id="analyze" className="text-xl font-semibold">
+          Analyze a filing
+        </h2>
+        <p className="mt-2 max-w-[60ch] text-ink-soft">
+          Fetches the 10-K from SEC EDGAR and extracts claims from its risk factors and
+          management&apos;s discussion. On the free model tier a full filing takes 10 to 20
+          minutes.
+        </p>
+        <AnalyzeForm />
+      </section>
+    </main>
+  );
+}
+
+interface ExampleQuote {
+  company: string;
+  fiscalYear: number;
+  finding: Finding;
+  before: string;
+  after: string;
+  quoted: string;
+}
+
+// One real claim from the latest data, shown the way the filing view shows it.
+async function exampleQuote(document: DocumentSummary): Promise<ExampleQuote | null> {
+  const findings = await api.findings(document.id);
+  const finding = findings.find(
+    (f) => f.verified && f.type === "metric" && f.citations[0]?.match === "exact",
+  );
+  const citation = finding?.citations[0];
+  if (!finding || !citation || citation.start === null || citation.end === null) return null;
+  const section = await api.section(document.id, finding.section);
+  const paragraph = section.paragraphs.find((p) => p.id === citation.paragraph_id);
+  if (!paragraph) return null;
+
+  // A sentence or so of context on each side of the quote.
+  const from = paragraph.text.lastIndexOf(". ", Math.max(0, citation.start - 2)) + 2;
+  const to = paragraph.text.indexOf(". ", citation.end);
+  return {
+    company: companyName(document.company),
+    fiscalYear: document.fiscal_year,
+    finding,
+    before: (from > 1 ? "…" : "") + paragraph.text.slice(from > 1 ? from : 0, citation.start),
+    quoted: paragraph.text.slice(citation.start, citation.end),
+    after: paragraph.text.slice(citation.end, to === -1 ? undefined : to + 1),
+  };
+}
+
+function Example({ company, fiscalYear, finding, before, quoted, after }: ExampleQuote) {
+  return (
+    <figure className="mt-10 rounded-sm bg-page px-6 py-6 shadow-sheet sm:px-8">
+      <figcaption className="text-sm text-ink-soft">
+        {CLAIM_LABELS[finding.type]} claim from {company}&apos;s {fiscalYear} 10-K
+      </figcaption>
+      <p className="mt-2 text-lg font-medium leading-snug">{finding.claim}</p>
+      <blockquote className="mt-4 border-l-2 border-ink pl-4 font-serif leading-[1.8]">
+        {before}
+        <mark className="hl" data-type={finding.type} data-active="">
+          {quoted}
+        </mark>
+        {after}
+      </blockquote>
+    </figure>
   );
 }

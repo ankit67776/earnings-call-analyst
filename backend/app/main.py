@@ -7,7 +7,7 @@ import asyncpg
 from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel, Field, field_validator
 
-from app import db, jobs
+from app import db, jobs, queries
 from app.config import settings
 from app.filings.tenk import ITEMS
 
@@ -106,3 +106,35 @@ async def get_job(job_id: int, pool: Pool) -> dict[str, Any]:
     if row is None:
         raise HTTPException(404, "job not found")
     return dict(row)
+
+
+@app.get("/api/documents")
+async def list_documents(pool: Pool) -> list[dict[str, Any]]:
+    async with pool.acquire() as conn:
+        return await queries.list_documents(conn)
+
+
+@app.get("/api/documents/{document_id}")
+async def get_document(document_id: int, pool: Pool) -> dict[str, Any]:
+    async with pool.acquire() as conn:
+        doc = await queries.get_document(conn, document_id)
+    if doc is None:
+        raise HTTPException(404, "document not found")
+    return doc
+
+
+@app.get("/api/documents/{document_id}/findings")
+async def get_findings(
+    document_id: int, pool: Pool, section: str | None = None
+) -> list[dict[str, Any]]:
+    async with pool.acquire() as conn:
+        return await queries.get_findings(conn, document_id, section.upper() if section else None)
+
+
+@app.get("/api/documents/{document_id}/sections/{item}")
+async def get_section(document_id: int, item: str, pool: Pool) -> dict[str, Any]:
+    async with pool.acquire() as conn:
+        section = await queries.get_section(conn, document_id, item.upper())
+    if section is None:
+        raise HTTPException(404, "section not found")
+    return section

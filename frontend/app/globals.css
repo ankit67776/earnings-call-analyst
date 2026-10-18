@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* A filing laid on a desk: cool grey desk, white sheet, blue-black printer's ink. */
+  --color-desk: #e7ebef;
+  --color-page: #ffffff;
+  --color-ink: #1d2733;
+  --color-ink-soft: #55606c;
+  --color-rule: #c9d1d9;
+
+  /* Highlighter pens, one per claim type. */
+  --color-metric: #ffe14d;
+  --color-guidance: #9be7b0;
+  --color-risk: #ffadc8;
+  --color-event: #a3d5ff;
+
+  --shadow-sheet: 0 1px 2px rgb(29 39 51 / 0.08), 0 8px 24px -12px rgb(29 39 51 / 0.25);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-public-sans), system-ui, sans-serif;
+  --font-serif: var(--font-merriweather), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* Highlighter marks over quoted text. */
+.hl {
+  --hl: var(--color-metric);
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(var(--hl), var(--hl));
+  background-repeat: no-repeat;
+  background-position: 0 70%;
+  background-size: 100% 72%;
+  border-radius: 0.2em;
+  padding: 0 0.06em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  cursor: pointer;
+}
+.hl[data-type="guidance"] {
+  --hl: var(--color-guidance);
+}
+.hl[data-type="risk"] {
+  --hl: var(--color-risk);
+}
+.hl[data-type="event"] {
+  --hl: var(--color-event);
+}
+
+/* Quotes for other claims: a light pass of the pen. */
+.hl:not([data-active]) {
+  background-image: linear-gradient(
+    color-mix(in srgb, var(--hl) 45%, transparent),
+    color-mix(in srgb, var(--hl) 45%, transparent)
+  );
+}
+
+/* The selected quote gets drawn in, left to right. */
+.hl[data-active] {
+  animation: draw-highlight 550ms cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+@keyframes draw-highlight {
+  from {
+    background-size: 0% 72%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  .hl[data-active] {
+    animation: none;
+  }
+}
+
+/* How well a quote matched the source, drawn as the underline of its citation. */
+.match-exact,
+.match-normalized {
+  text-decoration: underline solid;
+}
+.match-elided {
+  text-decoration: underline dashed;
+}
+.match-fuzzy {
+  text-decoration: underline dotted;
+}
+.match-exact,
+.match-normalized,
+.match-elided,
+.match-fuzzy {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
 }
