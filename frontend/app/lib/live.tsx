@@ -12,10 +12,12 @@ import {
 } from "react";
 
 import { isActive } from "./status";
-import type { DocumentSummary, Job, Usage } from "./types";
+import type { Company, DocumentSummary, Job, Usage } from "./types";
 
 export interface LiveData {
   documents: DocumentSummary[] | null;
+  // Loaded with the page: what the chat can search, and the calls to read.
+  companies: Company[] | null;
   jobs: Job[];
   usage: Usage | null;
   // The analysis service didn't answer the last request.
@@ -69,6 +71,7 @@ export function LiveProvider({ initial, children }: { initial: LiveData; childre
       load<Usage>("/api/usage"),
     ]);
     setData((current) => ({
+      ...current,
       documents: documents.status === "fulfilled" ? documents.value : current.documents,
       jobs: jobs.status === "fulfilled" ? jobs.value : current.jobs,
       usage: usage.status === "fulfilled" ? usage.value : current.usage,

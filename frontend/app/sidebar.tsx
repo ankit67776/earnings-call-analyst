@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { plural } from "./lib/format";
+import { companyName, plural } from "./lib/format";
 import { useLive } from "./lib/live";
 import { type Row, type Status, libraryRows } from "./lib/status";
 import { Clock } from "./lib/time";
@@ -48,7 +48,10 @@ const SHORT_STATUS: Record<Status["kind"], string> = {
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { documents, jobs, usage, offline } = useLive();
+  const { documents, companies, jobs, usage, offline } = useLive();
+  const calls = (companies ?? []).flatMap((c) =>
+    c.calls.map((call) => ({ ...call, company: c.company })),
+  );
   const rows = libraryRows(documents ?? [], jobs);
   const running = rows.filter((r) => r.status.kind === "fetching" || r.status.kind === "extracting");
 
@@ -69,6 +72,9 @@ export default function Sidebar() {
             {running.length > 0 ? `${running.length} running` : (documents?.length ?? "")}
           </span>
         </NavLink>
+        <NavLink href="/ask" current={pathname === "/ask"}>
+          Ask
+        </NavLink>
       </nav>
 
       {rows.length > 0 && (
@@ -80,6 +86,37 @@ export default function Sidebar() {
                 <FilingLink row={row} current={pathname === `/documents/${row.documentId}`} />
               </li>
             ))}
+          </ul>
+        </div>
+      )}
+
+      {calls.length > 0 && (
+        <div className="hidden lg:block">
+          <h2 className="px-2 pt-5 pb-1.5 text-xs text-ink-2">Calls</h2>
+          <ul className="space-y-px">
+            {calls.slice(0, 8).map((call) => {
+              const current = pathname === `/calls/${call.id}`;
+              return (
+                <li key={call.id}>
+                  <Link
+                    href={`/calls/${call.id}`}
+                    aria-current={current ? "page" : undefined}
+                    className={`flex items-center gap-2 rounded-md px-2 py-1.5 ${
+                      current
+                        ? "bg-sheet text-ink shadow-[0_0_0_1px_var(--color-line)]"
+                        : "text-ink hover:bg-line/60"
+                    }`}
+                  >
+                    <span className="min-w-0 flex-1 truncate">
+                      {companyName(call.company)}{" "}
+                      <span className="text-ink-2">
+                        Q{call.quarter} {call.fiscal_year}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

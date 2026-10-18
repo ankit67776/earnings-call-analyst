@@ -22,9 +22,11 @@ interface Props {
   document: DocumentDetail;
   findings: Finding[];
   sections: Section[];
-  // From ?claim= and ?item=, so a link can open a section or a claim.
+  // From ?claim=, ?item= and ?p=, so a link can open a section, a claim or a paragraph
+  // (the chat links its citations here).
   initialClaim: number | null;
   initialItem: string | null;
+  initialParagraph: string | null;
 }
 
 // A claim as the margin shows it: numbered in filing order within its section.
@@ -63,22 +65,30 @@ function smooth(): ScrollBehavior {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 }
 
-export default function Reader({ document, findings, sections, initialClaim, initialItem }: Props) {
+export default function Reader({
+  document,
+  findings,
+  sections,
+  initialClaim,
+  initialItem,
+  initialParagraph,
+}: Props) {
   const linked = findings.find((f) => f.verified && f.id === initialClaim);
-  const [item, setItem] = useState(
-    linked?.section ??
-      sections.find((s) => s.item === initialItem)?.item ??
-      sections[0]?.item ??
-      "",
-  );
+  const startItem =
+    linked?.section ?? sections.find((s) => s.item === initialItem)?.item ?? sections[0]?.item ?? "";
+  const [item, setItem] = useState(startItem);
   const [type, setType] = useState<ClaimType | "all">("all");
   const [selected, setSelected] = useState<number | null>(linked?.id ?? null);
   const [peek, setPeek] = useState<number | null>(null);
   // Set when a selection should bring its sentence into view (keys, links).
   const pendingScroll = useRef<"center" | "nearest" | null>(linked ? "center" : null);
   const jumped = useRef(false);
-  // Leading paragraphs without claims stay folded until asked for, per view.
-  const [unfolded, setUnfolded] = useState<string | null>(null);
+  // Leading paragraphs without claims stay folded until asked for, per view. A linked
+  // paragraph opens unfolded so it can be shown.
+  const [unfolded, setUnfolded] = useState<string | null>(
+    initialParagraph && !linked ? `${startItem}-all` : null,
+  );
+  const flash = linked ? null : initialParagraph;
   // The outline heading the reader is under.
   const [current, setCurrent] = useState<string | null>(null);
 
@@ -195,6 +205,14 @@ export default function Reader({ document, findings, sections, initialClaim, ini
       .querySelector(`[data-paragraph="${CSS.escape(paragraphId)}"]`)
       ?.scrollIntoView({ block, behavior });
   }, [selected, verified]);
+
+  // A linked paragraph is centred and washed until the reader picks something.
+  useEffect(() => {
+    if (!flash) return;
+    globalThis.document
+      .querySelector(`[data-paragraph="${CSS.escape(flash)}"]`)
+      ?.scrollIntoView({ block: "center" });
+  }, [flash]);
 
   function showSection(next: string) {
     setItem(next);
@@ -440,6 +458,10 @@ export default function Reader({ document, findings, sections, initialClaim, ini
         </article>
       </div>
 
+      {flash && selected === null && (
+        // Paragraph IDs are checked to be [\w-] in page.tsx, so they're safe in a selector.
+        <style>{`[data-paragraph="${flash}"]>div>*{background-color:var(--color-mark-soft);border-radius:2px}`}</style>
+      )}
       {/* Hovering a note lightly marks its sentence. */}
       {peek !== null && peek !== selected && (
         <style>{`mark.quote[data-f="${peek}"]{background-color:var(--color-mark-soft)}`}</style>

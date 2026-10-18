@@ -20,13 +20,15 @@ export const metadata: Metadata = {
 // The shell's filings, jobs and quota. The pages render their own error if the
 // analysis service is down; the sidebar just says so.
 async function initialData(): Promise<LiveData> {
-  const [documents, jobs, usage] = await Promise.allSettled([
+  const [documents, jobs, usage, companies] = await Promise.allSettled([
     api.documents(),
     api.jobs(),
     api.usage(),
+    api.companies(),
   ]);
   return {
     documents: documents.status === "fulfilled" ? documents.value : null,
+    companies: companies.status === "fulfilled" ? companies.value : null,
     jobs: jobs.status === "fulfilled" ? jobs.value : [],
     usage: usage.status === "fulfilled" ? usage.value : null,
     offline: documents.status === "rejected",
