@@ -1,4 +1,4 @@
-import type { DocumentDetail, DocumentSummary, Finding, Section } from "./types";
+import type { DocumentDetail, DocumentSummary, Finding, Job, Section, Usage } from "./types";
 
 // Server Components call the backend directly; there's no Next server to proxy through
 // at build time. The browser uses the /api rewrite in next.config.ts instead.
@@ -19,4 +19,6 @@ export const api = {
   findings: (id: number) => get<Finding[]>(`/api/documents/${id}/findings`),
   section: (id: number, item: string) =>
     get<Section>(`/api/documents/${id}/sections/${encodeURIComponent(item)}`),
+  jobs: () => get<Job[]>("/api/jobs"),
+  usage: () => get<Usage>("/api/usage"),
 };

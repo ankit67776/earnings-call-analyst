@@ -21,6 +21,13 @@ const ITEM_NAMES: Record<string, string> = {
   "7A": "Market risk",
 };
 
+// For tabs and tight rows.
+const ITEM_SHORT: Record<string, string> = { "7": "MD&A", "7A": "Market risk" };
+
+export function sectionShort(item: string, title?: string): string {
+  return ITEM_SHORT[item] ?? sectionName(item, title);
+}
+
 export function sectionName(item: string, title?: string): string {
   if (ITEM_NAMES[item]) return ITEM_NAMES[item];
   if (!title) return `Item ${item}`;
@@ -41,6 +48,25 @@ export const MATCH_LABELS: Record<MatchKind, string> = {
   elided: "Shortened quote, every part found in order",
   fuzzy: "Close match, small copying slips",
 };
+
+// How a quote differed from the filing, said briefly; exact quotes need no note.
+export const MATCH_NOTES: Record<MatchKind, string | null> = {
+  exact: null,
+  normalized: "punctuation differs",
+  elided: "shortened quote",
+  fuzzy: "close match",
+};
+
+// "5:30 AM", "tomorrow 5:30 AM" or "Oct 21, 2026, 5:30 AM".
+export function clock(iso: string, now = new Date()): string {
+  const at = new Date(iso);
+  const time = at.toLocaleTimeString("en-US", { timeStyle: "short" });
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  if (at.toDateString() === now.toDateString()) return time;
+  if (at.toDateString() === tomorrow.toDateString()) return `tomorrow ${time}`;
+  return at.toLocaleString("en-US", { dateStyle: "medium", timeStyle: "short" });
+}
 
 export function plural(n: number, one: string, many = `${one}s`): string {
   return `${n.toLocaleString("en-US")} ${n === 1 ? one : many}`;

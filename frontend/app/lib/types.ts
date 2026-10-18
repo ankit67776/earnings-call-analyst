@@ -72,6 +72,19 @@ export interface DocumentSummary {
   filed: string;
   analyzed_sections: string[];
   findings: number;
+  // Claims dropped because their quote wasn't found in the filing.
+  rejected: number;
+}
+
+// Written by the worker as it goes (backend/app/jobs.py, analyze_filing).
+export interface JobProgress {
+  step: "fetching" | "extracting";
+  sections: string[];
+  done: string[];
+  section?: string;
+  chunks_done?: number;
+  chunks?: number;
+  started_at?: string;
 }
 
 export interface Job {
@@ -83,5 +96,17 @@ export interface Job {
   payload: { ticker: string; fiscal_year: number; sections?: string[] };
   result: { document_id: number; runs: Record<string, number> } | null;
   error: string | null;
+  progress: JobProgress | null;
   run_after: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Usage {
+  model: string;
+  tokens: number;
+  requests: number;
+  token_limit: number;
+  request_limit: number;
+  resets_at: string | null;
 }

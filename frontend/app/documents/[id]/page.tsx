@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { NotFoundError, api } from "@/app/lib/api";
 import { companyName } from "@/app/lib/format";
 import type { Section } from "@/app/lib/types";
-import Workspace from "./workspace";
+import Reader from "./reader";
 
 async function load(id: number) {
   try {
@@ -29,7 +29,18 @@ export async function generateMetadata({ params }: PageProps<"/documents/[id]">)
   return { title: `${companyName(document.company)} ${document.form} ${document.fiscal_year}` };
 }
 
-export default async function DocumentPage({ params }: PageProps<"/documents/[id]">) {
+export default async function DocumentPage({ params, searchParams }: PageProps<"/documents/[id]">) {
   const { document, findings, sections } = await load(documentId((await params).id));
-  return <Workspace document={document} findings={findings} sections={sections} />;
+  const { claim, item } = await searchParams;
+  return (
+    <Reader
+      // A different claim or section in the URL starts the view over.
+      key={`${claim}-${item}`}
+      document={document}
+      findings={findings}
+      sections={sections}
+      initialClaim={typeof claim === "string" && /^\d+$/.test(claim) ? Number(claim) : null}
+      initialItem={typeof item === "string" ? item.toUpperCase() : null}
+    />
+  );
 }
