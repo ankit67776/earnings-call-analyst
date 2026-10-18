@@ -26,9 +26,11 @@ import asyncpg
 
 from app.analysis.extract import analyze_section
 from app.config import settings
+from app.embeddings import EmbeddingClient, EmbeddingError, get_embedding_client
 from app.filings.edgar import EdgarClient, FilingNotFoundError
 from app.filings.tenk import FOCUS_SECTIONS, parse_10k
 from app.llm import BudgetExceededError, LLMClient, RateLimitedError, get_llm_client
+from app.retrieval.index import embed_passages, index_document
 from app.store import save_analysis, save_filing
 
 logger = logging.getLogger(__name__)
@@ -68,6 +70,8 @@ class Context:
     llm: LLMClient
     edgar: EdgarClient
     raw_dir: Path
+    # Embeds new passages for the chat; without one, filings get keyword search only.
+    embeddings: EmbeddingClient | None = None
     # The job being run, set by run_job so its handler can report progress.
     job_id: int | None = None
 
@@ -255,7 +259,8 @@ def _is_permanent(error: Exception) -> bool:
 
 @handler("analyze_filing")
 async def analyze_filing(ctx: Context, payload: dict[str, Any]) -> dict[str, Any]:
-    """Fetch a 10-K, store its parsed text, and extract claims from the given sections.
+    """Fetch a 10-K, store and index its parsed text for search, and extract claims from
+    the given sections.
 
     Payload: {"ticker": "SITM", "fiscal_year": 2020, "sections": ["1A", "7"]}.
     Sections already analyzed by an earlier, deferred attempt are kept in "done".
@@ -270,6 +275,13 @@ async def analyze_filing(ctx: Context, payload: dict[str, Any]) -> dict[str, Any
     doc = parse_10k(path.read_bytes())
     async with ctx.pool.acquire() as conn:
         document_id = await save_filing(conn, ref, doc)
+        await index_document(conn, document_id)
+        if ctx.embeddings is not None:
+            try:
+                await embed_passages(conn, ctx.embeddings, ticker=ref.ticker)
+            except EmbeddingError as e:
+                # Search still works by keyword; `python -m app.retrieval embed` catches up.
+                logger.warning("couldn't embed %s passages: %s", ref.ticker, e)
 
     missing = [item for item in sections if doc.section(item) is None]
     for item in sections:
@@ -321,11 +333,17 @@ def _quota_reset(error: Exception) -> datetime:
 
 
 def default_context(pool: asyncpg.Pool) -> Context:
+    try:
+        embeddings = get_embedding_client()
+    except EmbeddingError as e:
+        logger.warning("filings will be searchable by keyword only: %s", e)
+        embeddings = None
     return Context(
         pool=pool,
         llm=get_llm_client(),
         edgar=EdgarClient(settings.sec_user_agent),
         raw_dir=Path(settings.raw_data_dir),
+        embeddings=embeddings,
     )
 
 

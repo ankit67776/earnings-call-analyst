@@ -1,0 +1,212 @@
+{
+  "judge": "2",
+  "questions": [
+    {
+      "question": "SITM-call-006-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-010-a",
+      "relevant": [
+        {
+          "passage_id": 583,
+          "quote": "As I mentioned, our guidance is that revenue will be up 10 to 15%."
+        },
+        {
+          "passage_id": 600,
+          "quote": "My guide for Q4, we're guiding revenue up 10% to 15%"
+        }
+      ]
+    },
+    {
+      "question": "SITM-call-012-a",
+      "relevant": [
+        {
+          "passage_id": 578,
+          "quote": "at the end of August, we increased our revenue guidance for the quarter by more than 10%, and I'm happy to report that actual results exceeded the high end of that revised guidance."
+        }
+      ]
+    },
+    {
+      "question": "SITM-call-017-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-018-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-020-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-023-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-028-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-031-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-032-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-002-a",
+      "relevant": [
+        {
+          "passage_id": 500,
+          "quote": "Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment."
+        },
+        {
+          "passage_id": 495,
+          "quote": "Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment."
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-006-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-046-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-055-a",
+      "relevant": [
+        {
+          "passage_id": 447,
+          "quote": "Workforce health and safety remains the overriding driver for our actions"
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-062-a",
+      "relevant": [
+        {
+          "passage_id": 388,
+          "quote": "Creating balanced interview teams to mitigate any unconscious bias in our hiring processes."
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-072-a",
+      "relevant": [
+        {
+          "passage_id": 480,
+          "quote": "increased DD&A rates due to price-related downward reserve revisions"
+        },
+        {
+          "passage_id": 485,
+          "quote": "increased DD&A rates due to price-related downward reserve revisions."
+        },
+        {
+          "passage_id": 468,
+          "quote": "higher DD&A expenses due to price-related downward reserve revisions."
+        },
+        {
+          "passage_id": 548,
+          "quote": "If the estimates of proved reserves used in the unit-of-production calculations had been lower by 10 percent across all calculations, before-tax DD&A in 2020 would have increased by an estimated $588 million."
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-077-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-085-a",
+      "relevant": [
+        {
+          "passage_id": 537,
+          "quote": "The new administration has recommitted the United States to the Paris Agreement"
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-116-a",
+      "relevant": [
+        {
+          "passage_id": 455,
+          "quote": "In October 2020, we announced that our Board of Directors approved an increase to our quarterly dividend of $0.42 per share to $0.43 per share."
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-123-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-006-a",
+      "relevant": [
+        {
+          "passage_id": 733,
+          "quote": "We are targeting over 30% of our cash back to the shareholder."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-007-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-008-a",
+      "relevant": [
+        {
+          "passage_id": 700,
+          "quote": "we'd expect under that scenario to be similar to fourth quarter or second half of the year sort of rates at that sort of level."
+        }
+      ],
+      "problem": "Somewhat ambiguous: other passages in the same call (677, 697, 702) frame the 2021 starting point as roughly full-year 2020 capital rather than the Q4 baseline."
+    },
+    {
+      "question": "COP-call-014-a",
+      "relevant": [
+        {
+          "passage_id": 683,
+          "quote": "I think you get something closer to the mid to high sevens, you know, at $40."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-017-a",
+      "relevant": [
+        {
+          "passage_id": 723,
+          "quote": "they sell mostly at the wellhead. So we got some opportunity to add value there to both the gas and the oil side."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-019-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-020-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-026-a",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-031-a",
+      "relevant": [
+        {
+          "passage_id": 677,
+          "quote": "We would expect to announce pro forma CapEx for next year shortly after closing."
+        }
+      ],
+      "problem": "Question is time-relative: the 10-K passages (464, 451) say the combined 2021 capital plan was announced in February 2021, which is a different but valid answer to 'when'."
+    },
+    {
+      "question": "COP-call-040-a",
+      "relevant": []
+    }
+  ]
+}

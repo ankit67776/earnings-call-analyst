@@ -1,0 +1,176 @@
+{
+  "judge": "4",
+  "questions": [
+    {
+      "question": "SITM-call-038-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-037-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-036-b",
+      "relevant": [],
+      "problem": "Ambiguous: 'how to model' is also validly answered by adjacent passages (slight first-half pullback, much stronger back half) that lack the reference's 'model the full year in total' phrasing."
+    },
+    {
+      "question": "SITM-call-033-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-032-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-031-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-028-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-023-b",
+      "relevant": [
+        {
+          "passage_id": 575,
+          "quote": "With the recent introduction of our Apex MEMS family of resonator products, SciTime now offers all three categories of timing products, which are the oscillators, the clocks, and the resonators."
+        }
+      ]
+    },
+    {
+      "question": "SITM-call-020-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-call-018-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-235-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-208-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-184-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-173-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-123-b",
+      "relevant": [],
+      "problem": "Ambiguous: call candidates cite $500 million of targeted cost and capital savings announced with the deal (and the 10-K cites $750 million later), so the reference's $350 million is only the expense-savings component."
+    },
+    {
+      "question": "COP-filing-116-b",
+      "relevant": [
+        {
+          "passage_id": 507,
+          "quote": "As of December 31, 2020, we had cash and cash equivalents of $3.0 billion, short-term investments of $3.6 billion, and available borrowing capacity under our credit facility of $5.7 billion, totaling over $12 billion of liquidity."
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-085-b",
+      "relevant": [
+        {
+          "passage_id": 537,
+          "quote": "Compliance with changes in laws and regulations that create a GHG tax, emission trading scheme or GHG reduction policies could significantly increase our costs, reduce demand for fossil energy derived products"
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-077-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-filing-072-b",
+      "relevant": [
+        {
+          "passage_id": 485,
+          "quote": "increased DD&A rates due to price-related downward reserve revisions"
+        },
+        {
+          "passage_id": 468,
+          "quote": "higher DD&A expenses due to price-related downward reserve revisions"
+        }
+      ]
+    },
+    {
+      "question": "COP-filing-062-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-064-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-055-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-047-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-040-b",
+      "relevant": [
+        {
+          "passage_id": 711,
+          "quote": "So more a question of dispositions in a managed way rather than those resources staying in the portfolio."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-031-b",
+      "relevant": [
+        {
+          "passage_id": 677,
+          "quote": "We would expect to announce pro forma CapEx for next year shortly after closing."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-026-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-020-b",
+      "relevant": []
+    },
+    {
+      "question": "COP-call-017-b",
+      "relevant": [
+        {
+          "passage_id": 723,
+          "quote": "they sell mostly at the wellhead. So we got some opportunity to add value there to both the gas and the oil side."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-014-b",
+      "relevant": [
+        {
+          "passage_id": 683,
+          "quote": "I think you get something closer to the mid to high sevens, you know, at $40."
+        }
+      ]
+    },
+    {
+      "question": "COP-call-008-b",
+      "relevant": [
+        {
+          "passage_id": 700,
+          "quote": "we'd expect under that scenario to be similar to fourth quarter or second half of the year sort of rates at that sort of level."
+        }
+      ]
+    }
+  ]
+}

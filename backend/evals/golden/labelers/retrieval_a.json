@@ -1,0 +1,365 @@
+{
+  "annotator": "a",
+  "questions": [
+    {
+      "passage": "HSY-filing-005",
+      "question": "What regional brands does the company sell in its international markets?",
+      "answer": "Pelon Pelo Rico confectionery in Mexico, IO-IO snacks in Brazil, and Sofit beverages in India.",
+      "quote": "Pelon Pelo Rico confectionery products in Mexico, IO-IO snack products in Brazil, and Sofit beverage products in India"
+    },
+    {
+      "passage": "HSY-filing-033",
+      "question": "What's the downside of raising prices or shrinking pack sizes to cover input cost inflation?",
+      "answer": "Higher prices or smaller product sizes can reduce sales volume and consumption.",
+      "quote": "higher product prices or decreased product sizes may also result in a reduction in sales volume and/or consumption"
+    },
+    {
+      "passage": "HSY-filing-037",
+      "question": "What does capturing synergies from the snack acquisitions depend on?",
+      "answer": "Leveraging Hershey's resources, expertise, capability-building, distribution locations and customer base.",
+      "quote": "achievement of these synergies will be driven by our ability to successfully leverage Hershey's resources, expertise, capability-building, distribution locations and customer base"
+    },
+    {
+      "passage": "HSY-filing-053",
+      "question": "When did the Lotte Shanghai Foods divestiture close?",
+      "answer": "January 2021, after a definitive agreement signed in October 2020.",
+      "quote": "The sale of LSFC was completed in January 2021"
+    },
+    {
+      "passage": "HSY-filing-058",
+      "question": "How did operating margin change in 2020 versus 2019?",
+      "answer": "Operating profit margin rose to 21.9% in 2020 from 20.0% in 2019.",
+      "quote": "Operating profit margin | 21.9% | 20.0% | 20.8%"
+    },
+    {
+      "passage": "HSY-filing-064",
+      "question": "Why was ad spending lower in 2020?",
+      "answer": "Down 2.0% on media cost efficiencies and COVID-related brand investment optimization in International and Other.",
+      "quote": "Total advertising and related consumer marketing expenses decreased 2.0% driven by media cost efficiencies and select brand investment optimization related to COVID-19 in International and Other segments"
+    },
+    {
+      "passage": "HSY-filing-073",
+      "question": "What drove the increase in diluted EPS in 2020?",
+      "answer": "Higher gross profit, lower SM&A, lower impairments and lower taxes, plus a lower share count from buybacks.",
+      "quote": "driven primarily by higher gross profit, lower SM&A, lower impairment charges, and lower income taxes in 2020"
+    },
+    {
+      "passage": "HSY-filing-077",
+      "question": "Why did North America segment income grow in 2020, and what offset it?",
+      "answer": "Price realization and volume gains, partly offset by COVID-related supply chain costs: PPE, extra sanitation and wage incentives.",
+      "quote": "primarily due to favorable price realization and volume increases, partially offset by higher supply chain-related costs, specifically, PPE costs, increased sanitation and wage incentives associated with COVID-19"
+    },
+    {
+      "passage": "HSY-filing-084",
+      "question": "Why did operating cash flow decline in 2020?",
+      "answer": "Working capital used $166M versus generating $60M in 2019, mainly from a bigger U.S. inventory build and higher seasonal receivables.",
+      "quote": "This $226 million fluctuation was mainly driven by a higher year-over-year build up of U.S. inventories"
+    },
+    {
+      "passage": "HSY-filing-085",
+      "question": "What boosted operating cash flow in 2019?",
+      "answer": "Working capital swung to a $60M inflow on higher pre-year-end collections, vendor payment timing and higher accrued incentive compensation.",
+      "quote": "mainly driven by higher cash receipts prior to year-end 2019, the timing of vendor and supplier payments, as well as higher accrued incentive compensation related to annual performance"
+    },
+    {
+      "passage": "HSY-call-006",
+      "question": "What did Ken Goldman note about this year's advertising spending?",
+      "answer": "Advertising was pulled back a bit in Q3 and had been up and down this year; he asked about 2021 plans.",
+      "quote": "you pulled back a little bit on advertising this quarter. It's been a little up and down this year for understandable reasons."
+    },
+    {
+      "passage": "HSY-call-007",
+      "question": "How does management plan to set brand investment levels in 2021?",
+      "answer": "Bring advertising investment back to desired levels, closer to historical norms, after pandemic pullbacks in areas like refreshment.",
+      "quote": "we definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically"
+    },
+    {
+      "passage": "HSY-call-009",
+      "question": "What is holding back M&A deals right now?",
+      "answer": "The most attractive targets are riding strong demand and still expect pre-COVID or higher valuations; the funnel stays active.",
+      "quote": "they still have valuation expectations that look like they did pre-COVID, if not higher"
+    },
+    {
+      "passage": "HSY-call-013",
+      "question": "What concern did David Palmer raise about U.S. chocolate share gains?",
+      "answer": "That gains driven by competitors' supply chain breakdowns or poor adaptability might partly reverse in 2021.",
+      "quote": "if there is a supply chain breakdown or lack of adaptability by a competitor, maybe that will represent share gains that they can reverse somewhat in 21"
+    },
+    {
+      "passage": "HSY-call-020",
+      "question": "Why does selling through Halloween inventory quickly matter for the holiday season?",
+      "answer": "It clears shelf space so holiday product can go on the floor, giving holiday a fast start.",
+      "quote": "it helps us get that fast start to holiday because it clears the space to be able to put holiday on the floor"
+    },
+    {
+      "passage": "HSY-call-021",
+      "question": "What did Jason English credit for the unusually strong early Halloween selling?",
+      "answer": "Retailer merchandising programs that started bigger and earlier than usual.",
+      "quote": "I think a big part of that is due to the merchandising programs that retailers had. It seems like they started bigger and earlier than they usually do."
+    },
+    {
+      "passage": "HSY-call-023",
+      "question": "What did Jason English say a mid-single-digit category decline for the full season would imply for upcoming retail data?",
+      "answer": "Sharp declines would have to show up in retail sales data over the next couple of weeks as the late season is captured.",
+      "quote": "to get the category down mid-single digits, we're going to have to see some pretty sharp declines coming through the retail sales data in the next couple of weeks"
+    },
+    {
+      "passage": "HSY-call-033",
+      "question": "What does management expect for promotional spending through Q4 and into 2021?",
+      "answer": "No significant change; promotions weren't run differently this year and none are expected going forward.",
+      "quote": "we don't see any significant change relative to promotional activity"
+    },
+    {
+      "passage": "HSY-call-038",
+      "question": "What new product format is being tested under the Reese's brand?",
+      "answer": "Reese's snack cakes, launched on a very small scale, with encouraging early test results.",
+      "quote": "We are on a very small level launching snack cakes under our Reese's trademark"
+    },
+    {
+      "passage": "HSY-call-046",
+      "question": "What will drive gross margin in 2021?",
+      "answer": "A mix more driven by volume than price, continued productivity goals, and the 2020 and 2021 cocoa crops.",
+      "quote": "we'll have a little bit more volume-driven than price-driven mix driving gross margin next year"
+    },
+    {
+      "passage": "SITM-filing-032",
+      "question": "How does the company say it holds its ground against larger rivals?",
+      "answer": "By successfully designing, developing and marketing complex timing solutions for its customers.",
+      "quote": "We maintain our competitive position through our ability to successfully design, develop, and market complex timing solutions for the customers we serve."
+    },
+    {
+      "passage": "SITM-filing-055",
+      "question": "What kind of warranty exposure could cause results to swing?",
+      "answer": "Significant warranty claims, including ones its suppliers don't cover.",
+      "quote": "significant warranty claims, including those not covered by our suppliers"
+    },
+    {
+      "passage": "SITM-filing-075",
+      "question": "How could customers' product delays hurt the company's competitiveness?",
+      "answer": "If customers delay or cancel products designed around its silicon timing solutions, its products could become uncompetitive or obsolete.",
+      "quote": "the delay or cancellation of any of our customers’ product offerings for which our silicon timing systems solutions are designed"
+    },
+    {
+      "passage": "SITM-filing-090",
+      "question": "How could component shortages at customers affect demand for its products?",
+      "answer": "If customers or their contract manufacturers can't get enough third-party components used alongside its parts, demand and sales could fall.",
+      "quote": "the inability of our customers or their contract manufacturers to obtain sufficient supplies of third-party components used with our products could result in a decline in the demand of our products and a loss of sales"
+    },
+    {
+      "passage": "SITM-filing-099",
+      "question": "What dilution risk do shareholders face if the company needs more funding?",
+      "answer": "Raising money via equity or convertible debt could significantly dilute holders, and new securities may rank senior to common stock.",
+      "quote": "If we raise additional funds by issuing equity securities or convertible debt, stockholders may experience significant dilution of their ownership interest"
+    },
+    {
+      "passage": "SITM-filing-118",
+      "question": "How large are the federal and state NOL carryforwards?",
+      "answer": "About $201.5 million federal and $64.0 million state as of December 31, 2020.",
+      "quote": "U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively"
+    },
+    {
+      "passage": "SITM-filing-125",
+      "question": "Why might the company see more intellectual property claims going forward?",
+      "answer": "Its higher profile and visibility as a public company may attract infringement allegations.",
+      "quote": "particularly as a public company with an increased profile and visibility"
+    },
+    {
+      "passage": "SITM-filing-142",
+      "question": "What natural disaster risk does the company's location create?",
+      "answer": "Its headquarters and some suppliers and foundry vendors sit in active earthquake zones.",
+      "quote": "Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones"
+    },
+    {
+      "passage": "SITM-filing-160",
+      "question": "How could pandemic-related credit market stress affect the company's funding?",
+      "answer": "Tighter credit markets could limit external financing for operations and capex; bank failures could cause losses on cash and investments.",
+      "quote": "the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures"
+    },
+    {
+      "passage": "SITM-filing-168",
+      "question": "What typically happens to demand, inventory and pricing in a chip industry downturn?",
+      "answer": "Weaker demand, production overcapacity, high inventories and faster erosion of average selling prices.",
+      "quote": "Downturns in the semiconductor industry have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+    },
+    {
+      "passage": "SITM-call-006",
+      "question": "Which parts of the radio network are seeing Open RAN traction for the company?",
+      "answer": "Worldwide O-RAN traction across radio networks, including RRUs, small cells and distributed units.",
+      "quote": "We're getting significant traction with O-RAN customers worldwide across the entire radio networks, including RRUs, small cells, and distributed units."
+    },
+    {
+      "passage": "SITM-call-010",
+      "question": "What is fourth-quarter revenue guidance?",
+      "answer": "Up 10% to 15% sequentially, about $36.8 million at the midpoint, roughly 30% above the year-ago quarter.",
+      "quote": "We expect fourth quarter revenue will be up 10% to 15% sequentially."
+    },
+    {
+      "passage": "SITM-call-012",
+      "question": "When did management last raise guidance before reporting Q3, and how did results compare?",
+      "answer": "Guidance was raised in late August, and Q3 results came in above that updated range.",
+      "quote": "you updated guidance in late August, positively, and then you're now coming ahead of that range now"
+    },
+    {
+      "passage": "SITM-call-017",
+      "question": "How many MEMS resonator units can a handful of wafers produce?",
+      "answer": "About 10 wafers yield roughly a billion units, using 180-nanometer technology.",
+      "quote": "10 wafers should give us about a billion units"
+    },
+    {
+      "passage": "SITM-call-018",
+      "question": "How concentrated is the supply of ceramic packages for quartz timing parts?",
+      "answer": "Only two suppliers worldwide make them, and shortages sometimes occur.",
+      "quote": "Those quartz packaging, ceramic packages, come from only two people in the world, and sometimes there's a shortage."
+    },
+    {
+      "passage": "SITM-call-020",
+      "question": "How big is the serviceable addressable market?",
+      "answer": "Around $1.0 to $1.2 billion, mostly oscillators and under $2 billion, within a roughly $8 billion total timing market.",
+      "quote": "our SAM is still around a billion to a billion point two"
+    },
+    {
+      "passage": "SITM-call-023",
+      "question": "What did Quinn Bolton ask about mask sets for the new silicon resonators?",
+      "answer": "Whether a new mask set is needed every time the resonator frequency changes.",
+      "quote": "do you need new mask sets every time the frequency changes in those resonator structures?"
+    },
+    {
+      "passage": "SITM-call-028",
+      "question": "Over what time frame does management expect the 5G infrastructure buildout to play out?",
+      "answer": "Probably a five-to-seven-year rollout, seen as a solid, steady growth area.",
+      "quote": "this is probably a five, seven-year rollout"
+    },
+    {
+      "passage": "SITM-call-031",
+      "question": "What process geometries does the company use for its tape-outs?",
+      "answer": "Mature nodes of 180, 130 and 65 nanometers, unlike peers taping out at 7 nanometers.",
+      "quote": "we're doing 180, 130, 65 nanometer tape outs"
+    },
+    {
+      "passage": "SITM-call-032",
+      "question": "When was revenue from the Cascade clock IC expected to begin?",
+      "answer": "In 2021, then ramping beyond that, per the analyst's recap of last quarter's comments.",
+      "quote": "you expected revenue to really be a 2021 event beginning and then probably ramping beyond that"
+    },
+    {
+      "passage": "COP-filing-002",
+      "question": "How were the reporting segments reorganized in 2020?",
+      "answer": "From Q3 2020, the Middle East moved out of Asia Pacific and Middle East into Europe and North Africa; segments were renamed.",
+      "quote": "The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment."
+    },
+    {
+      "passage": "COP-filing-006",
+      "question": "How did Greater Prudhoe Area production change in 2020?",
+      "answer": "Average net production rose from 81 MBOED in 2019 to 84 MBOED in 2020.",
+      "quote": "Average net production increased from 81 MBOED in 2019 to 84 MBOED in 2020."
+    },
+    {
+      "passage": "COP-filing-046",
+      "question": "How is LNG output contracted and priced?",
+      "answer": "Mainly under long-term contracts priced off market indices, focused on equity LNG in Australia and Qatar.",
+      "quote": "LNG is primarily sold under long-term contracts with prices based on market indices."
+    },
+    {
+      "passage": "COP-filing-055",
+      "question": "What priorities guided the company's COVID-19 response?",
+      "answer": "Protecting employees, mitigating the spread of COVID-19 and running the business safely.",
+      "quote": "to protect our employees, mitigate the spread of COVID-19 and safely run the business"
+    },
+    {
+      "passage": "COP-filing-062",
+      "question": "How does the company recruit a more diverse workforce?",
+      "answer": "Inclusive job descriptions, diverse interview panels, and recruiting at conferences, Hispanic-serving institutions and HBCUs.",
+      "quote": "By attending conferences and recruiting at Hispanic-serving institutions and historically black colleges and universities, we have extended a broader outreach to potential diverse candidates."
+    },
+    {
+      "passage": "COP-filing-072",
+      "question": "How could persistently low oil and gas prices affect DD&A expense?",
+      "answer": "Lower reserve estimates could raise the unit-of-production DD&A rate.",
+      "quote": "If oil and gas prices persist at depressed levels, our reserve estimates may decrease further, which could incrementally increase the rate used to determine DD&A expense on our unit-of-production method properties."
+    },
+    {
+      "passage": "COP-filing-077",
+      "question": "Why are national oil companies a competitive threat?",
+      "answer": "State-owned rivals may be driven by politics with less focus on financial returns, putting the company at a disadvantage.",
+      "quote": "we may be at a competitive disadvantage when competing with state-owned companies if they are motivated by political or other factors in making their business decisions, with less emphasis on financial returns"
+    },
+    {
+      "passage": "COP-filing-085",
+      "question": "Where does the U.S. stand on the Paris climate agreement?",
+      "answer": "The U.S. had withdrawn, but the new administration recommitted to the agreement.",
+      "quote": "While the U.S. previously withdrew from the Paris Agreement, the new administration has recommitted the United States to the Paris Agreement"
+    },
+    {
+      "passage": "COP-filing-116",
+      "question": "How much was the quarterly dividend raised in October 2020?",
+      "answer": "From $0.42 to $0.43 per share.",
+      "quote": "increase to our quarterly dividend from $0.42 per share to $0.43 per share"
+    },
+    {
+      "passage": "COP-filing-123",
+      "question": "How much in extra cost cuts was identified after the Concho deal was announced?",
+      "answer": "A further $250 million of combined-company cost reductions, to be achieved by 2022.",
+      "quote": "we identified $250 million of further cost reductions from the combined companies to be achieved by 2022"
+    },
+    {
+      "passage": "COP-call-006",
+      "question": "What portion of cash from operations does the company aim to return to shareholders?",
+      "answer": "More than 30% of CFO annually, a target the Concho deal strengthens.",
+      "quote": "our stated target of returning more than 30% of our CFO to our owners annually"
+    },
+    {
+      "passage": "COP-call-007",
+      "question": "Who is leading the Concho integration on each side?",
+      "answer": "Dominic Macklon for ConocoPhillips and Will Giroux for Concho.",
+      "quote": "Dominic Macklin will lead the effort for ConocoPhillips, and Will Giroux will lead the effort for Concha."
+    },
+    {
+      "passage": "COP-call-008",
+      "question": "What should investors use as the starting point for 2021 capital and production?",
+      "answer": "Fourth-quarter 2020 guidance is the new baseline, subject to ongoing market monitoring.",
+      "quote": "you should take the fourth quarter as the new baseline for 21 capital and production"
+    },
+    {
+      "passage": "COP-call-014",
+      "question": "What pro forma cash flow does the combined company generate at $40 oil?",
+      "answer": "Roughly $7.5 to $7.8 billion at $40 a barrel, including the full $350 million of cash cost savings.",
+      "quote": "it would imply somewhere between seven and a half and seven eight at $40 a barrel"
+    },
+    {
+      "passage": "COP-call-017",
+      "question": "What marketing synergy does management see from combining with Concho?",
+      "answer": "Concho sells at the wellhead; ConocoPhillips sells further down the value chain for better realizations.",
+      "quote": "Concho typically sells their product to the wellhead. We sell further down the value chain to improve realisation."
+    },
+    {
+      "passage": "COP-call-019",
+      "question": "What did Neil Mehta ask about equity affiliate distributions?",
+      "answer": "How to model distributions, including APLNG, at different oil prices, given the deck said they wouldn't be ratable.",
+      "quote": "Can you talk about different oil price levels and how we should be thinking about modeling those distributions coming into the business?"
+    },
+    {
+      "passage": "COP-call-020",
+      "question": "How much in equity affiliate distributions should be modeled for 2021?",
+      "answer": "About $600 to $800 million at strip prices, with APLNG weighted to the second and fourth quarters.",
+      "quote": "if you're thinking of the range of $600 to $800 million from equity affiliates at those kind of pricing, that's going to get you in the ballpark"
+    },
+    {
+      "passage": "COP-call-026",
+      "question": "How is the planned Alaska equity sell-down tied to Willow's timing?",
+      "answer": "It isn't: a sell-down is still expected but slowed, and project timing doesn't depend on it.",
+      "quote": "the timing of the project isn't contingent on the sell-down"
+    },
+    {
+      "passage": "COP-call-031",
+      "question": "When will 2021 capital guidance for the combined company be issued?",
+      "answer": "Not until sometime after the Concho transaction closes.",
+      "quote": "you shouldn't expect us to communicate 2021 capital guidance, certainly for the combined company, until sometime after the transaction closes"
+    },
+    {
+      "passage": "COP-call-040",
+      "question": "What did Roger Read ask about assets losing exploration and appraisal funding?",
+      "answer": "Whether those assets go back into the resource base or become more likely to be sold or monetized another way.",
+      "quote": "Do they just go back into the resource base, or is that something that maybe becomes more likely to be disposed of, you know, monetized in a different way?"
+    }
+  ]
+}

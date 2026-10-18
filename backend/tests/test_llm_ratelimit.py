@@ -66,6 +66,25 @@ async def test_rejects_a_request_bigger_than_the_minute_budget() -> None:
         await make_limiter(FakeTime()).acquire(MODEL, 1_001)
 
 
+async def test_batch_items_can_count_as_requests() -> None:
+    time = FakeTime()
+    limiter = make_limiter(time)
+    await limiter.acquire(MODEL, 10, requests=2)
+    await limiter.acquire(MODEL, 10, requests=1)  # 3 of 3 a minute
+    await limiter.acquire(MODEL, 10, requests=1)
+    assert time.now == pytest.approx(60.0)
+    assert limiter.usage(MODEL)["requests"] == 4
+    with pytest.raises(BudgetExceededError):
+        await limiter.acquire(MODEL, 10, requests=4)
+
+
+async def test_a_rejected_call_gives_its_requests_back_for_the_day() -> None:
+    limiter = make_limiter(FakeTime())
+    reservation = await limiter.acquire(MODEL, 10, requests=2)
+    limiter.settle(reservation, 0, served=False)
+    assert limiter.usage(MODEL)["requests"] == 0
+
+
 async def test_pause_holds_calls() -> None:
     time = FakeTime()
     limiter = make_limiter(time)

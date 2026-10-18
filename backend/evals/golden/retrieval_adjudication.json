@@ -1,0 +1,7 @@
+{
+  "note": "Questions dropped after pooled judging flagged them, with the reason.",
+  "dropped": {
+    "COP-call-031-a": "Asks when 2021 capital guidance will come. The call (October 2020) says after the Concho deal closes; the 10-K (February 2021) gives the plan itself, so each source answers it differently.",
+    "COP-filing-123-b": "Asks for the expected savings from the Concho deal. The reference gives the $350 million expense part, while the call gives $500 million of cost and capital savings and the 10-K $750 million, so the right answer depends on which figure is meant."
+  }
+}

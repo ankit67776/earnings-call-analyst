@@ -27,6 +27,7 @@ def estimate_tokens(request: CompletionRequest) -> int:
 class _Entry:
     at: float
     tokens: int
+    requests: int = 1
 
 
 @dataclass
@@ -64,12 +65,15 @@ class RateLimiter:
         self._locks: dict[str, asyncio.Lock] = defaultdict(asyncio.Lock)
         self._day, self._daily = self._load_usage()
 
-    async def acquire(self, model: str, tokens: int) -> Reservation:
+    async def acquire(self, model: str, tokens: int, requests: int = 1) -> Reservation:
+        """Wait until `tokens` and `requests` fit the model's limits, then reserve them.
+        `requests` is more than one where a provider counts each item of a batch."""
         limits = self._limits(model)
-        if tokens > limits.tpm:
+        if tokens > limits.tpm or requests > limits.rpm:
             raise BudgetExceededError(
-                f"request needs ~{tokens} tokens but {model} allows {limits.tpm}/min; "
-                "use smaller chunks or a lower max_tokens"
+                f"request needs ~{tokens} tokens and {requests} requests but {model} allows "
+                f"{limits.tpm} tokens and {limits.rpm} requests a minute; "
+                "use smaller chunks or batches"
             )
         async with self._locks[model]:
             while True:
@@ -80,7 +84,10 @@ class RateLimiter:
                     continue
 
                 daily = self._daily_usage(model)
-                if daily["tokens"] + tokens > limits.tpd or daily["requests"] + 1 > limits.rpd:
+                if (
+                    daily["tokens"] + tokens > limits.tpd
+                    or daily["requests"] + requests > limits.rpd
+                ):
                     raise BudgetExceededError(
                         f"{model} daily budget used up ({daily['tokens']}/{limits.tpd} tokens, "
                         f"{daily['requests']}/{limits.rpd} requests today)"
@@ -89,25 +96,29 @@ class RateLimiter:
                 window = self._windows[model]
                 while window and window[0].at <= now - WINDOW_SECONDS:
                     window.popleft()
-                wait = self._wait_for_room(window, tokens, limits, now)
+                wait = self._wait_for_room(window, tokens, requests, limits, now)
                 if wait <= 0:
                     break
                 # Re-check often: a call settling below its estimate can free room early.
                 await self._sleep(min(wait, POLL_SECONDS))
 
-            entry = _Entry(now, tokens)
+            entry = _Entry(now, tokens, requests)
             window.append(entry)
             daily["tokens"] += tokens
-            daily["requests"] += 1
+            daily["requests"] += requests
             self._save_usage()
             return Reservation(model, entry)
 
-    def settle(self, reservation: Reservation, actual_tokens: int) -> None:
-        """Replace a reservation's estimate with the tokens the call really used."""
+    def settle(self, reservation: Reservation, actual_tokens: int, *, served: bool = True) -> None:
+        """Replace a reservation's estimate with the tokens the call really used. A call the
+        provider rejected (`served` false, e.g. a 429) gives its requests back to the daily
+        budget too; it still counts in the minute window, which is what was too busy."""
         delta = actual_tokens - reservation.entry.tokens
         reservation.entry.tokens = actual_tokens
         daily = self._daily_usage(reservation.model)
         daily["tokens"] = max(0, daily["tokens"] + delta)
+        if not served:
+            daily["requests"] = max(0, daily["requests"] - reservation.entry.requests)
         self._save_usage()
 
     def usage(self, model: str) -> dict[str, int | str]:
@@ -133,17 +144,17 @@ class RateLimiter:
         self._paused_until[model] = max(self._paused_until.get(model, 0.0), until)
 
     def _wait_for_room(
-        self, window: deque[_Entry], tokens: int, limits: Limits, now: float
+        self, window: deque[_Entry], tokens: int, requests: int, limits: Limits, now: float
     ) -> float:
         used = sum(e.tokens for e in window)
-        count = len(window)
-        if used + tokens <= limits.tpm and count + 1 <= limits.rpm:
+        count = sum(e.requests for e in window)
+        if used + tokens <= limits.tpm and count + requests <= limits.rpm:
             return 0.0
         # Walk the window oldest-first until enough has expired to fit this call.
         for entry in window:
             used -= entry.tokens
-            count -= 1
-            if used + tokens <= limits.tpm and count + 1 <= limits.rpm:
+            count -= entry.requests
+            if used + tokens <= limits.tpm and count + requests <= limits.rpm:
                 return entry.at + WINDOW_SECONDS - now
         return WINDOW_SECONDS
 
@@ -166,9 +177,18 @@ class RateLimiter:
         return today, data.get("models", {})
 
     def _save_usage(self) -> None:
+        """Best effort: the totals pace calls, and the provider's 429s are the backstop."""
         if self._usage_file is None:
             return
         self._usage_file.parent.mkdir(parents=True, exist_ok=True)
-        tmp = self._usage_file.with_suffix(".tmp")
+        # One temp file per process: the API and a worker can share the usage file.
+        tmp = self._usage_file.with_suffix(f".{os.getpid()}.tmp")
         tmp.write_text(json.dumps({"date": self._day, "models": self._daily}), encoding="utf-8")
-        os.replace(tmp, self._usage_file)
+        for attempt in range(5):
+            try:
+                os.replace(tmp, self._usage_file)
+                return
+            except PermissionError:
+                # Windows refuses while another process has the file open; it's brief.
+                time.sleep(0.05 * (attempt + 1))
+        tmp.unlink(missing_ok=True)

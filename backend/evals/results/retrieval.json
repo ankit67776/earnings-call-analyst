@@ -1,0 +1,269 @@
+[
+  {
+    "system": "fts",
+    "mode": "fts",
+    "model": null,
+    "fts_weight": 0.0,
+    "questions": 118,
+    "recall@1": 0.576,
+    "recall@3": 0.805,
+    "recall@5": 0.881,
+    "recall@10": 0.949,
+    "mrr@10": 0.706,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.593,
+        "recall@3": 0.831,
+        "recall@5": 0.898,
+        "recall@10": 0.949,
+        "mrr@10": 0.73
+      },
+      "call": {
+        "recall@1": 0.559,
+        "recall@3": 0.78,
+        "recall@5": 0.864,
+        "recall@10": 0.949,
+        "mrr@10": 0.682
+      }
+    },
+    "misses": [
+      {
+        "id": "SITM-filing-032-a",
+        "source": "filing",
+        "rank": null,
+        "top": "Item 1A. Risk Factors"
+      },
+      {
+        "id": "SITM-call-020-a",
+        "source": "call",
+        "rank": null,
+        "top": "Q3 2020 earnings call, 40:32–42:00"
+      },
+      {
+        "id": "SITM-call-028-a",
+        "source": "call",
+        "rank": null,
+        "top": "Item 1A. Risk Factors › We incur increased costs and demands on management as a result of compliance with laws and regulations applicable to public companies, which could harm our operating results."
+      },
+      {
+        "id": "SITM-filing-099-b",
+        "source": "filing",
+        "rank": null,
+        "top": "Item 1A. Risk Factors"
+      },
+      {
+        "id": "SITM-filing-090-b",
+        "source": "filing",
+        "rank": null,
+        "top": "Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations"
+      },
+      {
+        "id": "SITM-call-020-b",
+        "source": "call",
+        "rank": null,
+        "top": "Q3 2020 earnings call, 40:32–42:00"
+      }
+    ]
+  },
+  {
+    "system": "vector (voyage/voyage-4)",
+    "mode": "vector",
+    "model": "voyage/voyage-4",
+    "fts_weight": 0.0,
+    "questions": 118,
+    "recall@1": 0.822,
+    "recall@3": 0.975,
+    "recall@5": 0.992,
+    "recall@10": 1.0,
+    "mrr@10": 0.895,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.847,
+        "recall@3": 0.983,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.914
+      },
+      "call": {
+        "recall@1": 0.797,
+        "recall@3": 0.966,
+        "recall@5": 0.983,
+        "recall@10": 1.0,
+        "mrr@10": 0.876
+      }
+    },
+    "misses": []
+  },
+  {
+    "system": "hybrid, equal weights (voyage/voyage-4)",
+    "mode": "hybrid",
+    "model": "voyage/voyage-4",
+    "fts_weight": 1.0,
+    "questions": 118,
+    "recall@1": 0.712,
+    "recall@3": 0.915,
+    "recall@5": 0.966,
+    "recall@10": 0.983,
+    "mrr@10": 0.819,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.729,
+        "recall@3": 0.932,
+        "recall@5": 0.966,
+        "recall@10": 1.0,
+        "mrr@10": 0.841
+      },
+      "call": {
+        "recall@1": 0.695,
+        "recall@3": 0.898,
+        "recall@5": 0.966,
+        "recall@10": 0.966,
+        "mrr@10": 0.797
+      }
+    },
+    "misses": [
+      {
+        "id": "SITM-call-020-a",
+        "source": "call",
+        "rank": null,
+        "top": "Q3 2020 earnings call, 40:32–42:00"
+      },
+      {
+        "id": "SITM-call-020-b",
+        "source": "call",
+        "rank": null,
+        "top": "Q3 2020 earnings call, 40:32–42:00"
+      }
+    ]
+  },
+  {
+    "system": "hybrid (voyage/voyage-4)",
+    "mode": "hybrid",
+    "model": "voyage/voyage-4",
+    "fts_weight": 0.25,
+    "questions": 118,
+    "recall@1": 0.805,
+    "recall@3": 0.958,
+    "recall@5": 0.983,
+    "recall@10": 1.0,
+    "mrr@10": 0.882,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.847,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "recall@10": 1.0,
+        "mrr@10": 0.915
+      },
+      "call": {
+        "recall@1": 0.763,
+        "recall@3": 0.915,
+        "recall@5": 0.966,
+        "recall@10": 1.0,
+        "mrr@10": 0.849
+      }
+    },
+    "misses": []
+  },
+  {
+    "system": "vector (gemini/gemini-embedding-2)",
+    "mode": "vector",
+    "model": "gemini/gemini-embedding-2",
+    "fts_weight": 0.0,
+    "questions": 118,
+    "recall@1": 0.797,
+    "recall@3": 0.941,
+    "recall@5": 0.975,
+    "recall@10": 0.992,
+    "mrr@10": 0.867,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.78,
+        "recall@3": 0.966,
+        "recall@5": 0.983,
+        "recall@10": 1.0,
+        "mrr@10": 0.865
+      },
+      "call": {
+        "recall@1": 0.814,
+        "recall@3": 0.915,
+        "recall@5": 0.966,
+        "recall@10": 0.983,
+        "mrr@10": 0.87
+      }
+    },
+    "misses": [
+      {
+        "id": "COP-call-008-a",
+        "source": "call",
+        "rank": null,
+        "top": "Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Capital Expenditures and Investments"
+      }
+    ]
+  },
+  {
+    "system": "hybrid, equal weights (gemini/gemini-embedding-2)",
+    "mode": "hybrid",
+    "model": "gemini/gemini-embedding-2",
+    "fts_weight": 1.0,
+    "questions": 118,
+    "recall@1": 0.72,
+    "recall@3": 0.932,
+    "recall@5": 0.966,
+    "recall@10": 0.992,
+    "mrr@10": 0.83,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.746,
+        "recall@3": 0.966,
+        "recall@5": 0.983,
+        "recall@10": 1.0,
+        "mrr@10": 0.856
+      },
+      "call": {
+        "recall@1": 0.695,
+        "recall@3": 0.898,
+        "recall@5": 0.949,
+        "recall@10": 0.983,
+        "mrr@10": 0.803
+      }
+    },
+    "misses": [
+      {
+        "id": "SITM-call-020-b",
+        "source": "call",
+        "rank": null,
+        "top": "Q3 2020 earnings call, 40:32–42:00"
+      }
+    ]
+  },
+  {
+    "system": "hybrid (gemini/gemini-embedding-2)",
+    "mode": "hybrid",
+    "model": "gemini/gemini-embedding-2",
+    "fts_weight": 0.25,
+    "questions": 118,
+    "recall@1": 0.797,
+    "recall@3": 0.949,
+    "recall@5": 0.975,
+    "recall@10": 1.0,
+    "mrr@10": 0.874,
+    "by_source": {
+      "filing": {
+        "recall@1": 0.831,
+        "recall@3": 0.983,
+        "recall@5": 0.983,
+        "recall@10": 1.0,
+        "mrr@10": 0.904
+      },
+      "call": {
+        "recall@1": 0.763,
+        "recall@3": 0.915,
+        "recall@5": 0.966,
+        "recall@10": 1.0,
+        "mrr@10": 0.843
+      }
+    },
+    "misses": []
+  }
+]

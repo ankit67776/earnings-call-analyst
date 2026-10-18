@@ -1,0 +1,184 @@
+{
+  "judge": "3",
+  "questions": [
+    {
+      "question": "HSY-filing-132-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-119-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-116-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-114-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-085-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-084-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-077-b",
+      "relevant": [
+        {
+          "passage_id": 76,
+          "quote": "Segment income | 2,321.8 | 2,125.9 | 2,020.1 | 9.2% | 5.2%"
+        }
+      ]
+    },
+    {
+      "question": "HSY-filing-073-b",
+      "relevant": [
+        {
+          "passage_id": 59,
+          "quote": "Net income per share—diluted | $6.11 | $5.46 | $5.58 | 11.9% | (2.2)%"
+        }
+      ]
+    },
+    {
+      "question": "HSY-filing-064-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-058-b",
+      "relevant": [
+        {
+          "passage_id": 69,
+          "quote": "Operating profit margin increased to 21.9% in 2020 from 20.0% in 2019"
+        }
+      ]
+    },
+    {
+      "question": "HSY-call-056-b",
+      "relevant": [],
+      "problem": "Reference answer rests on an analyst's paraphrase of the prepared remarks ('tracking ahead of your strategic plans'), not a direct management statement."
+    },
+    {
+      "question": "HSY-call-053-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-051-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-046-b",
+      "relevant": [
+        {
+          "passage_id": 615,
+          "quote": "I think you can definitely count on seeing volume being a more important part of the algorithm next year"
+        }
+      ]
+    },
+    {
+      "question": "HSY-call-038-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-033-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-023-b",
+      "relevant": [
+        {
+          "passage_id": 634,
+          "quote": "So category was down mid-single digits overall, as much as our business was actually up. And we will see some of those decline."
+        }
+      ]
+    },
+    {
+      "question": "HSY-call-021-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-020-b",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-013-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-182-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-177-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-169-b",
+      "relevant": [
+        {
+          "passage_id": 201,
+          "quote": "For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively."
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-168-b",
+      "relevant": [
+        {
+          "passage_id": 228,
+          "quote": "These downturns have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-160-b",
+      "relevant": [
+        {
+          "passage_id": 178,
+          "quote": "reduced access to financing to fund our operations due to a deterioration of credit and financial markets"
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-142-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-125-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-118-b",
+      "relevant": [
+        {
+          "passage_id": 310,
+          "quote": "At December 31, 2020 and 2019, we had federal NOL carry-forwards of approximately $201.5 million and $156.5 million, respectively, and state NOL carry-forwards of approximately $64.0 million and $63.7 million, respectively."
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-099-b",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-090-b",
+      "relevant": [
+        {
+          "passage_id": 218,
+          "quote": "any disruption in their supply of wafers or any increases in their wafer or materials prices could adversely affect our gross margins and our ability to meet customer demands in a timely manner, or at all, and lead to reduced revenue"
+        },
+        {
+          "passage_id": 219,
+          "quote": "shipments could be significantly delayed while these sources are qualified for volume production. If we are unable to maintain our relationship with Bosch or TSMC, our ability to produce high-quality products could suffer"
+        },
+        {
+          "passage_id": 221,
+          "quote": "we may not be able to meet customer needs during such a transition, which could damage our customer relationships"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "judge": "1",
+  "questions": [
+    {
+      "question": "HSY-filing-005-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-033-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-037-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-053-a",
+      "relevant": [
+        {
+          "passage_id": 66,
+          "quote": "The sale of the LSFC joint venture (disposal group) was completed in January 2021."
+        }
+      ]
+    },
+    {
+      "question": "HSY-filing-058-a",
+      "relevant": [
+        {
+          "passage_id": 69,
+          "quote": "Operating profit margin increased to 21.9% in 2020 from 20.0% in 2019"
+        }
+      ]
+    },
+    {
+      "question": "HSY-filing-064-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-073-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-077-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-084-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-filing-085-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-006-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-007-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-009-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-013-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-020-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-021-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-023-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-033-a",
+      "relevant": []
+    },
+    {
+      "question": "HSY-call-038-a",
+      "relevant": [
+        {
+          "passage_id": 658,
+          "quote": "It is definitely bringing the great chocolate and peanut butter taste profile that we have on Reese's to the snack cake market."
+        },
+        {
+          "passage_id": 659,
+          "quote": "that is where these snack cakes get utilized. So again, we're going to have a very focused rollout."
+        }
+      ]
+    },
+    {
+      "question": "HSY-call-046-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-032-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-055-a",
+      "relevant": [],
+      "problem": "Ambiguous: the lifetime-warranty risk factor (PIDs 204/205) gives a different valid answer (claims over the entire product lifecycle), not the reference's supplier-coverage point."
+    },
+    {
+      "question": "SITM-filing-075-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-090-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-099-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-118-a",
+      "relevant": [
+        {
+          "passage_id": 310,
+          "quote": "At December 31, 2020 and 2019, we had federal NOL carry-forwards of approximately $201.5 million and $156.5 million, respectively, and state NOL carry-forwards of approximately $64.0 million and $63.7 million, respectively."
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-125-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-142-a",
+      "relevant": []
+    },
+    {
+      "question": "SITM-filing-160-a",
+      "relevant": [
+        {
+          "passage_id": 178,
+          "quote": "reduced access to financing to fund our operations due to a deterioration of credit and financial markets"
+        }
+      ]
+    },
+    {
+      "question": "SITM-filing-168-a",
+      "relevant": [
+        {
+          "passage_id": 228,
+          "quote": "These downturns have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+        }
+      ]
+    }
+  ]
+}

@@ -27,13 +27,15 @@ def _use_schema(schema: str) -> Callable[[asyncpg.Connection], Awaitable[None]]:
     """A schema other than public gives each test run its own tables.
 
     Set with SQL rather than as a startup parameter, which Neon's proxy drops, and on
-    every pool checkout because returning a connection to the pool resets it.
+    every pool checkout because returning a connection to the pool resets it. Public
+    stays on the path, after it, for extension types like pgvector's; everything the
+    migrations create goes in the first schema.
     """
     if not re.fullmatch(r"[a-z_][a-z0-9_]*", schema):
         raise ValueError(f"bad schema name {schema!r}")
 
     async def use(conn: asyncpg.Connection) -> None:
-        await conn.execute(f"set search_path to {schema}")
+        await conn.execute(f"set search_path to {schema}, public")
 
     return use
 

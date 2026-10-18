@@ -1,0 +1,365 @@
+{
+  "annotator": "b",
+  "questions": [
+    {
+      "passage": "HSY-filing-132",
+      "question": "How sensitive is the commodity derivatives book to a 10% drop in commodity prices?",
+      "answer": "Net unrealized losses would rise by $27.4 million, generally offset by lower costs for the underlying commodity purchases.",
+      "quote": "assuming a 10% decrease in the underlying commodity price, would have increased our net unrealized losses in 2020 by $27.4 million"
+    },
+    {
+      "passage": "HSY-filing-119",
+      "question": "How much goodwill was on the balance sheet at the end of 2020?",
+      "answer": "Goodwill had a net book value of $1,988.2 million at December 31, 2020, with no impairment charges.",
+      "quote": "At December 31, 2020, the net book value of our goodwill totaled $1,988.2 million."
+    },
+    {
+      "passage": "HSY-filing-116",
+      "question": "Who helps management estimate fair values of assets picked up in acquisitions?",
+      "answer": "They normally use a third-party valuation specialist to estimate fair values of acquired tangible and intangible assets.",
+      "quote": "we normally obtain the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets"
+    },
+    {
+      "passage": "HSY-filing-114",
+      "question": "What happens to pension expense and the pension liability if the discount rate falls by 1 point?",
+      "answer": "Annual pension expense would rise about $7 million and the year-end 2020 pension liability would rise about $108 million.",
+      "quote": "A 100 basis point decrease (increase) in the weighted-average pension discount rate would increase (decrease) annual net periodic pension benefit expense by approximately $7 million and the December 31, 2020 pension liability would increase by approximately $108 million"
+    },
+    {
+      "passage": "HSY-filing-085",
+      "question": "Why did working capital turn into a source of cash in 2019?",
+      "answer": "Higher collections before year-end 2019, timing of vendor and supplier payments, and higher accrued incentive compensation paid in early 2020.",
+      "quote": "This $164 million fluctuation was mainly driven by higher cash receipts prior to year-end 2019, the timing of vendor and supplier payments, as well as higher accrued incentive compensation"
+    },
+    {
+      "passage": "HSY-filing-084",
+      "question": "What caused operating cash flow to fall in 2020?",
+      "answer": "Working capital used $166 million, mainly from a bigger U.S. inventory build and higher receivables on stronger U.S. seasonal sales.",
+      "quote": "This $226 million fluctuation was mainly driven by a higher year-over-year build up of U.S. inventories to satisfy product requirements and maintain sufficient levels to accommodate customer requirements, as well as an increase in cash used by accounts receivable"
+    },
+    {
+      "passage": "HSY-filing-077",
+      "question": "How much did North America segment profit grow in 2020 and what drove it?",
+      "answer": "Up $195.9 million or 9.2%, on price realization and volume gains, partly offset by COVID-related supply chain costs.",
+      "quote": "Our North America segment income increased $195.9 million or 9.2% in 2020 compared to 2019, primarily due to favorable price realization and volume increases"
+    },
+    {
+      "passage": "HSY-filing-073",
+      "question": "How much did diluted EPS grow in 2020?",
+      "answer": "Diluted EPS rose $0.65, or 11.9%, versus 2019.",
+      "quote": "EPS-diluted increased $0.65, or 11.9%, in 2020 compared with 2019"
+    },
+    {
+      "passage": "HSY-filing-064",
+      "question": "Why did advertising spend decline in 2020?",
+      "answer": "Advertising and consumer marketing fell 2.0% on media cost efficiencies and COVID-related brand investment cuts in International and Other.",
+      "quote": "Total advertising and related consumer marketing expenses decreased 2.0% driven by media cost efficiencies and select brand investment optimization related to COVID-19 in International and Other segments."
+    },
+    {
+      "passage": "HSY-filing-058",
+      "question": "What was the operating margin in 2020 versus the prior year?",
+      "answer": "Operating profit margin was 21.9% in 2020, up from 20.0% in 2019.",
+      "quote": "Operating profit margin | 21.9% | 20.0% | 20.8%"
+    },
+    {
+      "passage": "HSY-call-056",
+      "question": "How is the Pirate's Booty acquisition performing against the original deal plan?",
+      "answer": "It is tracking ahead of the strategic plan, as referenced in the prepared remarks.",
+      "quote": "Pirate's Booty is tracking ahead of your strategic plans"
+    },
+    {
+      "passage": "HSY-call-053",
+      "question": "How big a piece of cost of goods is freight?",
+      "answer": "Freight is roughly 10% of COGS; rising rates aren't a material impact yet because of contracts.",
+      "quote": "it's roughly 10% of COGS overall"
+    },
+    {
+      "passage": "HSY-call-051",
+      "question": "How much share did they gain in convenience stores in Q3?",
+      "answer": "About 120 basis points of share gains in the C-store channel in the third quarter.",
+      "quote": "we have share gains of about 120 basis points in Q3 in that channel"
+    },
+    {
+      "passage": "HSY-call-046",
+      "question": "Will 2021 gross margin be driven more by pricing or by volume?",
+      "answer": "More by volume than price mix next year, along with cocoa crop effects and the ongoing productivity goal.",
+      "quote": "we'll have a little bit more volume-driven than price-driven mix driving gross margin next year"
+    },
+    {
+      "passage": "HSY-call-038",
+      "question": "Which new product launches is management most excited about this year?",
+      "answer": "A Reese's cup with pretzels, a range of Kit Kat flavors, and small-scale Reese's snack cakes.",
+      "quote": "the reese pretzel product a reese cup with pretzels in it we've had a a range of kit kat flavors"
+    },
+    {
+      "passage": "HSY-call-033",
+      "question": "What does management expect from the promotional environment through Q4 and into 2021?",
+      "answer": "No significant change in promotional activity; none was seen this year and none is expected going forward.",
+      "quote": "we don't see any significant change relative to promotional activity."
+    },
+    {
+      "passage": "HSY-call-023",
+      "question": "After a strong start and softer finish, where was the category's total season expected to end up?",
+      "answer": "Down mid-single digits for the category overall, implying sharp late-season declines in upcoming retail data.",
+      "quote": "finished down mid-single digits for the category"
+    },
+    {
+      "passage": "HSY-call-021",
+      "question": "What did the analyst credit for the unusually strong early Halloween sales?",
+      "answer": "Retailer merchandising programs that started bigger and earlier than usual.",
+      "quote": "a big part of that is due to the merchandising programs that retailers had. It seems like they started bigger and earlier than they usually do."
+    },
+    {
+      "passage": "HSY-call-020",
+      "question": "How does Halloween sell-through affect the start of the holiday selling season?",
+      "answer": "Strong Halloween sell-through clears shelf space so holiday product goes on the floor sooner, giving holiday a fast start.",
+      "quote": "A strong Halloween sell-through really helps us because it helps us get that fast start to holiday because it clears the space to be able to put holiday on the floor."
+    },
+    {
+      "passage": "HSY-call-013",
+      "question": "What risk did analysts raise about whether U.S. chocolate share gains will hold in 2021?",
+      "answer": "If gains came from competitors' supply chain breakdowns or slower adaptation, competitors could win some share back in 2021.",
+      "quote": "if there is a supply chain breakdown or lack of adaptability by a competitor, maybe that will represent share gains that they can reverse somewhat in 21."
+    },
+    {
+      "passage": "SITM-filing-182",
+      "question": "How did operating cash flow end up positive in 2020 despite the net loss?",
+      "answer": "$16.6 million of operating cash flow, as $24.9 million of non-cash expenses more than offset the $9.4 million net loss.",
+      "quote": "net cash provided by operating activities of $16.6 million was primarily due to a net loss of $9.4 million being more than offset by non-cash expenses of $24.9 million"
+    },
+    {
+      "passage": "SITM-filing-177",
+      "question": "Why did interest expense drop so much in 2020?",
+      "answer": "Lower rates and a shorter term on revolving debt, with all debt paid off on July 24, 2020.",
+      "quote": "primarily as a result of lower interest rates and a shorter term on our outstanding revolving short-term debt as we paid in full all of our debt on July 24, 2020"
+    },
+    {
+      "passage": "SITM-filing-169",
+      "question": "How much did revenue grow in 2020?",
+      "answer": "Revenue grew 38% to $116.2 million from $84.1 million in 2019.",
+      "quote": "Revenue | $116,156 | $84,074 | $32,082 | 38%"
+    },
+    {
+      "passage": "SITM-filing-168",
+      "question": "What typically happens to demand and pricing in a semiconductor downturn?",
+      "answer": "Demand falls, capacity and inventories run high, and average selling prices erode faster.",
+      "quote": "Downturns in the semiconductor industry have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+    },
+    {
+      "passage": "SITM-filing-160",
+      "question": "How could pandemic stress in credit markets hurt the company's funding?",
+      "answer": "Weaker credit markets could limit access to outside financing for operations and capital expenditures.",
+      "quote": "the deterioration in credit markets could limit our ability to obtain external financing to fund our operations and capital expenditures"
+    },
+    {
+      "passage": "SITM-filing-142",
+      "question": "Why is earthquake risk relevant to operations?",
+      "answer": "Headquarters and some suppliers and foundry vendors sit in active earthquake zones or areas prone to outages and disasters.",
+      "quote": "Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones"
+    },
+    {
+      "passage": "SITM-filing-125",
+      "question": "Why might patent infringement claims against the company increase?",
+      "answer": "Its higher profile and visibility as a public company may draw more infringement allegations from others.",
+      "quote": "particularly as a public company with an increased profile and visibility, receive communications from others alleging our infringement"
+    },
+    {
+      "passage": "SITM-filing-118",
+      "question": "How large are the NOL carryforwards as of year-end 2020?",
+      "answer": "About $201.5 million federal and $64.0 million state net operating loss carryforwards.",
+      "quote": "U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively"
+    },
+    {
+      "passage": "SITM-filing-099",
+      "question": "How could future fundraising affect existing shareholders?",
+      "answer": "Issuing equity or convertible debt could significantly dilute holders, and new securities could rank senior to common stock.",
+      "quote": "If we raise additional funds by issuing equity securities or convertible debt, stockholders may experience significant dilution of their ownership interest"
+    },
+    {
+      "passage": "SITM-filing-090",
+      "question": "What's the impact if a fab, assembly or test partner ends its relationship with the company?",
+      "answer": "Shipping on time and in required quantities would suffer, potentially causing unexpected sales declines and lost customers.",
+      "quote": "our ability to ship our solutions to our customers on time and in the quantity required would be adversely affected"
+    },
+    {
+      "passage": "SITM-call-038",
+      "question": "How much has the customer base grown over the last five years?",
+      "answer": "From about 2,000 customers five years ago to roughly five times that today, mostly smaller customers reached through the channel.",
+      "quote": "five years ago we were addressing about 2,000 customers. Today we're about 5x that, maybe a little bit more."
+    },
+    {
+      "passage": "SITM-call-037",
+      "question": "What's the gross margin outlook for the first half of 2021?",
+      "answer": "Margins should dip slightly in the first half on heavier volume weighting, then strengthen considerably in the back half.",
+      "quote": "I would actually expect gross margins to pull back just a little bit in the first half of next year"
+    },
+    {
+      "passage": "SITM-call-036",
+      "question": "How should analysts model gross margin for next year?",
+      "answer": "Model the full-year margin as a whole; the back half will be higher than the first half.",
+      "quote": "I would model gross margins for what you think it would be for the year in total."
+    },
+    {
+      "passage": "SITM-call-033",
+      "question": "How long does it take resonator design wins to turn into meaningful revenue?",
+      "answer": "Slower than clocking: the lead time to meaningful revenue is easily twice as long, especially for SoC vendor design-ins.",
+      "quote": "the gestation period for that, for meaningful revenue, is easily twice as long as the clocking business."
+    },
+    {
+      "passage": "SITM-call-032",
+      "question": "When was the Cascade clock IC expected to start contributing revenue?",
+      "answer": "Revenue was expected to begin in 2021 and ramp beyond that, per the analyst's recap of last quarter's announcement.",
+      "quote": "the Clock IC product that you expected revenue to really be a 2021 event beginning and then probably ramping beyond that"
+    },
+    {
+      "passage": "SITM-call-031",
+      "question": "What process nodes does the company use for its chips?",
+      "answer": "180, 130 and 65 nanometer tape-outs, versus 7nm at other semiconductor companies, as an analog company.",
+      "quote": "we're doing 180, 130, 65 nanometer tape outs"
+    },
+    {
+      "passage": "SITM-call-028",
+      "question": "How long does management think the 5G infrastructure buildout will last?",
+      "answer": "Probably a five-to-seven-year rollout, providing steady growth.",
+      "quote": "this is probably a five, seven-year rollout"
+    },
+    {
+      "passage": "SITM-call-023",
+      "question": "What new market is the Apex MEMS family moving the company into?",
+      "answer": "The resonator market.",
+      "quote": "with the recent introduction of the Apex MEMS family, you're moving into the resonator market"
+    },
+    {
+      "passage": "SITM-call-020",
+      "question": "How big is the serviceable addressable market today?",
+      "answer": "SAM is about $1.0 to $1.2 billion, under $2 billion, mostly in oscillators.",
+      "quote": "our SAM is still around a billion to a billion point two."
+    },
+    {
+      "passage": "SITM-call-018",
+      "question": "How concentrated is the supply of ceramic packages for quartz timing parts?",
+      "answer": "Only two suppliers worldwide make them, and shortages sometimes occur.",
+      "quote": "Those quartz packaging, ceramic packages, come from only two people in the world, and sometimes there's a shortage."
+    },
+    {
+      "passage": "COP-filing-235",
+      "question": "Who is responsible for monitoring commodity price, currency and interest rate risk?",
+      "answer": "The EVP and CFO, who reports to the CEO.",
+      "quote": "The Executive Vice President and Chief Financial Officer, who reports to the Chief Executive Officer, monitors commodity price risk and risks resulting from foreign currency exchange rates and interest rates."
+    },
+    {
+      "passage": "COP-filing-208",
+      "question": "What is management's position on the climate change lawsuits filed against oil and gas companies?",
+      "answer": "It considers them factually and legally meritless, an inappropriate way to address climate change, and will vigorously defend.",
+      "quote": "believes these lawsuits are factually and legally meritless and are an inappropriate vehicle to address the challenges associated with climate change and will vigorously defend against such lawsuits."
+    },
+    {
+      "passage": "COP-filing-184",
+      "question": "What is the Moody's rating on the senior long-term debt?",
+      "answer": "A3 with a stable outlook, affirmed in October 2020.",
+      "quote": "Moody’s affirmed its rating of our senior long-term debt of “A3” with a “stable” outlook"
+    },
+    {
+      "passage": "COP-filing-173",
+      "question": "Why did earnings from the technology business fall in 2020?",
+      "answer": "Technology earnings fell $149 million, mainly due to lower licensing revenues.",
+      "quote": "Earnings from Technology decreased by $149 million in 2020 compared with 2019, primarily due to lower licensing revenues."
+    },
+    {
+      "passage": "COP-filing-123",
+      "question": "What cost savings were announced alongside the Concho deal?",
+      "answer": "$350 million of annual savings by 2022, from organizational streamlining, a refocused exploration program and redundant combined G&A.",
+      "quote": "quantified $350 million of annual expense savings expected to be achieved by 2022"
+    },
+    {
+      "passage": "COP-filing-116",
+      "question": "How much liquidity did the company have at the end of 2020?",
+      "answer": "Over $12 billion: $3.0 billion cash, $3.6 billion short-term investments and $5.7 billion available under the credit facility.",
+      "quote": "We ended the year with over $12 billion of liquidity, comprised of $3.0 billion in cash and cash equivalents, $3.6 billion in short-term investments, and available borrowings under our credit facility of $5.7 billion."
+    },
+    {
+      "passage": "COP-filing-085",
+      "question": "How could climate regulation hurt the business financially?",
+      "answer": "It could lower product demand, add taxes on products or operations, or require buying emission credits or cutting GHG emissions.",
+      "quote": "may adversely impact the demand for our products, impose taxes on our products or operations or require us to purchase emission credits or reduce emission of GHGs from our operations."
+    },
+    {
+      "passage": "COP-filing-077",
+      "question": "Why might the company be disadvantaged against national oil companies?",
+      "answer": "State-owned companies may act on political or other motives with less focus on financial returns.",
+      "quote": "we may be at a competitive disadvantage when competing with state-owned companies if they are motivated by political or other factors in making their business decisions, with less emphasis on financial returns."
+    },
+    {
+      "passage": "COP-filing-072",
+      "question": "How could prolonged low oil and gas prices affect DD&A?",
+      "answer": "Lower reserve estimates could raise the unit-of-production rate used for DD&A expense.",
+      "quote": "our reserve estimates may decrease further, which could incrementally increase the rate used to determine DD&A expense on our unit-of-production method properties."
+    },
+    {
+      "passage": "COP-filing-062",
+      "question": "How does the company track diversity in its recruiting?",
+      "answer": "University dashboards track recruiting metrics like gender, ethnicity and acceptance rates, shared internally through D&I Dashboards.",
+      "quote": "We closely monitor recruitment metrics through our university dashboards in areas such as gender, ethnicity and university acceptance rates"
+    },
+    {
+      "passage": "COP-call-064",
+      "question": "How would excess cash be returned if oil prices run above the mid-cycle price assumption?",
+      "answer": "Still evaluating options and open to all approaches; for now the dividend more than covers shareholder returns.",
+      "quote": "the dividend more than satisfies our return to shareholders."
+    },
+    {
+      "passage": "COP-call-055",
+      "question": "Why does management stress optimizing each asset across the portfolio?",
+      "answer": "Without optimizing across a diverse portfolio you don't capture diversification's value, so they aim to run every asset at its optimum.",
+      "quote": "if you're not optimizing across a diverse portfolio, then you're not maximizing the value that the diversification brings you."
+    },
+    {
+      "passage": "COP-call-047",
+      "question": "What signs did analysts point to that the oil cycle may be bottoming?",
+      "answer": "Industry consolidation, including the company's own Concho deal.",
+      "quote": "We've now seen what we think is a lot of the signs of a cycle coming to a bottom, if you like, with consolidation, yourselves being part of that."
+    },
+    {
+      "passage": "COP-call-040",
+      "question": "What options did the analyst raise for assets losing exploration and appraisal funding after the Concho deal?",
+      "answer": "Whether they simply return to the resource base or become more likely to be sold or otherwise monetized.",
+      "quote": "Do they just go back into the resource base, or is that something that maybe becomes more likely to be disposed of, you know, monetized in a different way?"
+    },
+    {
+      "passage": "COP-call-031",
+      "question": "When will 2021 capex guidance for the combined company be given?",
+      "answer": "Not until sometime after the Concho transaction closes.",
+      "quote": "you shouldn't expect us to communicate 2021 capital guidance, certainly for the combined company, until sometime after the transaction closes."
+    },
+    {
+      "passage": "COP-call-026",
+      "question": "What's the status of the planned Alaska sell-down?",
+      "answer": "Still expected, but timing slowed until uncertainties are resolved; Willow's timing isn't contingent on it.",
+      "quote": "we're still anticipating that we will do a sell down in Alaska. We just slowed the timing of that down until we get some of these uncertainties resolved."
+    },
+    {
+      "passage": "COP-call-020",
+      "question": "What level of equity affiliate distributions should be modeled for next year at strip prices?",
+      "answer": "Roughly $600 to $800 million, with APLNG distributions heavier in Q2 and Q4.",
+      "quote": "the range of $600 to $800 million from equity affiliates at those kind of pricing"
+    },
+    {
+      "passage": "COP-call-017",
+      "question": "How could ConocoPhillips' marketing improve realizations on Concho's production?",
+      "answer": "Concho sells at the wellhead, while ConocoPhillips sells further down the value chain to get better realized prices.",
+      "quote": "Concho typically sells their product to the wellhead. We sell further down the value chain to improve realisation."
+    },
+    {
+      "passage": "COP-call-014",
+      "question": "What's the pro forma cash flow for the combined company at $40 oil?",
+      "answer": "Roughly $7.5 to $7.8 billion at $40 a barrel, including the full $350 million of expected cost savings.",
+      "quote": "it would imply somewhere between seven and a half and seven eight at $40 a barrel."
+    },
+    {
+      "passage": "COP-call-008",
+      "question": "What should be used as the starting point for 2021 capital and production?",
+      "answer": "Fourth-quarter 2020 levels are the new baseline, subject to ongoing monitoring of market conditions.",
+      "quote": "you should take the fourth quarter as the new baseline for 21 capital and production"
+    }
+  ]
+}

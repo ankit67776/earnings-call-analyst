@@ -1,6 +1,7 @@
 """Fetch and inspect 10-K filings.
 
 uv run python -m app.filings fetch SITM HSY COP --year 2020
+uv run python -m app.filings fetch SITM COP --year 2020 --save   # also store in Postgres
 uv run python -m app.filings show ../data/raw/10k/HSY_10-K_FY2020.htm --section 1A
 """
 
@@ -15,15 +16,24 @@ from app.filings.edgar import EdgarClient, load_ref
 from app.filings.tenk import parse_10k
 
 
-async def fetch(tickers: list[str], year: int, dest: Path) -> None:
+async def fetch(tickers: list[str], year: int, dest: Path, *, save: bool = False) -> None:
+    from app import db
+    from app.store import save_filing
+
     client = EdgarClient(settings.sec_user_agent)
+    conn = await db.connect() if save else None
     try:
         for ticker in tickers:
             ref = await client.find_annual_report(ticker, year)
             path = await client.download(ref, dest)
             print(f"{ref.ticker}: {ref.company}, period {ref.period}, filed {ref.filed} -> {path}")
+            if conn is not None:
+                document_id = await save_filing(conn, ref, parse_10k(path.read_bytes()))
+                print(f"  stored as document {document_id}")
     finally:
         await client.aclose()
+        if conn is not None:
+            await conn.close()
 
 
 def show(path: Path, section: str | None, width: int) -> None:
@@ -59,6 +69,7 @@ def main() -> None:
     fetch_cmd.add_argument("tickers", nargs="+")
     fetch_cmd.add_argument("--year", type=int, required=True, help="fiscal year")
     fetch_cmd.add_argument("--dest", type=Path, default=Path(settings.raw_data_dir) / "10k")
+    fetch_cmd.add_argument("--save", action="store_true", help="store the parsed text in Postgres")
 
     show_cmd = commands.add_parser("show", help="print a parsed 10-K's sections or paragraphs")
     show_cmd.add_argument("path", type=Path)
@@ -67,7 +78,7 @@ def main() -> None:
 
     args = parser.parse_args()
     if args.command == "fetch":
-        asyncio.run(fetch(args.tickers, args.year, args.dest))
+        asyncio.run(fetch(args.tickers, args.year, args.dest, save=args.save))
     else:
         show(args.path, args.section, args.width)
 
