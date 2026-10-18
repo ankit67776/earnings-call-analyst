@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How big is the serviceable addressable market?\n\nAnswer sentences:\n1. According to Rajesh Vashist, the company's SAM is still around a billion to a billion point two.\n   cites [S6]: \"our SAM is still around a billion to a billion point two\"\n2. He also noted that SAM is about $1.5 billion out of an $8 billion total TAM.\n   cites [S6]: \"SAM at $1.5 billion, SAM out of an $8 billion total TAM\"\n\nCited sources:\n\n[S6] Q3 2020 earnings call, 23:35–25:06\nRajesh Vashist: Yeah, our SAM is still around a billion to a billion point two. It might be a little bit higher depending on when we introduce products and so on, but it's certainly less than two billion. It's also mostly concentrated right now in oscillators. So while we do have resonators that have been introduced, While we do have analog clocking solutions that have been introduced, our ramp into that from a revenue point of view, we have already set expectations, will be relatively slow. I think our entry into these markets is significant for customers in the following way, in the way that they can then come and have conversations with us on all of these products. And not every customer wants to talk to us about every one of them. Sometimes they want to talk to us only about resonators or oscillators or clocking, and then that becomes an entry point to talking about other products. So from a TAM point of view, we're still pretty tiny, you know, $1.5 billion in TAM out of an $8 billion total market. SAM at $1.5 billion, SAM out of an $8 billion total TAM. And, of course, CyTimes revenue is still pretty small in comparison at around $100 million. So we still, even if we maintained and did not grow our SAM very much, we would still probably have a long way to go before we fill out those boots."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The source explicitly states 'our SAM is still around a billion to a billion point two' and attributes this statement to Rajesh Vashist, matching the sentence exactly.\", \"verdict\": \"supported\"}, {\"n\": 2, \"reason\": \"The source states 'SAM at $1.5 billion, SAM out of an $8 billion total TAM', which directly supports the claim that SAM is $1.5 billion out of an $8 billion total TAM.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 583,
+  "completion_tokens": 119,
+  "latency_ms": 569.3337999982759,
+  "attempts": 1
+ }
+}

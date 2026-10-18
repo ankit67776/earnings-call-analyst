@@ -1,0 +1,330 @@
+{
+  "version": 1,
+  "seed": 2022,
+  "answerable": [
+    "COP-call-007-a",
+    "COP-call-014-b",
+    "COP-call-017-b",
+    "COP-call-031-b",
+    "COP-call-040-a",
+    "COP-filing-002-a",
+    "COP-filing-072-b",
+    "COP-filing-085-b",
+    "COP-filing-173-b",
+    "COP-filing-235-b",
+    "HSY-call-007-a",
+    "HSY-call-021-b",
+    "HSY-call-023-b",
+    "HSY-call-038-b",
+    "HSY-call-046-a",
+    "HSY-filing-033-a",
+    "HSY-filing-084-a",
+    "HSY-filing-085-a",
+    "HSY-filing-116-b",
+    "HSY-filing-119-b",
+    "SITM-call-012-a",
+    "SITM-call-020-a",
+    "SITM-call-031-a",
+    "SITM-call-032-b",
+    "SITM-call-033-b",
+    "SITM-filing-032-a",
+    "SITM-filing-055-a",
+    "SITM-filing-142-a",
+    "SITM-filing-142-b",
+    "SITM-filing-168-b"
+  ],
+  "unanswerable": [
+    {
+      "id": "HSY-none-01-c",
+      "ticker": "HSY",
+      "kind": "missing_detail",
+      "question": "How many dollars did Hershey spend on advertising and related consumer marketing in 2020?",
+      "near_misses": [
+        64,
+        616,
+        617,
+        58
+      ],
+      "why": "Passage 64 gives only the 2.0% decline in advertising and consumer marketing, and 58 gives total SM&A ($1,890.9M). The call talks about pulling back on ad spend, but no dollar figure for advertising appears anywhere."
+    },
+    {
+      "id": "HSY-none-02-c",
+      "ticker": "HSY",
+      "kind": "missing_detail",
+      "question": "What share of total net sales came from e-commerce in 2020?",
+      "near_misses": [
+        651,
+        650,
+        624,
+        641
+      ],
+      "why": "The call says e-commerce grew strongly and that click-and-collect plus local delivery make up about two-thirds of the e-commerce business, but it never gives e-commerce as a share of total sales."
+    },
+    {
+      "id": "HSY-none-03-c",
+      "ticker": "HSY",
+      "kind": "missing_detail",
+      "question": "What price did Hershey get when it sold Lotte Shanghai Foods (LSFC)?",
+      "near_misses": [
+        4,
+        53,
+        66,
+        65
+      ],
+      "why": "These cover the October 2020 agreement, the January 2021 closing and a $6.2M disposal-group impairment, but give no sale price, proceeds or buyer for LSFC."
+    },
+    {
+      "id": "HSY-none-04-c",
+      "ticker": "HSY",
+      "kind": "false_premise",
+      "question": "Why did the North America segment margin shrink in 2020?",
+      "near_misses": [
+        76,
+        77,
+        78
+      ],
+      "why": "Passage 76 shows North America segment margin rose to 31.3% from 30.0%, so the premise is wrong. Only International and Other (78) saw its margin fall."
+    },
+    {
+      "id": "HSY-none-05-c",
+      "ticker": "HSY",
+      "kind": "false_premise",
+      "question": "What triggered the goodwill impairment charge Hershey booked in 2020?",
+      "near_misses": [
+        119,
+        65,
+        120,
+        66
+      ],
+      "why": "Passage 119 states there were no goodwill impairment charges in 2020, 2019 or 2018. The 2020 charges in 65/66 are $9.1M of disposal-group and other long-lived asset write-downs, and the Krave write-down in 120 was a 2019 intangibles charge."
+    },
+    {
+      "id": "HSY-none-06-c",
+      "ticker": "HSY",
+      "kind": "wrong_period",
+      "question": "How much did Hershey actually spend on capital expenditures in 2021?",
+      "near_misses": [
+        88,
+        56
+      ],
+      "why": "Passage 88 gives only the expected 2021 capex (about $550M) and actual figures for 2018-2020. Actual 2021 spending falls after the period these sources cover."
+    },
+    {
+      "id": "HSY-none-07-c",
+      "ticker": "HSY",
+      "kind": "other_company",
+      "question": "What were McLane Company's total revenues in 2020?",
+      "near_misses": [
+        6,
+        34
+      ],
+      "why": "The sources say only that McLane accounted for about 31% of Hershey's net sales and distributes to Wal-Mart. They give none of McLane's own financials."
+    },
+    {
+      "id": "HSY-none-08-c",
+      "ticker": "HSY",
+      "kind": "out_of_scope",
+      "question": "Is Hershey stock a buy heading into the holiday season?",
+      "near_misses": [
+        628,
+        632,
+        94
+      ],
+      "why": "The call covers holiday-season expectations and the 10-K covers buybacks, but neither contains an investment recommendation, valuation or price target."
+    },
+    {
+      "id": "SITM-none-01-c",
+      "ticker": "SITM",
+      "kind": "missing_detail",
+      "question": "What is the average selling price per unit of SiTime's oscillators?",
+      "near_misses": [
+        302,
+        298,
+        594,
+        197
+      ],
+      "why": "Passage 302 gives only a $0.02 year-over-year ASP increase, 298 says average ASPs were roughly flat, and 594's sub-20-cent figure refers to the new resonators. No absolute oscillator ASP is given, and annual unit volume isn't either, so it can't be derived."
+    },
+    {
+      "id": "SITM-none-02-c",
+      "ticker": "SITM",
+      "kind": "missing_detail",
+      "question": "How much in damages is VTT seeking in its patent infringement suit against SiTime?",
+      "near_misses": [
+        256,
+        162
+      ],
+      "why": "These describe VTT's March 2019 suit, the district court ruling in SiTime's favor and VTT's appeal, but give no damages amount. They only say no loss has been accrued."
+    },
+    {
+      "id": "SITM-none-03-c",
+      "ticker": "SITM",
+      "kind": "missing_detail",
+      "question": "What royalty rate does SiTime owe Bosch under its MEMS patent license?",
+      "near_misses": [
+        219,
+        160,
+        254,
+        158
+      ],
+      "why": "Passage 219 says a royalty fee is owed if SiTime makes, or has third parties make, certain generations of MEMS wafers through March 2024, but it gives no rate or dollar amount."
+    },
+    {
+      "id": "SITM-none-04-c",
+      "ticker": "SITM",
+      "kind": "false_premise",
+      "question": "Why did revenue from SiTime's largest end customer fall in 2020?",
+      "near_misses": [
+        182,
+        153,
+        184
+      ],
+      "why": "Passage 182 says revenue attributable to the largest end customer (Apple) rose in absolute dollars and as a share of revenue, from 35% to 40%, so the premise is wrong."
+    },
+    {
+      "id": "SITM-none-05-c",
+      "ticker": "SITM",
+      "kind": "false_premise",
+      "question": "What drove SiTime back to GAAP profitability for full-year 2020?",
+      "near_misses": [
+        301,
+        188,
+        579
+      ],
+      "why": "Passages 301 and 188 show the GAAP net loss widened to $9.4M in 2020 from $6.6M. The $4.4M profit in 579 is non-GAAP net income for Q3 only."
+    },
+    {
+      "id": "SITM-none-06-c",
+      "ticker": "SITM",
+      "kind": "wrong_period",
+      "question": "What revenue did SiTime report for full-year 2021?",
+      "near_misses": [
+        597,
+        201,
+        580
+      ],
+      "why": "The sources give 2020 revenue ($116.2M) and Q4 2020 guidance. For 2021 they say only that each quarter should grow year over year, with no number."
+    },
+    {
+      "id": "SITM-none-07-c",
+      "ticker": "SITM",
+      "kind": "other_company",
+      "question": "How much revenue does Microchip make from its MEMS oscillator business?",
+      "near_misses": [
+        163,
+        211
+      ],
+      "why": "The sources name Microchip (via Micrel) only as SiTime's main MEMS-oscillator competitor and give none of Microchip's figures."
+    },
+    {
+      "id": "SITM-none-08-c",
+      "ticker": "SITM",
+      "kind": "out_of_scope",
+      "question": "What's a reasonable 12-month price target for SiTime shares?",
+      "near_misses": [
+        275,
+        277,
+        279
+      ],
+      "why": "The risk factors discuss stock-price volatility, analyst coverage and guidance risk but give no valuation or price target."
+    },
+    {
+      "id": "COP-none-01-c",
+      "ticker": "COP",
+      "kind": "missing_detail",
+      "question": "What adjusted earnings per share did ConocoPhillips report for the third quarter of 2020?",
+      "near_misses": [
+        681,
+        678,
+        467
+      ],
+      "why": "The call gives Q3 cash from operations (about $1.23B excluding working capital) and says results matched expectations, but no Q3 earnings or EPS. The 10-K reports only the full-year 2020 loss."
+    },
+    {
+      "id": "COP-none-02-c",
+      "ticker": "COP",
+      "kind": "missing_detail",
+      "question": "What peak production rate is the Willow development in Alaska expected to reach?",
+      "near_misses": [
+        340,
+        693,
+        705,
+        696
+      ],
+      "why": "These cover Willow appraisal drilling, the initial development plan, the BLM record of decision, FEED timing and its low emissions intensity, but give no production rate or capital cost for Willow."
+    },
+    {
+      "id": "COP-none-03-c",
+      "ticker": "COP",
+      "kind": "missing_detail",
+      "question": "How much of the year-end 2020 proved reserves sit in the Lower 48 segment?",
+      "near_misses": [
+        333,
+        424,
+        548,
+        457
+      ],
+      "why": "Passage 333 gives proved reserves by product only, 424 says 42% are outside the U.S., and 548 gives consolidated proved developed reserves. Nothing splits reserves by segment, such as Lower 48 versus Alaska."
+    },
+    {
+      "id": "COP-none-04-c",
+      "ticker": "COP",
+      "kind": "false_premise",
+      "question": "Why did ConocoPhillips decide to pay for Concho mostly in cash?",
+      "near_misses": [
+        440,
+        449,
+        516
+      ],
+      "why": "Passages 440, 449 and 516 say Concho was an all-stock transaction: 1.46 ConocoPhillips shares for each Concho share, about 286 million shares in total. No cash was paid."
+    },
+    {
+      "id": "COP-none-05-c",
+      "ticker": "COP",
+      "kind": "false_premise",
+      "question": "Now that Alaska's Fair Share Act tax increase has passed, how much is ConocoPhillips cutting North Slope drilling?",
+      "near_misses": [
+        420,
+        692,
+        693
+      ],
+      "why": "Passage 420 says the Fair Share Act ballot initiative was ultimately defeated. The call (692-693) only discusses what would happen if it passed."
+    },
+    {
+      "id": "COP-none-06-c",
+      "ticker": "COP",
+      "kind": "wrong_period",
+      "question": "What did combined company production actually average in 2021 after the Concho acquisition?",
+      "near_misses": [
+        452,
+        509,
+        525
+      ],
+      "why": "The sources give only the 2021 guidance of about 1.5 MMBOED, excluding Libya. Actual 2021 production falls after the period they cover."
+    },
+    {
+      "id": "COP-none-07-c",
+      "ticker": "COP",
+      "kind": "other_company",
+      "question": "What net income did Concho Resources report for 2020?",
+      "near_misses": [
+        440,
+        682,
+        683
+      ],
+      "why": "The sources give the Concho deal terms and a rough Q3 cash-flow bridge for the combined company, but none of Concho's own 2020 earnings."
+    },
+    {
+      "id": "COP-none-08-c",
+      "ticker": "COP",
+      "kind": "out_of_scope",
+      "question": "How large a position in ConocoPhillips should I hold in my portfolio?",
+      "near_misses": [
+        733,
+        455,
+        427
+      ],
+      "why": "Management says the shares look undervalued and describes its dividend and buyback policy, but the sources contain no personal investment or position-sizing advice."
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1. Business\nSignificant Market Opportunity for Timing Solutions\n\nAccording to Dedalus Consulting - 2019 Frequency Control Components Global Markets, End-Users, Applications & Competitors: Analysis & Forecasts and our estimates, the global timing market was over $7.7 billion as of 2018 and is expected to grow to $10.1 billion by 2024. Dedalus Consulting estimates that oscillators and standalone resonators represented approximately $3.8 billion and $2.9 billion total addressable markets, respectively, as of 2018. Based on our internal estimates, we believe clock ICs represent an approximate $1.0 billion total addressable market. As a subset of the broader timing market, the market for MEMS oscillators is projected to grow from $0.1 billion in 2018 to $0.6 billion by 2024, representing a CAGR of 35.2%, according to Yole Développement’s report “Status of MEMS Industry 2019.”\n\n[S2] Earnings call: Q3 2020 earnings call, 40:32–42:00\nArt Chadwick: I think the market trends that we have outlined continue. So clearly, comms enterprise data centers are a big play. We are continuing to find more traction in automotive as more and more electric vehicles show up because a lot of automated driving is happening in that. We have a nice little story and connection growing in the middle aerospace market. And then finally, the mobile IoT piece of it, less the consumer, the mobile IoT piece of it is always a natural place for SciTimes growth because, you know, the size, the resiliency, the performance. So I think we're also continuing to expand our customer base. You know, five years ago we were addressing about 2,000 customers. Today we're about 5x that, maybe a little bit more. And so I think the expansion of customer base, this is not the big customers. This is customers that are of a much, much smaller size where we are working in the channel to connect with them. I think that's a good initiative for side time as well. So I think those are some ways that we think about it.\n\n[S3] Earnings call: Q3 2020 earnings call, 23:06–23:34\nSpeaker 6: yeah that's that's great perspective thank you for that and as my follow-up uh congratulations on on entering the the resonator market and now obviously you're covering the entire gamut of the timing market i know in the past you've talked about uh targeting at about a 10 billion dollar time if you kind of combined all three sub-segments um could you update us where your SAM is now with your penetration with new products into the resonator market?\n\n[S4] 10-K: Item 1. Business › Sales and Marketing\nWe have a strategic accounts strategy with dedicated account owners and our direct sales force focused on key decision-makers to provide high-value solutions for unique customer requirements. We intend to continue to expand our sales and marketing efforts through increased collaboration with our distributors, resellers, and contracted sales representatives. In addition, we intend to introduce a self-service web portal, which will support 24/7 availability and leverage an inside sales team to support a “self-service model” for customers.\n\nWe promote our products and brand through various means including digital marketing and online advertising, press releases, contributed articles, speaking opportunities, trade events, customer events, public relations and industry analyst relations.\n\n[S5] 10-K: Item 1A. Risk Factors › Our target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\nWe may be unable to predict the timing or development of trends in our target markets with any accuracy. If we fail to accurately predict market requirements or market demand for these solutions, our business will suffer. A market shift towards an industry standard that we may not support could significantly decrease the demand for our solutions.\n\nOur future revenue growth, if any, will depend in part on our ability to expand within our existing markets, our ability to continue to penetrate emerging markets, such as the 5G communications market, which we entered in 2019, and our ability to enter into new markets, such as the industrial, medical, and military markets. Each of these markets presents distinct and substantial challenges and risks and, in many cases, requires us to develop new customized solutions to address the particular requirements of that market. Meeting the technical requirements and securing design wins in any of these new markets will require a substantial investment of our time and resources. We cannot assure you that we will secure design wins from these or other new markets, or that we will achieve meaningful revenue from sales in these markets. If any of these markets do not develop as we currently anticipate or if we are unable to penetrate them and scale in them successfully, our revenue could decline.\n\n[S6] Earnings call: Q3 2020 earnings call, 23:35–25:06\nRajesh Vashist: Yeah, our SAM is still around a billion to a billion point two. It might be a little bit higher depending on when we introduce products and so on, but it's certainly less than two billion. It's also mostly concentrated right now in oscillators. So while we do have resonators that have been introduced, While we do have analog clocking solutions that have been introduced, our ramp into that from a revenue point of view, we have already set expectations, will be relatively slow. I think our entry into these markets is significant for customers in the following way, in the way that they can then come and have conversations with us on all of these products. And not every customer wants to talk to us about every one of them. Sometimes they want to talk to us only about resonators or oscillators or clocking, and then that becomes an entry point to talking about other products. So from a TAM point of view, we're still pretty tiny, you know, $1.5 billion in TAM out of an $8 billion total market. SAM at $1.5 billion, SAM out of an $8 billion total TAM. And, of course, CyTimes revenue is still pretty small in comparison at around $100 million. So we still, even if we maintained and did not grow our SAM very much, we would still probably have a long way to go before we fill out those boots.\n\nQuestion: How big is the serviceable addressable market?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"According to Rajesh Vashist, the company's SAM is still around a billion to a billion point two.\",\"support\":[{\"source\":\"S6\",\"quote\":\"our SAM is still around a billion to a billion point two\"}]},{\"text\":\"He also noted that SAM is about $1.5 billion out of an $8 billion total TAM.\",\"support\":[{\"source\":\"S6\",\"quote\":\"SAM at $1.5 billion, SAM out of an $8 billion total TAM\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1922,
+  "completion_tokens": 835,
+  "latency_ms": 2630.865899998753,
+  "attempts": 1
+ }
+}

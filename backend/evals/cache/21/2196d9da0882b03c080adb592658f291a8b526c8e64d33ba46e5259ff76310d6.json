@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nRESULTS OF OPERATIONS\n\nEffective with the third quarter of 2020, we have restructured our segments to align with changes to our internal organization. The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment. The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment. We have revised segment information disclosures and segment performance metrics presented within our results of operations for the current and prior years.\n\nThis section of the Form 10-K discusses year-to-year comparisons between 2020 and 2019. For discussion of year-to-year comparisons between 2019 and 2018, see \"Management's Discussion and Analysis of Financial Condition and Results of Operations\" in Exhibit 99.1—, Item 7 filed with our Form 8-K filed on November 16, 2020.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nIncome Statement Analysis\n\n2020 vs. 2019\n\nSales and other operating revenues decreased 42 percent in 2020, mainly due to lower realized commodity prices and lower sales volumes. Sales volumes decreased due to normal field decline, production curtailments from our North American operated assets and the divestiture of our U.K. assets in the third quarter of 2019 and our Australia-West assets in the second quarter of 2020.\n\nEquity in earnings of affiliates decreased $347 million in 2020, primarily due to lower earnings from QG3 and APLNG because of lower LNG prices. Partly offsetting this decrease was the absence of impairments related to equity method investments in our Lower 48 segment of $155 million and the absence of a $118 million deferred tax adjustment at QG3, reported in our Europe, Middle East and North Africa segment.\n\nGain on dispositions decreased $1.4 billion in 2020, primarily due to the absence of a $1.7 billion before-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. Partly offsetting the decrease was a $587 million before-tax gain associated with our Australia-West divestiture. For more information related to these dispositions, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n[S3] 10-K: Item 1. BUSINESS AND PROPERTIES\nSEGMENT AND GEOGRAPHIC INFORMATION\n\nWe manage our operations through six operating segments, defined by geographic region: Alaska; Lower 48; Canada; Europe, Middle East and North Africa; Asia Pacific; and Other International. Effective with the third quarter of 2020, we restructured our segments to align with changes to our internal organization. The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment. The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment. We have revised segment information disclosures and segment performance metrics presented within our results of operations for the current and prior years. For operating segment and geographic information, see Note 24—Segment Disclosures and Related Information, in the Notes to Consolidated Financial Statements.\n\nWe explore for, produce, transport and market crude oil, bitumen, natural gas, LNG and NGLs on a worldwide basis. At December 31, 2020, our operations were producing in the U.S., Norway, Canada, Australia, Indonesia, Malaysia, Libya, China and Qatar.\n\nThe information listed below appears in the “Oil and Gas Operations” disclosures following the Notes to Consolidated Financial Statements and is incorporated herein by reference:\n\n● Proved worldwide crude oil, NGLs, natural gas and bitumen reserves.\n\n● Net production of crude oil, NGLs, natural gas and bitumen.\n\n● Average sales prices of crude oil, NGLs, natural gas and bitumen.\n\n● Average production costs per BOE.\n\n● Net wells completed, wells in progress and productive wells.\n\n● Developed and undeveloped acreage.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nConsolidated Results\n\nA summary of the company’s net income (loss) attributable to ConocoPhillips by business segment follows:\n\nMillions of Dollars\nYears Ended December 31 | 2020 | 2019 | 2018\nAlaska | $(719) | 1,520 | 1,814\nLower 48 | (1,122) | 436 | 1,747\nCanada | (326) | 279 | 63\nEurope, Middle East and North Africa | 448 | 3,170 | 2,594\nAsia Pacific | 962 | 1,483 | 1,342\nOther International | (64) | 263 | 364\nCorporate and Other | (1,880) | 38 | (1,667)\nNet income (loss) attributable to ConocoPhillips | $(2,701) | 7,189 | 6,257\n\n2020 vs. 2019\n\nNet income (loss) attributable to ConocoPhillips decreased $9.9 billion in 2020. The decrease was mainly due to:\n\n● Lower realized commodity prices.\n\n● Lower sales volumes due to normal field decline, asset dispositions and production curtailments. For additional information related to dispositions, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● An unrealized loss of $855 million after-tax on our Cenovus Energy (CVE) common shares in 2020, as compared to a $649 million after-tax unrealized gain on those shares in 2019.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Corporate and Other\nThe category “Other” includes certain foreign currency transaction gains and losses, environmental costs associated with sites no longer in operation, other costs not directly associated with an operating segment, premiums incurred on the early retirement of debt, unrealized holding gains or losses on equity securities, and pension settlement expense. Earnings in “Other” decreased by $1,763 million in 2020 compared with 2019, primarily due to:\n\n● An unrealized loss of $855 million after-tax on our CVE common shares in 2020, compared with a $649 million after-tax unrealized gain in 2019.\n\n● The absence of a $151 million tax benefit related to the revaluation of deferred tax assets following finalization of rules related to the 2017 Tax Cuts and Jobs Act. See Note 18—Income Taxes, in the Notes to Consolidated Financial Statements, for additional information related to the 2017 Tax Cuts and Jobs Act.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOther International\n\n2020 | 2019 | 2018\nNet Income (Loss) Attributable to ConocoPhillips\n(millions of dollars) | $(64) | 263 | 364\n\nThe Other International segment includes exploration activities in Colombia and Argentina and contingencies associated with prior operations in other countries. As a result of our completed Concho acquisition on January 15, 2021, we refocused our exploration program and announced our intent to pursue a managed exit from certain areas.\n\n2020 vs. 2019\n\nOther International operations reported a loss of $64 million in 2020, compared with earnings of $263 million in 2019. The decrease in earnings was primarily due to:\n\n● The absence of $317 million after-tax in other income from a settlement award with PDVSA associated with prior operations in Venezuela. For additional information related to this settlement award, see Note 12—Contingencies and Commitments, in the Notes to Consolidated Financial Statements.\n\n● Increased exploration expenses, primarily due to dry hole costs and a full impairment of capitalized undeveloped leasehold costs in Colombia.\n\nQuestion: How were the reporting segments reorganized in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"In the third quarter of 2020 ConocoPhillips restructured its reporting segments, moving the Middle East business from the Asia Pacific and Middle East segment to the Europe and North Africa segment.\",\"support\":[{\"source\":\"S1\",\"quote\":\"Effective with the third quarter of 2020, we have restructured our segments to align with changes to our internal organization.\"},{\"source\":\"S1\",\"quote\":\"The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment.\"}]},{\"text\":\"The segments were renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment.\",\"support\":[{\"source\":\"S1\",\"quote\":\"The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment.\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2350,
+  "completion_tokens": 1177,
+  "latency_ms": 5393.367599997873,
+  "attempts": 1
+ }
+}

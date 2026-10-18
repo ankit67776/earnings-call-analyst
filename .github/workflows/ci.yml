@@ -37,6 +37,9 @@ jobs:
       # model change without a fresh live run fails here on the cache miss.
       - name: Claim extraction eval
         run: uv run python -m evals.run --offline --min-precision 0.65 --min-recall 0.55 --min-grounding 0.95
+      # Replays recorded passages, answers and judge verdicts the same way.
+      - name: Cited chat eval
+        run: uv run python -m evals.chat --offline --min-answered 0.9 --min-refusal 0.9 --min-faithful 0.75
 
   frontend:
     runs-on: ubuntu-latest

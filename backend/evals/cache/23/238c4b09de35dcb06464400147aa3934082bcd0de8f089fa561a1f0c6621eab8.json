@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOperating activities\n\nOur principal source of liquidity is cash flow from operations. Our net income and, consequently, our cash provided by operations are impacted by sales volume, seasonal sales patterns, timing of new product introductions, profit margins and price changes. Sales are typically higher during the third and fourth quarters of the year due to seasonal and holiday-related sales patterns. Generally, working capital needs peak during the summer months. We meet these needs primarily with cash on hand, bank borrowings or the issuance of commercial paper.\n\nCash provided by operating activities in 2020 decreased $64.3 million relative to 2019. This decrease was driven by the following factors:\n\n•Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) consumed cash of $166 million in 2020 and generated cash of $60 million in 2019. This $226 million fluctuation was mainly driven by a higher year-over-year build up of U.S. inventories to satisfy product requirements and maintain sufficient levels to accommodate customer requirements, as well as an increase in cash used by accounts receivable due to an increase in sales of U.S. seasonal products.\n\n•The decrease in cash provided by operating activities was partially offset by the following net cash inflows:\n\n◦Net income adjusted for non-cash charges to operations (including depreciation, amortization, stock-based compensation, deferred income taxes, long-lived and intangible asset charges, write-down of equity investments and other charges) resulted in $207 million of higher cash flow in 2020 relative to 2019.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCash Flow Summary\n\nThe following table is derived from our Consolidated Statements of Cash Flows:\n\nIn millions of dollars | 2020 | 2019 | 2018\nNet cash provided by (used in):\nOperating activities | $1,699.6 | $1,763.9 | $1,599.9\nInvesting activities | (531.3) | (780.5) | (1,502.9)\nFinancing activities | (499.2) | (1,081.4) | 116.1\nEffect of exchange rate changes on cash and cash equivalents | (7.0) | 3.3 | (5.3)\nLess: Cash classified as assets held for sale (see Note 8) | (11.4) | — | —\nIncrease (decrease) in cash and cash equivalents | $650.7 | $(94.7) | $207.8\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Operating activities\n◦Net income adjusted for non-cash charges to operations (including depreciation, amortization, stock-based compensation, deferred income taxes, long-lived and intangible asset charges, write-down of equity investments and other charges) resulted in $2 million of lower cash flow in 2019 relative to 2018.\n\nPension and Post-Retirement Activity. We recorded net periodic benefit costs of $34.5 million, $41.4 million and $42.1 million in 2020, 2019 and 2018, respectively, relating to our benefit plans (including our defined benefit and other post retirement plans). The main drivers of fluctuations in expense from year to year are assumptions in formulating our long-term estimates, including discount rates used to value plan obligations, expected returns on plan assets, the service and interest costs and the amortization of actuarial gains and losses.\n\nThe funded status of our qualified defined benefit pension plans is dependent upon many factors, including returns on invested assets, the level of market interest rates and the level of funding. We contribute cash to our plans at our discretion, subject to applicable regulations and minimum contribution requirements. Cash contributions to our pension and post retirement plans totaled $11.7 million, $20.1 million and $25.9 million in 2020, 2019 and 2018, respectively.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nFinancing activities\n\nOur cash flow from financing activities generally relates to the use of cash for purchases of our Common Stock and payment of dividends, offset by net borrowing activity and proceeds from the exercise of stock options. Financing activities in 2020 used cash by $499.2 million, compared to cash used of $1,081.4 million in 2019. We generated cash of $116.1 million for financing activities in 2018, primarily to fund acquisition activity.\n\nThe majority of our financing activity was attributed to the following:\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financing activities\n•Short-term borrowings, net. In addition to utilizing cash on hand, we use short-term borrowings (commercial paper and bank borrowings) to fund seasonal working capital requirements and ongoing business needs. In 2020, we generated cash flow of $41.8 million due to an increase in short-term foreign bank borrowings. In 2019, we used $1.2 billion to reduce short-term commercial paper borrowings and short-term foreign borrowings. We utilized the proceeds from the issuance of long-term debt in October 2019 to repay outstanding commercial paper used to fund the ONE Brands acquisition. In 2018, we generated cash flow of $645.8 million through the issuance of short-term commercial paper, partially offset by a reduction in short-term foreign bank borrowings. We utilized the proceeds from the issuance of commercial paper to fund the Amplify acquisition and repay Amplify's outstanding debt owed under its existing credit agreement. A portion of the commercial paper borrowings used to fund the Amplify acquisition were subsequently refinanced with the proceeds of new notes issued during the second quarter of 2018, as discussed below.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financial Condition\nIn addition to the revolving credit facility, we maintain lines of credit in various currencies with domestic and international commercial banks. As of December 31, 2020, we had available capacity of $193 million under these lines of credit.\n\nFurthermore, we have a current shelf registration statement filed with the SEC that allows for the issuance of an indeterminate amount of debt securities. Proceeds from the debt issuances and any other offerings under the current registration statement may be used for general corporate requirements, including reducing existing borrowings, financing capital additions and funding contributions to our pension plans, future business acquisitions and working capital requirements.\n\nOur ability to obtain debt financing at comparable risk-based interest rates is partly a function of our existing cash-flow-to-debt and debt-to-capitalization levels as well as our current credit standing.\n\nWe believe that our existing sources of liquidity are adequate to meet anticipated funding needs at comparable risk-based interest rates for the foreseeable future. Acquisition spending and/or share repurchases could potentially increase our debt. Operating cash flow and access to capital markets are expected to satisfy our various cash flow requirements, including acquisitions and capital expenditures.\n\nQuestion: Why did operating cash flow decline in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": true,\n  \"sentences\": [\n    {\n      \"text\": \"Operating cash flow declined in 2020, with cash provided by operating activities decreasing $64.3 million relative to 2019.\",\n      \"support\": [\n        {\n          \"source\": \"S1\",\n          \"quote\": \"Cash provided by operating activities in 2020 decreased $64.3 million relative to 2019.\"\n        }\n      ]\n    },\n    {\n      \"text\": \"The decline was driven primarily by net working capital consuming cash, chiefly due to a higher build‑up of U.S. inventories and increased cash use by accounts receivable from higher sales of U.S. seasonal products.\",\n      \"support\": [\n        {\n          \"source\": \"S1\",\n          \"quote\": \"Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) consumed cash of $166 million in 2020 and generated cash of $60 million in 2019.\"\n        },\n        {\n          \"source\": \"S1\",\n          \"quote\": \"This $226 million fluctuation was mainly driven by a higher year-over-year build up of U.S. inventories to satisfy product requirements and maintain sufficient levels to accommodate customer requirements, as well as an increase in cash used by accounts receivable due to an increase in sales of U.S. seasonal products.\"\n        }\n      ]\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2114,
+  "completion_tokens": 1116,
+  "latency_ms": 2886.5761999986717,
+  "attempts": 2
+ }
+}

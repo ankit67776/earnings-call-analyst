@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What typically happens to demand and pricing in a semiconductor downturn?\n\nAnswer sentences:\n1. In a semiconductor downturn, product demand typically diminishes and average selling prices erode.\n   cites [S1]: \"Downturns in the semiconductor industry have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices.\"\n   cites [S2]: \"These downturns have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices.\"\n\nCited sources:\n\n[S1] Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nCyclical Nature of the Semiconductor Industry\n\nThe semiconductor industry is highly cyclical and is characterized by constant and rapid technological change, rapid product obsolescence, price erosion, evolving standards, short product life cycles, and wide fluctuations in product supply and demand. Downturns in the semiconductor industry have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices. Any prolonged or significant downturn in the semiconductor industry generally could adversely affect our business and reduce demand for our products and otherwise harm our business, financial condition and results of operations.\n\n[S2] Item 1A. Risk Factors\nWe are subject to the cyclical nature of the semiconductor industry.\n\nThe semiconductor industry is highly cyclical and is characterized by constant and rapid technological change, rapid product obsolescence, price erosion, evolving standards, short product life cycles, and wide fluctuations in product supply and demand. The industry experienced a significant downturn during past global recessions. These downturns have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices. Any downturns in the semiconductor industry could harm our business, financial condition, and results of operations. Furthermore, any significant upturn in the semiconductor industry could result in increased competition for access to third-party foundry and assembly capacity. We are dependent on the availability of this capacity to manufacture and assemble our products and we can provide no assurance that adequate capacity will be available to us in the future."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The sentence states that demand diminishes and prices erode during a downturn. Both cited sources explicitly list 'diminished product demand' and 'accelerated erosion of average selling prices' as characteristics of semiconductor downturns, fully supporting the claim.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 582,
+  "completion_tokens": 73,
+  "latency_ms": 348.3961999991152,
+  "attempts": 1
+ }
+}

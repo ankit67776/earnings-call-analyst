@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1A. RISK FACTORS\nMarket demand for new and existing products could decline.\n\nWe operate in highly competitive markets and rely on continued demand for our products. To generate revenues and profits, we must sell products that appeal to our customers and to consumers. Our continued success is impacted by many factors, including the following:\n\n•Effective retail execution;\n\n•Appropriate advertising campaigns and marketing programs;\n\n•Our ability to secure adequate shelf space at retail locations;\n\n•Our ability to drive sustainable innovation and maintain a strong pipeline of new products in the confectionery and broader snacking categories;\n\n•Changes in product category consumption;\n\n•Our response to consumer demographics and trends, including but not limited to, trends relating to store trips and the impact of the growing digital commerce channel; and\n\n•Consumer health concerns, including obesity and the consumption of certain ingredients.\n\nThere continues to be competitive product and pricing pressures in the markets where we operate, as well as challenges in maintaining profit margins. We must maintain mutually beneficial relationships with our key customers, including retailers and distributors, to compete effectively. Our largest customer, McLane Company, Inc., accounted for approximately 31% of our total net sales in 2020. McLane Company, Inc. is one of the largest wholesale distributors in the United States to convenience stores, drug stores, wholesale clubs and mass merchandisers, including Wal-Mart Stores, Inc.\n\n[S2] 10-K: Item 1. BUSINESS\nPrincipal Customers and Marketing Strategy\n\nOur customers are mainly wholesale distributors, chain grocery stores, mass merchandisers, chain drug stores, vending companies, wholesale clubs, convenience stores, dollar stores, concessionaires and department stores. The majority of our customers, with the exception of wholesale distributors, resell our products to end-consumers in retail outlets in North America and other locations worldwide.\n\nIn 2020, approximately 31% of our consolidated net sales were made to McLane Company, Inc., one of the largest wholesale distributors in the United States (\"U.S.\") to convenience stores, drug stores, wholesale clubs and mass merchandisers and the primary distributor of our products to Wal-Mart Stores, Inc.\n\nThe foundation of our marketing strategy is our strong brand equities, product innovation and the consistently superior quality of our products. We devote considerable resources to the identification, development, testing, manufacturing and marketing of new products. We utilize a variety of promotional programs directed towards our customers, as well as advertising and promotional programs for consumers of our products, to stimulate sales of certain products at various times throughout the year.\n\nIn conjunction with our sales and marketing efforts, our efficient product distribution network helps us maintain sales growth and provide superior customer service by facilitating the shipment of our products from our manufacturing plants to strategically located distribution centers. We primarily use common carriers to deliver our products from these distribution points to our customers.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Investing activities\n•Proceeds from sales of property, plant and equipment and other long-lived assets. During 2020, proceeds from the sale of property, plant and equipment and other long-lived assets was minimal. During 2019, we generated $28.1 million of proceeds from the sale of property, plant and equipment and other long-lived assets. This included the sale of select Pennsylvania facilities and land for sales proceeds of approximately $27.6 million, resulting in a gain on the sale of $11.3 million. During 2018, we generated $49.8 million of proceeds from the sale of property, plant and equipment and other long-lived assets. This included sales of select China facilities that were taken out of operation in connection with the Operational Optimization Program. Proceeds from the sale of these facilities totaled $27.5 million, resulting in a gain of $6.6 million. Additionally, we sold licensing rights for a non-core trademark relating to a brand marketed outside of the U.S. for $13.0 million, resulting in a gain of $2.7 million.\n\n•Proceeds from the sales of businesses. In 2020 and 2019, we had minimal or no proceeds from the sales of businesses. In 2018, we sold the Tyrrells and SGM businesses. Collectively, the proceeds from the sales of these businesses, net of cash divested, totaled approximately $167.0 million.\n\n•Business acquisitions. In 2020, we had no acquisition activity. In 2019, we spent $402.2 million to acquire ONE Brands. In 2018, we spent $915 million to acquire Amplify and $423 million to acquire Pirate Brands.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Net Sales\nFor the full year 2020, our total U.S. retail takeaway increased 5.3% in the expanded multi-outlet combined plus convenience store channels (IRI MULO + C-Stores), which includes candy, mint, gum, salty snacks, meat snacks and grocery items. Our U.S. candy, mint and gum (\"CMG\") consumer takeaway increased 4.9%, resulting in a CMG market share gain of approximately 159 basis points.\n\nThe CMG consumer takeaway and market share information reflect measured channels of distribution accounting for approximately 90% of our U.S. confectionery retail business. These channels of distribution primarily include food, drug, mass merchandisers, and convenience store channels, plus Wal-Mart Stores, Inc., partial dollar, club and military channels. These metrics are based on measured market scanned purchases as reported by Information Resources, Incorporated (\"IRI\"), the Company's market insights and analytics provider, and provide a means to assess our retail takeaway and market position relative to the overall category.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financial Condition\nWe maintain debt levels we consider prudent based on our cash flow, interest coverage ratio and percentage of debt to capital. We use debt financing to lower our overall cost of capital which increases our return on stockholders’ equity. Our total debt was $4.6 billion at December 31, 2020 and $4.3 billion at December 31, 2019. Our total debt increased in 2020 mainly due to our $1 billion 2020 Notes issuance in May 2020, partially offset by the repayment of $350 million Notes that matured in May 2020 and $350 million Notes that matured in December 2020.\n\nAs a source of short-term financing, we maintain a $1.5 billion unsecured revolving credit facility with the option to increase borrowings by an additional $500 million with the consent of the lenders. As of December 31, 2020, the termination date of this agreement is July 2, 2024, however, we may extend the termination date for up to two additional one-year periods upon notice to the administrative agent under the facility. We may use these funds for general corporate purposes, including commercial paper backstop and business acquisitions. As of December 31, 2020, we had $1.5 billion of available capacity under the agreement. The unsecured revolving credit agreement contains certain financial and other covenants, customary representations, warranties and events of default. We were in compliance with all covenants as of December 31, 2020.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › SEGMENT RESULTS\nFor the years ended December 31, | 2020 | 2019 | 2018\nIn millions of dollars\nNet Sales:\nNorth America | $7,416.7 | $7,081.8 | $6,901.6\nInternational and Other | 733.0 | 904.5 | 889.5\nTotal | $8,149.7 | $7,986.3 | $7,791.1\nSegment Income:\nNorth America | $2,321.8 | $2,125.9 | $2,020.1\nInternational and Other | 28.6 | 95.7 | 73.8\nTotal segment income | 2,350.4 | 2,221.6 | 2,093.9\nUnallocated corporate expense (1) | 520.7 | 532.6 | 528.9\nUnallocated mark-to-market losses (gains) on commodity derivatives (2) | 6.4 | (28.6) | (168.3)\nLong-lived and intangible asset impairment charges | 9.1 | 112.5 | 57.8\nCosts associated with business realignment activities | 31.5 | 9.2 | 51.8\nOperating profit | 1,782.7 | 1,595.9 | 1,623.7\nInterest expense, net | 149.4 | 144.1 | 138.8\nOther (income) expense, net | 138.3 | 71.0 | 74.8\nIncome before income taxes | $1,495.0 | $1,380.8 | $1,410.1\n\n(1)Includes centrally-managed (a) corporate functional costs relating to legal, treasury, finance and human resources, (b) expenses associated with the oversight and administration of our global operations, including warehousing, distribution and manufacturing, information systems and global shared services, (c) non-cash stock-based compensation expense, (d) acquisition-related costs, and (e) other gains or losses that are not integral to segment performance.\n\n(2)Net losses (gains) on mark-to-market valuation of commodity derivative positions recognized in unallocated derivative losses (gains). See Note 13 to the Consolidated Financial Statements.\n\nQuestion: What were McLane Company's total revenues in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": false,\n  \"sentences\": []\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2639,
+  "completion_tokens": 156,
+  "latency_ms": 877.5978000012401,
+  "attempts": 1
+ }
+}

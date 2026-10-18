@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: Who helps management estimate fair values of assets picked up in acquisitions?\n\nAnswer sentences:\n1. A third‑party valuation specialist assists management in estimating the fair values of assets acquired in business acquisitions.\n   cites [S1]: \"we normally obtain the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets.\"\n\nCited sources:\n\n[S1] Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nBusiness Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\n\nWe use the acquisition method of accounting for business acquisitions. Under the acquisition method, the results of operations of the acquired business have been included in the consolidated financial statements since the respective dates of the acquisitions. The assets acquired and liabilities assumed are recorded at their respective estimated fair values at the date of the acquisition. Any excess of the purchase price over the estimated fair values of the identifiable net assets acquired is recorded as goodwill. Significant judgment is often required in estimating the fair value of assets acquired, particularly intangible assets. As a result, we normally obtain the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets. The fair value estimates are based on available historical information and on expectations and assumptions about the future, considering the perspective of marketplace participants. While management believes those expectations and assumptions are reasonable, they are inherently uncertain. Unanticipated market or macroeconomic events and circumstances may occur, which could affect the accuracy or validity of the estimates and assumptions.\n\nGoodwill and indefinite-lived intangible assets are not amortized, but instead, are evaluated for impairment annually or more often if indicators of a potential impairment are present. Our annual impairment tests are conducted at the beginning of the fourth quarter."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The source states that the company obtains the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets in the context of business acquisitions, which directly supports the claim that a specialist assists management in this process.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 503,
+  "completion_tokens": 70,
+  "latency_ms": 356.93150000224705,
+  "attempts": 1
+ }
+}

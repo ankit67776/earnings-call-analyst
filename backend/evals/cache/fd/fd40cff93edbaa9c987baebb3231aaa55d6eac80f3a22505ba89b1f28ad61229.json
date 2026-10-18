@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: When did management last raise guidance before reporting Q3, and how did results compare?\n\nAnswer sentences:\n1. Management raised its Q3 revenue guidance at the end of August, and the quarter’s actual revenue of $32.7 million exceeded the high end of that revised guidance.\n   cites [S2]: \"at the end of August, we increased our revenue guidance for the quarter by more than 10%\"\n   cites [S2]: \"actual results exceeded the high end of that revised guidance\"\n\nCited sources:\n\n[S2] Q3 2020 earnings call, 8:45–10:30\nArt Chadwick: Thanks, Rajesh, and good afternoon, everyone. We are very pleased to be holding our fourth financial results conference call as a public company. And during my review today, I'll discuss third quarter 2020 financial results, and we'll provide guidance for the fourth quarter. I'll focus my discussion on non-GAAP financial results and refer you to today's press release for a detailed description of our GAAP results, as well as reconciliation of GAAP to non-GAAP results, which exclude stock-based compensation and related payroll tax expense. So, first of all, Q3 was really an excellent quarter for us. We had strong revenue growth, significant gross margin expansion, and very positive non-GAAP net income. As you know, at the end of August, we increased our revenue guidance for the quarter by more than 10%, and I'm happy to report that actual results exceeded the high end of that revised guidance. Revenue for the quarter was $32.7 million, up 52% sequentially, and up 29% over the same quarter a year ago. To provide some color on end markets, I'll report sales by market group as I have in the past. The first is mobile, IoT, and consumer, which consists primarily of sales into mobile phones, wearable devices, and consumer products. This was the segment most impacted by the global slowdown in Q2, but it came back strong in Q3. Sales were $20.9 million, or 64% of total sales, up 105% sequentially and up 19% over the same quarter a year ago."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The cited text confirms the guidance increase at the end of August and that actual results exceeded the high end of the revised guidance, but it does not state the specific revenue figure of $32.7 million, which is added in the sentence.\", \"verdict\": \"partial\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 617,
+  "completion_tokens": 73,
+  "latency_ms": 361.1440999993647,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7A. QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK\nFinancial Instrument Market Risk\n\nWe and certain of our subsidiaries hold and issue derivative contracts and financial instruments that expose our cash flows or earnings to changes in commodity prices, foreign currency exchange rates or interest rates. We may use financial and commodity-based derivative contracts to manage the risks produced by changes in the prices of natural gas, crude oil and related products; fluctuations in interest rates and foreign currency exchange rates; or to capture market opportunities.\n\nOur use of derivative instruments is governed by an “Authority Limitations” document approved by our Board of Directors that prohibits the use of highly leveraged derivatives or derivative instruments without sufficient liquidity. The Authority Limitations document also establishes the Value at Risk (VaR) limits for the company, and compliance with these limits is monitored daily. The Executive Vice President and Chief Financial Officer, who reports to the Chief Executive Officer, monitors commodity price risk and risks resulting from foreign currency exchange rates and interest rates. The Commercial organization manages our commercial marketing, optimizes our commodity flows and positions, and monitors risks.\n\nCommodity Price Risk Our Commercial organization uses futures, forwards, swaps and options in various markets to accomplish the following objectives:\n\n● Meet customer needs. Consistent with our policy to generally remain exposed to market prices, we use swap contracts to convert fixed-price sales contracts, which are often requested by natural gas consumers, to floating market prices.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● Portfolio choices: Our corporate authorization process requires all qualifying projects to include a GHG price in their project approval economics. Different GHG prices are used depending on the region or jurisdiction. Projects in jurisdictions with existing GHG pricing regimes incorporate the existing GHG price and forecast into their economics. Projects where no existing GHG pricing regime exists utilize a scenario forecast from our internally consistent World Energy Model. In this way, both existing and emerging regulatory requirements are considered in our decision-making. The company does not use an estimated market cost of GHG emissions when assessing reserves in jurisdictions without existing GHG regulations.\n\n● External engagement: Our external engagement aims to differentiate ConocoPhillips within the oil and gas sector with our approach to managing climate-related risk. We are a Founding Member of the Climate Leadership Council (CLC), an international policy institute founded in collaboration with business and environmental interests to develop a carbon dividend plan. Participation in the CLC provides another opportunity for ongoing dialogue about carbon pricing and framing the issues in alignment with our public policy principles. We also belong to and fund Americans For Carbon Dividends, the education and advocacy branch of the CLC.\n\n[S3] 10-K: Item 1. BUSINESS AND PROPERTIES\nMarketing Activities\n\nOur Commercial organization manages our worldwide commodity portfolio, which mainly includes natural gas, crude oil, bitumen, NGLs and LNG. Marketing activities are performed through offices in the U.S., Canada, Europe and Asia. In marketing our production, we attempt to minimize flow disruptions, maximize realized prices and manage credit-risk exposure. Commodity sales are generally made at prevailing market prices at the time of sale. We also purchase and sell third-party volumes to better position the company to satisfy customer demand while fully utilizing transportation and storage capacity.\n\nNatural Gas Our natural gas production, along with third-party purchased gas, is primarily marketed in the U.S., Canada, Europe and Asia. Our natural gas is sold to a diverse client portfolio which includes local distribution companies; gas and power utilities; large industrials; independent, integrated or state-owned oil and gas companies; as well as marketing companies. To reduce our market exposure and credit risk, we also transport natural gas via firm and interruptible transportation agreements to major market hubs.\n\nCrude Oil, Bitumen and Natural Gas Liquids Our crude oil, bitumen and NGL revenues are derived from production in the U.S., Canada, Australia, Asia, Africa and Europe. These commodities are primarily sold under contracts with prices based on market indices, adjusted for location, quality and transportation.\n\nLNG LNG marketing efforts are focused on equity LNG production facilities located in Australia and Qatar. LNG is primarily sold under long-term contracts with prices based on market indices.\n\n[S4] 10-K: Item 1A. RISK FACTORS\nRisks Related to Our Industry\n\nWe have been negatively affected and may continue to be negatively affected by the prolonged drop in commodity prices that began in early 2020.\n\nThe oil and gas business is fundamentally a commodity business and our revenues, operating results and future rate of growth are highly dependent on the prices we receive for crude oil, bitumen, natural gas, NGLs and LNG. Such prices can fluctuate widely depending upon global events or conditions that affect supply and demand, most of which are out of our control. Since early 2020, there has been a precipitous decrease in demand for oil globally, largely caused by the dramatic decrease in travel and commerce resulting from the COVID-19 pandemic. See Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations, for additional information on commodity prices and how we have been impacted. There is no assurance of when or if commodity prices will return to pre-COVID-19 levels, and if they do return to pre-COVID levels, how long they will remain at those levels. The speed and extent of any recovery remains uncertain and is subject to various risk factors, including the duration, impact and actions taken to stem the proliferation of the COVID-19 pandemic, the extent to which those nations party to the OPEC plus production agreement decide to increase production of crude oil, bitumen, natural gas and NGLs and other factors described herein.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › CAUTIONARY STATEMENT FOR THE PURPOSES OF THE “SAFE HARBOR” PROVISIONS OF THE PRIVATE SECURITIES LITIGATION REFORM ACT OF 1995\n● Potential disruption or interruption of our operations due to accidents, extraordinary weather events, civil unrest, political events, war, terrorism, cyber attacks, and information technology failures, constraints or disruptions.\n\n● Changes in international monetary conditions and foreign currency exchange rate fluctuations.\n\n● Changes in international trade relationships, including the imposition of trade restrictions or tariffs relating to crude oil, bitumen, natural gas, LNG, NGLs and any materials or products (such as aluminum and steel) used in the operation of our business.\n\n● Substantial investment in and development use of, competing or alternative energy sources, including as a result of existing or future environmental rules and regulations.\n\n● Liability for remedial actions, including removal and reclamation obligations, under existing and future environmental regulations and litigation.\n\n● Significant operational or investment changes imposed by existing or future environmental statutes and regulations, including international agreements and national or regional legislation and regulatory measures to limit or reduce GHG emissions.\n\n● Liability resulting from litigation, including the potential for litigation related to the transaction with Concho, or our failure to comply with applicable laws and regulations.\n\n● General domestic and international economic and political developments, including armed hostilities; expropriation of assets; changes in governmental policies relating to crude oil, bitumen, natural gas, LNG and NGLs pricing; regulation or taxation; and other political, economic or diplomatic developments.\n\n● Volatility in the commodity futures markets.\n\n● Changes in tax and other laws, regulations (including alternative energy mandates), or royalty rules applicable to our business.\n\n[S6] 10-K: Item 7A. QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK\nYear -End 2020\n\n2021 | $ | 133 | 8.47 | % | $ | 300 | 0.22 | %\n2022 | 346 | 2.53 | 500 | 1.12\n2023 | 110 | 7.03 | - | -\n2024 | 459 | 3.51 | - | -\n2025 | 368 | 5.33 | - | -\nRemaining years | 11,793 | 6.28 | 283 | 0.11\nTotal | $13,209 | $1,083\nFair value | $18,023 | $1,083\n\nYear -End 2019\n\n2020 | $ | - | - | % | $ | - | - | %\n2021 | 140 | 6.24 | - | -\n2022 | 343 | 2.54 | 500 | 2.81\n2023 | 106 | 7.20 | - | -\n2024 | 456 | 3.52 | - | -\nRemaining years | 12,143 | 6.25 | 283 | 1.65\nTotal | $13,188 | $783\nFair value | $17,325 | $783\n\nForeign Currency Exchange Risk We have foreign currency exchange rate risk resulting from international operations. We do not comprehensively hedge the exposure to currency exchange rate changes although we may choose to selectively hedge certain foreign currency exchange rate exposures, such as firm commitments for capital projects or local currency tax payments, dividends and cash returns from net investments in foreign affiliates to be remitted within the coming year, and investments in equity securities.\n\nQuestion: Who is responsible for monitoring commodity price, currency and interest rate risk?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": true,\n  \"sentences\": [\n    {\n      \"text\": \"The Executive Vice President and Chief Financial Officer monitors commodity price risk as well as foreign currency exchange and interest rate risk.\",\n      \"support\": [\n        {\n          \"quote\": \"The Executive Vice President and Chief Financial Officer, who reports to the Chief Executive Officer, monitors commodity price risk and risks resulting from foreign currency exchange rates and interest rates.\",\n          \"source\": \"S1\"\n        }\n      ]\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2521,
+  "completion_tokens": 347,
+  "latency_ms": 1531.1457999996492,
+  "attempts": 1
+ }
+}

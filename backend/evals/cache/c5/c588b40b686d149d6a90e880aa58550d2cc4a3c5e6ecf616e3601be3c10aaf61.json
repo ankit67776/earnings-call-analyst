@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What boosted operating cash flow in 2019?\n\nAnswer sentences:\n1. Operating cash flow in 2019 was boosted, increasing $164.0 million versus 2018.\n   cites [S1]: \"Cash provided by operating activities in 2019 increased $164.0 million relative to 2018.\"\n2. The increase was driven by net working capital generating $60 million of cash and prepaid expenses and other current assets generating $14 million of cash.\n   cites [S1]: \"Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) generated cash of $60 million in 2019 and consumed cash of $104 million in 2018.\"\n   cites [S1]: \"Prepaid expenses and other current assets generated cash of $14 million in 2019, compared to a use of cash of $40 million in 2018.\"\n\nCited sources:\n\n[S1] Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Operating activities\nCash provided by operating activities in 2019 increased $164.0 million relative to 2018. This increase was driven by the following factors:\n\n•Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) generated cash of $60 million in 2019 and consumed cash of $104 million in 2018. This $164 million fluctuation was mainly driven by higher cash receipts prior to year-end 2019, the timing of vendor and supplier payments, as well as higher accrued incentive compensation related to annual performance that was paid in the first quarter of 2020.\n\n•Prepaid expenses and other current assets generated cash of $14 million in 2019, compared to a use of cash of $40 million in 2018. This $54 million fluctuation was mainly driven by the timing of payments on commodity futures. In addition, in 2019, the volume of commodity futures held, which require margin deposits, was lower compared to 2018. We utilize commodity futures contracts to economically manage the risk of future price fluctuations associated with our purchase of raw materials.\n\n•The increase in cash provided by operating activities was partially offset by the following net cash outflows:\n\n◦Income taxes used cash of $9 million in 2019, compared to cash generated of $76 million in 2018. This $85 million fluctuation was mainly due to the variance in actual tax expense for 2019 relative to the timing of quarterly estimated tax payments, which resulted in a lower taxes payable position at the end of 2019 compared to 2018."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The source explicitly states that cash provided by operating activities increased by $164.0 million relative to 2018, which directly supports the claim that operating cash flow was boosted by that amount.\", \"verdict\": \"supported\"}, {\"n\": 2, \"reason\": \"The source confirms that net working capital generated $60 million and prepaid expenses generated $14 million in 2019, and lists these as factors driving the increase. However, the sentence asserts these were the drivers (implying they were the primary or sole causes), whereas the source notes the increase was 'partially offset' by other outflows (like income taxes) and lists these as 'the following factors' without explicitly stating they were the sole or primary drivers of the net increase\", \"verdict\": \"partial\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 771,
+  "completion_tokens": 185,
+  "latency_ms": 575.1215999989654,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 23:16–23:55\nDavid Driscoll: Michelle, a bigger picture question. Hershey took pricing in most of the portfolio outside of seasonal candies in 2018 and then in 2019. Given the negative impacts to Halloween for the entire category, would you agree that now is probably not the time for seasonal price increase actions? Maybe this gets delayed to 2022? or sometime later until we get a normal consumer environment. Essentially, I'm just asking you to assess your ability to pass through cost increases through pricing actions. It's a weird environment, and I don't know how it's altered that calculus. Thank you.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOVERVIEW\n\nHershey is a global confectionery leader known for bringing goodness to the world through chocolate, sweets, mints, gum and other great tasting snacks. We are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We market, sell and distribute our products under more than 90 brand names in approximately 85 countries worldwide.\n\nOur principal product offerings include chocolate and non-chocolate confectionery products; gum and mint refreshment products; pantry items, such as baking ingredients, toppings and beverages; and snack items such as spreads, meat snacks, bars and snack bites and mixes, popcorn and protein bars and cookies.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › CONSOLIDATED RESULTS OF OPERATIONS\nNet income attributable to The Hershey Company | $1,278.7 | $1,149.7 | $1,177.7 | 11.2% | (2.4)%\nNet income per share—diluted | $6.11 | $5.46 | $5.58 | 11.9% | (2.2)%\nNote: Percentage changes may not compute directly as shown due to rounding of amounts presented above.\n\n[S4] 10-K: Item 1. BUSINESS\nThe Hershey Company was incorporated under the laws of the State of Delaware on October 24, 1927 as a successor to a business founded in 1894 by Milton S. Hershey. In this report, the terms “Hershey,” “Company,” “we,” “us” or “our” mean The Hershey Company and its wholly-owned subsidiaries and entities in which it has a controlling financial interest, unless the context indicates otherwise.\n\nHershey is a global confectionery leader known for bringing goodness to the world through chocolate, sweets, mints, gum and other great tasting snacks. We are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We market, sell and distribute our products under more than 90 brand names in approximately 85 countries worldwide.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nThis Management's Discussion and Analysis (“MD&A”) is intended to provide an understanding of Hershey's financial condition, results of operations and cash flows by focusing on changes in certain key measures from year to year. The MD&A should be read in conjunction with our Consolidated Financial Statements and accompanying Notes included in Item 8 of this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed elsewhere in this Annual Report on Form 10-K, particularly in Item 1A. “Risk Factors.”\n\nThe MD&A is organized in the following sections:\n\n•Business Model and Growth Strategy\n\n•Overview\n\n•Trends Affecting Our Business\n\n•Consolidated Results of Operations\n\n•Segment Results\n\n•Liquidity and Capital Resources\n\n•Critical Accounting Policies and Estimates\n\n[S6] Earnings call: Q3 2020 earnings call, 35:56–36:25\nMichael Lavery: Okay, thanks. And I just want to follow up on S'mores. I thought that your data analysis and insight there to push that the way that you did was interesting. As you're seeing cases rise again now, are you replicating that? Are you seeing similar results? Is there a s'mores surge we should expect? And would it be right to assume that those Hershey milk chocolate bars are probably some of the highest margin ones that you have?\n\nQuestion: Is Hershey stock a buy heading into the holiday season?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1563,
+  "completion_tokens": 166,
+  "latency_ms": 856.6333000017039,
+  "attempts": 1
+ }
+}

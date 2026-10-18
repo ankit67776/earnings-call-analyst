@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nNet Income attributable to The Hershey Company and Earnings Per Share-diluted\n\n2020 compared with 2019\n\nNet income increased $129.0 million, or 11.2%, while EPS-diluted increased $0.65, or 11.9%, in 2020 compared with 2019. The increase in both net income and EPS-diluted was driven primarily by higher gross profit, lower SM&A, lower impairment charges, and lower income taxes in 2020, partially offset by higher other income and expenses, higher business realignment costs, and higher interest expense. Our 2020 EPS-diluted also benefited from lower weighted-average shares outstanding as a result of share repurchases pursuant to our Board-approved repurchase programs.\n\n2019 compared with 2018\n\nNet income decreased $27.9 million, or 2.4%, while EPS-diluted decreased $0.12, or 2.2%, in 2019 compared with 2018. The decrease in both net income and EPS-diluted was driven primarily by higher impairment charges and SM&A in 2019, partially offset by higher gross profit, lower business realignment costs and lower income taxes. Our 2019 EPS-diluted also benefited from lower weighted-average shares outstanding as a result of share repurchases pursuant to our Board-approved repurchase programs.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\nWe also have intangible assets, consisting primarily of certain trademarks, customer-related intangible assets and patents obtained through business acquisitions, that are expected to have determinable useful lives. The costs of finite-lived intangible assets are amortized to expense over their estimated lives. Our estimates of the useful lives of finite-lived intangible assets consider judgments regarding the future effects of obsolescence, demand, competition and other economic factors. We conduct impairment tests when events or changes in circumstances indicate that the carrying value of these finite-lived assets may not be recoverable. Undiscounted cash flow analyses are used to determine if an impairment exists. If an impairment is determined to exist, the loss is calculated based on the estimated fair value of the assets.\n\nResults of Impairment Tests\n\nAt December 31, 2020, the net book value of our goodwill totaled $1,988.2 million. As it relates to our 2020 annual testing performed at the beginning of the fourth quarter, we tested one reporting unit using a quantitative assessment. We tested our remaining reporting units using a qualitative assessment and determined that no quantitative testing was deemed necessary. Based on our testing, all of our reporting units had an excess fair value well over the their respective carrying values. There were no other events or circumstances that would indicate that impairment may exist. We had no goodwill impairment charges in 2020, 2019 or 2018.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\nIn 2019, sales and operating performance associated with our Krave business were below expectations. In the fourth quarter of 2019, as part of a strategic review initiated by our leadership team, we updated our strategic forecast which projected underperformance related to the Krave business primarily due to mainstream brands driving category volume and an increase in the overall competitive landscape. We deemed this to be a triggering event requiring us to test our Krave long-lived asset group for impairment. Based on our assessment, we determined that the carrying value was not recoverable and calculated an impairment loss as the excess of the asset group's carrying value over its fair value. Therefore, as a result of this testing, during the fourth quarter of 2019, we recorded an impairment charge totaling $100.1 million to write down the long-lived asset group, which predominantly consisted of customer relationship and trademark intangible assets.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nLong-Lived and Intangible Asset Impairment Charges\n\nWe recorded the following impairment charges:\n\nFor the year ended December 31, | 2020 | 2019 | 2018\nIn millions of dollars\nAdjustment to disposal group (1) | $6.2 | $2.7 | $57.7\nOther asset write-down (2) | 2.9 | — | —\nCustomer relationship and trademark intangible assets (3) | — | 100.1 | —\nOther long-lived assets not held for sale (4) | — | 9.7 | —\nLong-lived and intangible asset impairment charges | $9.1 | $112.5 | $57.7\n\n[S5] 10-K: Item 1A. RISK FACTORS › Our financial results may be adversely impacted by the failure to successfully execute or integrate acquisitions, divestitures and joint ventures.\nIn 2020, we successfully completed the divestitures of Krave and the Scharffen Berger and Dagoba brands as we better prioritize resources against assets and brands that fit our business model and scale capabilities. Additionally, over the last several years, we have continued to invest in our snacks portfolio, specifically with the acquisitions of ONE Brands, LLC in September 2019, Pirate Brands in October 2018 and Amplify Snack Brands, Inc. in January 2018, respectively. While we believe significant operating synergies can be obtained in connection with these acquisitions, achievement of these synergies will be driven by our ability to successfully leverage Hershey's resources, expertise, capability-building, distribution locations and customer base. In addition, these acquisitions are important steps in our journey to expand our breadth in snacking, as they should enable us to bring scale and category management capabilities to a key sub-segment of the warehouse snack aisle. If we are unable to successfully couple Hershey’s scale and expertise in brand building with ONE Brands, Pirate Brands and Amplify's existing operations, it may impact our ability to expand our snacking footprint at our desired pace.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Long-Lived and Intangible Asset Impairment Charges\n(1)In connection with our disposal group classified as held for sale, during 2020 and 2019, we recorded impairment charges to adjust long-lived asset values. The fair value of the disposal group was supported by potential sales prices with third-party buyers. The sale of the LSFC joint venture (disposal group) was completed in January 2021. In 2018, we recorded impairment charges totaling $57.7 million to adjust the long-lived asset values within certain disposal groups, including the Shanghai Golden Monkey (\"SGM\") and Tyrrells businesses, the LSFC joint venture and other assets. These charges represent the excess of the disposal groups' carrying values, including the related currency translation adjustment amounts realized or to be realized upon completion of the sales, over the sales values less costs to sell for the respective businesses. The fair values of the disposal groups were supported by the sales prices paid by third-party buyers or estimated sales prices based on marketing of the disposal group, when the sale has not yet been completed. The sales of SGM and Tyrrells were both completed in July 2018.\n\n(2)In connection with a previous sale, the Company wrote-down certain receivables deemed uncollectible.\n\nQuestion: What triggered the goodwill impairment charge Hershey booked in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2191,
+  "completion_tokens": 188,
+  "latency_ms": 929.4320000008156,
+  "attempts": 1
+ }
+}

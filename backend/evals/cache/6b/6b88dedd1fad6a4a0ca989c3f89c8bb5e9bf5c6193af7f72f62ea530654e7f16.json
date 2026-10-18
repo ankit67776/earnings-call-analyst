@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Significant Changes in Capital\nThe level of absolute production volumes, as well as product and location mix, impacts our cash flows. Full-year production averaged 1,127 MBOED in 2020. Full-year production excluding Libya averaged 1,118 MBOED in 2020. Adjusting for estimated curtailments of approximately 80 MBOED; closed acquisitions and dispositions; and excluding Libya; production for 2020 was 1,176 MBOED. Production in 2021 is expected to be approximately 1.5 MMBOED, reflecting the impact from the Concho acquisition. Future production is subject to numerous uncertainties, including, among others, the volatile crude oil and natural gas price environment, which may impact investment decisions; the effects of price changes on production sharing and variable-royalty contracts; acquisition and disposition of fields; field production decline rates; new technologies; operating efficiencies; timing of startups and major turnarounds; political instability; weather-related disruptions; and the addition of proved reserves through exploratory success and their timely and cost-effective development. While we actively manage these factors, production levels can cause variability in cash flows, although generally this variability has not been as significant as that caused by commodity prices.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCompleted Acquisition of Concho Resources Inc.\n\nOn January 15, 2021, we completed our acquisition of Concho Resources Inc. (Concho), an independent oil and gas exploration and production company with operations across New Mexico and West Texas. The addition of complementary acreage in the Delaware and Midland Basins creates a sizeable Permian presence to augment our leading unconventional positions in the Eagle Ford and Bakken in the Lower 48 and the Montney in Canada.\n\nConsideration for the all-stock transaction was valued at $13.1 billion, in which 1.46 shares of ConocoPhillips common stock was exchanged for each outstanding share of Concho common stock, resulting in the issuance of approximately 286 million shares of ConocoPhillips common stock. We also assumed $3.9 billion in aggregate principal amount of outstanding debt for Concho, which was recorded at fair value of $4.7 billion as of the closing date. The combined companies are expected to capture approximately $750 million of annual cost and capital savings by 2022. For additional information related to this transaction, see Note 25— Acquisition of Concho Resources Inc. in the Notes to Consolidated Financial Statements.\n\n[S3] 10-K: Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nOn January 15, 2021, we completed the acquisition of Concho. This transaction significantly increases our Permian position by adding complementary acreage across the Delaware and Midland basins. The production and acreage figures and the property descriptions below do not reflect this recently closed acquisition. For additional information related to this acquisition, see Note 25—Acquisition of Concho Resources Inc., in the Notes to Consolidated Financial Statements.\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. Organized into the Gulf Coast and Great Plains business units, at year-end 2020 we held 10.1 million net onshore and offshore acres, with a portfolio of low cost of supply, shorter cycle time, resource-rich unconventional plays, and conventional production from legacy assets. Based on 2020 production volumes, the Lower 48 is the company’s largest segment and contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 Crude Oil NGL Natural Gas Total Interest Operator MBD MBD MMCFD MBOED\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Environment\nAt the time of the Concho acquisition announcement in October 2020, we announced planned cost reductions and quantified $350 million of annual expense savings expected to be achieved by 2022. These reductions included approximately $150 million due to streamlining our internal organization to appropriate levels given the current industry environment and recent asset sales; $100 million of G&A and G&G due to a refocused exploration program; and $100 million of redundant G&A costs on a combined basis related to the Concho acquisition. Subsequent to the transaction announcement, we identified $250 million of further cost reductions from the combined companies to be achieved by 2022.\n\no Optimize our portfolio. In January 2021, we completed the acquisition of Concho and significantly increased our unconventional portfolio with years of low cost of supply investments. The addition of complementary acreage in the Delaware and Midland basins creates a sizeable Permian presence to augment our leading unconventional positions in the Eagle Ford and Bakken in the Lower 48. We added to our unconventional Montney position with an asset acquisition that consisted primarily of undeveloped properties directly adjacent to our existing acreage.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOutlook\n\nProduction and Capital In February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion. The plan includes $5.1 billion to sustain current production and $0.4 billion for investment in major projects, primarily in Alaska, in addition to ongoing exploration appraisal activity.\n\nThe operating plan capital budget of $5.5 billion is expected to deliver production from the combined company of approximately 1.5 MMBOED in 2021. This production guidance excludes Libya.\n\nRestructuring As a result of the acquisition of Concho, we commenced a restructuring program in the first quarter of 2021 in association with combining the operations of the two companies. We expect to incur significant non-recurring transaction and acquisition-related costs in 2021 for employee severance payments; incremental pension benefit costs related to the workforce reductions; employee retention costs; employee relocations; fees paid to financial, legal, and accounting advisors; and filing fees. We currently cannot estimate these costs, as well as other unanticipated items, and expect to recognize the majority of these expenses in the first quarter of 2021.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Average Sales Prices\n● Increased liquids and natural gas production from Montney Pad 1 & 2 wells online and partial year production from the Kelt acquisition completed in August of 2020.\n\n● Decreased mandated production curtailments imposed by the Alberta government.\n\nThe production increase was partly offset by:\n\n● Lower bitumen production, primarily due to voluntary curtailments at Surmont in response to the low price environment of 12 MBOED.\n\nQuestion: What did combined company production actually average in 2021 after the Concho acquisition?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2025,
+  "completion_tokens": 208,
+  "latency_ms": 1886.1297000003105,
+  "attempts": 1
+ }
+}

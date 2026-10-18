@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How big is the serviceable addressable market?\n\nReference answer: Around $1.0 to $1.2 billion, mostly oscillators and under $2 billion, within a roughly $8 billion total timing market.\n\nAssistant's answer: According to Rajesh Vashist, the company's SAM is still around a billion to a billion point two. He also noted that SAM is about $1.5 billion out of an $8 billion total TAM."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant correctly identifies the SAM as $1.0 to $1.2 billion and the total market as $8 billion. However, it incorrectly states the SAM is $1.5 billion, which contradicts the $1.0-$1.2 billion figure it also provided and the reference answer. It also misses the specific detail that the market is 'mostly oscillators' and 'under $2 billion' (though $1.2B is under $2B, the $1.5B\", \"verdict\": \"partial\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 218,
+  "completion_tokens": 117,
+  "latency_ms": 396.9896000016888,
+  "attempts": 1
+ }
+}

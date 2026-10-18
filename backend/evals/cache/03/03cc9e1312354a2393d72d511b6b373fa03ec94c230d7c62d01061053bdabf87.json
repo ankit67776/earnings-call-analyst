@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: After a strong start and softer finish, where was the category's total season expected to end up?\n\nAnswer sentences:\n1. The total season was expected to finish roughly in line with the company’s expectations.\n   cites [S2]: \"overall the season performed exactly in line with our expectations.\"\n2. In fact, the category was down mid‑single digits overall, even as the business was up.\n   cites [S3]: \"category was down mid-single digits overall, as much as our business was actually up.\"\n\nCited sources:\n\n[S2] Q3 2020 earnings call, 15:21–16:43\nMichele Buck: Yep. So clearly we saw that within the season, the early part of the season performed more strongly, and the later part that's more trick-or-treat focused performed a little bit softer. Now, we had anticipated that, so overall the season performed exactly in line with our expectations. As we look at the total season, we were quite pleased that our sales were actually up versus a year ago as was our sell-through up versus a year ago. So during a time of the global pandemic, I think it speaks to the resiliency of the category and the consumer's desire to really hold on to and continue to celebrate the traditions and fun occasions like this in their family lives. As we look at holiday, holiday has some different consumer dynamics than Halloween, and so we believe it will behave a little differently. I don't think we're going to have some of the pressure that we anticipated we'd have coming into Halloween. The category should be quite strong. Consumers use the product in different ways. It's much more about family occasions. We aren't as big in gifting some of the areas of the category that might be a little bit more hard hit. So we expect solid results given that skew to at-home consumption.\n\n[S3] Q3 2020 earnings call, 20:46–21:25\nMichele Buck: Yes. Yes, you are interpreting them correctly. So category was down mid-single digits overall, as much as our business was actually up. And we will see some of those decline.\n\nJason English: Okay. Thank you very much.\n\nMelissa Poole: One other thing to just keep in mind, there is a little bit of a timing impact from the Nielsen and IRI data, given that the season was on a Saturday versus a Thursday and based on retail reporting days. So you will probably even see it's down even more, and you'll have to wait until kind of mid-November until you see some of those last couple days being reported. So some of it, when you see, will be just a timing shift because of the day of the week, and some of it will certainly be the declines in trick-or-treat at the end."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The source states the season performed 'exactly in line' with expectations, whereas the answer uses the qualifier 'roughly', which is not present in the text.\", \"verdict\": \"partial\"}, {\"n\": 2, \"reason\": \"The source explicitly states the category was down mid-single digits overall and that the business was up, which directly supports the sentence.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 742,
+  "completion_tokens": 99,
+  "latency_ms": 533.6405999987619,
+  "attempts": 1
+ }
+}

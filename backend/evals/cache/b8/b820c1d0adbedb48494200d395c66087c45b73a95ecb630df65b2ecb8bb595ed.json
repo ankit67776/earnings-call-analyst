@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How long does it take resonator design wins to turn into meaningful revenue?\n\nAnswer sentences:\n1. Resonator design wins have a gestation period that is easily twice as long as the clocking business.\n   cites [S1]: \"the gestation period for that, for meaningful revenue, is easily twice as long as the clocking business\"\n2. Typically, a design win will not result in meaningful revenue for a year or more.\n   cites [S2]: \"It is typical that a design win will not result in meaningful revenue for a year or more, if at all\"\n\nCited sources:\n\n[S1] Q3 2020 earnings call, 36:35–37:25\nRajesh Vashist: Yeah, I would say that's even slower, Alex. I would say that, you know, because there's two kinds of design wins we would have. We would have standalone design wins. So we would go to OEMs and sell them resonators. That's one. And then the other one would be to go to SOC vendors, the ones we sort of, for example, gave, and they would design it into their products. Both of them, particularly the second one, take a long time. So the gestation period for that, for meaningful revenue, is easily twice as long as the clocking business. So yeah, so of course there can be other times when it can happen very fast, but generally that's a good rule of thumb.\n\n[S2] Item 1A. Risk Factors\nOur success and future revenue depend on our ability to achieve design wins and to convince our current and prospective customers to design our products into their product offerings. If we do not continue to win designs or our products are not designed into our customers’ product offerings, our results of operations and business will be harmed.\n\nWe sell our silicon timing systems solutions to customers who select our solutions for inclusion in their product offerings. This selection process is typically lengthy and may require us to incur significant design and development expenditures and dedicate scarce engineering resources in pursuit of a single design win with no assurance that our solutions will be selected. If we fail to convince our current or prospective customers to include our products in their product offerings or to achieve a consistent number of design wins, our business, financial condition, and results of operations will be harmed.\n\nBecause of our extended sales cycle, our revenue in future years is highly dependent on design wins we are awarded in prior years. It is typical that a design win will not result in meaningful revenue for a year or more, if at all. If we do not continue to achieve design wins in the short term, our revenue in the following years will deteriorate."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The cited text explicitly states that the gestation period for meaningful revenue is 'easily twice as long as the clocking business,' which directly supports the sentence.\", \"verdict\": \"supported\"}, {\"n\": 2, \"reason\": \"The cited text states it is 'typical that a design win will not result in meaningful revenue for a year or more, if at all,' which directly supports the sentence.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 706,
+  "completion_tokens": 108,
+  "latency_ms": 437.5843000016175,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 4:21–5:09\nMichele Buck: Sure. So we definitely believe in investing in our brands. That is a critical piece of our growth model on the business. So clearly, as we mentioned to you, we had pulled back on some spend in areas where we just thought, given the pandemic, it didn't make sense. For example, in refreshment, where we knew consumer usage was down significantly. But as we looked at 2021 and as we started to see the momentum that we're seeing and some of the recoveries, You know, we definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically. So you'll see us really leaning in to drive the consumer and to leverage some of the behaviors that we're seeing.\n\n[S2] Earnings call: Q3 2020 earnings call, 25:18–25:48\nMichele Buck: this year even in a very difficult economic environment and I think that continues to demonstrate what we seen over the years which is the category is very resilient Our brands are strong We continue to invest into our brands. And that does allow us for an even greater amount of pricing power.\n\nDavid Driscoll: Really helpful. Thank you so much.\n\nSpeaker 1: Thank you. Our next question comes from the line of Steve Powers with Deutsche Bank. Please proceed with your question.\n\n[S3] Earnings call: Q3 2020 earnings call, 48:19–49:46\nMelissa Poole: Wow. So I think a lot of learnings along the way. I guess I would start with, you know, there's a business model for brands that we as a company are best with. and that is, you know, branded items where, you know, brand matters, where the business has significant scale, you know, probably close to that $100 million mark, and it needs to be a business that has a high gross margin because that's what our business model is. We're a branded company. We invest a lot in marketing, and we have high margins that enable us to kind of invest and grow, invest and grow. And that's our model. That's what we need. So I think that was one of the biggest learnings was to help us select the asset. I think, secondly, really understanding the strength of the brand and really being able to do the right deep dives on which KPIs we think predict the ability for a brand to scale. And then I would say, you know, really trying to scale the business well. And I would say, hey, we've learned lessons the whole way along the way. As you know, in the past, we bought some businesses that were too small. We bought some businesses that, you know, had lower margins. And we had some that we perhaps didn't execute on the scaling as well. And I think we've had a very focused effort on the scaling as well.\n\n[S4] Earnings call: Q3 2020 earnings call, 25:49–26:47\nSteve Powers: Yes. Hey, thanks. Good morning. I guess building somewhat on earlier questions, I'd love a little bit more color around your general mindset heading into 21 as you work through your planning process. Clearly, there are parts of your business that have been under pressure this year, international movie theaters, vending specialty, et cetera. And hopefully all those set up for at least directional recovery in the year ahead. But at the same time, you've been gaining a lot of share. You've had great success in at-home categories like baking and with initiatives like s'mores, all of which is fantastic momentum but, you know, again, could set up for difficult year-over-year comparisons. So as you size it all together, I guess, is there a way to frame your thinking at a summary level to what degree those various puts and takes sort of just net each other out in your mind? Or are you approaching 21 planning thinking we've got, you know, either a net easier or a net harder setup versus what one might consider typical. Thanks.\n\n[S5] Earnings call: Q3 2020 earnings call, 3:44–4:20\nAndrew Lazar: Great. Great. Thanks very much.\n\nMichele Buck: Thank you.\n\nSpeaker 1: Thank you. Our next question comes from the line of Ken Goldman with J.P. Morgan. Please proceed with your questions.\n\nKen Goldman: Hi, thank you. Along the same lines of 2021, if I can, Michelle, you pulled back a little bit on advertising this quarter. It's been a little up and down this year for understandable reasons. I'm just curious what your thoughts are in general on what the company's plan is for advertising, marketing in general, as you get into what hopefully will be a more normal year in 2021.\n\n[S6] 10-K: Item 1A. RISK FACTORS › Our financial results may be adversely impacted by the failure to successfully execute or integrate acquisitions, divestitures and joint ventures.\nIn 2020, we successfully completed the divestitures of Krave and the Scharffen Berger and Dagoba brands as we better prioritize resources against assets and brands that fit our business model and scale capabilities. Additionally, over the last several years, we have continued to invest in our snacks portfolio, specifically with the acquisitions of ONE Brands, LLC in September 2019, Pirate Brands in October 2018 and Amplify Snack Brands, Inc. in January 2018, respectively. While we believe significant operating synergies can be obtained in connection with these acquisitions, achievement of these synergies will be driven by our ability to successfully leverage Hershey's resources, expertise, capability-building, distribution locations and customer base. In addition, these acquisitions are important steps in our journey to expand our breadth in snacking, as they should enable us to bring scale and category management capabilities to a key sub-segment of the warehouse snack aisle. If we are unable to successfully couple Hershey’s scale and expertise in brand building with ONE Brands, Pirate Brands and Amplify's existing operations, it may impact our ability to expand our snacking footprint at our desired pace.\n\nQuestion: How does management plan to set brand investment levels in 2021?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"Management said it plans to raise brand‑investment levels in 2021 to be “where we would like them to be and more in line with where they have been historically,” after having pulled back spending during the pandemic.\",\"support\":[{\"source\":\"S1\",\"quote\":\"you definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically.\"}]},{\"text\":\"The company also emphasized that it will continue to invest in its brands.\",\"support\":[{\"source\":\"S2\",\"quote\":\"We continue to invest into our brands.\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1873,
+  "completion_tokens": 913,
+  "latency_ms": 2324.455800000578,
+  "attempts": 1
+ }
+}

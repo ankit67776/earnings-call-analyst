@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1A. Risk Factors\nIf we are unable to expand or further diversify our customer base, our business, financial condition, and results of operations could suffer.\n\nWe sell our products primarily through distributors and resellers, who in turn sell to our end customers. For both the years ended December 31, 2020 and 2019, our top three distributors by revenue together accounted for approximately 59% of our revenue. Based on our shipment information, we believe that revenue attributable to our ten largest end customers accounted for 58%, and 57% of our revenue for the years ended December 31, 2020 and 2019, respectively. Sales attributable to our largest end customer accounted for approximately 40%, and 35%, of our revenue for the years ended December 31, 2020 and 2019, respectively. We expect the composition of our largest end customers to vary from period to period, and that revenue attributable to our largest ten end customers in any given period may decline over time. Our relationships with existing customers may deter potential customers who compete with these customers from buying our silicon timing systems solutions. If we are unable to expand or further diversify our customer base, it could harm our business, financial condition, and results of operations.\n\n[S2] 10-K: Item 1A. Risk Factors\nWe currently depend on one end customer for a large portion of our revenue. The loss of, or a significant reduction in orders from our customers, including this end customer, could significantly reduce our revenue and adversely impact our operating results.\n\nWe believe that our operating results for the foreseeable future will continue to depend to a significant extent on revenue attributable to Apple, our largest end customer. Sales attributable to this end customer have historically accounted for a large portion of our revenue and accounted for approximately 40% and 35% of our revenue for the years ended December 31, 2020 and 2019, respectively. Revenue attributable to this end customer increased in absolute dollars and as a percentage of revenue from 2019 to 2020. We anticipate revenue attributable to this customer will fluctuate from period to period, although we expect to remain dependent on this end customer for a substantial portion of our revenue for the foreseeable future. Although we sell our products to this customer through distributors on a purchase order basis, including Pernas Electronics Co., Ltd. (“Pernas”), Arrow Electronics, Inc. (“Arrow”), and Quantek Technology Corporation (“Quantek”), we have a development and supply agreement, which provides a general framework for certain transactions with Apple. This agreement continues until either party terminates for material breach. Under this agreement, we have agreed to develop and deliver new products to this end customer at its request, provided it also meets our business purposes, and have agreed to indemnify it for intellectual property infringement or any injury or damages caused by our products. This end customer does not have any minimum or binding purchase obligations to us under this agreement and could elect to discontinue making purchases from us with little or no notice.\n\n[S3] 10-K: Item 1. Business › Our Customers\nBased on the sell-through information provided to us from distributors and resellers who identify end customers, we believe that the majority of our products sold to Pernas and Quantek are in turn incorporated into products of Apple Inc. (“Apple”), our largest end customer. As a result, we believe revenue attributable to our largest end customer accounted for approximately 40% and 35% of our revenue for the years ended December 31, 2020 and 2019, respectively.\n\n[S4] 10-K: Item 1A. Risk Factors\nOur target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\n\nOur target markets include the enterprise and telecommunications infrastructure, automotive, industrial, IoT and mobile, and aerospace and defense markets. Substantially all of our revenue for the years ended December 31, 2020 and 2019 was derived from sales in the IoT and mobile, industrial, and consumer markets. In 2017, we began introducing products for the automotive market. In addition, within the timing market, substantially all of our revenue to date has been attributable to sales of MEMS oscillators. We recently introduced products into the clock IC market, which we began sampling in the second quarter of 2019, and we intend to further focus on clock IC and timing sync solutions in the future. Any deterioration in our target customer or product markets or reduction in capital spending to support these markets could lead to a reduction in demand for our products, which would adversely affect our revenue and results of operations. Further, if our target customer markets, including the 5G communications or IoT and mobile markets, do not grow or develop in ways that we currently expect, demand for our technology may not materialize as expected, which would also negatively impact our business, financial condition, and results of operations.\n\n[S5] 10-K: Item 1. Business\nOur Customers\n\nWe primarily sell our timing products to distributors and resellers, who in turn sell our products to our end customers. We work closely with our end customers throughout their design cycles and are able to develop long-term relationships as our technology becomes embedded in their products. As a result, we believe our products are well-positioned to be designed into their current systems and we are well-positioned to develop next generation solutions for their future products.\n\nPernas Electronics Co., Ltd. (“Pernas”) directly accounted for 26% and 17% of our revenue for the years ended December 31, 2020 and 2019, respectively, Quantek Technology Corporation (“Quantek”) directly accounted for 18% and 22% of our revenue for the years ended December 31, 2020 and 2019, respectively and Arrow Electronics, Inc. (“Arrow”) directly accounted for 15% and 19% of our revenue for the years ended December 31, 2020 and 2019, respectively. Other than Pernas, Quantek, and Arrow, no other single customer accounted for more than 10% of our revenue in the years ended December 31, 2020 and December 31, 2019.\n\n[S6] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers.\n\nQuestion: Why did revenue from SiTime's largest end customer fall in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2168,
+  "completion_tokens": 153,
+  "latency_ms": 1009.1204999989714,
+  "attempts": 1
+ }
+}

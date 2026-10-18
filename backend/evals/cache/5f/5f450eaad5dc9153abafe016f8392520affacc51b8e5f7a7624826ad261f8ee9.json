@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCorporate and Other\n\nMillions of Dollars\n2020 | 2019 | 2018\nNet Income (Loss) Attributable to ConocoPhillips\nNet interest | $(662) | (604) | (680)\nCorporate general and administrative expenses | (200) | (252) | (91)\nTechnology | (26) | 123 | 109\nOther | (992) | 771 | (1,005)\n$ | (1,880) | 38 | (1,667)\n\n2020 vs. 2019\n\nNet interest consists of interest and financing expense, net of interest income and capitalized interest. Net interest expense increased $58 million in 2020 compared with 2019, primarily due to lower interest income related to lower cash and cash equivalent balances and yield.\n\nCorporate G&A expenses include compensation programs and staff costs. These costs decreased by $52 million in 2020 compared with 2019, primarily due to mark to market adjustments associated with certain compensation programs.\n\nTechnology includes our investment in new technologies or businesses, as well as licensing revenues. Activities are focused on both conventional and tight oil reservoirs, shale gas, heavy oil, oil sands, enhanced oil recovery and LNG. Earnings from Technology decreased by $149 million in 2020 compared with 2019, primarily due to lower licensing revenues.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.84 | 65.02 | 70.93\nNatural gas liquids ($ per bbl) | 33.21 | 37.85 | 47.20\nNatural gas ($ per mcf) | 5.39 | 5.91 | 6.15\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Asia Pacific segment has operations in China, Indonesia, Malaysia and Australia. During 2020, Asia Pacific contributed 10 percent of our consolidated liquids production and 32 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Asia Pacific reported earnings of $962 million in 2020, compared with $1,483 million in 2019. The decrease in earnings was mainly due to:\n\n● Lower sales volumes, primarily from lower LNG sales due to the Australia-West divestiture; lower crude oil sales volumes in Malaysia, primarily due to production curtailments; and lower crude oil sales volumes in China due to the expiration of the Panyu production license. For more information related to our Australia-West divestiture, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower realized commodity prices.\n\n● Lower equity in earnings of affiliates from APLNG, mainly due to lower LNG sales prices.\n\n● The absence of a $164 million income tax benefit related to deepwater incentive tax credits from the Malaysia Block G.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nIncome Statement Analysis\n\n2020 vs. 2019\n\nSales and other operating revenues decreased 42 percent in 2020, mainly due to lower realized commodity prices and lower sales volumes. Sales volumes decreased due to normal field decline, production curtailments from our North American operated assets and the divestiture of our U.K. assets in the third quarter of 2019 and our Australia-West assets in the second quarter of 2020.\n\nEquity in earnings of affiliates decreased $347 million in 2020, primarily due to lower earnings from QG3 and APLNG because of lower LNG prices. Partly offsetting this decrease was the absence of impairments related to equity method investments in our Lower 48 segment of $155 million and the absence of a $118 million deferred tax adjustment at QG3, reported in our Europe, Middle East and North Africa segment.\n\nGain on dispositions decreased $1.4 billion in 2020, primarily due to the absence of a $1.7 billion before-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. Partly offsetting the decrease was a $587 million before-tax gain associated with our Australia-West divestiture. For more information related to these dispositions, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Corporate and Other\nThe category “Other” includes certain foreign currency transaction gains and losses, environmental costs associated with sites no longer in operation, other costs not directly associated with an operating segment, premiums incurred on the early retirement of debt, unrealized holding gains or losses on equity securities, and pension settlement expense. Earnings in “Other” decreased by $1,763 million in 2020 compared with 2019, primarily due to:\n\n● An unrealized loss of $855 million after-tax on our CVE common shares in 2020, compared with a $649 million after-tax unrealized gain in 2019.\n\n● The absence of a $151 million tax benefit related to the revaluation of deferred tax assets following finalization of rules related to the 2017 Tax Cuts and Jobs Act. See Note 18—Income Taxes, in the Notes to Consolidated Financial Statements, for additional information related to the 2017 Tax Cuts and Jobs Act.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $43.30 | 64.94 | 70.71\nNatural gas liquids ($ per bbl) | 23.27 | 29.37 | 36.87\nNatural gas ($ per mcf) | 3.23 | 4.92 | 7.65\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Europe, Middle East and North Africa segment consists of operations principally located in the Norwegian sector of the North Sea; the Norwegian Sea; Qatar; Libya; and commercial and terminalling operations in the U.K. In 2020, our Europe, Middle East and North Africa operations contributed 13 percent of our consolidated liquids production and 20 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Earnings for Europe, Middle East and North Africa operations of $448 million decreased $2,722 million in 2020 compared with 2019. The decrease in earnings was primarily due to:\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower equity in earnings of affiliates, primarily due to lower LNG sales prices.\n\n● Lower realized crude oil prices in Norway.\n\nQuestion: Why did earnings from the technology business fall in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"Earnings from the technology business fell in 2020 because licensing revenues were lower.\",\"support\":[{\"source\":\"S1\",\"quote\":\"Earnings from Technology decreased by $149 million in 2020 compared with 2019, primarily due to lower licensing revenues.\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2566,
+  "completion_tokens": 394,
+  "latency_ms": 1619.9325999987195,
+  "attempts": 1
+ }
+}

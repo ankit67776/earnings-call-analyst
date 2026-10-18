@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What process geometries does the company use for its tape-outs?\n\nReference answer: Mature nodes of 180, 130 and 65 nanometers, unlike peers taping out at 7 nanometers.\n\nAssistant's answer: Sightime uses 180‑nanometer, 130‑nanometer and 65‑nanometer process geometries for its tape‑outs."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer correctly identifies the specific process geometries (180, 130, and 65 nanometers) mentioned in the reference answer. It omits the comparative context regarding peers using 7 nanometers, but it accurately provides the core factual information requested.\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 204,
+  "completion_tokens": 71,
+  "latency_ms": 360.44399999809684,
+  "attempts": 1
+ }
+}

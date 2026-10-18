@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What natural disaster risk does the company's location create?\n\nAnswer sentences:\n1. The company's headquarters and some suppliers are situated in active earthquake zones, exposing it to earthquakes as well as other natural disasters such as hurricanes and flooding.\n   cites [S1]: \"Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones or are subject to power outages, natural disasters, political, social, or economic unrest, and other potentially catastrophic events.\"\n   cites [S1]: \"In the event of a major earthquake, hurricane, flooding, or other catastrophic event such as fire, power loss, telecommunications failure, cyber-attack, war, terrorist attack, political, social, or economic unrest, or disease outbreak, such as the current COVID-19 pandemic, we may be unable to continue our operations\"\n\nCited sources:\n\n[S1] Item 1A. Risk Factors\nCatastrophic events may disrupt our business.\n\nOur corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones or are subject to power outages, natural disasters, political, social, or economic unrest, and other potentially catastrophic events. In the event of a major earthquake, hurricane, flooding, or other catastrophic event such as fire, power loss, telecommunications failure, cyber-attack, war, terrorist attack, political, social, or economic unrest, or disease outbreak, such as the current COVID-19 pandemic, we may be unable to continue our operations and may endure system interruptions, reputational harm, delays in our product development, breaches of data security, or loss of critical data, any of which could have an adverse effect on our business and future results of operations."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The cited text explicitly states that the headquarters and suppliers are in active earthquake zones and lists hurricanes and flooding as specific catastrophic events that could disrupt operations, fully supporting the claim.\", \"verdict\": \"supported\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 501,
+  "completion_tokens": 58,
+  "latency_ms": 293.6401000006299,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What boosted operating cash flow in 2019?\n\nReference answer: Working capital swung to a $60M inflow on higher pre-year-end collections, vendor payment timing and higher accrued incentive compensation.\n\nAssistant's answer: Operating cash flow in 2019 was boosted, increasing $164.0 million versus 2018. The increase was driven by net working capital generating $60 million of cash and prepaid expenses and other current assets generating $14 million of cash."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant correctly identifies the $60M working capital inflow but misses the specific drivers (pre-year-end collections, vendor payment timing, and accrued incentive compensation) that the reference answer highlights as the cause of the swing. It also introduces an extra, unverified figure ($14M from prepaid expenses) not in the reference.\", \"verdict\": \"partial\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 227,
+  "completion_tokens": 80,
+  "latency_ms": 334.1641000006348,
+  "attempts": 1
+ }
+}

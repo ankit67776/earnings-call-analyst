@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: Why did operating cash flow decline in 2020?\n\nReference answer: Working capital used $166M versus generating $60M in 2019, mainly from a bigger U.S. inventory build and higher seasonal receivables.\n\nAssistant's answer: Operating cash flow declined in 2020, with cash provided by operating activities decreasing $64.3 million relative to 2019. The decline was driven primarily by net working capital consuming cash, chiefly due to a higher build‑up of U.S. inventories and increased cash use by accounts receivable from higher sales of U.S. seasonal products."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer correctly identifies the primary drivers of the operating cash flow decline: the shift in working capital from generating cash to consuming cash, specifically due to a larger U.S. inventory build and higher seasonal receivables. It also provides the specific dollar amount of the decline ($64.3M), which is consistent with the reference figures ($166M used vs $\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 255,
+  "completion_tokens": 91,
+  "latency_ms": 384.11810000252444,
+  "attempts": 1
+ }
+}

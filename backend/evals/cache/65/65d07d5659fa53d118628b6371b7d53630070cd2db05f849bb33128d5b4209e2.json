@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 32:20–32:43\nMatt Fox: Those things would still continue with the anticipation that they ultimately would move away from simply sustaining back to some modest growth. So those are the things that we're working through just now in the plan. But as Ryan said, you shouldn't expect us to communicate 2021 capital guidance, certainly for the combined company, until sometime after the transaction closes.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOutlook\n\nProduction and Capital In February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion. The plan includes $5.1 billion to sustain current production and $0.4 billion for investment in major projects, primarily in Alaska, in addition to ongoing exploration appraisal activity.\n\nThe operating plan capital budget of $5.5 billion is expected to deliver production from the combined company of approximately 1.5 MMBOED in 2021. This production guidance excludes Libya.\n\nRestructuring As a result of the acquisition of Concho, we commenced a restructuring program in the first quarter of 2021 in association with combining the operations of the two companies. We expect to incur significant non-recurring transaction and acquisition-related costs in 2021 for employee severance payments; incremental pension benefit costs related to the workforce reductions; employee retention costs; employee relocations; fees paid to financial, legal, and accounting advisors; and filing fees. We currently cannot estimate these costs, as well as other unanticipated items, and expect to recognize the majority of these expenses in the first quarter of 2021.\n\n[S3] Earnings call: Q3 2020 earnings call, 8:49–10:11\nRyan Lance: It's what we've been doing for the past four years. In fact, we returned over 40% of our CFO to owners over that period, and it will remain a key part of our future offering. The bottom line, this transaction creates a best-in-class competitor of scale to thrive in a new energy future. That is compelling for shareholders for both companies. Now, a few comments on what to expect next. Our S4 filing should be filed in the next couple of weeks, and we expect the transaction to close in the first quarter of 2021. Integration planning is already underway. Dominic Macklin will lead the effort for ConocoPhillips, and Will Giroux will lead the effort for Concha. Both sides are excited and committed to a very successful integration. As part of the integration planning, we'll begin to evaluate how best to optimize our future investment programs. We would expect to announce pro forma CapEx for next year shortly after closing. But directionally, on a standalone ConocoPhillips basis, we remain cautious on the pace and timing of recovery. So as a place to start, we're currently thinking we enter 2021 CapEx at a level that is roughly similar to this year's capital, meaning little to no production growth on a standalone basis. Of course, we retain the flexibility to adjust as the year progresses.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Capital Expenditures and Investments\nThe operating plan capital budget of $5.5 billion is expected to deliver production from the combined company of approximately 1.5 MMBOED in 2021. This production guidance excludes Libya.\n\nFor information on PUDs and the associated costs to develop these reserves, see the “Oil and Gas Operations” section in this report.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Environment\nThe operating plan capital budget of $5.5 billion is expected to deliver production from the combined company of approximately 1.5 MMBOED in 2021. This production guidance excludes Libya.\n\no Control costs and expenses. Controlling operating and overhead costs, without compromising safety and environmental stewardship, is a high priority. We monitor these costs using various methodologies that are reported to senior management monthly, on both an absolute-dollar basis and a per-unit basis. Managing operating and overhead costs is critical to maintaining a competitive position in our industry, particularly in a low commodity price environment. The ability to control our operating and overhead costs impacts our ability to deliver strong cash from operations. In 2020, our production and operating expenses were 18 percent lower than 2019, primarily due to decreased wellwork and transportation costs resulting from production curtailments across our North American operated assets as well as the absence of costs related to our U.K. and Australia-West divestitures. For more information related to our U.K. and Australia-West divestitures, see note 4—Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n[S6] Earnings call: Q3 2020 earnings call, 2:08–3:49\nRyan Lance: Thank you, Ellen, and good morning to our listeners. Before we get into our third quarter results, I'll take a few minutes to address last week's announcement of our combination with Concho Resources. We spent a lot of time talking to the market over the past several days, and I'm pleased to say that the feedback has been positive. By the way, earlier this week, we added some annotations to our transaction deck for clarification. Today's call is a great opportunity to reflect on our conversations and reiterate the compelling merits of the transaction for both sets of shareholders. I'll start at the highest level. Our announced transaction with Concho combines two widely recognized leaders in the sector. ConocoPhillips has been a recognized leader in the returns on and returns of capital model for the business. And Concho has been a recognized leader in the Permian pure play class. Yet, while we're both best-in-class companies on a standalone basis, by scaling up our existing returns-focused business model, we are stronger and more investable within the sector characterized by frequent price cycles, industry maturity, capital intensity, and ESG focus. We'll be a nearly $60 billion enterprise that is uniquely positioned to create sustained value by embracing what we believe are the three essential future mandates for our sector. And these mandates are, first, providing affordable energy to the world, second, committed to ESG excellence, and third, delivering competitive returns. We believe the transaction accelerates our ability to successfully and simultaneously\n\nQuestion: When will 2021 capex guidance for the combined company be given?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": true,\n  \"sentences\": [\n    {\n      \"text\": \"Matt Fox said the company will not communicate 2021 capital guidance for the combined company until sometime after the transaction closes.\",\n      \"support\": [\n        {\n          \"quote\": \"you shouldn't expect us to communicate 2021 capital guidance, certainly for the combined company, until sometime after the transaction closes.\",\n          \"source\": \"S1\"\n        }\n      ]\n    },\n    {\n      \"text\": \"Ryan Lance added that the company expects to announce pro forma 2021 capex shortly after the closing of the transaction.\",\n      \"support\": [\n        {\n          \"quote\": \"We would expect to announce pro forma CapEx for next year shortly after closing.\",\n          \"source\": \"S3\"\n        }\n      ]\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1931,
+  "completion_tokens": 617,
+  "latency_ms": 1814.3200999984401,
+  "attempts": 1
+ }
+}

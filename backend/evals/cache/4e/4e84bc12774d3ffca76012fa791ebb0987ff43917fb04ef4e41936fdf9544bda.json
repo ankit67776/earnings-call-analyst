@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 26:48–28:07\nMichele Buck: Yeah, so we're pleased with the momentum that we are seeing, and I would say your call-outs and what you shared about some of the ups and downs on the business, I think, are very accurate. We believe we're seeing that our category and our brands really resonate with consumers, and especially at a time like this where they're looking for some of those moments of goodness, moments of happiness. We're really pleased with how we've been able to pivot with the consumer and also pivot with our capabilities to be able to execute within this environment. And we feel good about that momentum and our ability to continue pivoting. So, you know, this year, obviously, it was consumer shifted to take home. And so we dialed up s'mores and we dialed up Twizzlers and we dialed up baking. And we, you know, leaned in to create the season to make sure that we could capture that opportunity, you know, giving consumers new ways to participate in Halloween that, frankly, we believe those things like candy slides and candy graveyards and all the creative things people did will probably become a part of their ongoing traditions and they have just evolved. You know, as I mentioned, we were able to dial in and accelerate e-commerce. And I think as we look to next year, we are prepared, if the consumer pivots yet again, to be able to pivot with them.\n\n[S2] 10-K: Item 1A. RISK FACTORS\nMarket demand for new and existing products could decline.\n\nWe operate in highly competitive markets and rely on continued demand for our products. To generate revenues and profits, we must sell products that appeal to our customers and to consumers. Our continued success is impacted by many factors, including the following:\n\n•Effective retail execution;\n\n•Appropriate advertising campaigns and marketing programs;\n\n•Our ability to secure adequate shelf space at retail locations;\n\n•Our ability to drive sustainable innovation and maintain a strong pipeline of new products in the confectionery and broader snacking categories;\n\n•Changes in product category consumption;\n\n•Our response to consumer demographics and trends, including but not limited to, trends relating to store trips and the impact of the growing digital commerce channel; and\n\n•Consumer health concerns, including obesity and the consumption of certain ingredients.\n\nThere continues to be competitive product and pricing pressures in the markets where we operate, as well as challenges in maintaining profit margins. We must maintain mutually beneficial relationships with our key customers, including retailers and distributors, to compete effectively. Our largest customer, McLane Company, Inc., accounted for approximately 31% of our total net sales in 2020. McLane Company, Inc. is one of the largest wholesale distributors in the United States to convenience stores, drug stores, wholesale clubs and mass merchandisers, including Wal-Mart Stores, Inc.\n\n[S3] Earnings call: Q3 2020 earnings call, 10:39–12:13\nMichele Buck: Yeah, absolutely. So I would say I believe our share gains are a testament to both our strong brands, our consumer understanding, our programming, as well as to the supply chain execution and execution at retail, both of which tend to be core advantages for us as a company. So I think we're seeing our categories and our brands are definitely resonating with consumers. And as you mentioned, we really pivoted with the consumer. So very early on, we tried to understand how consumer behavior was changing. And we've talked to all of you before about the fact that our category splits a third, a third, a third, take home, instant consumable, and seasonal. And as we saw consumers shift to more at-home behaviors, we very early on shifted the focus in our portfolio to really dial up s'mores, Twizzlers for movie nights, our baking product activities. And then within the seasons, even with Halloween, we made that decision to lean in and drive and build a Halloween season versus back away from it. And everything related to that relative to let's set the season early so we can get consumers in pre-Trick or Treat. You know, let's make sure we are smart about the portfolio that's out there and not overly indexed to seasonal skews, et cetera. And then we worked really hard on messaging to message consumers safe ways to celebrate the holiday. We dialed up e-commerce as consumers shifted to e-commerce.\n\n[S4] Earnings call: Q3 2020 earnings call, 35:13–35:54\nMichael Lavery: Okay, great.\n\nMichele Buck: Those two areas where we have similar products, obviously, that we sell in bricks and mortar. Steve, anything you want to add?\n\nSteve Voskuil: Yeah, all I'd say is that we've said in the past that overall e-commerce margins are a little bit dilutive. And it's there, as Michelle just said, in click and collect and local delivery, very similar, not much impact. And that's probably two-thirds of our e-commerce business. The piece that is more dilutive is the ship-to-home and, in particular, cold ship. and that's an area where we continue to work with our customers and look at our overall investment with those customers and joint business planning to drive efficiencies over time so that those margins align.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Net Sales\nFor the full year 2020, our total U.S. retail takeaway increased 5.3% in the expanded multi-outlet combined plus convenience store channels (IRI MULO + C-Stores), which includes candy, mint, gum, salty snacks, meat snacks and grocery items. Our U.S. candy, mint and gum (\"CMG\") consumer takeaway increased 4.9%, resulting in a CMG market share gain of approximately 159 basis points.\n\nThe CMG consumer takeaway and market share information reflect measured channels of distribution accounting for approximately 90% of our U.S. confectionery retail business. These channels of distribution primarily include food, drug, mass merchandisers, and convenience store channels, plus Wal-Mart Stores, Inc., partial dollar, club and military channels. These metrics are based on measured market scanned purchases as reported by Information Resources, Incorporated (\"IRI\"), the Company's market insights and analytics provider, and provide a means to assess our retail takeaway and market position relative to the overall category.\n\n[S6] 10-K: Item 1. BUSINESS\nPrincipal Customers and Marketing Strategy\n\nOur customers are mainly wholesale distributors, chain grocery stores, mass merchandisers, chain drug stores, vending companies, wholesale clubs, convenience stores, dollar stores, concessionaires and department stores. The majority of our customers, with the exception of wholesale distributors, resell our products to end-consumers in retail outlets in North America and other locations worldwide.\n\nIn 2020, approximately 31% of our consolidated net sales were made to McLane Company, Inc., one of the largest wholesale distributors in the United States (\"U.S.\") to convenience stores, drug stores, wholesale clubs and mass merchandisers and the primary distributor of our products to Wal-Mart Stores, Inc.\n\nThe foundation of our marketing strategy is our strong brand equities, product innovation and the consistently superior quality of our products. We devote considerable resources to the identification, development, testing, manufacturing and marketing of new products. We utilize a variety of promotional programs directed towards our customers, as well as advertising and promotional programs for consumers of our products, to stimulate sales of certain products at various times throughout the year.\n\nIn conjunction with our sales and marketing efforts, our efficient product distribution network helps us maintain sales growth and provide superior customer service by facilitating the shipment of our products from our manufacturing plants to strategically located distribution centers. We primarily use common carriers to deliver our products from these distribution points to our customers.\n\nQuestion: What share of total net sales came from e-commerce in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2216,
+  "completion_tokens": 162,
+  "latency_ms": 1043.66459999801,
+  "attempts": 1
+ }
+}

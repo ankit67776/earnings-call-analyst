@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 16:02–16:45\nSpeaker 1: At this time, I would like to inform everyone. In order to ask a question, please press star 1 on your telephone keypad. Again, that is star 1 to ask a question. We have your first question from Blaine Curtis from Barclays. Your line is open.\n\nTom O'Malley: Good afternoon, guys. This is Tom O'Malley on for Blaine Curtis. Congrats on the really nice results. My first question was around the improvement throughout the quarter. Obviously, you updated guidance in late August, positively, and then you're now coming ahead of that range now. So what most materially improved between now and then? And then if you could look out into December, you're obviously guiding for some more expansion there. Could you give us a little color on segments between the three where you're seeing that growth sequentially?\n\n[S2] Earnings call: Q3 2020 earnings call, 8:45–10:30\nArt Chadwick: Thanks, Rajesh, and good afternoon, everyone. We are very pleased to be holding our fourth financial results conference call as a public company. And during my review today, I'll discuss third quarter 2020 financial results, and we'll provide guidance for the fourth quarter. I'll focus my discussion on non-GAAP financial results and refer you to today's press release for a detailed description of our GAAP results, as well as reconciliation of GAAP to non-GAAP results, which exclude stock-based compensation and related payroll tax expense. So, first of all, Q3 was really an excellent quarter for us. We had strong revenue growth, significant gross margin expansion, and very positive non-GAAP net income. As you know, at the end of August, we increased our revenue guidance for the quarter by more than 10%, and I'm happy to report that actual results exceeded the high end of that revised guidance. Revenue for the quarter was $32.7 million, up 52% sequentially, and up 29% over the same quarter a year ago. To provide some color on end markets, I'll report sales by market group as I have in the past. The first is mobile, IoT, and consumer, which consists primarily of sales into mobile phones, wearable devices, and consumer products. This was the segment most impacted by the global slowdown in Q2, but it came back strong in Q3. Sales were $20.9 million, or 64% of total sales, up 105% sequentially and up 19% over the same quarter a year ago.\n\n[S3] Earnings call: Q3 2020 earnings call, 16:47–18:12\nArt Chadwick: So from Q2 to Q3, as I mentioned, the most significant growth was in our mobile IoT group, right? Part of that is seasonality, but we just had real strengths kind of across the board with our customers in that segment. We also mentioned in our press release with our revised guidance in August that we had won a design win, a phone design win. That also contributed. You know, we're not going to report the phone revenue specifically, one, because we're not allowed to, but I will provide some color to that. When we increased our guidance in August, about half of that increase was related to that new phone design win, and the balance was obviously then strength in non-phone. So that was kind of what happened in the third quarter. In the fourth quarter, we're seeing very strong revenue growth. As I mentioned, our guidance is that revenue will be up 10 to 15%. I'll mention the phone again, not specifically, but phone revenue will probably account for about a third of that sequential improvement, and therefore non-phone basically accounts for the balance of that. But we're expecting growth in all of our market segments going from Q3 to Q4.\n\n[S4] Earnings call: Q3 2020 earnings call, 2:37–4:20\nRajesh Vashist: Thank you, Leanne. Good afternoon. We appreciate you joining us today and hope that all of you and your families are staying safe and healthy during these unique times. Even with the challenging macro back drop, CITAM continued to execute, demonstrated by a record quarterly revenue of $32.7 million for third quarter 2020, which was above our updated guidance range of $31 to $32 million. Our results demonstrate the diversity of our end market segments, our customer base, and the exceptional dedication of the CITAM team, all of which have benefited CITAM during the current environment. During this third quarter, revenue grew 52% sequentially compared to our second quarter 2020 revenues. revenues. We anticipate that continued strength in the fourth quarter will allow for SciTime to set another quarterly revenue record, and Art's going to discuss our third quarter financials and fourth quarter outlook later in the call. Now, SciTime's fabulous model and multi-source strategy continue to provide a competitive advantage in this market, while at the same time providing added assurance of quality and reliability to our customers. In contrast, we believe that the quartz industry infrastructure has several points of failure which can cause supply disruptions, some of which we have heard about through recent industry commentary. Additionally, within the timing market, responsiveness is becoming a key theme, and we believe that many competitors in quartz may not be set up to support industry needs and requirements for the future.\n\n[S5] Earnings call: Q3 2020 earnings call, 12:43–14:49\nArt Chadwick: That was up from $13.0 million in Q2 due to the higher revenue. But DSOs decreased from 58 days in Q2 to just 49 days in Q3. Inventory was $15.2 million, up slightly from $14.8 million in Q2. We generated $4.2 million in cash from operations and used $2.5 million for the purchase of assets. We had $35 million in bank debt going into the quarter, but we paid this off entirely and finished the quarter with no bank debt. We then ended the quarter with $69.2 million in cash and equivalents. I'd now like to provide some guidance for the fourth quarter of 2020. We expect Q4 to be another great quarter with continued sequential revenue growth, gross margin expansion, and increasing net income. We expect fourth quarter revenue will be up 10% to 15% sequentially. At the midpoint, this would put revenue at about $36.8 million, or 30% higher than the same quarter last year. We expect continued gross margin expansion with non-GAAP gross margins increasing to approximately 53%, plus or minus a point. Operating expenses are expected to increase between 8% and 10% sequentially, which at the midpoint would be approximately $13.7 million. We will not incur any interest expense since we no longer have any bank debt. Income taxes will be nominal and less than $50,000 for the quarter. The basic share count in Q4 will be approximately 17.0 million shares. In addition, the diluted impact of employee RSUs will add approximately 2.2 million shares,\n\n[S6] Earnings call: Q3 2020 earnings call, 14:49–16:00\nArt Chadwick: taking the total diluted share count used for our EPS calculation to approximately 19.2 million shares. Stock-based compensation expense will be approximately $5.5 million up from Q3 due to the higher stock price and a few new higher grants. So, based on the guidance just given, we expect fourth quarter non-GAAP EPS will be between $0.28 and $0.32 per share. So, in summary, we have an exceptional workforce that is performing extremely well working from home. We have truly differentiated products that address large and growing markets. We have a number of new products in the pipeline, an enviable list of Tier 1 customers, a strong balance sheet, and we're looking forward to a very strong Q4. So with that, I'd like to turn the call back to the operator for Q&A. Operator?\n\nQuestion: When did management last raise guidance before reporting Q3, and how did results compare?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": true,\n  \"sentences\": [\n    {\n      \"text\": \"Management raised its Q3 revenue guidance at the end of August, and the quarter’s actual revenue of $32.7 million exceeded the high end of that revised guidance.\",\n      \"support\": [\n        {\n          \"quote\": \"at the end of August, we increased our revenue guidance for the quarter by more than 10%\",\n          \"source\": \"S2\"\n        },\n        {\n          \"quote\": \"actual results exceeded the high end of that revised guidance\",\n          \"source\": \"S2\"\n        }\n      ]\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2278,
+  "completion_tokens": 679,
+  "latency_ms": 2065.2025999988837,
+  "attempts": 1
+ }
+}

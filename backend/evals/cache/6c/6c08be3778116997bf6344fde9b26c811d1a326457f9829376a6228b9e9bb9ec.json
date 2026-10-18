@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1A. Risk Factors\nCatastrophic events may disrupt our business.\n\nOur corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones or are subject to power outages, natural disasters, political, social, or economic unrest, and other potentially catastrophic events. In the event of a major earthquake, hurricane, flooding, or other catastrophic event such as fire, power loss, telecommunications failure, cyber-attack, war, terrorist attack, political, social, or economic unrest, or disease outbreak, such as the current COVID-19 pandemic, we may be unable to continue our operations and may endure system interruptions, reputational harm, delays in our product development, breaches of data security, or loss of critical data, any of which could have an adverse effect on our business and future results of operations.\n\n[S2] 10-K: Item 1A. Risk Factors › A portion of our operations is located outside of the United States, which subjects us to additional risks, including increased complexity and costs of managing international operations and geopolitical instability.\n• trade and foreign exchange restrictions and higher tariffs, including the ongoing trade tensions between the U.S. and China that has resulted in higher tariffs on certain semiconductor products; and increased restrictions on Hong Kong;\n\n• timing and availability of import and export licenses and other governmental approvals, permits, and licenses, including export classification requirements;\n\n• foreign currency fluctuations and exchange losses relating to our international operating activities;\n\n• restrictions imposed by the U.S. government or foreign governments on our ability to do business with certain companies or in certain countries as a result of international political conflicts or the COVID-19 pandemic and the complexity of complying with those restrictions;\n\n• transportation delays and other consequences of limited local infrastructure, and disruptions, such as large scale outages or interruptions of service from utilities or telecommunications providers;\n\n• difficulties in staffing international operations;\n\n• changes in immigration policies which may impact our ability to hire personnel;\n\n• local business and cultural factors that differ from our normal standards and practices;\n\n• differing employment practices and labor relations;\n\n• requirements in foreign countries which may impact availability of personnel, such as mandatory military service in countries such as Ukraine;\n\n• heightened risk of terrorist acts;\n\n• regional health issues and the impact of public health epidemics on employees and the global economy, such as the worldwide COVID-19 pandemic;\n\n• power outages and natural disasters; and\n\n[S3] 10-K: Item 1A. Risk Factors › A portion of our operations is located outside of the United States, which subjects us to additional risks, including increased complexity and costs of managing international operations and geopolitical instability.\n• travel, work-from-home or other restrictions or stoppages, like those currently imposed by governments around the world as a result of the COVID-19 pandemic.\n\nThese risks could harm our international operations, delay new product releases, increase our operating costs, and hinder our ability to grow our operations and business and, consequently, our business, financial condition, and results of operations could suffer. For example, we rely on TSMC in Taiwan for the fabrication of our analog circuits and have sales force personnel in Taiwan. If political tensions between China and Taiwan were to increase, it could disrupt our business. In addition, if the political and military situation in Russia and Ukraine, or the relationship between Russia and the United States, significantly worsens, or if either Russia or the United States imposes significant new economic sanctions or restrictions on doing business, and we are restricted or precluded from continuing our operations in Russia or Ukraine, our costs could increase, and our product development efforts, business, financial condition, and results of operations could be significantly harmed. Further, the ongoing COVID-19 pandemic has led to travel, work-from-home and other restrictions, which has significantly impacted our domestic and international operations and the operations of our suppliers, distributors, partners, and customers. At this point, the extent to which the COVID-19 pandemic may impact our business remains uncertain but it may materially adversely affect our business, financial condition or results of operations.\n\n[S4] 10-K: Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nWe currently rely on ASE, Carsem, and UTAC for assembly and testing, as well as Daishinku and UTAC for ceramic packaging for some of our products. Certain of our manufacturing, packaging, assembly, and testing facilities are located outside of the United States, including Malaysia, Taiwan, and Thailand, where we are subject to increased risk of political and economic instability, difficulties in managing operations, difficulties in enforcing contracts and our intellectual property, severe weather, and employment and labor difficulties. Additionally, public health crises, such as an outbreak of contagious diseases like the COVID-19 pandemic, may affect the production capabilities of our suppliers, including as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or work-from-home orders. For example, on March 16, 2020, the government of Malaysia announced measures to restrict movement in that country in an effort to suppress the number of COVID-19 cases. The restrictions have been extended several times, currently until August 2021. These restrictions could limit our suppliers’ ability to operate their manufacturing facilities in that country.\n\n[S5] 10-K: Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nAlthough we maintain business disruption insurance, this insurance may not be adequate to cover any losses we may experience as a result of such difficulties. Any of these factors could result in manufacturing and supply problems, and delays in our ability to provide our solutions to our customers on a timely basis, or at all. If we experience manufacturing problems at a particular location, we may be required to transfer manufacturing to a new location or supplier. Converting or transferring manufacturing from a primary location or supplier to a backup facility could be expensive and could take several quarters or more. During such a transition, we would be required to meet customer demand from our then-existing inventory, as well as any partially finished goods that could be modified to the required product specifications. In addition, our end customers may require requalification with a new wafer manufacturer. We typically maintain at least a six-month supply of our MEMS wafers for which Bosch is our primary supplier. We do not otherwise maintain sufficient inventory to address a lengthy transition period. As a result, we may not be able to meet customer needs during such a transition, which could damage our customer relationships.\n\n[S6] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Impact of COVID-19 on our Business\nThere remains a high degree of uncertainty in the global business environment given the impact of the COVID-19 pandemic which creates challenges with visibility beyond the near term. We will continue to actively monitor the situation and may take further actions altering our business operations that we determine are in the best interests of our employees, customers, partners, suppliers, and stakeholders, or as required by federal, state, or local authorities. It is not clear what the potential effects any such alterations or modifications may have on our business, including the effects on our customers, employees, operations, and prospects, or on our financial results for fiscal 2021 or beyond. For additional discussion, please see Part I, Item 1A Risk Factors of this report.\n\nQuestion: What natural disaster risk does the company's location create?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": true,\n  \"sentences\": [\n    {\n      \"text\": \"The company's headquarters and some suppliers are situated in active earthquake zones, exposing it to earthquakes as well as other natural disasters such as hurricanes and flooding.\",\n      \"support\": [\n        {\n          \"source\": \"S1\",\n          \"quote\": \"Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones or are subject to power outages, natural disasters, political, social, or economic unrest, and other potentially catastrophic events.\"\n        },\n        {\n          \"source\": \"S1\",\n          \"quote\": \"In the event of a major earthquake, hurricane, flooding, or other catastrophic event such as fire, power loss, telecommunications failure, cyber-attack, war, terrorist attack, political, social, or economic unrest, or disease outbreak, such as the current COVID-19 pandemic, we may be unable to continue our operations\"\n        }\n      ]\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2125,
+  "completion_tokens": 796,
+  "latency_ms": 2405.064599999605,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\nWe also have intangible assets, consisting primarily of certain trademarks, customer-related intangible assets and patents obtained through business acquisitions, that are expected to have determinable useful lives. The costs of finite-lived intangible assets are amortized to expense over their estimated lives. Our estimates of the useful lives of finite-lived intangible assets consider judgments regarding the future effects of obsolescence, demand, competition and other economic factors. We conduct impairment tests when events or changes in circumstances indicate that the carrying value of these finite-lived assets may not be recoverable. Undiscounted cash flow analyses are used to determine if an impairment exists. If an impairment is determined to exist, the loss is calculated based on the estimated fair value of the assets.\n\nResults of Impairment Tests\n\nAt December 31, 2020, the net book value of our goodwill totaled $1,988.2 million. As it relates to our 2020 annual testing performed at the beginning of the fourth quarter, we tested one reporting unit using a quantitative assessment. We tested our remaining reporting units using a qualitative assessment and determined that no quantitative testing was deemed necessary. Based on our testing, all of our reporting units had an excess fair value well over the their respective carrying values. There were no other events or circumstances that would indicate that impairment may exist. We had no goodwill impairment charges in 2020, 2019 or 2018.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nFinancial Condition\n\nAt December 31, 2020, our cash and cash equivalents totaled $1.1 billion. At December 31, 2019, our cash and cash equivalents totaled $493.3 million. Our cash and cash equivalents at the end of 2020 increased $650.7 million compared to the 2019 year-end balance. This increase was predominantly due to our $1 billion 2020 Notes issuance in May 2020 as we intend to mitigate any potential COVID-19 risks, partially offset by the repayment of $350 million Notes that matured in May 2020 and $350 million Notes that matured in December 2020. Additional detail regarding the net sources of cash are outlined in the following discussion.\n\nApproximately 35% of the balance of our cash and cash equivalents at December 31, 2020 was held by subsidiaries domiciled outside of the United States. During 2020, previously undistributed earnings of certain international subsidiaries were no longer considered indefinitely reinvested; however, the Company had previously recognized a one-time U.S. repatriation tax due under U.S. tax reform, and as a result, only an immaterial amount of withholding tax was recognized. For the remainder of the Company’s cash held by international subsidiaries, we intend to continue to reinvest the undistributed earnings indefinitely. We believe we have sufficient liquidity to satisfy our cash needs, including our cash needs in the United States.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nLong-Lived and Intangible Asset Impairment Charges\n\nWe recorded the following impairment charges:\n\nFor the year ended December 31, | 2020 | 2019 | 2018\nIn millions of dollars\nAdjustment to disposal group (1) | $6.2 | $2.7 | $57.7\nOther asset write-down (2) | 2.9 | — | —\nCustomer relationship and trademark intangible assets (3) | — | 100.1 | —\nOther long-lived assets not held for sale (4) | — | 9.7 | —\nLong-lived and intangible asset impairment charges | $9.1 | $112.5 | $57.7\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Acquisitions, Valuation and Impairment of Goodwill and Other Intangible Assets\nWe test goodwill for impairment by performing either a qualitative or quantitative assessment. If we choose to perform a qualitative assessment, we evaluate economic, industry and company-specific factors in assessing the fair value of the related reporting unit. If we determine that it is more likely than not that the fair value of the reporting unit is less than its carrying value, a quantitative test is then performed. Otherwise, no further testing is required. For those reporting units tested using a quantitative approach, we compare the fair value of each reporting unit with the carrying amount of the reporting unit, including goodwill. If the estimated fair value of the reporting unit is less than the carrying amount of the reporting unit, impairment is indicated, requiring recognition of a goodwill impairment charge for the differential (up to the carrying value of goodwill). We test individual indefinite-lived intangible assets by comparing the estimated fair values with the book values of each asset.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financial Condition\nWe maintain debt levels we consider prudent based on our cash flow, interest coverage ratio and percentage of debt to capital. We use debt financing to lower our overall cost of capital which increases our return on stockholders’ equity. Our total debt was $4.6 billion at December 31, 2020 and $4.3 billion at December 31, 2019. Our total debt increased in 2020 mainly due to our $1 billion 2020 Notes issuance in May 2020, partially offset by the repayment of $350 million Notes that matured in May 2020 and $350 million Notes that matured in December 2020.\n\nAs a source of short-term financing, we maintain a $1.5 billion unsecured revolving credit facility with the option to increase borrowings by an additional $500 million with the consent of the lenders. As of December 31, 2020, the termination date of this agreement is July 2, 2024, however, we may extend the termination date for up to two additional one-year periods upon notice to the administrative agent under the facility. We may use these funds for general corporate purposes, including commercial paper backstop and business acquisitions. As of December 31, 2020, we had $1.5 billion of available capacity under the agreement. The unsecured revolving credit agreement contains certain financial and other covenants, customary representations, warranties and events of default. We were in compliance with all covenants as of December 31, 2020.\n\n[S6] 10-K: Item 7A. QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK › Foreign Currency Exchange Rate Risk\nThe fair value of foreign currency forward exchange contracts represents the difference between the contracted and current market foreign currency exchange rates at the end of the period. We estimate the fair value of foreign currency forward exchange contracts on a quarterly basis by obtaining market quotes of spot and forward rates for contracts with similar terms, adjusted where necessary for maturity differences. At December 31, 2020 and 2019, the net fair value of these instruments was a liability of $3.1 million and an asset of $1.0 million, respectively. In addition, assuming an unfavorable 10% change in year-end foreign currency exchange rates, the fair value of these instruments would have declined by $25.6 million and $55.4 million, respectively, generally offset by a reduction in foreign exchange associated with our transactional activities.\n\nQuestion: How much goodwill was on the balance sheet at the end of 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"The goodwill on the balance sheet at the end of 2020 was $1,988.2 million.\",\"support\":[{\"quote\":\"At December 31, 2020, the net book value of our goodwill totaled $1,988.2 million.\",\"source\":\"S1\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2179,
+  "completion_tokens": 269,
+  "latency_ms": 1753.7693999984185,
+  "attempts": 1
+ }
+}

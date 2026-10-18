@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers.\n\n[S2] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nCost of Revenue, Gross Profit, and Gross Margin\n\nCost of revenue consists of wafers acquired from third-party foundries, assembly, packaging, and test cost of our products paid to third-party contract manufacturers, and personnel and other costs associated with our manufacturing operations. Cost of revenue also includes depreciation of production equipment, inventory write-downs, amortization of internally developed software, shipping and handling costs, and allocation of overhead and facility costs. We also include credits for rebates received from foundries to cost of revenue.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nCost of Revenue | $58,224 | $44,516 | $13,708 | 31%\nGross Profit | 57,932 | 39,558 | 18,374 | 46%\nGross Margin | 50% | 47%\n\nGross profit increased by $18.4 million in the year ended December 31, 2020 compared to the same period in 2019. The gross profit for the year ended 2019 included a benefit of $2.5 million from the sale of previously reserved inventory. Gross profit excluding this benefit of $2.5 million increased a net $20.9 million year over year mainly from higher sales volume and an increase in ASPs which were offset in part by higher other manufacturing and overhead costs of $2.1 million.\n\n[S3] Earnings call: Q3 2020 earnings call, 20:40–22:22\nRajesh Vashist: Yeah, I think we talked a little bit about it last time. Basically, the quartz industry, as we know, has done a stellar job in the last 70 years of providing product to everybody in the electronics world. But I think that it is still a batch process. It is a fab process. It's a factory process. Everybody has to invest in factories. and these factories are purpose-made, so they can't be used for anything else. They don have the scale and they don have the flexibility that a fabulous company like Sightime which uses semiconductors can get I mean as a reminder when we build our MEMS resonators we can a million sorry 10 wafers should give us about a billion units And these are 180-nanometer technology wafers, so not really that difficult to get. So it's fundamentally – their supply chain is batch-made, and I think it has these issues with it. There were some reports of some stumbles in fabs in the Asian markets, and I think we saw a spike in demand coming. That didn't impact Q3, by the way. I'm just talking that we saw spikes in people because people get nervous when that happens, and this is not the first time. Ten years ago, there was a big problem with ceramic packaging. As you know, all quartz products, whether oscillators or resonators, are quartz packaged because they're fragile and they want to keep a very strong packaging.\n\n[S4] 10-K: Item 1A. Risk Factors\nOur target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\n\nOur target markets include the enterprise and telecommunications infrastructure, automotive, industrial, IoT and mobile, and aerospace and defense markets. Substantially all of our revenue for the years ended December 31, 2020 and 2019 was derived from sales in the IoT and mobile, industrial, and consumer markets. In 2017, we began introducing products for the automotive market. In addition, within the timing market, substantially all of our revenue to date has been attributable to sales of MEMS oscillators. We recently introduced products into the clock IC market, which we began sampling in the second quarter of 2019, and we intend to further focus on clock IC and timing sync solutions in the future. Any deterioration in our target customer or product markets or reduction in capital spending to support these markets could lead to a reduction in demand for our products, which would adversely affect our revenue and results of operations. Further, if our target customer markets, including the 5G communications or IoT and mobile markets, do not grow or develop in ways that we currently expect, demand for our technology may not materialize as expected, which would also negatively impact our business, financial condition, and results of operations.\n\n[S5] Earnings call: Q3 2020 earnings call, 2:37–4:20\nRajesh Vashist: Thank you, Leanne. Good afternoon. We appreciate you joining us today and hope that all of you and your families are staying safe and healthy during these unique times. Even with the challenging macro back drop, CITAM continued to execute, demonstrated by a record quarterly revenue of $32.7 million for third quarter 2020, which was above our updated guidance range of $31 to $32 million. Our results demonstrate the diversity of our end market segments, our customer base, and the exceptional dedication of the CITAM team, all of which have benefited CITAM during the current environment. During this third quarter, revenue grew 52% sequentially compared to our second quarter 2020 revenues. revenues. We anticipate that continued strength in the fourth quarter will allow for SciTime to set another quarterly revenue record, and Art's going to discuss our third quarter financials and fourth quarter outlook later in the call. Now, SciTime's fabulous model and multi-source strategy continue to provide a competitive advantage in this market, while at the same time providing added assurance of quality and reliability to our customers. In contrast, we believe that the quartz industry infrastructure has several points of failure which can cause supply disruptions, some of which we have heard about through recent industry commentary. Additionally, within the timing market, responsiveness is becoming a key theme, and we believe that many competitors in quartz may not be set up to support industry needs and requirements for the future.\n\n[S6] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nResults of Operations\n\nThe following table summarizes our results of operations for the periods presented.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands, except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\nCost of revenue | 58,224 | 44,516 | 13,708 | 31%\nGross profit | 57,932 | 39,558 | 18,374 | 46%\nOperating expenses:\nResearch and development | 31,652 | 23,795 | 7,857 | 33%\nSelling, general and administrative | 34,893 | 20,636 | 14,257 | 69%\nTotal operating expenses | 66,545 | 44,431 | 22,114 | 50%\nLoss from operations | (8,613) | (4,873) | (3,740) | 77%\nInterest expense | (726) | (1,714) | 988 | (58%)\nOther expense, net | (32) | (28) | (4) | 14%\nLoss before income taxes | (9,371) | (6,615) | (2,756) | 42%\nIncome tax (expense) benefit | (1) | 8 | (9) | (113%)\nNet loss attributable to common stockholders and comprehensive loss | $(9,372) | $(6,607) | $(2,765) | 42%\n\nQuestion: What drove SiTime back to GAAP profitability for full-year 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2470,
+  "completion_tokens": 300,
+  "latency_ms": 1333.267900001374,
+  "attempts": 1
+ }
+}

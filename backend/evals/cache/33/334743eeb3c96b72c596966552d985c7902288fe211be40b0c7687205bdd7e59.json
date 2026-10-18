@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How long does it take resonator design wins to turn into meaningful revenue?\n\nReference answer: Slower than clocking: the lead time to meaningful revenue is easily twice as long, especially for SoC vendor design-ins.\n\nAssistant's answer: Resonator design wins have a gestation period that is easily twice as long as the clocking business. Typically, a design win will not result in meaningful revenue for a year or more."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer correctly identifies that the lead time is 'easily twice as long' as the clocking business, which matches the reference. It also provides a specific timeframe ('a year or more') which is consistent with the 'slower' and 'twice as long' description, assuming the clocking lead time is around 6 months. The core comparison and the qualitative assessment of the sl\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 207,
+  "completion_tokens": 95,
+  "latency_ms": 350.61119999954826,
+  "attempts": 1
+ }
+}

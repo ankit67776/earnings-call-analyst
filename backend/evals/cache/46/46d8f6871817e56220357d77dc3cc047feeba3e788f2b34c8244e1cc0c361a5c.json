@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How does the company say it holds its ground against larger rivals?\n\nReference answer: By successfully designing, developing and marketing complex timing solutions for its customers.\n\nAssistant's answer: SITIME Corp says it maintains its competitive position by successfully designing, developing, and marketing complex timing solutions for its customers. It attributes this ability to its fabless business model, which lets it focus on design, sales and marketing, quickly scale production, and keep capital expenditures low."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer includes the exact key fact from the reference answer (designing, developing, and marketing complex timing solutions) and adds non-contradictory supporting details about the fabless model.\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 211,
+  "completion_tokens": 54,
+  "latency_ms": 257.77799999923445,
+  "attempts": 1
+ }
+}

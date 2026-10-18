@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nSelling, Marketing and Administrative\n\n2020 compared with 2019\n\nSelling, marketing and administrative (“SM&A”) expenses decreased $15.0 million or 0.8% in 2020. Total advertising and related consumer marketing expenses decreased 2.0% driven by media cost efficiencies and select brand investment optimization related to COVID-19 in International and Other segments. SM&A expenses, excluding advertising and related consumer marketing, decreased approximately 0.1% in 2020 due to savings in travel and meeting expenses related to COVID-19 travel restrictions and project timing shifts.\n\n2019 compared with 2018\n\nSM&A expenses increased $31.1 million or 1.7% in 2019. Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America. SM&A expenses, excluding advertising and related consumer marketing, increased approximately 0.2% in 2019 due to incremental expenses from Pirate Brands and ONE Brands, as well as higher employee related compensation, which more than offset reductions in our base spending from the Margin for Growth Program.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAccrued Liabilities for Trade Promotion Activities\n\nWe promote our products with advertising, trade promotions and consumer incentives. These programs include, but are not limited to, discounts, coupons, rebates, in-store display incentives and volume-based incentives. We expense advertising costs and other direct marketing expenses as incurred. We recognize the costs of trade promotion and consumer incentive activities as a reduction to net sales along with a corresponding accrued liability based on estimates at the time of revenue recognition. These estimates are based on our analysis of the programs offered, historical trends, expectations regarding customer and consumer participation, sales and payment trends and our experience with payment patterns associated with similar programs offered in the past. The estimated costs of these programs are reasonably likely to change in future periods due to changes in trends with regard to customer and consumer participation, particularly for new programs and for programs related to the introduction of new products. Differences between estimated expense and actual program performance are recognized as a change in estimate in a subsequent period and are normally not significant. During 2020, 2019, and 2018, actual annual promotional costs have not deviated from the estimated amount by more than 2%. Our trade promotion and consumer incentive accrued liabilities totaled $195.6 million and $181.0 million at December 31, 2020 and 2019, respectively.\n\n[S3] Earnings call: Q3 2020 earnings call, 3:44–4:20\nAndrew Lazar: Great. Great. Thanks very much.\n\nMichele Buck: Thank you.\n\nSpeaker 1: Thank you. Our next question comes from the line of Ken Goldman with J.P. Morgan. Please proceed with your questions.\n\nKen Goldman: Hi, thank you. Along the same lines of 2021, if I can, Michelle, you pulled back a little bit on advertising this quarter. It's been a little up and down this year for understandable reasons. I'm just curious what your thoughts are in general on what the company's plan is for advertising, marketing in general, as you get into what hopefully will be a more normal year in 2021.\n\n[S4] Earnings call: Q3 2020 earnings call, 0:23–1:37\nMelissa Poole: Thank you. Good morning, everyone. Thank you for joining us today for the Hershey Company's Third Quarter 2020 Earnings Q&A session. I hope everyone has had the chance to read our press release and listen to our pre-recorded management presentation, both of which are available on our website. In addition, we have posted a transcript of the pre-recorded remarks. At the conclusion of today's live Q&A session, we will also post a transcript and audio replay of this call. Please note that during today's Q&A session, we may make forward-looking statements that are subject to various risks and uncertainties. These statements include expectations and assumptions regarding the company's future operations and financial performance, including expectations and assumptions related to the impact of the COVID-19 pandemic. Actual results could differ materially from those projected as a result of the COVID-19 pandemic, as well as other factors. The company undertakes no obligation to update these statements based on subsequent events. A detailed listing of such risk and uncertainties can be found in today's press release and the company's SEC filing. Finally, please note that we may refer to certain non-GAAP financial measures that we believe will provide useful information for investors. The presentation of this information is not intended to be considered in isolation or as a substitute for the financial information presented in accordance with GAP. Reconciliations to the GAP results are included in this morning's press release. Joining me today are Hershey's Chairman and CEO, Michelle Buck, and Hershey's\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financing activities\n•Share repurchases. We repurchase shares of Common Stock to offset the dilutive impact of treasury shares issued under our equity compensation plans. The value of these share repurchases in a given period varies based on the volume of stock options exercised and our market price. In addition, we periodically repurchase shares of Common Stock pursuant to Board-authorized programs intended to drive additional stockholder value. In 2020, we used cash for total share repurchases of $211.2 million that included purchases pursuant to authorized programs; this included $150.0 million to purchase 1.0 million shares. In 2019, we used cash for total share repurchases of $527.2 million that included purchases pursuant to authorized programs; this included $150.0 million to purchase 1.4 million shares. In 2018, we used cash for total share repurchases of $247.5 million, which included a privately negotiated repurchase transaction with Hershey Trust Company, as trustee for the Trust, to purchase 450 thousand shares for $47.8 million. In October 2017, our Board of Directors approved a $100 million share repurchase authorization. This program was completed in the first quarter of 2019. In July 2018, our Board of Directors approved an additional $500 million share repurchase authorization. As of December 31, 2020, approximately $260 million remained available for repurchases of our Common Stock under this program. The share repurchase program does not have an expiration date. We expect 2021 share repurchases to return to a more traditional buyback strategy.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nInternational and Other\n\nThe International and Other segment includes all other countries where we currently manufacture, import, market, sell or distribute chocolate and non-chocolate confectionery and other products. Currently, this includes our operations in China and other Asia markets, Latin America, Europe, Africa and the Middle East, along with exports to these regions. While a less significant component, this segment also includes our global retail operations, including Hershey’s Chocolate World stores in Hershey, Pennsylvania, New York City, Las Vegas, Niagara Falls (Ontario) and Singapore, as well as operations associated with licensing the use of certain trademarks and products to third parties around the world. International and Other accounted for 9.0%, 11.3% and 11.4% of our net sales in 2020, 2019 and 2018, respectively. International and Other results for the years ended December 31, 2020, 2019 and 2018 were as follows:\n\nPercent Change\nFor the years ended December 31, | 2020 | 2019 | 2018 | 2020 vs 2019 | 2019 vs 2018\nIn millions of dollars\nNet sales | $733.0 | $904.5 | $889.5 | (19.0)% | 1.7%\nSegment income | 28.6 | 95.7 | 73.8 | (70.1)% | 29.7%\nSegment margin | 3.9% | 10.6% | 8.3%\n\n2020 compared with 2019\n\nQuestion: How many dollars did Hershey spend on advertising and related consumer marketing in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2343,
+  "completion_tokens": 185,
+  "latency_ms": 1037.7348999973037,
+  "attempts": 1
+ }
+}

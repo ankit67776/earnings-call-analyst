@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nTo ensure continued wafer supply, we may be required to establish alternative wafer supply sources, which could require significant expenditures and limit our negotiating leverage. We currently rely on Bosch and TSMC as our primary foundries and suppliers for our MEMS timing devices and analog circuits, respectively, and only a few foundry vendors have the capability to manufacture our most advanced solutions, in particular with respect to our MEMS solution. If we engage alternative supply sources, we may incur additional costs and encounter difficulties and/or delays in qualifying the supply sources. For example, we have a license agreement with Bosch under which Bosch granted us a license to use certain patents. Under this agreement, we are required to pay a royalty fee to Bosch if we engage third parties to manufacture, or if we decide to manufacture ourselves, certain generations of our MEMS wafers through March 31, 2024. In addition, shipments could be significantly delayed while these sources are qualified for volume production. If we are unable to maintain our relationship with Bosch or TSMC, our ability to produce high-quality products could suffer, which in turn could harm our business, financial condition, and results of operations.\n\n[S2] 10-K: Item 1A. Risk Factors › Our failure to adequately protect our intellectual property rights could impair our ability to compete effectively or defend ourselves from litigation, which could harm our business, financial condition, and results of operations.\nWe also have a license to certain patents from Bosch relating to the design and manufacture of MEMS-based timing applications. The patent rights obtained under the license agreement expire between 2021 and 2029, and the license agreement expires upon expiration of the last patent licensed under the agreement. If we were to lose the benefit of these patents or other licensed technology used in our business, it could harm our business and our ability to compete.\n\nWe believe that the success of our business depends more on proprietary technology, information and processes, and know-how than on our patents or trademarks. Much of our proprietary information and technology related to manufacturing processes is not patented and may not be patentable.\n\nUnauthorized copying or other misappropriation of our proprietary technologies could enable third parties to benefit from our technologies without paying us for doing so, which could harm our business. Monitoring unauthorized use of our intellectual property is difficult and costly. It is possible that unauthorized use of our intellectual property may have occurred or may occur without our knowledge. We cannot assure you that the steps we have taken will prevent unauthorized use of our intellectual property, or that others will not develop technologies similar or superior to our technology or design around our intellectual property. Our failure to effectively protect our intellectual property could reduce the value of our technology in licensing arrangements or in cross-licensing negotiations.\n\n[S3] 10-K: Item 1. Business\nManufacturing\n\nWe operate a fabless business model and use third-party foundries and assembly and test contractors to manufacture, assemble and test our semiconductor products. This outsourced manufacturing approach allows us to focus our resources on the design, sale, and marketing of our products. In addition, we believe that outsourcing many of our manufacturing and assembly activities provides us with the flexibility needed to respond to new market opportunities and scale for customer demand, simplifies our operations, and significantly reduces our capital commitments.\n\nWe subject our third-party manufacturing contractors to rigorous qualification requirements to meet the high quality and reliability standards required of our products. We carefully qualify each of our partners and their processes before applying the technology to our products. Our engineers work closely with our foundries and other contractors to increase yield, lower manufacturing costs, and improve product quality.\n\n• Fabrication. We currently utilize a range of semiconductor process generations to develop and manufacture our products. We use Robert Bosch LLC (“Bosch”) in Germany and Taiwan Semiconductor Manufacturing Company (“TSMC”) in Taiwan as our primary foundries and suppliers for our MEMS timing devices and analog mixed-signal circuit ICs, respectively.\n\n[S4] 10-K: Item 1. Business › Manufacturing\n• Package, Assembly and Testing. Upon the completion of processing at the foundry, we use third-party contractors for packaging, assembly and testing, including Advanced Semiconductor Engineering, Inc. (“ASE”), Carsem (M) Sdn Bhd. (“Carsem”), and United Test and Assembly Center Ltd. (“UTAC”) in Taiwan, Malaysia, and Thailand, respectively, as well as Daishinku Corp. (“Daishinku”) and UTAC for ceramic packaging for some of our products.\n\n• Warehousing. Our products are warehoused at our outsourced semiconductor assembly and test facilities located in Malaysia, Taiwan, and Thailand.\n\nWe have a supply agreement with Bosch under which Bosch has agreed to fabricate our MEMS wafers based on purchase orders placed by us. Bosch has discretion whether to accept our purchase orders, and we can terminate purchase orders for convenience by giving written notice prior to shipment. The initial term of the supply agreement is for ten years through February 2027 and automatically renews unless terminated by either party with three years’ advance notice beginning in February 2024. Other than Bosch, we do not have long-term supply agreements with most of our third-party manufacturing contractors, and we purchase products on a purchase order basis.\n\n[S5] 10-K: Item 1. Business\nIntellectual Property\n\nWe rely primarily on patent, copyright, trademark, and trade secret laws, as well as confidentiality and non-disclosure agreements, and other contractual protections, to protect our technologies and proprietary know-how. As of December 31, 2020, we had 73 issued U.S. patents, expiring generally between 2026 and 2039, and 27 pending U.S. patent applications. We also had one foreign issued patent expiring in 2039 and four pending foreign patent applications. Our issued patents and pending patent applications generally relate to our MEMS fabrication process, MEMS resonators, circuits, packaging, and oscillator systems.\n\nIn addition to our own intellectual property, we also use third-party licenses for certain technologies embedded in our MEMS solutions. For example, we have a license to certain patents from Bosch relating to the design and manufacture of MEMS-based timing applications. The patent rights obtained under the license agreement expire between 2021 and 2029, and the license agreement expires upon expiration of the last patent licensed under the agreement. If we were to lose the benefit of these patents or other licensed technology used in our business, it could harm our business and our ability to compete.\n\n[S6] 10-K: Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nIf market demand for wafers or production and assembly materials increases, if a supplier of our wafers fails to procure materials needed for manufacture of our products, or if a supplier of our wafers ceases or suspends operations, our supply of wafers and other materials could become limited. We currently have a ten-year supply agreement with Bosch for the fabrication of our MEMS wafers. This agreement expires in 2027 and may be terminated with three years’ advance notice beginning in February 2024. We currently rely on Bosch for our MEMS fabrication, and TSMC for our analog circuits fabrication, and any disruption in their supply of wafers or any increases in their wafer or materials prices could adversely affect our gross margins and our ability to meet customer demands in a timely manner, or at all, and lead to reduced revenue. There is currently a number of industry-wide supply constraints affecting the supply of analog circuits manufactured by certain foundries, including TSMC, which may limit our ability to fully satisfy an increase in demand for some of our products. Moreover, wafers constitute a large portion of our product cost. If we are unable to negotiate volume discounts or otherwise purchase wafers at favorable prices and in sufficient quantities in a timely manner, our gross margins would be adversely affected.\n\nQuestion: What royalty rate does SiTime owe Bosch under its MEMS patent license?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2250,
+  "completion_tokens": 160,
+  "latency_ms": 886.9574000018474,
+  "attempts": 1
+ }
+}

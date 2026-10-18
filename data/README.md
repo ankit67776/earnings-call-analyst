@@ -41,6 +41,24 @@ uv run python -m app.filings show ../data/raw/10k/HSY_10-K_FY2020.htm           
 uv run python -m app.filings show ../data/raw/10k/HSY_10-K_FY2020.htm --section 1A  # paragraphs
 ```
 
+Transcribe the calls with Whisper on Groq and store them (speakers come from the
+dataset's RTTM files), store the other two 10-Ks without analyzing them, then build the
+search index and embed it:
+
+```bash
+cd backend
+uv run python -m app.calls load SITM HSY COP
+uv run python -m app.filings fetch SITM COP --year 2020 --save
+uv run python -m app.retrieval index
+uv run python -m app.retrieval embed voyage/voyage-4 gemini/gemini-embedding-2
+```
+
+Groq's free tier allows 7,200 audio seconds an hour per model, so the three calls (157
+minutes) can wait on the hourly limit; the transcriber honours the retry-after and caches
+every response. Voyage without a payment method allows 3 requests and 10K tokens a
+minute (about 20 minutes for the index); Gemini's free tier counts each text as a
+request, 100 a minute and about 1,000 a day.
+
 Notes:
 - Illumina (4375653) looks like a Q3 earnings call in the metadata but is the GRAIL acquisition call, so it's not used.
-- The COP mp3 is over Groq Whisper's 25 MB upload limit; downsample to mono 16 kHz or chunk it before batch STT.
+- The COP mp3 is over Groq Whisper's 25 MB upload limit, so it's cut into two parts at MP3 frame boundaries (no ffmpeg needed), with 15 seconds of overlap, and the transcripts are stitched back on one timeline.

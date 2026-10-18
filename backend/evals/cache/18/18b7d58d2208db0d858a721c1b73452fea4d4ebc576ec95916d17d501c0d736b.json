@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 35:11–36:01\nAlex: Yeah, that helps.\n\nRajesh Vashist: And I have a comment on that. And that comment is that a reminder that Sightem is an analog semiconductor company. And when you think of other semiconductor companies that are using seven nanometer tape outs, we're doing 180, 130, 65 nanometer tape outs. When you think of other companies doing a bunch of software in OPEX and scaling that, we're not in the software business or not meaningfully in that. On the other hand, the number of opportunities that are coming at us are coming pretty thick and fast. So we always would like to retain the ability to invest at a greater rate, you know, within reason to the model that was put out by ARD.\n\n[S2] 10-K: Item 1. Business\nManufacturing\n\nWe operate a fabless business model and use third-party foundries and assembly and test contractors to manufacture, assemble and test our semiconductor products. This outsourced manufacturing approach allows us to focus our resources on the design, sale, and marketing of our products. In addition, we believe that outsourcing many of our manufacturing and assembly activities provides us with the flexibility needed to respond to new market opportunities and scale for customer demand, simplifies our operations, and significantly reduces our capital commitments.\n\nWe subject our third-party manufacturing contractors to rigorous qualification requirements to meet the high quality and reliability standards required of our products. We carefully qualify each of our partners and their processes before applying the technology to our products. Our engineers work closely with our foundries and other contractors to increase yield, lower manufacturing costs, and improve product quality.\n\n• Fabrication. We currently utilize a range of semiconductor process generations to develop and manufacture our products. We use Robert Bosch LLC (“Bosch”) in Germany and Taiwan Semiconductor Manufacturing Company (“TSMC”) in Taiwan as our primary foundries and suppliers for our MEMS timing devices and analog mixed-signal circuit ICs, respectively.\n\n[S3] 10-K: Item 1. Business\nOur Solutions and Technology\n\nOur silicon timing solutions comprise:\n\n• MEMS resonators: We pioneered the silicon MEMS-based timing industry with the MEMS First®, EpiSeal®, and TempFlat® processes. These manufacturing processes have allowed the hermetically-sealed resonator die to be housed in industry-standard, low-cost plastic packages. These processes improve resonator stability, increase quality and reliability, and decrease aging effects. We believe our MEMS resonators are easy to integrate into silicon-based oscillators and clock ICs, and allow us to develop tightly-integrated high performance timing solutions.\n\n• Oscillators and Clock ICs: We have a dedicated analog and mixed-signal engineering team focused on the most complex challenges related to oscillators and clock ICs. Our analog mixed-signal technologies include several innovative low-noise circuit-based oscillators, high-performance PLLs, low-noise data converters, and precision low-aging reference circuits. Many of our oscillators use temperature sensing to maximize frequency stability. Our low-power nano-ampere and high-resolution DualMEMS® micro-kelvin-resolution sensing technologies stabilize our timing solutions despite rapid temperature changes. We also offer what we consider to be leading solutions across a range of attributes, including Allan deviation, power supply noise rejection, temperature-sensing resolution, and integrated phase jitter.\n\n• Advanced system-level integration: We have extensive know-how in integrating various timing components into elegant system-level solutions. Our ability to integrate MEMS-based resonators with analog mixed-signal products allows us to develop oscillators and clock ICs in diverse permutations, which helps us solve difficult timing challenges. Using advanced packaging designs, we believe we can design our products to fit in the smallest footprints in the industry.\n\n[S4] 10-K: Item 1. Business\nSilicon Timing Solutions Poised to Disrupt the Market\n\nIn recent years, advances in silicon-based manufacturing and packaging techniques have allowed the development of alternatives to quartz crystal technology. We believe that silicon MEMS is an ideal technology for resonator design. Specifically, its ability to integrate with other circuits in standard semiconductor packages has made scalable standard silicon manufacturing possible for resonators and broader timing technology. MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes, and are less susceptible to frequency jumps. These technologies are also inherently well-suited to produce timing solutions that are small, and offer high performance, robustness and programmability. Timing solutions based on these technologies are manufactured using semiconductor processes in fabrication plants with high capacity, allowing for cost-effective high-volume manufacturing.\n\n[S5] 10-K: Item 1A. Risk Factors\nIf the foundries with which we contract do not achieve satisfactory yields or quality, our reputation and customer relationships could be harmed.\n\nWe depend on satisfactory wafer foundry manufacturing capacity, wafer prices, and production yields, as well as timely wafer delivery to meet customer demand and enable us to maintain gross margins. The fabrication of our products is a complex and technically demanding process. Minor deviations in the manufacturing process can cause substantial decreases in yields and, in some cases, cause production to be suspended. Our foundry vendors may experience manufacturing defects and reduced manufacturing yields from time to time. Further, any new foundry vendors we employ may present additional and unexpected manufacturing challenges that could require significant management time and focus. Changes in manufacturing processes or the inadvertent use of defective or contaminated materials by the foundries that we employ could result in lower than anticipated production yields or unacceptable performance of our devices. Many of these problems are difficult to detect at an early stage of the manufacturing process and may be time-consuming and expensive to correct. Poor production yields from the foundries that we employ, or defects, integration issues, or other performance problems in our solutions could significantly harm our customer relationships and financial results and give rise to financial or other damages to our customers. Any product liability claim brought against us, even if unsuccessful, would likely be time-consuming and costly to defend.\n\n[S6] Earnings call: Q3 2020 earnings call, 20:40–22:22\nRajesh Vashist: Yeah, I think we talked a little bit about it last time. Basically, the quartz industry, as we know, has done a stellar job in the last 70 years of providing product to everybody in the electronics world. But I think that it is still a batch process. It is a fab process. It's a factory process. Everybody has to invest in factories. and these factories are purpose-made, so they can't be used for anything else. They don have the scale and they don have the flexibility that a fabulous company like Sightime which uses semiconductors can get I mean as a reminder when we build our MEMS resonators we can a million sorry 10 wafers should give us about a billion units And these are 180-nanometer technology wafers, so not really that difficult to get. So it's fundamentally – their supply chain is batch-made, and I think it has these issues with it. There were some reports of some stumbles in fabs in the Asian markets, and I think we saw a spike in demand coming. That didn't impact Q3, by the way. I'm just talking that we saw spikes in people because people get nervous when that happens, and this is not the first time. Ten years ago, there was a big problem with ceramic packaging. As you know, all quartz products, whether oscillators or resonators, are quartz packaged because they're fragile and they want to keep a very strong packaging.\n\nQuestion: What process geometries does the company use for its tape-outs?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"Sightime uses 180‑nanometer, 130‑nanometer and 65‑nanometer process geometries for its tape‑outs.\",\"support\":[{\"source\":\"S1\",\"quote\":\"we're doing 180, 130, 65 nanometer tape outs.\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2145,
+  "completion_tokens": 441,
+  "latency_ms": 1750.9480000007898,
+  "attempts": 1
+ }
+}

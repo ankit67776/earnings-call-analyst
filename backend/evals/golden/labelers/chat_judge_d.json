@@ -1,0 +1,243 @@
+{
+  "labeler": "d",
+  "answers": [
+    {
+      "id": "COP-call-007-a",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-call-014-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct",
+      "notes": "Omits the $350M cost-savings assumption; range is right."
+    },
+    {
+      "id": "COP-call-017-b",
+      "sentences": [
+        "supported",
+        "partial"
+      ],
+      "correctness": "correct",
+      "notes": "S1 ties 'margin-enhancing' to export capacity; source says it of direct sales."
+    },
+    {
+      "id": "COP-call-031-b",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-call-040-a",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-filing-002-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-filing-072-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-filing-085-b",
+      "sentences": [
+        "partial",
+        "partial",
+        "partial"
+      ],
+      "correctness": "partial",
+      "notes": "Covers higher costs/capex only; misses lower demand, taxes, emission credits. S2 pins impairments on non-compliance, source says compliance."
+    },
+    {
+      "id": "COP-filing-173-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "COP-filing-235-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "HSY-call-007-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "HSY-call-021-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "HSY-call-023-b",
+      "sentences": [
+        "partial",
+        "supported"
+      ],
+      "correctness": "correct",
+      "notes": "S0 turns 'performed exactly in line' into 'expected to finish roughly in line'."
+    },
+    {
+      "id": "HSY-call-038-b",
+      "sentences": [
+        "supported",
+        "partial",
+        "supported"
+      ],
+      "correctness": "correct",
+      "notes": "S1 'key upcoming launch' not in source ('we've had a range')."
+    },
+    {
+      "id": "HSY-call-046-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "partial",
+      "notes": "Misses the 2020/2021 cocoa crops."
+    },
+    {
+      "id": "HSY-filing-033-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "HSY-filing-084-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct",
+      "notes": "Mechanism right; omits the $166M vs $60M figures."
+    },
+    {
+      "id": "HSY-filing-085-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "partial",
+      "notes": "Gives the $60M working-capital inflow but not its drivers (collections, vendor timing, incentive comp)."
+    },
+    {
+      "id": "HSY-filing-116-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "HSY-filing-119-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-call-012-a",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-call-020-a",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "partial",
+      "notes": "S1 repeats a garbled '$1.5B SAM' line that conflicts with the $1.0-1.2B figure."
+    },
+    {
+      "id": "SITM-call-031-a",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-call-032-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-call-033-b",
+      "sentences": [
+        "supported",
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-filing-032-a",
+      "sentences": [
+        "supported",
+        "partial"
+      ],
+      "correctness": "correct",
+      "notes": "S1 adds a causal link to the fabless model the source doesn't make."
+    },
+    {
+      "id": "SITM-filing-055-a",
+      "sentences": [
+        "supported",
+        "partial"
+      ],
+      "correctness": "partial",
+      "notes": "Misses supplier-uncovered claims; S1 adds 'cause results to swing'."
+    },
+    {
+      "id": "SITM-filing-142-a",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-filing-142-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    },
+    {
+      "id": "SITM-filing-168-b",
+      "sentences": [
+        "supported"
+      ],
+      "correctness": "correct"
+    }
+  ]
+}

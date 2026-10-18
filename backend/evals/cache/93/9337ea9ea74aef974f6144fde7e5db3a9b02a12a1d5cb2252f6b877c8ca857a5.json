@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about SITIME Corp using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers.\n\n[S2] 10-K: Item 1. Business\nCorporate Information\n\nWe were incorporated in Delaware on December 3, 2003. Our principal executive offices are located at 5451 Patrick Henry Drive, Santa Clara, California 95054, and our telephone number is (408) 328-4400. Our corporate website address is www.sitime.com. Information found on, or accessible through, our website is not a part of, and is not incorporated into, this Annual Report on Form 10-K. Unless the context requires otherwise, references in this Annual Report on Form 10-K to “SiTime,” “the company,” “we,” “us” and “our” refer to SiTime Corporation and its wholly-owned subsidiaries on a consolidated basis.\n\n[S3] 10-K: Item 1A. Risk Factors\nOur success and future revenue depend on our ability to achieve design wins and to convince our current and prospective customers to design our products into their product offerings. If we do not continue to win designs or our products are not designed into our customers’ product offerings, our results of operations and business will be harmed.\n\nWe sell our silicon timing systems solutions to customers who select our solutions for inclusion in their product offerings. This selection process is typically lengthy and may require us to incur significant design and development expenditures and dedicate scarce engineering resources in pursuit of a single design win with no assurance that our solutions will be selected. If we fail to convince our current or prospective customers to include our products in their product offerings or to achieve a consistent number of design wins, our business, financial condition, and results of operations will be harmed.\n\nBecause of our extended sales cycle, our revenue in future years is highly dependent on design wins we are awarded in prior years. It is typical that a design win will not result in meaningful revenue for a year or more, if at all. If we do not continue to achieve design wins in the short term, our revenue in the following years will deteriorate.\n\n[S4] 10-K: Item 1. Business\nKey Building Blocks of Timing Solutions\n\nTiming solutions comprise three key building blocks: resonators, oscillators, and clock ICs. While simpler systems generally require only an external resonator coupled with a basic embedded oscillator circuit, more complex systems require advanced timing solutions that may integrate a variety of resonators, oscillators, and clock ICs in a single chip package. The complexity of these timing solutions increases significantly when the performance requirements of the systems that use them increase, such as electronic systems required to support the 5G communication network infrastructure.\n\nThe key building blocks of SiTime’s timing solutions are:\n\n• Resonators – mechanical silicon structures that vibrate at a precise frequency and provide the core accuracy and stability in oscillator systems;\n\n• Oscillators – active systems that combine resonators with analog mixed-signal ICs that cause the resonators to vibrate, generating accurate and stable clock signals; and\n\n• Clock ICs – integrated analog mixed-signal circuits that use phase-locked loops (“PLLs”), clock dividers, and drivers, and have multiple clock signals on the output of the system. Clock ICs require resonators and oscillators for timing references and may integrate these components into complex systems.\n\nThese three building blocks may be used individually or in combination, depending on the end product’s performance, price, and size requirements.\n\n[S5] 10-K: Item 1. Business\nOur Solutions and Technology\n\nOur silicon timing solutions comprise:\n\n• MEMS resonators: We pioneered the silicon MEMS-based timing industry with the MEMS First®, EpiSeal®, and TempFlat® processes. These manufacturing processes have allowed the hermetically-sealed resonator die to be housed in industry-standard, low-cost plastic packages. These processes improve resonator stability, increase quality and reliability, and decrease aging effects. We believe our MEMS resonators are easy to integrate into silicon-based oscillators and clock ICs, and allow us to develop tightly-integrated high performance timing solutions.\n\n• Oscillators and Clock ICs: We have a dedicated analog and mixed-signal engineering team focused on the most complex challenges related to oscillators and clock ICs. Our analog mixed-signal technologies include several innovative low-noise circuit-based oscillators, high-performance PLLs, low-noise data converters, and precision low-aging reference circuits. Many of our oscillators use temperature sensing to maximize frequency stability. Our low-power nano-ampere and high-resolution DualMEMS® micro-kelvin-resolution sensing technologies stabilize our timing solutions despite rapid temperature changes. We also offer what we consider to be leading solutions across a range of attributes, including Allan deviation, power supply noise rejection, temperature-sensing resolution, and integrated phase jitter.\n\n• Advanced system-level integration: We have extensive know-how in integrating various timing components into elegant system-level solutions. Our ability to integrate MEMS-based resonators with analog mixed-signal products allows us to develop oscillators and clock ICs in diverse permutations, which helps us solve difficult timing challenges. Using advanced packaging designs, we believe we can design our products to fit in the smallest footprints in the industry.\n\n[S6] 10-K: Item 1A. Risk Factors\nOur target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\n\nOur target markets include the enterprise and telecommunications infrastructure, automotive, industrial, IoT and mobile, and aerospace and defense markets. Substantially all of our revenue for the years ended December 31, 2020 and 2019 was derived from sales in the IoT and mobile, industrial, and consumer markets. In 2017, we began introducing products for the automotive market. In addition, within the timing market, substantially all of our revenue to date has been attributable to sales of MEMS oscillators. We recently introduced products into the clock IC market, which we began sampling in the second quarter of 2019, and we intend to further focus on clock IC and timing sync solutions in the future. Any deterioration in our target customer or product markets or reduction in capital spending to support these markets could lead to a reduction in demand for our products, which would adversely affect our revenue and results of operations. Further, if our target customer markets, including the 5G communications or IoT and mobile markets, do not grow or develop in ways that we currently expect, demand for our technology may not materialize as expected, which would also negatively impact our business, financial condition, and results of operations.\n\nQuestion: What revenue did SiTime report for full-year 2021?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2204,
+  "completion_tokens": 149,
+  "latency_ms": 1046.2979000003543,
+  "attempts": 1
+ }
+}

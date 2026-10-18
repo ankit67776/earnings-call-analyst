@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] Earnings call: Q3 2020 earnings call, 38:49–39:24\nBryan Spillane: But I guess we can infer from that, at least from where we sit today, that, you know, that it's stable is something that looks like it kind of carries into next year unless something changes.\n\nSteve Voskuil: Yeah, I think that's fair. You know, next year as we get the – you're going to have the 2020 and 2021 crops of cocoa start to bear the lid. So, you know, there's that to consider. And then there's other things, obviously, on the gross margin side. As Michelle said, you know, we'll have a little bit more volume-driven than price-driven mix driving gross margin next year. We'll have our continuing productivity goal. And, again, a lot more on that to come when we talk on the fourth quarter call.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Cost of Sales and Gross Margin\nGross margin decreased by 50 basis points in 2019 compared with 2018. The decrease was driven primarily by to the higher freight and logistics costs, additional plant costs, and the unfavorable year-over-year mark-to-market impact from commodity derivative instruments. These factors were partially offset by supply chain productivity, price realization, and favorable product mix.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCost of Sales and Gross Margin\n\n2020 compared with 2019\n\nCost of sales increased 1.9% in 2020 compared with 2019. The increase in cost of sales was attributed to higher freight and logistics costs and additional plant costs, specifically, PPE costs, increased sanitation and wage incentives associated with COVID-19. Additionally, the increase was driven by an incremental $28.9 million of unfavorable mark-to-market activity on our commodity derivative instruments. These derivative instruments are intended to economically hedge future years' commodity purchases; however, they were significantly impacted by financial market volatility during 2020. These drivers were partially offset by favorable price realization and favorable supply chain productivity\n\nGross margin remained the same in 2020 compared with 2019. Increases were driven by the higher freight and logistics costs, additional plant costs, and unfavorable year-over-year mark-to-market impact from commodity derivative instruments. These factors were offset by favorable price realization and supply chain productivity.\n\n2019 compared with 2018\n\nCost of sales increased 3.5% in 2019 compared with 2018. The increase was driven by higher freight and logistics costs, additional plant costs, and an incremental $33.9 million unfavorable impact from marking-to-market our commodity derivative instruments intended to economically hedge future years' commodity purchases. These drivers were partially offset by favorable supply chain productivity.\n\n[S4] Earnings call: Q3 2020 earnings call, 2:53–3:44\nMichele Buck: Yep, Andrew, absolutely. I think we've shared before that we do view pricing as an important part of our growth algorithm, but we are very focused and would like to drive to greater balance between price and volume. We have good visibility into Q4 and 2021, and we do expect volume trends to improve. Part of that will be us lapping some of our pricing elasticity from last year. and also a continuation of some of the strong share gains that we've seen to date that we'll carry into the first part of next year. I think you can definitely count on seeing volume being a more important part of the algorithm next year, and we feel good that the calendar of programming we have, the innovation, the media is really going to help to drive some of that.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCONSOLIDATED RESULTS OF OPERATIONS\n\nPercent Change\nFor the years ended December 31, | 2020 | 2019 | 2018 | 2020 vs 2019 | 2019 vs 2018\nIn millions of dollars except per share amounts\nNet sales | $8,149.7 | $7,986.3 | $7,791.1 | 2.0% | 2.5%\nCost of sales | 4,448.5 | 4,363.8 | 4,215.7 | 1.9% | 3.5%\nGross profit | 3,701.2 | 3,622.5 | 3,575.4 | 2.2% | 1.3%\nGross margin | 45.4% | 45.4% | 45.9%\nSM&A expense | 1,890.9 | 1,905.9 | 1,874.8 | (0.8)% | 1.7%\nSM&A expense as a percent of net sales | 23.2% | 23.9% | 24.1%\nLong-lived and intangible asset impairment charges | 9.1 | 112.5 | 57.7 | (91.9)% | 94.9%\nBusiness realignment costs | 18.5 | 8.1 | 19.1 | 128.1% | (57.5)%\nOperating profit | 1,782.7 | 1,596.0 | 1,623.8 | 11.7% | (1.7)%\nOperating profit margin | 21.9% | 20.0% | 20.8%\nInterest expense, net | 149.4 | 144.1 | 138.8 | 3.6% | 3.8%\nOther (income) expense, net | 138.3 | 71.1 | 74.8 | 94.7% | (5.0)%\nProvision for income taxes | 219.6 | 234.0 | 239.0 | (6.2)% | (2.1)%\nEffective income tax rate | 14.7% | 16.9% | 17.0%\nNet income including noncontrolling interest | 1,275.4 | 1,146.8 | 1,171.2 | 11.2% | (2.1)%\nLess: Net loss attributable to noncontrolling interest | (3.3) | (2.9) | (6.5) | 12.1% | (54.8)%\n\n[S6] Earnings call: Q3 2020 earnings call, 48:19–49:46\nMelissa Poole: Wow. So I think a lot of learnings along the way. I guess I would start with, you know, there's a business model for brands that we as a company are best with. and that is, you know, branded items where, you know, brand matters, where the business has significant scale, you know, probably close to that $100 million mark, and it needs to be a business that has a high gross margin because that's what our business model is. We're a branded company. We invest a lot in marketing, and we have high margins that enable us to kind of invest and grow, invest and grow. And that's our model. That's what we need. So I think that was one of the biggest learnings was to help us select the asset. I think, secondly, really understanding the strength of the brand and really being able to do the right deep dives on which KPIs we think predict the ability for a brand to scale. And then I would say, you know, really trying to scale the business well. And I would say, hey, we've learned lessons the whole way along the way. As you know, in the past, we bought some businesses that were too small. We bought some businesses that, you know, had lower margins. And we had some that we perhaps didn't execute on the scaling as well. And I think we've had a very focused effort on the scaling as well.\n\nQuestion: What will drive gross margin in 2021?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":true,\"sentences\":[{\"text\":\"Gross margin in 2021 is expected to be driven more by a volume‑driven mix rather than a price‑driven mix.\",\"support\":[{\"source\":\"S1\",\"quote\":\"we’ll have a little bit more volume-driven than price-driven mix driving gross margin next year.\"},{\"source\":\"S4\",\"quote\":\"I think you can definitely count on seeing volume being a more important part of the algorithm next year\"}]},{\"text\":\"The company also expects its continuing productivity goal to support gross margin.\",\"support\":[{\"source\":\"S1\",\"quote\":\"we’ll have our continuing productivity goal.\"}]}]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2283,
+  "completion_tokens": 770,
+  "latency_ms": 2143.7282000006235,
+  "attempts": 1
+ }
+}

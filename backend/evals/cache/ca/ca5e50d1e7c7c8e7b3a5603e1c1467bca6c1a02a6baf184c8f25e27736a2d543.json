@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What's the downside of raising prices or shrinking pack sizes to cover input cost inflation?\n\nReference answer: Higher prices or smaller product sizes can reduce sales volume and consumption.\n\nAssistant's answer: Raising prices or shrinking pack sizes can lead to a reduction in sales volume and consumer consumption. Significant declines in sales volume could have a negative impact on Hershey’s financial condition and results of operations."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer correctly identifies the key downside mentioned in the reference answer: a reduction in sales volume and consumer consumption. The additional detail regarding Hershey's financial condition is extra context that does not contradict the reference.\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 197,
+  "completion_tokens": 56,
+  "latency_ms": 2133.860199999617,
+  "attempts": 1
+ }
+}

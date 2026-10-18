@@ -119,3 +119,46 @@ async def get_section(
         item,
     )
     return dict(section) | {"paragraphs": [dict(p) for p in paragraphs]}
+
+
+async def list_companies(conn: asyncpg.Connection) -> list[dict[str, Any]]:
+    """Every company with a stored filing or call, and what the chat can search for it."""
+    rows = await conn.fetch(
+        """
+        with tickers as (select ticker from documents union select ticker from calls)
+        select t.ticker,
+               coalesce((select company from documents d where d.ticker = t.ticker
+                         order by fiscal_year desc limit 1),
+                        (select company from calls c where c.ticker = t.ticker limit 1))
+                   as company,
+               coalesce((select jsonb_agg(jsonb_build_object(
+                             'id', d.id, 'form', d.form, 'fiscal_year', d.fiscal_year)
+                             order by d.fiscal_year desc)
+                         from documents d where d.ticker = t.ticker), '[]') as documents,
+               coalesce((select jsonb_agg(jsonb_build_object(
+                             'id', c.id, 'fiscal_year', c.fiscal_year, 'quarter', c.quarter,
+                             'duration', c.duration)
+                             order by c.fiscal_year desc, c.quarter desc)
+                         from calls c where c.ticker = t.ticker), '[]') as calls,
+               (select count(*) from passages p where p.ticker = t.ticker) as passages
+        from tickers t
+        order by t.ticker
+        """
+    )
+    return [dict(r) for r in rows]
+
+
+async def get_call(conn: asyncpg.Connection, call_id: int) -> dict[str, Any] | None:
+    call = await conn.fetchrow(
+        "select id, ticker, company, fiscal_year, quarter, source, duration, stt_provider,"
+        " stt_model, speakers as speaker_source from calls where id = $1",
+        call_id,
+    )
+    if call is None:
+        return None
+    segments = await conn.fetch(
+        "select position, turn, speaker, start_s as start, end_s as end, text"
+        " from call_segments where call_id = $1 order by position",
+        call_id,
+    )
+    return dict(call) | {"segments": [dict(s) for s in segments]}

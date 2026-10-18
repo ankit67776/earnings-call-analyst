@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nOn January 15, 2021, we completed the acquisition of Concho. This transaction significantly increases our Permian position by adding complementary acreage across the Delaware and Midland basins. The production and acreage figures and the property descriptions below do not reflect this recently closed acquisition. For additional information related to this acquisition, see Note 25—Acquisition of Concho Resources Inc., in the Notes to Consolidated Financial Statements.\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. Organized into the Gulf Coast and Great Plains business units, at year-end 2020 we held 10.1 million net onshore and offshore acres, with a portfolio of low cost of supply, shorter cycle time, resource-rich unconventional plays, and conventional production from legacy assets. Based on 2020 production volumes, the Lower 48 is the company’s largest segment and contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 Crude Oil NGL Natural Gas Total Interest Operator MBD MBD MMCFD MBOED\n\n[S2] 10-K: Item 1. BUSINESS AND PROPERTIES\nSEGMENT AND GEOGRAPHIC INFORMATION\n\nWe manage our operations through six operating segments, defined by geographic region: Alaska; Lower 48; Canada; Europe, Middle East and North Africa; Asia Pacific; and Other International. Effective with the third quarter of 2020, we restructured our segments to align with changes to our internal organization. The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment. The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment. We have revised segment information disclosures and segment performance metrics presented within our results of operations for the current and prior years. For operating segment and geographic information, see Note 24—Segment Disclosures and Related Information, in the Notes to Consolidated Financial Statements.\n\nWe explore for, produce, transport and market crude oil, bitumen, natural gas, LNG and NGLs on a worldwide basis. At December 31, 2020, our operations were producing in the U.S., Norway, Canada, Australia, Indonesia, Malaysia, Libya, China and Qatar.\n\nThe information listed below appears in the “Oil and Gas Operations” disclosures following the Notes to Consolidated Financial Statements and is incorporated herein by reference:\n\n● Proved worldwide crude oil, NGLs, natural gas and bitumen reserves.\n\n● Net production of crude oil, NGLs, natural gas and bitumen.\n\n● Average sales prices of crude oil, NGLs, natural gas and bitumen.\n\n● Average production costs per BOE.\n\n● Net wells completed, wells in progress and productive wells.\n\n● Developed and undeveloped acreage.\n\n[S3] 10-K: Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nGulf of Mexico At year-end 2020, our portfolio of producing properties in the Gulf of Mexico totaled approximately 60,000 net acres. A majority of the production consists of three fields operated by co-venturers:\n\n● 15.9 percent interest in the unitized Ursa Field located in the Mississippi Canyon Area.\n\n● 15.9 percent interest in the Princess Field, a northern subsalt extension of the Ursa Field.\n\n● 12.4 percent interest in the unitized K2 Field, comprised of seven blocks in the Green Canyon Area.\n\nDispositions In the first quarter of 2020, we completed the sale of our Waddell Ranch interests in the Permian Basin and our Niobrara interests. Production from these dispositions was immaterial to the Lower 48 segment in 2020. For additional information on these transactions, see Note 4—Asset Acquisitions and Dispositions, in the Notes to Consolidated Financial Statements.\n\nFacilities\n\n● Lost Cabin Gas Plant—We operate and own a 60 percent interest in the Lost Cabin Gas Plant, a 246 MMCFD capacity natural gas processing facility in Lysite, Wyoming. The plant is currently operating at less than capacity due to a fire in December 2018. Restoration efforts are ongoing and anticipated to be completed in the first half of 2021. The expected production loss in 2021 is immaterial to the segment.\n\n● Helena Condensate Processing Facility—We operate and own the Helena Condensate Processing Facility, a 110 MBD condensate processing plant located in Kenedy, Texas.\n\n[S4] 10-K: Item 1. BUSINESS AND PROPERTIES\nRESERVES\n\nWe have not filed any information with any other federal authority or agency with respect to our estimated total proved reserves at December 31, 2020. No difference exists between our estimated total proved reserves for year-end 2019 and year-end 2018, which are shown in this filing, and estimates of these reserves shown in a filing with another federal agency in 2020.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Oil and Gas Accounting\nOur proved reserves include estimated quantities related to PSCs, reported under the “economic interest” method, as well as variable-royalty regimes, and are subject to fluctuations in commodity prices; recoverable operating expenses; and capital costs. If costs remain stable, reserve quantities attributable to recovery of costs will change inversely to changes in commodity prices. We would expect reserves from these contracts to decrease when product prices rise and increase when prices decline.\n\nThe estimation of proved developed reserves also is important to the income statement because the proved developed reserve estimate for a field serves as the denominator in the unit-of-production calculation of the DD&A of the capitalized costs for that asset. At year-end 2020, the net book value of productive PP&E subject to a unit-of-production calculation was approximately $33 billion and the DD&A recorded on these assets in 2020 was approximately $5.3 billion. The estimated proved developed reserves for our consolidated operations were 3.2 billion BOE at the end of 2019 and 2.5 billion BOE at the end of 2020. If the estimates of proved reserves used in the unit-of-production calculations had been lower by 10 percent across all calculations, before-tax DD&A in 2020 would have increased by an estimated $588 million.\n\nQuestion: How much of the year-end 2020 proved reserves sit in the Lower 48 segment?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2301,
+  "completion_tokens": 193,
+  "latency_ms": 1091.1124000012933,
+  "attempts": 1
+ }
+}

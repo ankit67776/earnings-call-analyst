@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nGreater Prudhoe Area 36.1 % Hilcorp 68 16 4 84 Greater Kuparuk Area 89.2-94.7 ConocoPhillips 74 - 2 74 Western North Slope 100.0 ConocoPhillips 39 - 4 40\n\nTotal Alaska | 181 | 16 | 10 | 198\n\nGreater Prudhoe Area The Greater Prudhoe Area includes the Prudhoe Bay Field and five satellite fields, as well as the Greater Point McIntyre Area fields. Prudhoe Bay, the largest oil field on Alaska’s North Slope, is the site of a large waterflood and enhanced oil recovery operation, as well as a gas plant which processes natural gas to recover\n\nNGLs before reinjection into the reservoir. Prudhoe Bay’s satellites are Aurora, Borealis, Polaris, Midnight Sun and Orion, while the Point McIntyre, Niakuk, Raven, Lisburne and North Prudhoe Bay State fields are part of the Greater Point McIntyre Area.\n\nIn 2020, development activity included both rotary and coiled-tubing drilling through April, resulting in ten wells drilled and brought online. In response to the oil price collapse, the second half of 2020 saw a reduction in rig activity. Average net production increased from 81 MBOED in 2019 to 84 MBOED in 2020.\n\n[S2] 10-K: Item 1A. RISK FACTORS\nDomestic and worldwide political and economic developments could damage our operations and materially reduce our profitability and cash flows.\n\nActions of the U.S., state, local and foreign governments, through sanctions, tax and other legislation, executive order and commercial restrictions, could reduce our operating profitability both in the U.S. and abroad. In certain locations, restrictions on our operations; special taxes or tax assessments; and payment transparency regulations that could require us to disclose competitively sensitive information or might cause us to violate non-disclosure laws of other countries have been imposed or proposed by governments or certain interest groups. For example, in 2020 a ballot initiative known as the Fair Share Act was proposed in the state of Alaska, which, if enacted would have increased the state’s share of production revenues and required producers to publicly disclose additional financial information. Although ultimately defeated, similar initiatives may be proposed and may be successful in the future. The change in control of Congress and the White House because of the 2020 election increases the possibility of the promulgation of more stringent regulations of our operations and the enactment of tax law changes that may adversely affect the fossil fuel industry. In addition, the current administration may use the Congressional Review Act to repeal the regulations finalized in the last five months of the prior administration. We also cannot rule out the possibility of similar regulatory shifts and attendant cost and market access implications in other international jurisdictions.\n\n[S3] 10-K: Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nGreater Kuparuk Area We operate the Greater Kuparuk Area, which consists of the Kuparuk Field and four satellite fields: Tarn, Tabasco, Meltwater and West Sak. Kuparuk is located 40 miles west of the Prudhoe Bay Field. Field installations include three central production facilities which separate oil, natural gas and water, as well as a seawater treatment plant. Development drilling at Kuparuk consists of rotary-drilled wells and horizontal multi-laterals from existing well bores utilizing coiled-tubing drilling.\n\nWe operated both a rotary and a coiled-tubing drilling rig in the first half of 2020, resulting in seven operated wells drilled and brought online in 2020. In response to the oil price collapse, the second half of 2020 saw a reduction in rig activity. Average net production decreased from 86 MBOED in 2019 to 74 MBOED in 2020.\n\nWestern North Slope On the Western North Slope, we operate the Colville River Unit, which includes the Alpine Field and three satellite fields: Nanuq, Fiord and Qannik. The Alpine Field is located 34 miles west of the Kuparuk Field. In 2020, an extended-reach drilling rig was delivered to the Alpine CD2 drillsite. This rig is North America’s largest mobile land rig and is expected to commence drilling operations in 2021.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:\n\n[S5] 10-K: Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nAlaska North Slope Gas In 2016, we, along with affiliates of Exxon Mobil Corporation, BP p.l.c. and Alaska Gasline Development Corporation (AGDC), a state-owned corporation, completed preliminary FEED technical work for a potential LNG project which would liquefy and export natural gas from Alaska’s North Slope and deliver it to market. In 2016, we, along with the affiliates of ExxonMobil and BP, indicated our intention not to progress into the next phase of the project due to changes in the economic environment, however, AGDC decided to continue on its own, focusing primarily on permitting efforts. Currently, AGDC is in the process of seeking new sponsors for the project. Given current market conditions, we no longer believe the project will advance and since there is no current market, we recorded a before-tax impairment of $841 million for the entire associated carrying value of capitalized undeveloped leasehold costs and an equity method investment related to our Alaska North Slope Gas asset. We remain willing to sell our Alaska North Slope Gas to interested parties on a competitive basis if a market materializes in the future. For additional information related to this impairment, See Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Average Sales Prices\n● Normal field decline.\n\n● Production curtailments at our operated assets on the North Slope—GKA and WNS—of 8 MBOED in response to the low crude oil price environment.\n\nThese production decreases were partly offset by:\n\n● Lower downtime due to the absence of planned turnarounds at the Greater Prudhoe Area.\n\n● New wells online at our operated assets on the North Slope—GKA and WNS.\n\nQuestion: Now that Alaska's Fair Share Act tax increase has passed, how much is ConocoPhillips cutting North Slope drilling?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\n  \"answerable\": false,\n  \"sentences\": []\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2313,
+  "completion_tokens": 110,
+  "latency_ms": 882.0328000001609,
+  "attempts": 1
+ }
+}

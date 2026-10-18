@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nNorth America\n\nThe North America segment is responsible for our chocolate and non-chocolate confectionery market position, as well as our grocery and growing snacks market positions, in the United States and Canada. This includes developing and growing our business in chocolate and non-chocolate confectionery, pantry, food service and other snacking product lines. North America accounted for 91.0%, 88.7% and 88.6% of our net sales in 2020, 2019 and 2018, respectively. North America results for the years ended December 31, 2020, 2019 and 2018 were as follows:\n\nPercent Change\nFor the years ended December 31, | 2020 | 2019 | 2018 | 2020 vs 2019 | 2019 vs 2018\nIn millions of dollars\nNet sales | $7,416.7 | $7,081.8 | $6,901.6 | 4.7% | 2.6%\nSegment income | 2,321.8 | 2,125.9 | 2,020.1 | 9.2% | 5.2%\nSegment margin | 31.3% | 30.0% | 29.3%\n\n2020 compared with 2019\n\nNet sales of our North America segment increased $334.9 million or 4.7% in 2020 compared to 2019, reflecting favorable price realization of 2.8% attributed to higher prices on certain products, a volume increase of 1.4% due to an increase in everyday core U.S. confection brands and our snacks portfolio and a 0.6% benefit from net acquisitions and divestitures (predominantly driven by the 2019 acquisition of ONE Brands, partially offset by the 2020 divestitures of Krave and the Scharffen Berger and Dagoba brands). These increases were partially offset by an unfavorable impact from foreign currency exchange rates of 0.1%.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › North America\nOur North America segment income increased $195.9 million or 9.2% in 2020 compared to 2019, primarily due to favorable price realization and volume increases, partially offset by higher supply chain-related costs, specifically, PPE costs, increased sanitation and wage incentives associated with COVID-19.\n\n2019 compared with 2018\n\nNet sales of our North America segment increased $180.2 million or 2.6% in 2019 compared to 2018, reflecting a favorable price realization of 2.0% attributed to higher prices on certain products and a benefit from net impact of acquisitions and divestitures of 1.4%. This was partially offset by a volume decrease of 0.7% and an unfavorable impact from foreign currency exchange rates of 0.1%. Our volume decline was driven primarily by pricing elasticity, as well as the introduction of new packaging formats during 2019. Excluding the Amplify, Pirate Brands and ONE Brands acquisitions and Tyrrells divestiture, our North America segment net sales increased 1.2%.\n\nOur North America segment income increased $105.8 million or 5.2% in 2019 compared to 2018, primarily due to favorable price realization, favorable sales mix and favorable commodity costs, partially offset by higher freight and logistics costs, higher supply chain-related costs and higher advertising expense.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › SEGMENT RESULTS\nFor the years ended December 31, | 2020 | 2019 | 2018\nIn millions of dollars\nNet Sales:\nNorth America | $7,416.7 | $7,081.8 | $6,901.6\nInternational and Other | 733.0 | 904.5 | 889.5\nTotal | $8,149.7 | $7,986.3 | $7,791.1\nSegment Income:\nNorth America | $2,321.8 | $2,125.9 | $2,020.1\nInternational and Other | 28.6 | 95.7 | 73.8\nTotal segment income | 2,350.4 | 2,221.6 | 2,093.9\nUnallocated corporate expense (1) | 520.7 | 532.6 | 528.9\nUnallocated mark-to-market losses (gains) on commodity derivatives (2) | 6.4 | (28.6) | (168.3)\nLong-lived and intangible asset impairment charges | 9.1 | 112.5 | 57.8\nCosts associated with business realignment activities | 31.5 | 9.2 | 51.8\nOperating profit | 1,782.7 | 1,595.9 | 1,623.7\nInterest expense, net | 149.4 | 144.1 | 138.8\nOther (income) expense, net | 138.3 | 71.0 | 74.8\nIncome before income taxes | $1,495.0 | $1,380.8 | $1,410.1\n\n(1)Includes centrally-managed (a) corporate functional costs relating to legal, treasury, finance and human resources, (b) expenses associated with the oversight and administration of our global operations, including warehousing, distribution and manufacturing, information systems and global shared services, (c) non-cash stock-based compensation expense, (d) acquisition-related costs, and (e) other gains or losses that are not integral to segment performance.\n\n(2)Net losses (gains) on mark-to-market valuation of commodity derivative positions recognized in unallocated derivative losses (gains). See Note 13 to the Consolidated Financial Statements.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nInternational and Other\n\nThe International and Other segment includes all other countries where we currently manufacture, import, market, sell or distribute chocolate and non-chocolate confectionery and other products. Currently, this includes our operations in China and other Asia markets, Latin America, Europe, Africa and the Middle East, along with exports to these regions. While a less significant component, this segment also includes our global retail operations, including Hershey’s Chocolate World stores in Hershey, Pennsylvania, New York City, Las Vegas, Niagara Falls (Ontario) and Singapore, as well as operations associated with licensing the use of certain trademarks and products to third parties around the world. International and Other accounted for 9.0%, 11.3% and 11.4% of our net sales in 2020, 2019 and 2018, respectively. International and Other results for the years ended December 31, 2020, 2019 and 2018 were as follows:\n\nPercent Change\nFor the years ended December 31, | 2020 | 2019 | 2018 | 2020 vs 2019 | 2019 vs 2018\nIn millions of dollars\nNet sales | $733.0 | $904.5 | $889.5 | (19.0)% | 1.7%\nSegment income | 28.6 | 95.7 | 73.8 | (70.1)% | 29.7%\nSegment margin | 3.9% | 10.6% | 8.3%\n\n2020 compared with 2019\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nSEGMENT RESULTS\n\nThe summary that follows provides a discussion of the results of operations of our two reportable segments: North America and International and Other. The segments reflect our operations on a geographic basis. For segment reporting purposes, we use “segment income” to evaluate segment performance and allocate resources. Segment income excludes unallocated general corporate administrative expenses, unallocated mark-to-market gains and losses on commodity derivatives, business realignment and impairment charges, acquisition-related costs and other unusual gains or losses that are not part of our measurement of segment performance. These items of our operating income are largely managed centrally at the corporate level and are excluded from the measure of segment income reviewed by the CODM and used for resource allocation and internal management reporting and performance evaluation. Segment income and segment income margin, which are presented in the segment discussion that follows, are non-GAAP measures and do not purport to be alternatives to operating income as a measure of operating performance. We believe that these measures are useful to investors and other users of our financial information in evaluating ongoing operating profitability as well as in evaluating operating performance in relation to our competitors, as they exclude the activities that are not directly attributable to our ongoing segment operations.\n\nOur segment results, including a reconciliation to our consolidated results, were as follows:\n\n[S6] Earnings call: Q3 2020 earnings call, 44:44–46:06\nAlexia Howard: Great. Thank you very much. I'll pass it on.\n\nSpeaker 1: Thank you. Our next question comes from the line of Jonathan Feeney with Consumer Edge. Please proceed with your question.\n\nJonathan Feeney: Good morning. Thanks very much, and thanks for a great Halloween. Personally and professionally, the zenith of my financial ambitions has been to give out full-size candy bars, which I was, again, able to execute. So thank you. Two quick ones. And I noticed in the data your pricing in North America is plus 1.9 on the takeaway, plus 3.3 is what you reported. Is that just the math, or is there some shrinking or different mix within retailer margins? That was my first question. And secondly, historically, when you look at today's velocities, generally tomorrow's distribution in your velocity has been fantastic. This is a weird year. A lot of people's velocity is fantastic. But do you anticipate gaining shelf space in that everyday place? You know, you look at these baking items. You look at these take-home items. Like, this is phenomenally better velocity. Forget about just the total sales that you're seeing there. Do you anticipate significant share gains, perhaps structural ones? I'm talking share of shelf here as retailers do resets for holiday and going forward. Thank you.\n\nQuestion: Why did the North America segment margin shrink in 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2809,
+  "completion_tokens": 209,
+  "latency_ms": 1200.986499999999,
+  "attempts": 1
+ }
+}

@@ -16,6 +16,8 @@ from app.llm.types import (
 FREE_TIER_LIMITS = {
     "openai/gpt-oss-120b": Limits(rpm=30, tpm=8_000, rpd=1_000, tpd=200_000),
     "openai/gpt-oss-20b": Limits(rpm=30, tpm=8_000, rpd=1_000, tpd=200_000),
+    # Also caps output at 1,000 tokens a minute; keep its max_tokens small.
+    "qwen/qwen3.8-27b": Limits(rpm=30, tpm=8_000, rpd=1_000, tpd=200_000),
 }
 DEFAULT_LIMITS = Limits(rpm=30, tpm=6_000, rpd=1_000, tpd=100_000)
 

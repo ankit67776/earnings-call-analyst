@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.84 | 65.02 | 70.93\nNatural gas liquids ($ per bbl) | 33.21 | 37.85 | 47.20\nNatural gas ($ per mcf) | 5.39 | 5.91 | 6.15\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Asia Pacific segment has operations in China, Indonesia, Malaysia and Australia. During 2020, Asia Pacific contributed 10 percent of our consolidated liquids production and 32 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Asia Pacific reported earnings of $962 million in 2020, compared with $1,483 million in 2019. The decrease in earnings was mainly due to:\n\n● Lower sales volumes, primarily from lower LNG sales due to the Australia-West divestiture; lower crude oil sales volumes in Malaysia, primarily due to production curtailments; and lower crude oil sales volumes in China due to the expiration of the Panyu production license. For more information related to our Australia-West divestiture, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower realized commodity prices.\n\n● Lower equity in earnings of affiliates from APLNG, mainly due to lower LNG sales prices.\n\n● The absence of a $164 million income tax benefit related to deepwater incentive tax credits from the Malaysia Block G.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $43.30 | 64.94 | 70.71\nNatural gas liquids ($ per bbl) | 23.27 | 29.37 | 36.87\nNatural gas ($ per mcf) | 3.23 | 4.92 | 7.65\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Europe, Middle East and North Africa segment consists of operations principally located in the Norwegian sector of the North Sea; the Norwegian Sea; Qatar; Libya; and commercial and terminalling operations in the U.K. In 2020, our Europe, Middle East and North Africa operations contributed 13 percent of our consolidated liquids production and 20 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Earnings for Europe, Middle East and North Africa operations of $448 million decreased $2,722 million in 2020 compared with 2019. The decrease in earnings was primarily due to:\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower equity in earnings of affiliates, primarily due to lower LNG sales prices.\n\n● Lower realized crude oil prices in Norway.\n\n[S5] Earnings call: Q3 2020 earnings call, 14:05–14:37\nRyan Lance: Yeah, thanks, Phil. I know there's a number of moving parts there, as you described. And, yeah, we've had a few people point out that they thought the $7 billion at $40 a barrel for the combined company looked a little bit light. So now we've seen the third quarter, if you adjust for Concho's hedging benefits and what Bill just described on our equity affiliates, I think you get something closer to the mid to high sevens, you know, at $40. So maybe I'll let Matt add a little bit of color to those details.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $23.57 | 40.87 | 48.73\nNatural gas liquids ($ per bbl) | 5.41 | 19.87 | 43.70\nBitumen ($ per bbl) | 8.02 | 31.72 | 22.29\nNatural gas ($ per mcf) | 1.21 | 0.49 | 1.00\n\n*Average sales prices include unutilized transportation costs. **Average prices for sales of bitumen produced excludes additional value realized from the purchase and sale of third-party volumes for optimization of our pipeline capacity between Canada and the U.S. Gulf Coast.\n\nOur Canadian operations consist of the Surmont oil sands development in Alberta and the liquids-rich Montney unconventional play in British Columbia. In 2020, Canada contributed 9 percent of our consolidated liquids production and 3 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Canada operations reported a loss of $326 million in 2020 compared with earnings of $279 million in 2019. Earnings decreased mainly due to:\n\n● Lower realized bitumen prices.\n\n● Higher DD&A expenses, primarily due to increased volumes and DD&A rates from Montney production.\n\n● Lower bitumen sales due to production curtailments at Surmont.\n\nEarnings were positively impacted by:\n\n● Increased Montney production from Pad 1 & 2 wells online and partial year production from the Kelt acquisition completed in August of 2020.\n\nProduction Total average production increased 7 MBOED in 2020 compared with 2019. The production increase was primarily due to:\n\nQuestion: What adjusted earnings per share did ConocoPhillips report for the third quarter of 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2644,
+  "completion_tokens": 165,
+  "latency_ms": 958.1653000022925,
+  "attempts": 1
+ }
+}

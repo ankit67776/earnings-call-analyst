@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about HERSHEY CO using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Investing activities\n•Capital spending. Capital expenditures, including capitalized software, primarily to support our ERP system implementation, capacity expansion, innovation and cost savings, were $441.6 million in 2020, $318.2 million in 2019 and $328.6 million in 2018. Our 2020 expenditures were substantially higher than 2019 expenditures due to progress on our key strategic projects, however, 2020 expenditures were below original expectations due to a selective pause on certain aspects of our ERP system implementation. Our 2019 expenditures were relatively in line with 2018 expenditures. We expect 2021 capital expenditures, including capitalized software, to approximate $550 million. The increase in our 2021 capital expenditures is largely driven by the continuation of our ERP system implementation, as well as our supply chain capacity projects which focus on additional capacity for our largest and fastest growing brands, building agile fulfillment and customization capabilities and investing in new data and technology within our supply chain to enhance visibility and automation. We will continue to evaluate and re-prioritize our capital projects amid the COVID-19 pandemic.\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nThis Management's Discussion and Analysis (“MD&A”) is intended to provide an understanding of Hershey's financial condition, results of operations and cash flows by focusing on changes in certain key measures from year to year. The MD&A should be read in conjunction with our Consolidated Financial Statements and accompanying Notes included in Item 8 of this Annual Report on Form 10-K. This discussion contains forward-looking statements that involve risks and uncertainties. Our actual results could differ materially from those anticipated in these forward-looking statements as a result of various factors, including those discussed elsewhere in this Annual Report on Form 10-K, particularly in Item 1A. “Risk Factors.”\n\nThe MD&A is organized in the following sections:\n\n•Business Model and Growth Strategy\n\n•Overview\n\n•Trends Affecting Our Business\n\n•Consolidated Results of Operations\n\n•Segment Results\n\n•Liquidity and Capital Resources\n\n•Critical Accounting Policies and Estimates\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Financing activities\n•Share repurchases. We repurchase shares of Common Stock to offset the dilutive impact of treasury shares issued under our equity compensation plans. The value of these share repurchases in a given period varies based on the volume of stock options exercised and our market price. In addition, we periodically repurchase shares of Common Stock pursuant to Board-authorized programs intended to drive additional stockholder value. In 2020, we used cash for total share repurchases of $211.2 million that included purchases pursuant to authorized programs; this included $150.0 million to purchase 1.0 million shares. In 2019, we used cash for total share repurchases of $527.2 million that included purchases pursuant to authorized programs; this included $150.0 million to purchase 1.4 million shares. In 2018, we used cash for total share repurchases of $247.5 million, which included a privately negotiated repurchase transaction with Hershey Trust Company, as trustee for the Trust, to purchase 450 thousand shares for $47.8 million. In October 2017, our Board of Directors approved a $100 million share repurchase authorization. This program was completed in the first quarter of 2019. In July 2018, our Board of Directors approved an additional $500 million share repurchase authorization. As of December 31, 2020, approximately $260 million remained available for repurchases of our Common Stock under this program. The share repurchase program does not have an expiration date. We expect 2021 share repurchases to return to a more traditional buyback strategy.\n\n[S4] 10-K: Item 1. BUSINESS\nEnvironmental Considerations\n\nBeyond ordinary course operating and capital expenditures we make to comply with environmental laws and regulations, we have made a number of commitments to protect and reduce our impact on the environment in recent years, including efforts to protect forests and forested habitats and reduce emissions across our supply chain. The annual operating and capital expenditures associated with these ordinary course payments and additional commitments are not material with respect to our results of operations, capital expenditures or competitive position.\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nInvesting activities\n\nOur principal uses of cash for investment purposes relate to purchases of property, plant and equipment and capitalized software, as well as acquisitions of businesses, partially offset by proceeds from sales of property, plant and equipment. We used cash of $531.3 million for investing activities in 2020 compared to $780.5 million in 2019, with the decrease in cash spend driven by less acquisition activity. We used cash of $1,502.9 million for investing activities in 2018, and the decrease in 2019 in cash spend was driven by less acquisition and divestiture activity.\n\nPrimary investing activities include the following:\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › CONSOLIDATED RESULTS OF OPERATIONS\nNet income attributable to The Hershey Company | $1,278.7 | $1,149.7 | $1,177.7 | 11.2% | (2.4)%\nNet income per share—diluted | $6.11 | $5.46 | $5.58 | 11.9% | (2.2)%\nNote: Percentage changes may not compute directly as shown due to rounding of amounts presented above.\n\nQuestion: How much did Hershey actually spend on capital expenditures in 2021?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1818,
+  "completion_tokens": 177,
+  "latency_ms": 1175.2319000006537,
+  "attempts": 1
+ }
+}

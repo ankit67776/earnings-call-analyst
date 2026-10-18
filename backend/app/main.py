@@ -8,9 +8,11 @@ from fastapi import Depends, FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field, field_validator
 
 from app import db, jobs, queries
+from app.chat.answer import ask, to_json
 from app.config import settings
+from app.embeddings import EmbeddingClient, EmbeddingError, get_embedding_client
 from app.filings.tenk import ITEMS
-from app.llm import LLMClient, LLMError, get_llm_client
+from app.llm import BudgetExceededError, LLMClient, LLMError, RateLimitedError, get_llm_client
 
 logger = logging.getLogger(__name__)
 
@@ -71,6 +73,16 @@ def get_llm() -> LLMClient:
 
 
 LLM = Annotated[LLMClient, Depends(get_llm)]
+
+
+def get_embeddings() -> EmbeddingClient:
+    try:
+        return get_embedding_client()
+    except EmbeddingError as e:
+        raise HTTPException(503, str(e)) from e
+
+
+Embeddings = Annotated[EmbeddingClient, Depends(get_embeddings)]
 
 
 @app.get("/health")
@@ -167,3 +179,53 @@ async def get_section(document_id: int, item: str, pool: Pool) -> dict[str, Any]
     if section is None:
         raise HTTPException(404, "section not found")
     return section
+
+
+@app.get("/api/companies")
+async def list_companies(pool: Pool) -> list[dict[str, Any]]:
+    """Companies with stored filings or calls: what the chat can answer about."""
+    async with pool.acquire() as conn:
+        return await queries.list_companies(conn)
+
+
+@app.get("/api/calls/{call_id}")
+async def get_call(call_id: int, pool: Pool) -> dict[str, Any]:
+    async with pool.acquire() as conn:
+        call = await queries.get_call(conn, call_id)
+    if call is None:
+        raise HTTPException(404, "call not found")
+    return call
+
+
+class ChatRequest(BaseModel):
+    ticker: str = Field(pattern=r"^[A-Za-z][A-Za-z.\-]{0,9}$")
+    question: str = Field(min_length=3, max_length=500)
+
+
+@app.post("/api/chat")
+async def chat(body: ChatRequest, pool: Pool, llm: LLM, embeddings: Embeddings) -> dict[str, Any]:
+    """Answer from the company's filings and calls with a citation per sentence, or refuse."""
+    ticker = body.ticker.upper()
+    async with pool.acquire() as conn:
+        company = await conn.fetchval(
+            "select company from documents where ticker = $1"
+            " union all select company from calls where ticker = $1 limit 1",
+            ticker,
+        )
+        if company is None:
+            raise HTTPException(404, f"nothing stored for {ticker}")
+        try:
+            result = await ask(
+                conn,
+                llm,
+                embeddings,
+                ticker=ticker,
+                question=body.question.strip(),
+                company=company,
+                model=settings.chat_model,
+            )
+        except (BudgetExceededError, RateLimitedError) as e:
+            raise HTTPException(429, str(e)) from e
+        except (LLMError, EmbeddingError) as e:
+            raise HTTPException(502, str(e)) from e
+    return to_json(result)

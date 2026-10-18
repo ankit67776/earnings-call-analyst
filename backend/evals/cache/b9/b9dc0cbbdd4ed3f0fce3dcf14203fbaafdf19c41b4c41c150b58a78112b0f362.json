@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What kind of warranty exposure could cause results to swing?\n\nAnswer sentences:\n1. The company’s lifetime warranty exposes it to warranty or product‑liability claims that could generate unexpected expenses and loss of market share.\n   cites [S2]: \"We provide a lifetime warranty on our products and may be subject to warranty or product liability claims, which could result in unexpected expenses and loss of market share.\"\n2. Those claims may require significant expenditures to defend, replace solutions, refund payments, or pay damage awards, which can cause results to swing.\n   cites [S2]: \"These claims may require us to make significant expenditures to defend those claims, replace our solutions, refund payments, or pay damage awards.\"\n\nCited sources:\n\n[S2] Item 1A. Risk Factors\nWe provide a lifetime warranty on our products and may be subject to warranty or product liability claims, which could result in unexpected expenses and loss of market share.\n\nWe provide a lifetime warranty on our products and generally agree to indemnify our customers for defects in our products. We may be subject to warranty or product liability claims. These claims may require us to make significant expenditures to defend those claims, replace our solutions, refund payments, or pay damage awards. This risk is exacerbated by the lifetime warranty of our products, which exposes us to warranty claims for the entire product lifecycle."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The cited text explicitly states that the company provides a lifetime warranty and may be subject to warranty or product liability claims, which could result in unexpected expenses and loss of market share. The sentence accurately reflects this information.\", \"verdict\": \"supported\"}, {\"n\": 2, \"reason\": \"The cited text states that claims may require significant expenditures to defend, replace solutions, refund payments, or pay damage awards. However, the cited text does not explicitly state that these expenditures 'can cause results to swing.' While this is a logical inference, the specific phrase 'cause results to swing' is not present in the source text provided for this sentence.\", \"verdict\": \"partial\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 419,
+  "completion_tokens": 154,
+  "latency_ms": 488.07790000137175,
+  "attempts": 1
+ }
+}

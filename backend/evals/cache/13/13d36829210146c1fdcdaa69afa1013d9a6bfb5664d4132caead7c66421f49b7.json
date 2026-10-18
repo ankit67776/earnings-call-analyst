@@ -1,0 +1,49 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You compare an AI research assistant's answer to an analyst's question with a reference answer written by a person who read the source.\n- correct: the answer gives the reference answer's key facts. Extra detail is fine unless it contradicts them.\n- partial: it gives some of the key facts but misses or garbles others.\n- incorrect: it misses the key facts, or contradicts them.\nWording and rounding differences don't matter. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How does management plan to set brand investment levels in 2021?\n\nReference answer: Bring advertising investment back to desired levels, closer to historical norms, after pandemic pullbacks in areas like refreshment.\n\nAssistant's answer: Management said it plans to raise brand‑investment levels in 2021 to be “where we would like them to be and more in line with where they have been historically,” after having pulled back spending during the pandemic. The company also emphasized that it will continue to invest in its brands."
+   }
+  ],
+  "max_tokens": 400,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "properties": {
+    "reason": {
+     "type": "string"
+    },
+    "verdict": {
+     "enum": [
+      "correct",
+      "partial",
+      "incorrect"
+     ],
+     "type": "string"
+    }
+   },
+   "required": [
+    "reason",
+    "verdict"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "CorrectnessVerdict"
+ },
+ "completion": {
+  "text": "{\"reason\": \"The assistant's answer accurately captures the key points of the reference answer: raising investment to desired levels, aligning with historical norms, and the context of pandemic pullbacks. The extra detail about continuing to invest is consistent and does not contradict the reference.\", \"verdict\": \"correct\"}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 226,
+  "completion_tokens": 63,
+  "latency_ms": 302.9294000007212,
+  "attempts": 1
+ }
+}

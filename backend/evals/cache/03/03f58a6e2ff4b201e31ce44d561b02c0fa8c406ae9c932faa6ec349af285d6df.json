@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: How does the company say it holds its ground against larger rivals?\n\nAnswer sentences:\n1. SITIME Corp says it maintains its competitive position by successfully designing, developing, and marketing complex timing solutions for its customers.\n   cites [S1]: \"We maintain our competitive position through our ability to successfully design, develop, and market complex timing solutions for the customers we serve.\"\n2. It attributes this ability to its fabless business model, which lets it focus on design, sales and marketing, quickly scale production, and keep capital expenditures low.\n   cites [S6]: \"We operate a fabless business model, allowing us to focus on the design, sales, and marketing of our products, quickly scale production, and significantly reduce our capital expenditures.\"\n\nCited sources:\n\n[S1] Item 1. Business › Competition\nOur ability to compete successfully depends on elements both within and outside of our control, including industry and general economic trends. During past periods of downturns in our industry, competition in the markets in which we operate intensified as our customers reduced their purchase orders. Many of our competitors are substantially larger, have greater financial, technical, marketing, distribution, customer support, and other resources, are more established than we are, and have significantly better brand recognition and broader product offerings which may enable them to better withstand similar adverse economic or market conditions in the future. Any such development may materially and adversely affect our current and future target markets and our ability to compete successfully in those markets. We maintain our competitive position through our ability to successfully design, develop, and market complex timing solutions for the customers we serve.\n\n[S6] Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Overview\nWe operate a fabless business model, allowing us to focus on the design, sales, and marketing of our products, quickly scale production, and significantly reduce our capital expenditures. We leverage our global network of distributors and resellers to address the broad set of end markets we serve. For our largest accounts, dedicated sales personnel work with the end customer to ensure that our solutions fully address the end customer’s timing needs. Our smaller customers work directly with our distributors to select the optimum timing solution for their needs.\n\nWe were acquired by MegaChips in 2014 and were a wholly-owned subsidiary of MegaChips, a fabless semiconductor company based in Japan and traded on the Tokyo Stock Exchange, until November 25, 2019. On November 25, 2019, we completed the initial public offering of shares of our common stock. On June 16, 2020, we completed a follow-on public offering, in which we issued and sold 1,525,000 shares of our common stock and MegaChips sold 2,500,000 shares of our common stock held by them. MegaChips continues to be our largest stockholder and held approximately 43.7% of our common stock as of December 31, 2020."
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The sentence accurately paraphrases the final sentence of the cited text, which explicitly states that the company maintains its competitive position through the ability to design, develop, and market complex timing solutions.\", \"verdict\": \"supported\"}, {\"n\": 2, \"reason\": \"The cited text describes the benefits of the fabless model (focusing on design/sales, scaling production, reducing capex) but does not explicitly state that this model is the reason the company 'holds its ground' or maintains its competitive position against larger rivals. The sentence adds a causal link between the business model and competitive standing that is not present in the specific text provided.\", \"verdict\": \"partial\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 777,
+  "completion_tokens": 155,
+  "latency_ms": 506.1399000005622,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,1703 @@
+[
+  {
+    "model": "openai/gpt-oss-120b",
+    "prompt_version": 1,
+    "complete": true,
+    "answerable": 30,
+    "unanswerable": 24,
+    "answered": 1.0,
+    "correct_refusals": 1.0,
+    "correct": 0.767,
+    "partly_correct": 0.2,
+    "faithful": 0.809,
+    "unjudged_sentences": 0,
+    "quotes_found": 0.967,
+    "sentences_dropped": 1,
+    "context_recall": 1.0,
+    "refusals_by_kind": {
+      "false_premise": 1.0,
+      "missing_detail": 1.0,
+      "other_company": 1.0,
+      "out_of_scope": 1.0,
+      "wrong_period": 1.0
+    },
+    "tokens_per_question": 2643,
+    "llm_seconds_per_question": 1.8,
+    "errors": [],
+    "rows": [
+      {
+        "id": "COP-call-007-a",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "call",
+        "question": "Who is leading the Concho integration on each side?",
+        "reference": "Dominic Macklon for ConocoPhillips and Will Giroux for Concho.",
+        "answer": "Dominic Macklin leads the integration effort for ConocoPhillips, and Will Giroux leads the integration effort for Concho.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Dominic Macklin leads the integration effort for ConocoPhillips, and Will Giroux leads the integration effort for Concho.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Dominic Macklin will lead the effort for ConocoPhillips, and Will Giroux will lead the effort for Concha."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that Dominic Macklin will lead the effort for ConocoPhillips and Will Giroux will lead the effort for Concha (spelled 'Concha' in the source, likely a typo for Concho, but the names and roles match the sentence)."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant correctly identifies Will Giroux for Concho and Dominic Macklin for ConocoPhillips. The slight spelling difference in the first name (Macklin vs. Macklon) is a minor typo that does not change the identification of the key facts.",
+        "tokens": 2553,
+        "llm_ms": 1769.5253000019875
+      },
+      {
+        "id": "COP-call-014-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "call",
+        "question": "What's the pro forma cash flow for the combined company at $40 oil?",
+        "reference": "Roughly $7.5 to $7.8 billion at $40 a barrel, including the full $350 million of expected cost savings.",
+        "answer": "The pro forma cash flow for the combined company at $40 per barrel is estimated at roughly $7.5 billion to $7.8 billion.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The pro forma cash flow for the combined company at $40 per barrel is estimated at roughly $7.5 billion to $7.8 billion.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "somewhere between seven and a half and seven eight at $40 a barrel"
+              },
+              {
+                "label": "S1",
+                "quote": "And these numbers also include a pro forma assumption that we'd get the full year of expected cost savings that we announced, which was $350 million of cash."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states the range is 'between seven and a half and seven eight at $40 a barrel' and confirms these numbers include the pro forma assumption of full-year cost savings, directly supporting the sentence's claim."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer provides the exact same numerical range ($7.5 to $7.8 billion) as the reference answer. It omits the detail about the $350 million in cost savings, but the prompt states that extra detail is fine unless it contradicts the key facts, and the core fact (the cash flow amount) is correct.",
+        "tokens": 2719,
+        "llm_ms": 2016.992400000163
+      },
+      {
+        "id": "COP-call-017-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "call",
+        "question": "How could ConocoPhillips' marketing improve realizations on Concho's production?",
+        "reference": "Concho sells at the wellhead, while ConocoPhillips sells further down the value chain to get better realized prices.",
+        "answer": "ConocoPhillips can improve realizations on Concho’s production by selling the product further down the value chain rather than at the wellhead. It can also add value by selling directly to customers, removing the middle‑man, and expanding export capacity, which the company says is margin‑enhancing.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "ConocoPhillips can improve realizations on Concho’s production by selling the product further down the value chain rather than at the wellhead.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "We sell further down the value chain to improve realisation."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states that Concho typically sells at the wellhead, whereas ConocoPhillips sells further down the value chain to improve realization, directly supporting the claim."
+          },
+          {
+            "text": "It can also add value by selling directly to customers, removing the middle‑man, and expanding export capacity, which the company says is margin‑enhancing.",
+            "citations": [
+              {
+                "label": "S4",
+                "quote": " have done some sales to point sales to customers where we take the middleman out of the equation, and we found that quite margin-enhancing"
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The source supports selling directly to customers (removing the middleman) and expanding export capacity, but it does not explicitly state that expanding export capacity is 'margin-enhancing'; it only attributes that specific finding to the direct sales/middleman removal."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the key mechanism: selling further down the value chain instead of at the wellhead to achieve better realized prices. The additional details provided do not contradict the reference answer.",
+        "tokens": 3322,
+        "llm_ms": 2381.1983999985387
+      },
+      {
+        "id": "COP-call-031-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "call",
+        "question": "When will 2021 capex guidance for the combined company be given?",
+        "reference": "Not until sometime after the Concho transaction closes.",
+        "answer": "Matt Fox said the company will not communicate 2021 capital guidance for the combined company until sometime after the transaction closes. Ryan Lance added that the company expects to announce pro forma 2021 capex shortly after the closing of the transaction.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Matt Fox said the company will not communicate 2021 capital guidance for the combined company until sometime after the transaction closes.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "you shouldn't expect us to communicate 2021 capital guidance, certainly for the combined company, until sometime after the transaction closes."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the company should not expect to communicate 2021 capital guidance for the combined company until after the transaction closes, which directly supports the sentence."
+          },
+          {
+            "text": "Ryan Lance added that the company expects to announce pro forma 2021 capex shortly after the closing of the transaction.",
+            "citations": [
+              {
+                "label": "S3",
+                "quote": "We would expect to announce pro forma CapEx for next year shortly after closing."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text states the expectation to announce pro forma CapEx for next year shortly after closing. Since the source is from the Q3 2020 earnings call, 'next year' refers to 2021, supporting the sentence's claim."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly states that the 2021 capex guidance will be given after the transaction closes, which aligns with the reference answer. The additional details about who said it and the specific timing (shortly after) do not contradict the reference.",
+        "tokens": 2548,
+        "llm_ms": 1814.3200999984401
+      },
+      {
+        "id": "COP-call-040-a",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "call",
+        "question": "What did Roger Read ask about assets losing exploration and appraisal funding?",
+        "reference": "Whether those assets go back into the resource base or become more likely to be sold or monetized another way.",
+        "answer": "He asked whether assets that will not receive exploration and appraisal spending will simply revert to the resource base or become more likely to be disposed of or monetized in another way.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "He asked whether assets that will not receive exploration and appraisal spending will simply revert to the resource base or become more likely to be disposed of or monetized in another way.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Some of the savings that you cited were going to be, you know, exploration appraisal spending that doesn't have to happen. I was curious, for the assets that you won't be spending E&A money on in the near future? Do they just go back into the resource base, or is that something that maybe becomes more likely to be disposed of, you know, monetized in a different way?"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly contains the question asking if assets without E&A spending will 'go back into the resource base' or become 'more likely to be disposed of... monetized in a different way,' which matches the answer's description of the inquiry."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer accurately captures the key points of the reference answer: whether assets revert to the resource base or are disposed of/monetized in another way. The wording differences (e.g., 'revert' vs. 'go back', 'disposed of' vs. 'sold') do not change the meaning.",
+        "tokens": 2510,
+        "llm_ms": 1555.3110000000743
+      },
+      {
+        "id": "COP-filing-002-a",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "filing",
+        "question": "How were the reporting segments reorganized in 2020?",
+        "reference": "From Q3 2020, the Middle East moved out of Asia Pacific and Middle East into Europe and North Africa; segments were renamed.",
+        "answer": "In the third quarter of 2020 ConocoPhillips restructured its reporting segments, moving the Middle East business from the Asia Pacific and Middle East segment to the Europe and North Africa segment. The segments were renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "In the third quarter of 2020 ConocoPhillips restructured its reporting segments, moving the Middle East business from the Asia Pacific and Middle East segment to the Europe and North Africa segment.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Effective with the third quarter of 2020, we have restructured our segments to align with changes to our internal organization."
+              },
+              {
+                "label": "S1",
+                "quote": "The Middle East business was realigned from the Asia Pacific and Middle East segment to the Europe and North Africa segment."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text confirms the timing (Q3 2020), the action (restructured/realigned), and the specific movement of the Middle East business from the Asia Pacific and Middle East segment to the Europe and North Africa segment. The attribution to ConocoPhillips is supported by the context of the source being a Form 10-K Item 7 (Management's Discussion and Analysis), which is a standard filing for public companies like ConocoPhillips, and the specific segment names match the company's historical 2"
+          },
+          {
+            "text": "The segments were renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states: 'The segments have been renamed the Asia Pacific segment and the Europe, Middle East and North Africa segment.' This matches the sentence exactly."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant correctly identifies the timing (Q3 2020), the movement of the Middle East from the Asia Pacific and Middle East segment to the Europe and North Africa segment, and the renaming of the segments. This aligns perfectly with the reference answer's key facts.",
+        "tokens": 3527,
+        "llm_ms": 5393.367599997873
+      },
+      {
+        "id": "COP-filing-072-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "filing",
+        "question": "How could prolonged low oil and gas prices affect DD&A?",
+        "reference": "Lower reserve estimates could raise the unit-of-production rate used for DD&A expense.",
+        "answer": "Prolonged low oil and gas prices could cause reserve estimates to fall, which would incrementally increase the rate used to calculate DD&A expense, raising DD&A costs.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Prolonged low oil and gas prices could cause reserve estimates to fall, which would incrementally increase the rate used to calculate DD&A expense, raising DD&A costs.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "If oil and gas prices persist at depressed levels, our reserve estimates may decrease further, which could incrementally increase the rate used to determine DD&A expense on our unit-of-production method properties."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that if prices persist at depressed levels, reserve estimates may decrease, which could incrementally increase the rate used to determine DD&A expense on unit-of-production method properties. The answer accurately reflects this causal chain and the specific mechanism (unit-of-production method) mentioned in the source."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the causal chain: low prices lead to lower reserve estimates, which increases the unit-of-production rate, thereby raising DD&A expense. This matches the reference answer's key facts.",
+        "tokens": 2566,
+        "llm_ms": 1683.1901999976253
+      },
+      {
+        "id": "COP-filing-085-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "filing",
+        "question": "How could climate regulation hurt the business financially?",
+        "reference": "It could lower product demand, add taxes on products or operations, or require buying emission credits or cutting GHG emissions.",
+        "answer": "Climate regulation could raise the company's costs and require substantial capital and operating expenditures, harming its financial results. It may also restrict access to favorable capital and increase financing costs, further damaging results of operations. Failure to comply could trigger penalties, litigation and asset impairments, negatively affecting cash flow and earnings.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 5,
+        "dropped_quotes": 1,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Climate regulation could raise the company's costs and require substantial capital and operating expenditures, harming its financial results.",
+            "citations": [
+              {
+                "label": "S3",
+                "quote": "could significantly increase our costs, reduce demand for fossil energy derived products, impact the cost and availability of capital"
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The source states that regulation could 'significantly increase our costs' and 'impact the cost and availability of capital,' which supports the claim about raising costs and harming financial results. However, the source does not explicitly mention 'substantial capital and operating expenditures' in this specific context (it mentions 'investments of capital' in a different sentence, but the cited snippet focuses on costs and capital availability). More importantly, the phrase 'substantial' "
+          },
+          {
+            "text": "It may also restrict access to favorable capital and increase financing costs, further damaging results of operations.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "our access to capital on terms we find favorable (if it is available at all) may be limited and our costs may increase or our business and results of operations may be otherwise adversely affected."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states that 'access to capital on terms we find favorable... may be limited' and 'our costs may increase or our business and results of operations may be otherwise adversely affected.' This directly supports the sentence's claim about restricted access to favorable capital and increased financing costs damaging results."
+          },
+          {
+            "text": "Failure to comply could trigger penalties, litigation and asset impairments, negatively affecting cash flow and earnings.",
+            "citations": [
+              {
+                "label": "S4",
+                "quote": "could result in administrative or civil penalties, criminal fines, other enforcement actions or third-party litigation against us."
+              },
+              {
+                "label": "S6",
+                "quote": "potentially resulting in the reduction to the economic end-of-field life of certain assets and an impairment of the associated net book value."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "Source [S4] supports the penalties, litigation, and the negative effect on 'cash flows' and 'results of operations' (earnings). Source [S6] supports the 'impairment of the associated net book value' (asset impairments). The sentence combines these elements accurately based on the provided texts."
+          }
+        ],
+        "correctness": "incorrect",
+        "correctness_reason": "The assistant's answer focuses on general cost increases, financing issues, and penalties, but it completely misses the specific mechanisms listed in the reference answer: lower product demand, taxes on products/operations, and the requirement to buy emission credits or cut GHG emissions. Therefore, it fails to provide the key facts requested.",
+        "tokens": 4026,
+        "llm_ms": 4839.379100001679
+      },
+      {
+        "id": "COP-filing-173-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "filing",
+        "question": "Why did earnings from the technology business fall in 2020?",
+        "reference": "Technology earnings fell $149 million, mainly due to lower licensing revenues.",
+        "answer": "Earnings from the technology business fell in 2020 because licensing revenues were lower.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Earnings from the technology business fell in 2020 because licensing revenues were lower.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Earnings from Technology decreased by $149 million in 2020 compared with 2019, primarily due to lower licensing revenues."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that earnings from Technology decreased by $149 million in 2020 compared with 2019, primarily due to lower licensing revenues, which directly supports the claim."
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The assistant's answer correctly identifies the main cause (lower licensing revenues) but omits the specific magnitude of the decline ($149 million) provided in the reference answer.",
+        "tokens": 2960,
+        "llm_ms": 1619.9325999987195
+      },
+      {
+        "id": "COP-filing-235-b",
+        "ticker": "COP",
+        "answerable": true,
+        "kind": "filing",
+        "question": "Who is responsible for monitoring commodity price, currency and interest rate risk?",
+        "reference": "The EVP and CFO, who reports to the CEO.",
+        "answer": "The Executive Vice President and Chief Financial Officer monitors commodity price risk as well as foreign currency exchange and interest rate risk.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The Executive Vice President and Chief Financial Officer monitors commodity price risk as well as foreign currency exchange and interest rate risk.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "The Executive Vice President and Chief Financial Officer, who reports to the Chief Executive Officer, monitors commodity price risk and risks resulting from foreign currency exchange rates and interest rates."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the Executive Vice President and Chief Financial Officer monitors commodity price risk and risks resulting from foreign currency exchange rates and interest rates, which directly supports the sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the Executive Vice President and Chief Financial Officer as the person responsible for monitoring these risks. It omits the detail that this person reports to the CEO, but it provides the core key fact (who is responsible) without contradiction.",
+        "tokens": 2868,
+        "llm_ms": 1531.1457999996492
+      },
+      {
+        "id": "HSY-call-007-a",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "call",
+        "question": "How does management plan to set brand investment levels in 2021?",
+        "reference": "Bring advertising investment back to desired levels, closer to historical norms, after pandemic pullbacks in areas like refreshment.",
+        "answer": "Management said it plans to raise brand‑investment levels in 2021 to be “where we would like them to be and more in line with where they have been historically,” after having pulled back spending during the pandemic. The company also emphasized that it will continue to invest in its brands.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Management said it plans to raise brand‑investment levels in 2021 to be “where we would like them to be and more in line with where they have been historically,” after having pulled back spending during the pandemic.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": " definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The cited text confirms the plan to raise investment levels to be 'where we would like them to be and more in line with where they have been historically' and mentions pulling back spend due to the pandemic, but it does not explicitly state that the plan is specifically for the year 2021 (it says 'as we looked at 2021... we definitely plan on taking our investment levels...'). The specific year attribution is a slight inference, though strongly implied by the context of looking at 2021. More"
+          },
+          {
+            "text": "The company also emphasized that it will continue to invest in its brands.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "We continue to invest into our brands."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states 'We continue to invest into our brands,' which directly supports the sentence's claim that the company emphasized it will continue to invest in its brands."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer accurately captures the key points of the reference answer: raising investment to desired levels, aligning with historical norms, and the context of pandemic pullbacks. The extra detail about continuing to invest is consistent and does not contradict the reference.",
+        "tokens": 2786,
+        "llm_ms": 2324.455800000578
+      },
+      {
+        "id": "HSY-call-021-b",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "call",
+        "question": "What did the analyst credit for the unusually strong early Halloween sales?",
+        "reference": "Retailer merchandising programs that started bigger and earlier than usual.",
+        "answer": "Analyst Jason English said the unusually strong early Halloween sales were largely due to the larger and earlier merchandising programs that retailers implemented.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Analyst Jason English said the unusually strong early Halloween sales were largely due to the larger and earlier merchandising programs that retailers implemented.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "The Halloween early part selling was phenomenal, much better than I think anyone expected."
+              },
+              {
+                "label": "S2",
+                "quote": "I think a big part of that is due to the merchandising programs that retailers had. It seems like they started bigger and earlier than they usually do."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The cited text confirms Jason English stated the sales were 'phenomenal' and attributed this to retailers' merchandising programs that 'started bigger and earlier.' However, the sentence adds the qualifier 'largely due to,' which is not present in the source (the source says 'a big part of that is due to'), and it omits that English was asking a question about future seasons rather than making a definitive statement of cause."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the key factor: larger and earlier merchandising programs by retailers. It matches the reference answer's core facts.",
+        "tokens": 2612,
+        "llm_ms": 2323.818199998641
+      },
+      {
+        "id": "HSY-call-023-b",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "call",
+        "question": "After a strong start and softer finish, where was the category's total season expected to end up?",
+        "reference": "Down mid-single digits for the category overall, implying sharp late-season declines in upcoming retail data.",
+        "answer": "The total season was expected to finish roughly in line with the company’s expectations. In fact, the category was down mid‑single digits overall, even as the business was up.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The total season was expected to finish roughly in line with the company’s expectations.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "overall the season performed exactly in line with our expectations."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The source states the season performed 'exactly in line' with expectations, whereas the answer uses the qualifier 'roughly', which is not present in the text."
+          },
+          {
+            "text": "In fact, the category was down mid‑single digits overall, even as the business was up.",
+            "citations": [
+              {
+                "label": "S3",
+                "quote": "category was down mid-single digits overall, as much as our business was actually up."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states the category was down mid-single digits overall and that the business was up, which directly supports the sentence."
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The assistant's answer correctly identifies that the category was down mid-single digits, which matches the reference answer's key fact. However, it adds a contradictory statement that the total season was expected to finish 'roughly in line with the company's expectations,' which is not supported by the reference answer and contradicts the implication of sharp late-season declines",
+        "tokens": 2744,
+        "llm_ms": 1987.7536999993026
+      },
+      {
+        "id": "HSY-call-038-b",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "call",
+        "question": "Which new product launches is management most excited about this year?",
+        "reference": "A Reese's cup with pretzels, a range of Kit Kat flavors, and small-scale Reese's snack cakes.",
+        "answer": "Management is most excited about a new Reese’s pretzel product (a Reese’s cup with pretzels). It also highlighted a range of new Kit Kat flavors as a key upcoming launch. Additionally, the company is launching snack cakes under the Reese’s trademark, delivering the Reese experience in a new product form.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Management is most excited about a new Reese’s pretzel product (a Reese’s cup with pretzels).",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "the reese pretzel product a reese cup with pretzels in it"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly lists the Reese's pretzel product as one of the innovations management is 'excited about' and 'new to the market,' matching the claim."
+          },
+          {
+            "text": "It also highlighted a range of new Kit Kat flavors as a key upcoming launch.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "we've had a a range of kit kat flavors we know on a global basis a big part of the KitKat portfolio are flavors"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source mentions the Kit Kat flavors in the same list of innovations management is 'excited about,' supporting the claim that they are a key upcoming launch."
+          },
+          {
+            "text": "Additionally, the company is launching snack cakes under the Reese’s trademark, delivering the Reese experience in a new product form.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "We are on a very small level launching snack cakes under our Reese's trademark, which delivers that Reese experience in a slightly different type of product form"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source states they are 'launching snack cakes under our Reese's trademark' which 'delivers that Reese experience in a slightly different type of product form,' directly supporting the sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies all three key product launches mentioned in the reference answer: the Reese's cup with pretzels, the range of Kit Kat flavors, and the Reese's snack cakes. The details provided align perfectly with the reference.",
+        "tokens": 3054,
+        "llm_ms": 2563.0072000021755
+      },
+      {
+        "id": "HSY-call-046-a",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "call",
+        "question": "What will drive gross margin in 2021?",
+        "reference": "A mix more driven by volume than price, continued productivity goals, and the 2020 and 2021 cocoa crops.",
+        "answer": "Gross margin in 2021 is expected to be driven more by a volume‑driven mix rather than a price‑driven mix. The company also expects its continuing productivity goal to support gross margin.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Gross margin in 2021 is expected to be driven more by a volume‑driven mix rather than a price‑driven mix.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "we'll have a little bit more volume-driven than price-driven mix driving gross margin next year."
+              },
+              {
+                "label": "S4",
+                "quote": "I think you can definitely count on seeing volume being a more important part of the algorithm next year"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the mix driving gross margin next year will be 'a little bit more volume-driven than price-driven,' which directly supports the claim that volume-driven mix will be the primary driver over price-driven mix."
+          },
+          {
+            "text": "The company also expects its continuing productivity goal to support gross margin.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "We'll have our continuing productivity goal."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text mentions 'We'll have our continuing productivity goal' in the context of factors on the 'gross margin side,' which supports the statement that the productivity goal is expected to support gross margin."
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The answer captures the volume-driven mix and productivity goals but omits the 2020 and 2021 cocoa crops, which is a key factor in the reference answer.",
+        "tokens": 3053,
+        "llm_ms": 2143.7282000006235
+      },
+      {
+        "id": "HSY-filing-033-a",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "filing",
+        "question": "What's the downside of raising prices or shrinking pack sizes to cover input cost inflation?",
+        "reference": "Higher prices or smaller product sizes can reduce sales volume and consumption.",
+        "answer": "Raising prices or shrinking pack sizes can lead to a reduction in sales volume and consumer consumption. Significant declines in sales volume could have a negative impact on Hershey’s financial condition and results of operations.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Raising prices or shrinking pack sizes can lead to a reduction in sales volume and consumer consumption.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Price increases may not be sufficient to offset cost increases and maintain profitability or may result in sales volume declines associated with pricing elasticity."
+              },
+              {
+                "label": "S1",
+                "quote": "higher product prices or decreased product sizes may also result in a reduction in sales volume and/or consumption."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The second citation explicitly states that higher prices or decreased sizes may result in a reduction in sales volume and/or consumption, which directly supports the sentence."
+          },
+          {
+            "text": "Significant declines in sales volume could have a negative impact on Hershey’s financial condition and results of operations.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "there could be a negative impact on our financial condition and results of operations."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text states that if sales volume decreases significantly, there could be a negative impact on financial condition and results of operations. The sentence accurately reflects this conditional relationship."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the key downside mentioned in the reference answer: a reduction in sales volume and consumer consumption. The additional detail regarding Hershey's financial condition is extra context that does not contradict the reference.",
+        "tokens": 2608,
+        "llm_ms": 2222.7023000014015
+      },
+      {
+        "id": "HSY-filing-084-a",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "filing",
+        "question": "Why did operating cash flow decline in 2020?",
+        "reference": "Working capital used $166M versus generating $60M in 2019, mainly from a bigger U.S. inventory build and higher seasonal receivables.",
+        "answer": "Operating cash flow declined in 2020, with cash provided by operating activities decreasing $64.3 million relative to 2019. The decline was driven primarily by net working capital consuming cash, chiefly due to a higher build‑up of U.S. inventories and increased cash use by accounts receivable from higher sales of U.S. seasonal products.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Operating cash flow declined in 2020, with cash provided by operating activities decreasing $64.3 million relative to 2019.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Cash provided by operating activities in 2020 decreased $64.3 million relative to 2019."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that cash provided by operating activities in 2020 decreased $64.3 million relative to 2019, which directly supports the sentence."
+          },
+          {
+            "text": "The decline was driven primarily by net working capital consuming cash, chiefly due to a higher build‑up of U.S. inventories and increased cash use by accounts receivable from higher sales of U.S. seasonal products.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) consumed cash of $166 million in 2020 and generated cash of $60 million in 2019."
+              },
+              {
+                "label": "S1",
+                "quote": "This $226 million fluctuation was mainly driven by a higher year-over-year build up of U.S. inventories to satisfy product requirements and maintain sufficient levels to accommodate customer requirements, as well as an increase in cash used by accounts receivable due to an increase in sales of U.S. seasonal products."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text confirms that the decrease was driven by net working capital consuming cash, specifically due to a higher build-up of U.S. inventories and increased cash use by accounts receivable from higher sales of U.S. seasonal products. The sentence accurately reflects these causes."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the primary drivers of the operating cash flow decline: the shift in working capital from generating cash to consuming cash, specifically due to a larger U.S. inventory build and higher seasonal receivables. It also provides the specific dollar amount of the decline ($64.3M), which is consistent with the reference figures ($166M used vs $",
+        "tokens": 3230,
+        "llm_ms": 2886.5761999986717
+      },
+      {
+        "id": "HSY-filing-085-a",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "filing",
+        "question": "What boosted operating cash flow in 2019?",
+        "reference": "Working capital swung to a $60M inflow on higher pre-year-end collections, vendor payment timing and higher accrued incentive compensation.",
+        "answer": "Operating cash flow in 2019 was boosted, increasing $164.0 million versus 2018. The increase was driven by net working capital generating $60 million of cash and prepaid expenses and other current assets generating $14 million of cash.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 3,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Operating cash flow in 2019 was boosted, increasing $164.0 million versus 2018.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Cash provided by operating activities in 2019 increased $164.0 million relative to 2018."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states that cash provided by operating activities increased by $164.0 million relative to 2018, which directly supports the claim that operating cash flow was boosted by that amount."
+          },
+          {
+            "text": "The increase was driven by net working capital generating $60 million of cash and prepaid expenses and other current assets generating $14 million of cash.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Net working capital (comprised of trade accounts receivable, inventory, accounts payable and accrued liabilities) generated cash of $60 million in 2019 and consumed cash of $104 million in 2018."
+              },
+              {
+                "label": "S1",
+                "quote": "Prepaid expenses and other current assets generated cash of $14 million in 2019, compared to a use of cash of $40 million in 2018."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The source confirms that net working capital generated $60 million and prepaid expenses generated $14 million in 2019, and lists these as factors driving the increase. However, the sentence asserts these were the drivers (implying they were the primary or sole causes), whereas the source notes the increase was 'partially offset' by other outflows (like income taxes) and lists these as 'the following factors' without explicitly stating they were the sole or primary drivers of the net increase"
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The assistant correctly identifies the $60M working capital inflow but misses the specific drivers (pre-year-end collections, vendor payment timing, and accrued incentive compensation) that the reference answer highlights as the cause of the swing. It also introduces an extra, unverified figure ($14M from prepaid expenses) not in the reference.",
+        "tokens": 3030,
+        "llm_ms": 2381.774099998438
+      },
+      {
+        "id": "HSY-filing-116-b",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "filing",
+        "question": "Who helps management estimate fair values of assets picked up in acquisitions?",
+        "reference": "They normally use a third-party valuation specialist to estimate fair values of acquired tangible and intangible assets.",
+        "answer": "A third‑party valuation specialist assists management in estimating the fair values of assets acquired in business acquisitions.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "A third‑party valuation specialist assists management in estimating the fair values of assets acquired in business acquisitions.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "we normally obtain the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source states that the company obtains the assistance of a third-party valuation specialist in estimating fair values of tangible and intangible assets in the context of business acquisitions, which directly supports the claim that a specialist assists management in this process."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies that a third-party valuation specialist helps management estimate fair values of acquired assets, matching the reference answer's key fact.",
+        "tokens": 2321,
+        "llm_ms": 1457.4552000012773
+      },
+      {
+        "id": "HSY-filing-119-b",
+        "ticker": "HSY",
+        "answerable": true,
+        "kind": "filing",
+        "question": "How much goodwill was on the balance sheet at the end of 2020?",
+        "reference": "Goodwill had a net book value of $1,988.2 million at December 31, 2020, with no impairment charges.",
+        "answer": "The goodwill on the balance sheet at the end of 2020 was $1,988.2 million.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The goodwill on the balance sheet at the end of 2020 was $1,988.2 million.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "At December 31, 2020, the net book value of our goodwill totaled $1,988.2 million."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states that at December 31, 2020, the net book value of goodwill totaled $1,988.2 million, which directly matches the claim in the sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer provides the exact net book value of goodwill ($1,988.2 million) at the end of 2020, which matches the key fact in the reference answer. The omission of the detail about no impairment charges does not contradict the provided figure.",
+        "tokens": 2448,
+        "llm_ms": 1753.7693999984185
+      },
+      {
+        "id": "SITM-call-012-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "call",
+        "question": "When did management last raise guidance before reporting Q3, and how did results compare?",
+        "reference": "Guidance was raised in late August, and Q3 results came in above that updated range.",
+        "answer": "Management raised its Q3 revenue guidance at the end of August, and the quarter’s actual revenue of $32.7 million exceeded the high end of that revised guidance.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Management raised its Q3 revenue guidance at the end of August, and the quarter’s actual revenue of $32.7 million exceeded the high end of that revised guidance.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "at the end of August, we increased our revenue guidance for the quarter by more than 10%"
+              },
+              {
+                "label": "S2",
+                "quote": "actual results exceeded the high end of that revised guidance"
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The cited text confirms the guidance increase at the end of August and that actual results exceeded the high end of the revised guidance, but it does not state the specific revenue figure of $32.7 million, which is added in the sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the timing (end of August) and the outcome (results exceeded the updated guidance), which aligns with the reference answer's key facts. The specific revenue figure is extra detail that does not contradict the reference.",
+        "tokens": 2957,
+        "llm_ms": 2065.2025999988837
+      },
+      {
+        "id": "SITM-call-020-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "call",
+        "question": "How big is the serviceable addressable market?",
+        "reference": "Around $1.0 to $1.2 billion, mostly oscillators and under $2 billion, within a roughly $8 billion total timing market.",
+        "answer": "According to Rajesh Vashist, the company's SAM is still around a billion to a billion point two. He also noted that SAM is about $1.5 billion out of an $8 billion total TAM.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "According to Rajesh Vashist, the company's SAM is still around a billion to a billion point two.",
+            "citations": [
+              {
+                "label": "S6",
+                "quote": "our SAM is still around a billion to a billion point two"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states 'our SAM is still around a billion to a billion point two' and attributes this statement to Rajesh Vashist, matching the sentence exactly."
+          },
+          {
+            "text": "He also noted that SAM is about $1.5 billion out of an $8 billion total TAM.",
+            "citations": [
+              {
+                "label": "S6",
+                "quote": "SAM at $1.5 billion, SAM out of an $8 billion total TAM"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source states 'SAM at $1.5 billion, SAM out of an $8 billion total TAM', which directly supports the claim that SAM is $1.5 billion out of an $8 billion total TAM."
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The assistant correctly identifies the SAM as $1.0 to $1.2 billion and the total market as $8 billion. However, it incorrectly states the SAM is $1.5 billion, which contradicts the $1.0-$1.2 billion figure it also provided and the reference answer. It also misses the specific detail that the market is 'mostly oscillators' and 'under $2 billion' (though $1.2B is under $2B, the $1.5B",
+        "tokens": 2757,
+        "llm_ms": 2630.865899998753
+      },
+      {
+        "id": "SITM-call-031-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "call",
+        "question": "What process geometries does the company use for its tape-outs?",
+        "reference": "Mature nodes of 180, 130 and 65 nanometers, unlike peers taping out at 7 nanometers.",
+        "answer": "Sightime uses 180‑nanometer, 130‑nanometer and 65‑nanometer process geometries for its tape‑outs.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Sightime uses 180‑nanometer, 130‑nanometer and 65‑nanometer process geometries for its tape‑outs.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "we're doing 180, 130, 65 nanometer tape outs."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states 'we're doing 180, 130, 65 nanometer tape outs' in the context of Sightime (referred to as Sightem in the transcript), directly supporting the claim about the specific process geometries used."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the specific process geometries (180, 130, and 65 nanometers) mentioned in the reference answer. It omits the comparative context regarding peers using 7 nanometers, but it accurately provides the core factual information requested.",
+        "tokens": 2586,
+        "llm_ms": 1750.9480000007898
+      },
+      {
+        "id": "SITM-call-032-b",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "call",
+        "question": "When was the Cascade clock IC expected to start contributing revenue?",
+        "reference": "Revenue was expected to begin in 2021 and ramp beyond that, per the analyst's recap of last quarter's announcement.",
+        "answer": "The Cascade clock IC was expected to begin generating revenue in 2021.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 1,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The Cascade clock IC was expected to begin generating revenue in 2021.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "the Clock IC product that you expected revenue to really be a 2021 event beginning and then probably ramping beyond that"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The source explicitly states that the Clock IC product was expected to have revenue be a \"2021 event beginning,\" which directly supports the claim that it was expected to start generating revenue in 2021."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the expected start of revenue as 2021, which matches the key fact in the reference answer. The omission of the detail about the revenue ramping beyond that year does not contradict the reference and is acceptable as the core question was about when it was expected to start contributing revenue.",
+        "tokens": 2349,
+        "llm_ms": 1564.7915999979887
+      },
+      {
+        "id": "SITM-call-033-b",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "call",
+        "question": "How long does it take resonator design wins to turn into meaningful revenue?",
+        "reference": "Slower than clocking: the lead time to meaningful revenue is easily twice as long, especially for SoC vendor design-ins.",
+        "answer": "Resonator design wins have a gestation period that is easily twice as long as the clocking business. Typically, a design win will not result in meaningful revenue for a year or more.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "Resonator design wins have a gestation period that is easily twice as long as the clocking business.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "the gestation period for that, for meaningful revenue, is easily twice as long as the clocking business"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the gestation period for meaningful revenue is 'easily twice as long as the clocking business,' which directly supports the sentence."
+          },
+          {
+            "text": "Typically, a design win will not result in meaningful revenue for a year or more.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "It is typical that a design win will not result in meaningful revenue for a year or more, if at all"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text states it is 'typical that a design win will not result in meaningful revenue for a year or more, if at all,' which directly supports the sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies that the lead time is 'easily twice as long' as the clocking business, which matches the reference. It also provides a specific timeframe ('a year or more') which is consistent with the 'slower' and 'twice as long' description, assuming the clocking lead time is around 6 months. The core comparison and the qualitative assessment of the sl",
+        "tokens": 2688,
+        "llm_ms": 2289.5983000016713
+      },
+      {
+        "id": "SITM-filing-032-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "filing",
+        "question": "How does the company say it holds its ground against larger rivals?",
+        "reference": "By successfully designing, developing and marketing complex timing solutions for its customers.",
+        "answer": "SITIME Corp says it maintains its competitive position by successfully designing, developing, and marketing complex timing solutions for its customers. It attributes this ability to its fabless business model, which lets it focus on design, sales and marketing, quickly scale production, and keep capital expenditures low.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "SITIME Corp says it maintains its competitive position by successfully designing, developing, and marketing complex timing solutions for its customers.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "We maintain our competitive position through our ability to successfully design, develop, and market complex timing solutions for the customers we serve."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The sentence accurately paraphrases the final sentence of the cited text, which explicitly states that the company maintains its competitive position through the ability to design, develop, and market complex timing solutions."
+          },
+          {
+            "text": "It attributes this ability to its fabless business model, which lets it focus on design, sales and marketing, quickly scale production, and keep capital expenditures low.",
+            "citations": [
+              {
+                "label": "S6",
+                "quote": "We operate a fabless business model, allowing us to focus on the design, sales, and marketing of our products, quickly scale production, and significantly reduce our capital expenditures."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The cited text describes the benefits of the fabless model (focusing on design/sales, scaling production, reducing capex) but does not explicitly state that this model is the reason the company 'holds its ground' or maintains its competitive position against larger rivals. The sentence adds a causal link between the business model and competitive standing that is not present in the specific text provided."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer includes the exact key fact from the reference answer (designing, developing, and marketing complex timing solutions) and adds non-contradictory supporting details about the fabless model.",
+        "tokens": 2723,
+        "llm_ms": 2690.3655999994953
+      },
+      {
+        "id": "SITM-filing-055-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "filing",
+        "question": "What kind of warranty exposure could cause results to swing?",
+        "reference": "Significant warranty claims, including ones its suppliers don't cover.",
+        "answer": "The company’s lifetime warranty exposes it to warranty or product‑liability claims that could generate unexpected expenses and loss of market share. Those claims may require significant expenditures to defend, replace solutions, refund payments, or pay damage awards, which can cause results to swing.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The company’s lifetime warranty exposes it to warranty or product‑liability claims that could generate unexpected expenses and loss of market share.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "We provide a lifetime warranty on our products and may be subject to warranty or product liability claims, which could result in unexpected expenses and loss of market share."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the company provides a lifetime warranty and may be subject to warranty or product liability claims, which could result in unexpected expenses and loss of market share. The sentence accurately reflects this information."
+          },
+          {
+            "text": "Those claims may require significant expenditures to defend, replace solutions, refund payments, or pay damage awards, which can cause results to swing.",
+            "citations": [
+              {
+                "label": "S2",
+                "quote": "These claims may require us to make significant expenditures to defend those claims, replace our solutions, refund payments, or pay damage awards."
+              }
+            ],
+            "verdict": "partial",
+            "reason": "The cited text states that claims may require significant expenditures to defend, replace solutions, refund payments, or pay damage awards. However, the cited text does not explicitly state that these expenditures 'can cause results to swing.' While this is a logical inference, the specific phrase 'cause results to swing' is not present in the source text provided for this sentence."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies that significant warranty claims (specifically mentioning product liability and unexpected expenses) can cause results to swing. While it does not explicitly mention the nuance of 'suppliers not covering' the claims, it captures the core key fact of significant warranty exposure leading to financial swings.",
+        "tokens": 2492,
+        "llm_ms": 2252.8247000009287
+      },
+      {
+        "id": "SITM-filing-142-a",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "filing",
+        "question": "What natural disaster risk does the company's location create?",
+        "reference": "Its headquarters and some suppliers and foundry vendors sit in active earthquake zones.",
+        "answer": "The company's headquarters and some suppliers are situated in active earthquake zones, exposing it to earthquakes as well as other natural disasters such as hurricanes and flooding.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "The company's headquarters and some suppliers are situated in active earthquake zones, exposing it to earthquakes as well as other natural disasters such as hurricanes and flooding.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones or are subject to power outages, natural disasters, political, social, or economic unrest, and other potentially catastrophic events."
+              },
+              {
+                "label": "S1",
+                "quote": "In the event of a major earthquake, hurricane, flooding, or other catastrophic event such as fire, power loss, telecommunications failure, cyber-attack, war, terrorist attack, political, social, or economic unrest, or disease outbreak, such as the current COVID-19 pandemic, we may be unable to continue our operations"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the headquarters and suppliers are in active earthquake zones and lists hurricanes and flooding as specific catastrophic events that could disrupt operations, fully supporting the claim."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies that the headquarters and some suppliers are in active earthquake zones, which matches the reference answer. The additional mention of hurricanes and flooding is extra detail that does not contradict the reference.",
+        "tokens": 2921,
+        "llm_ms": 2405.064599999605
+      },
+      {
+        "id": "SITM-filing-142-b",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "filing",
+        "question": "Why is earthquake risk relevant to operations?",
+        "reference": "Headquarters and some suppliers and foundry vendors sit in active earthquake zones or areas prone to outages and disasters.",
+        "answer": "Earthquake risk is relevant because the company’s corporate headquarters and some suppliers and foundry vendors are located in active earthquake zones.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 1,
+        "dropped_sentences": [
+          "A major earthquake could prevent the company from continuing operations and cause system interruptions, reputational harm, product‑development delays, data‑security breaches, or loss of critical data, adversely affecting its business."
+        ],
+        "sentences": [
+          {
+            "text": "Earthquake risk is relevant because the company’s corporate headquarters and some suppliers and foundry vendors are located in active earthquake zones.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Our corporate headquarters and some of our suppliers and foundry vendors are located in areas that are in active earthquake zones"
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The cited text explicitly states that the corporate headquarters and some suppliers and foundry vendors are located in active earthquake zones, which directly supports the claim that this is why the risk is relevant to operations."
+          }
+        ],
+        "correctness": "correct",
+        "correctness_reason": "The assistant's answer correctly identifies the key facts from the reference answer: that the headquarters and some suppliers/foundry vendors are located in active earthquake zones. It omits the minor detail about 'areas prone to outages and disasters' but captures the core reason for the relevance to operations.",
+        "tokens": 3305,
+        "llm_ms": 2961.2252000006265
+      },
+      {
+        "id": "SITM-filing-168-b",
+        "ticker": "SITM",
+        "answerable": true,
+        "kind": "filing",
+        "question": "What typically happens to demand and pricing in a semiconductor downturn?",
+        "reference": "Demand falls, capacity and inventories run high, and average selling prices erode faster.",
+        "answer": "In a semiconductor downturn, product demand typically diminishes and average selling prices erode.",
+        "answered": true,
+        "unsupported": false,
+        "gold_retrieved": true,
+        "quotes": 2,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [
+          {
+            "text": "In a semiconductor downturn, product demand typically diminishes and average selling prices erode.",
+            "citations": [
+              {
+                "label": "S1",
+                "quote": "Downturns in the semiconductor industry have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+              },
+              {
+                "label": "S2",
+                "quote": "These downturns have been characterized by diminished product demand, production overcapacity, high inventory levels, and accelerated erosion of average selling prices."
+              }
+            ],
+            "verdict": "supported",
+            "reason": "The sentence states that demand diminishes and prices erode during a downturn. Both cited sources explicitly list 'diminished product demand' and 'accelerated erosion of average selling prices' as characteristics of semiconductor downturns, fully supporting the claim."
+          }
+        ],
+        "correctness": "partial",
+        "correctness_reason": "The answer captures the key points of falling demand and eroding prices, but it omits the reference's specific mention of high capacity and inventories, making it incomplete.",
+        "tokens": 2557,
+        "llm_ms": 2348.2321000010415
+      },
+      {
+        "id": "HSY-none-01-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "How many dollars did Hershey spend on advertising and related consumer marketing in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2528,
+        "llm_ms": 1037.7348999973037
+      },
+      {
+        "id": "HSY-none-02-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What share of total net sales came from e-commerce in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2378,
+        "llm_ms": 1043.66459999801
+      },
+      {
+        "id": "HSY-none-03-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What price did Hershey get when it sold Lotte Shanghai Foods (LSFC)?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2242,
+        "llm_ms": 739.060600000812
+      },
+      {
+        "id": "HSY-none-04-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "Why did the North America segment margin shrink in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 3018,
+        "llm_ms": 1200.986499999999
+      },
+      {
+        "id": "HSY-none-05-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "What triggered the goodwill impairment charge Hershey booked in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2379,
+        "llm_ms": 929.4320000008156
+      },
+      {
+        "id": "HSY-none-06-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "wrong_period",
+        "question": "How much did Hershey actually spend on capital expenditures in 2021?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 1995,
+        "llm_ms": 1175.2319000006537
+      },
+      {
+        "id": "HSY-none-07-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "other_company",
+        "question": "What were McLane Company's total revenues in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2795,
+        "llm_ms": 877.5978000012401
+      },
+      {
+        "id": "HSY-none-08-c",
+        "ticker": "HSY",
+        "answerable": false,
+        "kind": "out_of_scope",
+        "question": "Is Hershey stock a buy heading into the holiday season?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 1729,
+        "llm_ms": 856.6333000017039
+      },
+      {
+        "id": "SITM-none-01-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What is the average selling price per unit of SiTime's oscillators?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2514,
+        "llm_ms": 877.7980000013486
+      },
+      {
+        "id": "SITM-none-02-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "How much in damages is VTT seeking in its patent infringement suit against SiTime?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2394,
+        "llm_ms": 1607.471399998758
+      },
+      {
+        "id": "SITM-none-03-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What royalty rate does SiTime owe Bosch under its MEMS patent license?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2410,
+        "llm_ms": 886.9574000018474
+      },
+      {
+        "id": "SITM-none-04-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "Why did revenue from SiTime's largest end customer fall in 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2321,
+        "llm_ms": 1009.1204999989714
+      },
+      {
+        "id": "SITM-none-05-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "What drove SiTime back to GAAP profitability for full-year 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2770,
+        "llm_ms": 1333.267900001374
+      },
+      {
+        "id": "SITM-none-06-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "wrong_period",
+        "question": "What revenue did SiTime report for full-year 2021?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2353,
+        "llm_ms": 1046.2979000003543
+      },
+      {
+        "id": "SITM-none-07-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "other_company",
+        "question": "How much revenue does Microchip make from its MEMS oscillator business?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2392,
+        "llm_ms": 818.3658000016294
+      },
+      {
+        "id": "SITM-none-08-c",
+        "ticker": "SITM",
+        "answerable": false,
+        "kind": "out_of_scope",
+        "question": "What's a reasonable 12-month price target for SiTime shares?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2239,
+        "llm_ms": 1086.1178000013751
+      },
+      {
+        "id": "COP-none-01-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What adjusted earnings per share did ConocoPhillips report for the third quarter of 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2809,
+        "llm_ms": 958.1653000022925
+      },
+      {
+        "id": "COP-none-02-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "What peak production rate is the Willow development in Alaska expected to reach?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2297,
+        "llm_ms": 1299.078300002293
+      },
+      {
+        "id": "COP-none-03-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "missing_detail",
+        "question": "How much of the year-end 2020 proved reserves sit in the Lower 48 segment?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2494,
+        "llm_ms": 1091.1124000012933
+      },
+      {
+        "id": "COP-none-04-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "Why did ConocoPhillips decide to pay for Concho mostly in cash?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2300,
+        "llm_ms": 2316.2192000017967
+      },
+      {
+        "id": "COP-none-05-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "false_premise",
+        "question": "Now that Alaska's Fair Share Act tax increase has passed, how much is ConocoPhillips cutting North Slope drilling?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2423,
+        "llm_ms": 882.0328000001609
+      },
+      {
+        "id": "COP-none-06-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "wrong_period",
+        "question": "What did combined company production actually average in 2021 after the Concho acquisition?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2233,
+        "llm_ms": 1886.1297000003105
+      },
+      {
+        "id": "COP-none-07-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "other_company",
+        "question": "What net income did Concho Resources report for 2020?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2654,
+        "llm_ms": 841.9216000002052
+      },
+      {
+        "id": "COP-none-08-c",
+        "ticker": "COP",
+        "answerable": false,
+        "kind": "out_of_scope",
+        "question": "How large a position in ConocoPhillips should I hold in my portfolio?",
+        "reference": null,
+        "answer": null,
+        "answered": false,
+        "unsupported": false,
+        "gold_retrieved": false,
+        "quotes": 0,
+        "dropped_quotes": 0,
+        "dropped_sentences": [],
+        "sentences": [],
+        "correctness": null,
+        "correctness_reason": null,
+        "tokens": 2225,
+        "llm_ms": 1130.6466999994882
+      }
+    ]
+  }
+]

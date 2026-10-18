@@ -1,0 +1,89 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You answer an analyst's questions about CONOCOPHILLIPS using only the numbered sources below: passages from the company's annual report (Form 10-K) and transcripts of its earnings calls.\n\nRules:\n- Use only what the sources state. No outside knowledge, no guessing, and no numbers the sources don't give (don't compute growth rates or totals yourself).\n- Every sentence of your answer needs support: one or more quotes, each copied exactly, character for character, from one source, with that source's label. Quote the clause that states the fact, at most about 40 words. Don't fix typos or join text from different places.\n- If the sources don't answer the question, set answerable to false and return no sentences. Don't answer a different question than the one asked, and don't accept a premise of the question that the sources don't support.\n- Lead with the direct answer. Use one to four sentences. Write in the third person (name the company, or \"it\"), not in the filing's \"we\" and \"our\".\n- Say who said it when the source is a call (\"Michele Buck said...\"). Call transcripts are machine transcriptions and may contain errors; quote them as written."
+   },
+   {
+    "role": "user",
+    "content": "Sources:\n\n[S1] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nSummarized Income Statement Data\n\nMillions of Dollars\n2020\nRevenues and Other Income | $8,375\nIncome (loss) before income taxes | (2,999)\nNet income (loss) | (2,701)\nNet Income (Loss) Attributable to ConocoPhillips | (2,701)\n\n[S2] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOther International\n\n2020 | 2019 | 2018\nNet Income (Loss) Attributable to ConocoPhillips\n(millions of dollars) | $(64) | 263 | 364\n\nThe Other International segment includes exploration activities in Colombia and Argentina and contingencies associated with prior operations in other countries. As a result of our completed Concho acquisition on January 15, 2021, we refocused our exploration program and announced our intent to pursue a managed exit from certain areas.\n\n2020 vs. 2019\n\nOther International operations reported a loss of $64 million in 2020, compared with earnings of $263 million in 2019. The decrease in earnings was primarily due to:\n\n● The absence of $317 million after-tax in other income from a settlement award with PDVSA associated with prior operations in Venezuela. For additional information related to this settlement award, see Note 12—Contingencies and Commitments, in the Notes to Consolidated Financial Statements.\n\n● Increased exploration expenses, primarily due to dry hole costs and a full impairment of capitalized undeveloped leasehold costs in Colombia.\n\n[S3] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions.\n\n[S4] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:\n\n[S5] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nConsolidated Results\n\nA summary of the company’s net income (loss) attributable to ConocoPhillips by business segment follows:\n\nMillions of Dollars\nYears Ended December 31 | 2020 | 2019 | 2018\nAlaska | $(719) | 1,520 | 1,814\nLower 48 | (1,122) | 436 | 1,747\nCanada | (326) | 279 | 63\nEurope, Middle East and North Africa | 448 | 3,170 | 2,594\nAsia Pacific | 962 | 1,483 | 1,342\nOther International | (64) | 263 | 364\nCorporate and Other | (1,880) | 38 | (1,667)\nNet income (loss) attributable to ConocoPhillips | $(2,701) | 7,189 | 6,257\n\n2020 vs. 2019\n\nNet income (loss) attributable to ConocoPhillips decreased $9.9 billion in 2020. The decrease was mainly due to:\n\n● Lower realized commodity prices.\n\n● Lower sales volumes due to normal field decline, asset dispositions and production curtailments. For additional information related to dispositions, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● An unrealized loss of $855 million after-tax on our Cenovus Energy (CVE) common shares in 2020, as compared to a $649 million after-tax unrealized gain on those shares in 2019.\n\n[S6] 10-K: Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $23.57 | 40.87 | 48.73\nNatural gas liquids ($ per bbl) | 5.41 | 19.87 | 43.70\nBitumen ($ per bbl) | 8.02 | 31.72 | 22.29\nNatural gas ($ per mcf) | 1.21 | 0.49 | 1.00\n\n*Average sales prices include unutilized transportation costs. **Average prices for sales of bitumen produced excludes additional value realized from the purchase and sale of third-party volumes for optimization of our pipeline capacity between Canada and the U.S. Gulf Coast.\n\nOur Canadian operations consist of the Surmont oil sands development in Alberta and the liquids-rich Montney unconventional play in British Columbia. In 2020, Canada contributed 9 percent of our consolidated liquids production and 3 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Canada operations reported a loss of $326 million in 2020 compared with earnings of $279 million in 2019. Earnings decreased mainly due to:\n\n● Lower realized bitumen prices.\n\n● Higher DD&A expenses, primarily due to increased volumes and DD&A rates from Montney production.\n\n● Lower bitumen sales due to production curtailments at Surmont.\n\nEarnings were positively impacted by:\n\n● Increased Montney production from Pad 1 & 2 wells online and partial year production from the Kelt acquisition completed in August of 2020.\n\nProduction Total average production increased 7 MBOED in 2020 compared with 2019. The production increase was primarily due to:\n\nQuestion: What net income did Concho Resources report for 2020?"
+   }
+  ],
+  "max_tokens": 2000,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Sentence": {
+     "properties": {
+      "text": {
+       "description": "One sentence of the answer",
+       "type": "string"
+      },
+      "support": {
+       "description": "Quotes that state what the sentence says",
+       "items": {
+        "$ref": "#/$defs/Support"
+       },
+       "type": "array"
+      }
+     },
+     "required": [
+      "text",
+      "support"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    },
+    "Support": {
+     "properties": {
+      "source": {
+       "description": "Label of the source the quote is from, e.g. S2",
+       "type": "string"
+      },
+      "quote": {
+       "description": "Exact text copied from that source",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "answerable": {
+     "description": "False if the sources don't contain the answer",
+     "type": "boolean"
+    },
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/Sentence"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "answerable",
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Response"
+ },
+ "completion": {
+  "text": "{\"answerable\":false,\"sentences\":[]}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 2511,
+  "completion_tokens": 143,
+  "latency_ms": 841.9216000002052,
+  "attempts": 1
+ }
+}

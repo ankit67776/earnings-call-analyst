@@ -1,0 +1,70 @@
+{
+ "request": {
+  "model": "qwen/qwen3.8-27b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check an AI research assistant's answer against the sources it cites. For each numbered sentence, decide whether the text it cites supports it:\n- supported: everything the sentence states is stated in, or directly follows from, the cited text.\n- partial: the main point is supported, but the sentence adds something the cited text doesn't give (a number, a cause, a time, a speaker, a qualifier).\n- unsupported: the cited text doesn't state it, or states something different.\nJudge only against the text shown, never outside knowledge. Give a short reason first."
+   },
+   {
+    "role": "user",
+    "content": "Question: What did the analyst credit for the unusually strong early Halloween sales?\n\nAnswer sentences:\n1. Analyst Jason English said the unusually strong early Halloween sales were largely due to the larger and earlier merchandising programs that retailers implemented.\n   cites [S2]: \"The Halloween early part selling was phenomenal, much better than I think anyone expected.\"\n   cites [S2]: \"I think a big part of that is due to the merchandising programs that retailers had. It seems like they started bigger and earlier than they usually do.\"\n\nCited sources:\n\n[S2] Q3 2020 earnings call, 17:39–18:35\nChris Growe: Okay. Thanks so much for the color there.\n\nMichele Buck: Absolutely.\n\nSpeaker 1: Thank you. Our next question comes from the line of Jason English with Goldman Sachs. Please proceed with your question.\n\nJason English: Hey, good morning, folks. Congratulations on a good quarter. Thank you. Hope all's well. I want to pick up on the back of Chris's questions and tease out, try to tease out a little bit more of the outlook on holidays going forward. The Halloween early part selling was phenomenal, much better than I think anyone expected. I think a big part of that is due to the merchandising programs that retailers had. It seems like they started bigger and earlier than they usually do. Has that, you think, influenced how they're going to approach other seasons going forward? So said more directly, do you expect retailers to provide more merchandising support behind the category into holiday, into Easter than they otherwise would coming out of the success they saw on Halloween?"
+   }
+  ],
+  "max_tokens": 900,
+  "temperature": 0.0,
+  "reasoning_effort": null,
+  "json_schema": {
+   "$defs": {
+    "SentenceVerdict": {
+     "properties": {
+      "n": {
+       "type": "integer"
+      },
+      "reason": {
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "supported",
+        "partial",
+        "unsupported"
+       ],
+       "type": "string"
+      }
+     },
+     "required": [
+      "n",
+      "reason",
+      "verdict"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "sentences": {
+     "items": {
+      "$ref": "#/$defs/SentenceVerdict"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "sentences"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "FaithfulnessVerdict"
+ },
+ "completion": {
+  "text": "{\"sentences\": [{\"n\": 1, \"reason\": \"The cited text confirms Jason English stated the sales were 'phenomenal' and attributed this to retailers' merchandising programs that 'started bigger and earlier.' However, the sentence adds the qualifier 'largely due to,' which is not present in the source (the source says 'a big part of that is due to'), and it omits that English was asking a question about future seasons rather than making a definitive statement of cause.\", \"verdict\": \"partial\"}]}",
+  "model": "qwen/qwen3.8-27b",
+  "provider": "groq",
+  "prompt_tokens": 493,
+  "completion_tokens": 112,
+  "latency_ms": 425.27899999913643,
+  "attempts": 2
+ }
+}

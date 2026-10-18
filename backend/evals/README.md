@@ -80,3 +80,104 @@ matched one to one, best overlap first, so a claim extracted twice counts once.
   Claims whose quote isn't found are dropped before scoring.
 - **Citation accuracy**: the share of found quotes that sit in the paragraph the model
   cited.
+
+## Speech-to-text
+
+`wer.py` transcribes the three Earnings-21 calls (Hershey, SiTime, ConocoPhillips, Q3
+2020) and scores them against Rev's reference transcripts, which are human-made and
+verbatim: they keep fillers, false starts and repeated words.
+
+- **WER**: substitutions, deletions and insertions over all reference words, after both
+  sides go through the Whisper English normalizer (lowercase, no punctuation or fillers,
+  numbers as digits, so "third quarter" and "3rd Quarter" match).
+- **Number words wrong / name words wrong**: the share of reference words inside tagged
+  entities that aren't transcribed exactly. Numbers are amounts, percentages, dates,
+  ordinals and quantities; names are people, organizations and products. Each tagged
+  entity is normalized as one piece, so "$32.7 million" stays one number.
+- **Speaker accuracy**: speakers come from the dataset's reference diarization (RTTM),
+  so this only checks the matching: the share of correctly transcribed words that land
+  with the speaker the reference gives them.
+
+The references live in `data/raw` (gitignored), so this eval runs locally, not in CI.
+
+```bash
+uv run python -m evals.wer --model whisper-large-v3 --model whisper-large-v3-turbo --readme
+```
+
+## Retrieval golden set
+
+`golden/retrieval.json` holds 120 questions about the three companies, each tied to the
+passage that answers it. `build_retrieval.py` sampled 84 passages with a fixed seed, 14
+per company and source (10-K or call), from passages of at least 60 words, skipping the
+call's opening and safe-harbor statement and passages that are mostly table.
+
+Two annotators (both Claude, working independently from the passage text only, never
+from any retrieval output) went through the passages, one front to back and one back to
+front, and wrote one question per passage until they had 10 per company and source:
+
+- what an analyst would type into a research assistant, answerable from that passage
+  alone and specifically (a number, reason, plan, named risk, comparison);
+- paraphrased: no copied distinctive phrases, so keyword overlap doesn't decide it, but
+  proper names and standard financial terms kept as an analyst would say them;
+- with a short answer and the exact quote that states it.
+
+`merge_retrieval.py` checks every quote is in its passage and builds the questions.
+
+### Scoring
+
+A retrieved passage is relevant when it contains the question's quote. Matching quotes
+rather than passage IDs keeps the labels valid when passages are re-cut.
+
+Other passages can answer a question too: a call repeats what the 10-K says, and an
+answer can run on into the next passage. So the top 5 of every search system were pooled
+(`evals.retrieval --pool 5`, about nine candidates a question) and four judges, again
+Claude and blind to which system ranked what, marked the candidates that answer the
+question with the reference answer's key facts on their own (`labelers/judgments_*.json`).
+Their quotes are added to the question as `alt_quotes`. Passages ranked below 5 by every
+system weren't judged, so recall@10 can still undercount.
+
+- **Recall@k**: the share of questions with a relevant passage in the top k.
+- **MRR@10**: the mean of 1 / rank of the first relevant passage (0 if none in the top 10).
+
+```bash
+uv run python -m evals.retrieval --readme   # needs the index (python -m app.retrieval)
+```
+
+## Chat golden set
+
+`golden/chat.json` takes 30 answerable questions from the retrieval set (5 per company
+and source, fixed seed), with their reference answers, and adds 24 unanswerable ones
+from a third annotator (`labelers/unanswerable_c.json`). Those were written to sit close
+to what the sources discuss, 8 per company: 3 details the sources talk around but never
+state, 2 false premises, 1 period the sources can't cover, 1 about another company and
+1 out of scope (a stock recommendation). Each was checked against the full text of
+every passage the chat can search, with the nearest passages recorded.
+
+Each question runs through the real pipeline: hybrid retrieval of 6 passages, the
+answer prompt, quote verification.
+
+- **Answered** / **correct refusals**: the share of answerable questions answered, and
+  of unanswerable ones refused.
+- **Correct**: of the answered, answerable questions, the share that give the reference
+  answer's key facts, judged by an LLM.
+- **Faithful sentences**: the share of answer sentences their cited quotes fully
+  support, judged by an LLM that sees the sentence, its quotes and the cited passages.
+- **Quotes found**: the share of the model's quotes located in the sources before
+  verification drops the rest.
+- **Context recall**: the share of answerable questions whose gold passage was among
+  the 6 retrieved, which separates retrieval misses from answering misses.
+
+The judge is `qwen/qwen3.8-27b`, a different model family from the gpt-oss models that
+answer, so it isn't grading its own style. To see how far to trust it, a second labeler
+(Claude, blind to the judge's verdicts, `labelers/chat_judge_d.json`) graded the same
+answers: 85% agreement on sentence verdicts and 83% on correctness, with almost the same
+overall share of fully supported sentences (83% against the judge's 81%). Live runs save each question's retrieved
+passages (`cache/chat_contexts.json`) and every response, so CI replays the whole eval
+offline.
+
+```bash
+uv run python -m evals.build_chat
+uv run python -m evals.chat --readme
+uv run python -m evals.chat --offline --min-answered 0.9 --min-refusal 0.9 --min-faithful 0.75
+uv run python -m evals.judge_agreement score golden/labelers/chat_judge_d.json
+```
