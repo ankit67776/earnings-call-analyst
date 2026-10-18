@@ -15,8 +15,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "jiwer>=4.0.0",
     "pytest>=9.1.1",
     "ruff>=0.16.10",
+    "whisper-normalizer>=0.1.15",
 ]
 
 [tool.ruff]

@@ -21,13 +21,26 @@ class Settings(BaseSettings):
     # Both support strict JSON-schema structured outputs on Groq.
     analysis_model: str = "openai/gpt-oss-120b"
     live_model: str = "openai/gpt-oss-20b"
+    # Answers questions over filings and calls, citing a quote for every sentence.
+    chat_model: str = "openai/gpt-oss-120b"
 
     # On-disk response cache and daily usage counters, so dev re-runs cost no quota.
     llm_cache_dir: str = ".cache/llm"
     llm_cache_enabled: bool = True
 
+    # Batch speech-to-text: Whisper on Groq (free tier). Responses are cached on disk.
+    stt_provider: str = "groq"
+    stt_model: str = "whisper-large-v3"
+    stt_cache_dir: str = ".cache/stt"
     deepgram_api_key: str = ""
+
+    # Embeddings go through one client too: "provider/model", where the provider is
+    # voyage or gemini. The retrieval eval compares them; vectors from different models
+    # are stored side by side and never mixed in one search.
+    embedding_model: str = "voyage/voyage-4"
     voyage_api_key: str = ""
+    gemini_api_key: str = ""
+    embedding_cache_dir: str = ".cache/embeddings"
 
     # SEC EDGAR requires a descriptive User-Agent with a contact email.
     sec_user_agent: str = ""

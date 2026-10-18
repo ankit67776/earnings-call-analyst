@@ -27,12 +27,11 @@ from app.llm.ratelimit import RateLimiter
 from app.llm.types import CompletionRequest, ProviderResult
 from evals.build_golden import GOLDEN
 from evals.metrics import Claim, Span, Tally, score, total
+from evals.readme import replace_block
 
 HERE = Path(__file__).resolve().parent
 CACHE = HERE / "cache"
 RESULTS = HERE / "results" / "extraction.json"
-README = HERE.parent.parent / "README.md"
-START, END = "<!-- eval:extraction -->", "<!-- /eval:extraction -->"
 
 
 class Replay:
@@ -223,10 +222,7 @@ def table(results: list[dict]) -> str:
     return "\n".join(rows)
 
 
-def update_readme(results: list[dict], golden: dict) -> None:
-    text = README.read_text(encoding="utf-8")
-    if START not in text or END not in text:
-        raise SystemExit(f"README.md has no {START} ... {END} block")
+def update_readme(results: list[dict]) -> None:
     r = results[0]
     note = (
         f"{r['passages']} passages from three FY2020 10-Ks, {r['gold_claims']} labeled claims, "
@@ -234,10 +230,7 @@ def update_readme(results: list[dict], golden: dict) -> None:
     )
     if r["unreviewed_gold_claims"]:
         note += f" {r['unreviewed_gold_claims']} labels are still unreviewed drafts."
-    block = f"{START}\n{table(results)}\n\n{note}\n{END}"
-    before, rest = text.split(START, 1)
-    after = rest.split(END, 1)[1]
-    README.write_text(before + block + after, encoding="utf-8")
+    replace_block("extraction", f"{table(results)}\n\n{note}")
 
 
 async def main_async(args: argparse.Namespace) -> int:
@@ -253,7 +246,7 @@ async def main_async(args: argparse.Namespace) -> int:
     print(table(results))
     print(f"\nDetails, including every miss and extra claim: {RESULTS}")
     if args.readme:
-        update_readme(results, golden)
+        update_readme(results)
 
     failed = []
     for r in results:

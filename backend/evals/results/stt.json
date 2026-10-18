@@ -1,0 +1,132 @@
+[
+  {
+    "provider": "groq",
+    "model": "whisper-large-v3",
+    "calls": 3,
+    "audio_minutes": 156.7,
+    "wer": 0.0958,
+    "ref_words": 26419,
+    "substitutions": 735,
+    "deletions": 1486,
+    "insertions": 310,
+    "numbers_error": 0.0798,
+    "names_error": 0.2083,
+    "entity_words": {
+      "numbers": 1553,
+      "names": 509
+    },
+    "speed_factor": 184,
+    "by_call": {
+      "SITM": {
+        "earnings21_id": "4385072",
+        "wer": 0.0747,
+        "ref_words": 6509,
+        "substitutions": 132,
+        "deletions": 289,
+        "insertions": 65,
+        "numbers_error": 0.0738,
+        "names_error": 0.2211,
+        "entity_words": {
+          "numbers": 515,
+          "names": 95
+        },
+        "speaker_accuracy": 0.9998
+      },
+      "HSY": {
+        "earnings21_id": "4385939",
+        "wer": 0.0634,
+        "ref_words": 9118,
+        "substitutions": 157,
+        "deletions": 369,
+        "insertions": 52,
+        "numbers_error": 0.067,
+        "names_error": 0.1747,
+        "entity_words": {
+          "names": 166,
+          "numbers": 463
+        },
+        "speaker_accuracy": 0.9985
+      },
+      "COP": {
+        "earnings21_id": "4382825",
+        "wer": 0.1359,
+        "ref_words": 10792,
+        "substitutions": 446,
+        "deletions": 828,
+        "insertions": 193,
+        "numbers_error": 0.0957,
+        "names_error": 0.2258,
+        "entity_words": {
+          "numbers": 575,
+          "names": 248
+        },
+        "speaker_accuracy": 0.9993
+      }
+    }
+  },
+  {
+    "provider": "groq",
+    "model": "whisper-large-v3-turbo",
+    "calls": 3,
+    "audio_minutes": 156.7,
+    "wer": 0.0982,
+    "ref_words": 26419,
+    "substitutions": 732,
+    "deletions": 1552,
+    "insertions": 311,
+    "numbers_error": 0.0824,
+    "names_error": 0.2063,
+    "entity_words": {
+      "numbers": 1553,
+      "names": 509
+    },
+    "speed_factor": 274,
+    "by_call": {
+      "SITM": {
+        "earnings21_id": "4385072",
+        "wer": 0.0774,
+        "ref_words": 6509,
+        "substitutions": 129,
+        "deletions": 301,
+        "insertions": 74,
+        "numbers_error": 0.066,
+        "names_error": 0.2316,
+        "entity_words": {
+          "numbers": 515,
+          "names": 95
+        },
+        "speaker_accuracy": 1.0
+      },
+      "HSY": {
+        "earnings21_id": "4385939",
+        "wer": 0.0653,
+        "ref_words": 9118,
+        "substitutions": 163,
+        "deletions": 377,
+        "insertions": 55,
+        "numbers_error": 0.0734,
+        "names_error": 0.1807,
+        "entity_words": {
+          "names": 166,
+          "numbers": 463
+        },
+        "speaker_accuracy": 0.9988
+      },
+      "COP": {
+        "earnings21_id": "4382825",
+        "wer": 0.1386,
+        "ref_words": 10792,
+        "substitutions": 440,
+        "deletions": 874,
+        "insertions": 182,
+        "numbers_error": 0.1043,
+        "names_error": 0.2137,
+        "entity_words": {
+          "numbers": 575,
+          "names": 248
+        },
+        "speaker_accuracy": 0.9995
+      }
+    }
+  }
+]

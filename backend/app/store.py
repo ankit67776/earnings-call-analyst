@@ -1,10 +1,12 @@
-"""Saving filings and analysis results to Postgres."""
+"""Saving filings, calls and analysis results to Postgres."""
 
+from dataclasses import dataclass
 from datetime import date
 
 import asyncpg
 
 from app.analysis.extract import PROMPT_VERSION, SectionAnalysis
+from app.calls.transcript import LabeledSegment
 from app.filings.edgar import FilingRef
 from app.filings.tenk import TenK
 
@@ -136,3 +138,54 @@ async def save_analysis(
             ],
         )  # fmt: skip
     return run_id
+
+
+@dataclass(frozen=True)
+class CallRecord:
+    ticker: str
+    company: str
+    fiscal_year: int
+    quarter: int
+    source: str
+    duration: float
+    stt_provider: str
+    stt_model: str
+    speakers: str | None
+
+
+async def save_call(
+    conn: asyncpg.Connection, call: CallRecord, segments: list[LabeledSegment]
+) -> int:
+    """Insert or refresh a call and its transcript. Returns the call ID."""
+    async with conn.transaction():
+        call_id = await conn.fetchval(
+            """
+            insert into calls (ticker, company, fiscal_year, quarter, source, duration,
+                               stt_provider, stt_model, speakers)
+            values ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            on conflict (source) do update set
+                ticker = excluded.ticker, company = excluded.company,
+                fiscal_year = excluded.fiscal_year, quarter = excluded.quarter,
+                duration = excluded.duration, stt_provider = excluded.stt_provider,
+                stt_model = excluded.stt_model, speakers = excluded.speakers
+            returning id
+            """,
+            call.ticker,
+            call.company,
+            call.fiscal_year,
+            call.quarter,
+            call.source,
+            call.duration,
+            call.stt_provider,
+            call.stt_model,
+            call.speakers,
+        )
+        await conn.execute("delete from call_segments where call_id = $1", call_id)
+        await conn.copy_records_to_table(
+            "call_segments",
+            records=[
+                (call_id, s.position, s.turn, s.speaker, s.start, s.end, s.text) for s in segments
+            ],
+            columns=["call_id", "position", "turn", "speaker", "start_s", "end_s", "text"],
+        )
+    return call_id
