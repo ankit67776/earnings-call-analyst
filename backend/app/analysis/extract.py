@@ -18,7 +18,7 @@ from pydantic import BaseModel, Field
 from app.analysis.chunking import DEFAULT_MAX_CHARS, Chunk, chunk_section
 from app.analysis.grounding import MatchKind, locate
 from app.filings.tenk import Paragraph, Section
-from app.llm import BudgetExceededError, Completion, LLMClient, LLMError
+from app.llm import BudgetExceededError, Completion, LLMClient, LLMError, RateLimitedError
 
 logger = logging.getLogger(__name__)
 
@@ -88,6 +88,21 @@ class Finding:
     citations: list[Citation]
 
 
+@dataclass(frozen=True)
+class ChunkResult:
+    """What one LLM call saw and cost."""
+
+    position: int
+    paragraph_ids: list[str]
+    context_heading: str | None
+    claims: int = 0
+    prompt_tokens: int = 0
+    completion_tokens: int = 0
+    latency_ms: float = 0.0
+    cached: bool = False
+    error: str | None = None
+
+
 @dataclass
 class SectionAnalysis:
     section: str
@@ -96,12 +111,16 @@ class SectionAnalysis:
     findings: list[Finding]
     # Claims dropped because their quote couldn't be found in the source.
     rejected: list[Finding]
-    failed_chunks: list[tuple[int, str]] = field(default_factory=list)
+    chunk_results: list[ChunkResult] = field(default_factory=list)
     prompt_tokens: int = 0
     completion_tokens: int = 0
     llm_calls: int = 0
     cached_calls: int = 0
     seconds: float = 0.0
+
+    @property
+    def failed_chunks(self) -> list[tuple[int, str]]:
+        return [(c.position, c.error) for c in self.chunk_results if c.error]
 
     def match_counts(self) -> dict[str, int]:
         counts = dict.fromkeys(("exact", "normalized", "elided", "fuzzy"), 0)
@@ -194,7 +213,8 @@ async def analyze_section(
         async with gate:
             try:
                 return await extract_chunk(client, chunk, company=company, model=model)
-            except BudgetExceededError:
+            except (BudgetExceededError, RateLimitedError):
+                # Out of quota: the rest of the chunks would fail too, so stop the run.
                 raise
             except LLMError as e:
                 logger.warning("chunk %d of Item %s failed: %s", i, section.id, e)
@@ -211,10 +231,22 @@ async def analyze_section(
     )
     grounded: list[Finding] = []
     for i, (chunk, result) in enumerate(zip(chunks, results, strict=True)):
+        seen = ([p.id for p in chunk.paragraphs], chunk.context_heading)
         if isinstance(result, Exception):
-            analysis.failed_chunks.append((i, str(result)))
+            analysis.chunk_results.append(ChunkResult(i, *seen, error=str(result)))
             continue
         claims, completion = result
+        analysis.chunk_results.append(
+            ChunkResult(
+                i,
+                *seen,
+                claims=len(claims),
+                prompt_tokens=completion.prompt_tokens,
+                completion_tokens=completion.completion_tokens,
+                latency_ms=completion.latency_ms,
+                cached=completion.cached,
+            )
+        )
         analysis.llm_calls += 1
         analysis.cached_calls += completion.cached
         analysis.prompt_tokens += completion.prompt_tokens

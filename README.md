@@ -19,7 +19,7 @@ Every AI component ships with an **eval** and published numbers.
 cp .env.example .env          # add API keys
 # Database: create a free Neon project and put its URL in .env (no local install).
 # Prefer running Postgres locally instead? `docker compose up -d` also works.
-cd backend && uv sync && uv run uvicorn app.main:app --reload
+cd backend && uv sync && uv run python -m app.db migrate && uv run uvicorn app.main:app --reload
 cd frontend && npm install && npm run dev
 ```
 

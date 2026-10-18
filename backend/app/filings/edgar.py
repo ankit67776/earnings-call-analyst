@@ -22,6 +22,10 @@ class EdgarError(Exception):
     pass
 
 
+class FilingNotFoundError(EdgarError):
+    """The ticker or the requested filing doesn't exist; retrying won't help."""
+
+
 @dataclass(frozen=True)
 class FilingRef:
     ticker: str
@@ -76,7 +80,7 @@ class EdgarClient:
         try:
             return self._ciks[ticker.upper()]
         except KeyError:
-            raise EdgarError(f"unknown ticker {ticker!r}") from None
+            raise FilingNotFoundError(f"unknown ticker {ticker!r}") from None
 
     async def find_annual_report(
         self, ticker: str, fiscal_year: int, form: str = "10-K"
@@ -101,7 +105,9 @@ class EdgarClient:
                         primary_document=row["primaryDocument"],
                     )
             if not older:
-                raise EdgarError(f"no {form} for {ticker} with a period ending in {fiscal_year}")
+                raise FilingNotFoundError(
+                    f"no {form} for {ticker} with a period ending in {fiscal_year}"
+                )
             rows = _rows((await self._get(f"{SEC_DATA}/submissions/{older.pop(0)}")).json())
 
     async def download(self, ref: FilingRef, dest_dir: Path) -> Path:

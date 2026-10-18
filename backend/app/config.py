@@ -6,6 +6,9 @@ class Settings(BaseSettings):
 
     # Hosted Postgres + pgvector (Neon). Set in .env.
     database_url: str = ""
+    # Run the job worker inside the API process (handy locally; use `python -m app.jobs
+    # work` as a separate process instead when deploying).
+    worker_in_api: bool = True
     # Optional until Phase 5 (live mode).
     redis_url: str = ""
 
