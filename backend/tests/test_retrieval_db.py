@@ -6,11 +6,13 @@ import pytest
 
 from app.calls.transcript import LabeledSegment
 from app.chat.answer import ask
+from app.contradictions.check import check_call
+from app.contradictions.claims import extract_call_claims, save_call_claims
 from app.embeddings import EmbeddingClient
 from app.embeddings.types import EmbedResult
 from app.filings.tenk import parse_10k
 from app.llm.client import LLMClient
-from app.llm.types import Limits
+from app.llm.types import BudgetExceededError, Limits
 from app.main import app, get_embeddings, get_llm, get_pool
 from app.retrieval.index import embed_passages, index_call, index_document
 from app.retrieval.search import search
@@ -162,3 +164,104 @@ async def test_chat_and_company_endpoints(pool, indexed) -> None:
     body = chat.json()
     assert body["answered"] is False and body["sources"]
     assert missing.status_code == 404
+
+
+async def test_call_claims_are_checked_against_the_10k(pool, indexed) -> None:
+    extraction = {
+        "claims": [
+            {
+                "type": "guidance",
+                "paragraph_id": "P1",
+                "quote": "We expect capital spending of $40M in 2021.",
+                "claim": "Acme expects capital spending of $40 million in 2021.",
+            },
+            {
+                "type": "metric",
+                "paragraph_id": "P1",
+                "quote": "Widget shipments to Europe doubled this quarter",
+                "claim": "Acme's widget shipments to Europe doubled in Q3 2020.",
+            },
+            {
+                "type": "event",
+                "paragraph_id": "P1",
+                "quote": "Welcome to the Acme third quarter call.",
+                "claim": "Acme held its Q3 2020 call.",
+            },
+        ]
+    }
+    # The operator (speaker 1) is not a company speaker; numbers out of range are ignored.
+    speakers = {"speakers": [2, 7]}
+    # Every candidate called a contradiction, but only one passage holds the quote.
+    verdicts = {
+        "judgments": [
+            {"source": f"F{n}", "reason": "r", "verdict": "contradiction",
+             "filing_quote": "Revenue grew 38% in 2020."}
+            for n in (1, 2, 3)
+        ]
+    }  # fmt: skip
+    llm = LLMClient(
+        FakeProvider(
+            result(json.dumps(extraction)),
+            result(json.dumps(speakers)),
+            result(json.dumps(verdicts)),
+            result(json.dumps(verdicts)),
+        ),
+        default_model="m",
+    )
+    call_id = indexed["call_id"]
+    async with pool.acquire() as conn:
+        claims = await extract_call_claims(conn, llm, call_id)
+        await save_call_claims(conn, claims)
+        checks = await check_call(conn, llm, indexed["embeddings"], call_id, k=3)
+    assert [(c.speaker, c.at, c.type) for c in claims.claims] == [
+        ("Jo CFO", 5.0, "metric"),
+        ("Jo CFO", 30.0, "guidance"),
+    ]
+    assert claims.executives == {"Jo CFO"}
+    assert [c.speaker for c in claims.dropped] == ["Operator"]
+    assert len(checks) == 2
+    for check in checks:
+        [flagged] = check.contradictions
+        assert flagged.hit.section == "7" and flagged.paragraph_id is not None
+
+    app.dependency_overrides[get_pool] = lambda: pool
+    transport = httpx2.ASGITransport(app=app)
+    try:
+        async with httpx2.AsyncClient(transport=transport, base_url="http://test") as c:
+            body = (await c.get(f"/api/calls/{call_id}/contradictions")).json()
+            missing = await c.get("/api/calls/999999/contradictions")
+    finally:
+        app.dependency_overrides.clear()
+    assert (body["checked"], body["flagged"]) == (2, 2)
+    first = body["claims"][0]
+    assert first["quote"] == "Widget shipments to Europe doubled this quarter"
+    assert [k["flagged"] for k in first["checks"]].count(True) == 1
+    assert missing.status_code == 404
+
+
+async def test_running_out_of_quota_keeps_the_verdicts_already_in(pool, indexed) -> None:
+    extraction = {
+        "claims": [
+            {"type": "metric", "paragraph_id": "P1", "quote": quote, "claim": quote}
+            for quote in ("Widget shipments to Europe doubled this quarter",
+                          "We expect capital spending of $40M in 2021.")
+        ]
+    }  # fmt: skip
+    verdicts = {"judgments": [{"source": "F1", "reason": "r", "verdict": "unrelated",
+                               "filing_quote": ""}]}  # fmt: skip
+    llm = LLMClient(
+        FakeProvider(
+            result(json.dumps(extraction)),
+            result(json.dumps({"speakers": [2]})),
+            result(json.dumps(verdicts)),
+            BudgetExceededError("daily budget used up"),
+        ),
+        default_model="m",
+    )
+    call_id = indexed["call_id"]
+    async with pool.acquire() as conn:
+        await save_call_claims(conn, await extract_call_claims(conn, llm, call_id))
+        with pytest.raises(BudgetExceededError):
+            await check_call(conn, llm, indexed["embeddings"], call_id, k=1, concurrency=1)
+        saved = await conn.fetchval("select count(distinct claim_id) from claim_checks")
+    assert saved == 1

@@ -162,3 +162,40 @@ async def get_call(conn: asyncpg.Connection, call_id: int) -> dict[str, Any] | N
         call_id,
     )
     return dict(call) | {"segments": [dict(s) for s in segments]}
+
+
+async def get_call_checks(conn: asyncpg.Connection, call_id: int) -> dict[str, Any] | None:
+    """A call's claims and how each fared against the 10-K. A pair is flagged only when
+    the verifier called it a contradiction and its 10-K quote was found in the passage."""
+    if not await conn.fetchval("select 1 from calls where id = $1", call_id):
+        return None
+    rows = await conn.fetch(
+        """
+        select cc.id, cc.position, cc.type, cc.claim, cc.speaker, cc.quote, cc.at_s as at,
+               cc.model,
+               coalesce(jsonb_agg(jsonb_build_object(
+                   'rank', k.rank, 'verdict', k.verdict, 'reason', k.reason,
+                   'flagged', k.verdict = 'contradiction' and k.match is not null,
+                   'quote', k.source_text, 'match', k.match, 'passage_id', k.passage_id,
+                   'title', p.title, 'section', p.section, 'document_id', p.document_id,
+                   'paragraph_id', k.paragraph_id, 'model', k.model)
+                   order by k.rank) filter (where k.claim_id is not null), '[]') as checks
+        from call_claims cc
+        left join claim_checks k on k.claim_id = cc.id
+        left join passages p on p.id = k.passage_id
+        where cc.call_id = $1
+        group by cc.id
+        order by cc.position
+        """,
+        call_id,
+    )
+    claims = [dict(r) for r in rows]
+    checked = [c for c in claims if c["checks"]]
+    return {
+        "call_id": call_id,
+        "claims": claims,
+        "checked": len(checked),
+        "flagged": sum(any(k["flagged"] for k in c["checks"]) for c in claims),
+        "claims_model": claims[0]["model"] if claims else None,
+        "verifier_model": checked[0]["checks"][0]["model"] if checked else None,
+    }

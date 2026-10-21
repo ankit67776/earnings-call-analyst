@@ -23,6 +23,11 @@ class Settings(BaseSettings):
     live_model: str = "openai/gpt-oss-20b"
     # Answers questions over filings and calls, citing a quote for every sentence.
     chat_model: str = "openai/gpt-oss-120b"
+    # Contradiction finder. Claims are pulled from calls by the live model, which matched
+    # the analysis model on the extraction eval and is what live mode will run on; each
+    # claim is then judged against the 10-K by the verifier.
+    call_claims_model: str = "openai/gpt-oss-20b"
+    verifier_model: str = "openai/gpt-oss-120b"
 
     # On-disk response cache and daily usage counters, so dev re-runs cost no quota.
     llm_cache_dir: str = ".cache/llm"

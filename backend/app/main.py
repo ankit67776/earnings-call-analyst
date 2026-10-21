@@ -197,6 +197,16 @@ async def get_call(call_id: int, pool: Pool) -> dict[str, Any]:
     return call
 
 
+@app.get("/api/calls/{call_id}/contradictions")
+async def get_call_contradictions(call_id: int, pool: Pool) -> dict[str, Any]:
+    """The call's claims, each with the verifier's verdicts against the 10-K."""
+    async with pool.acquire() as conn:
+        checks = await queries.get_call_checks(conn, call_id)
+    if checks is None:
+        raise HTTPException(404, "call not found")
+    return checks
+
+
 class ChatRequest(BaseModel):
     ticker: str = Field(pattern=r"^[A-Za-z][A-Za-z.\-]{0,9}$")
     question: str = Field(min_length=3, max_length=500)

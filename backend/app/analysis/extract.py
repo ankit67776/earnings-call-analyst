@@ -146,17 +146,35 @@ def render_chunk(chunk: Chunk, company: str | None = None) -> str:
     return "\n".join(lines)
 
 
+@dataclass(frozen=True)
+class ExtractionPrompt:
+    """What the model is told, and how a chunk is shown to it. Filings use the default;
+    earnings calls have their own (app.contradictions.claims)."""
+
+    system: str
+    render: Callable[[Chunk, str | None], str]
+    max_tokens: int = 3000
+
+
+FILING_PROMPT = ExtractionPrompt(SYSTEM_PROMPT, render_chunk)
+
+
 async def extract_chunk(
-    client: LLMClient, chunk: Chunk, *, company: str | None = None, model: str | None = None
+    client: LLMClient,
+    chunk: Chunk,
+    *,
+    company: str | None = None,
+    model: str | None = None,
+    prompt: ExtractionPrompt = FILING_PROMPT,
 ) -> tuple[list[ExtractedClaim], Completion]:
     parsed = await client.complete_json(
         [
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": render_chunk(chunk, company)},
+            {"role": "system", "content": prompt.system},
+            {"role": "user", "content": prompt.render(chunk, company)},
         ],
         Extraction,
         model=model,
-        max_tokens=3000,
+        max_tokens=prompt.max_tokens,
     )
     return parsed.value.claims, parsed.completion
 
@@ -231,6 +249,7 @@ async def analyze_chunks(
     model: str | None = None,
     concurrency: int = 4,
     on_progress: Callable[[int, int], Awaitable[None]] | None = None,
+    prompt: ExtractionPrompt = FILING_PROMPT,
 ) -> SectionAnalysis:
     """Map, ground and reduce over chunks already cut from one section."""
     started = time.perf_counter()
@@ -243,7 +262,9 @@ async def analyze_chunks(
         nonlocal finished
         async with gate:
             try:
-                result = await extract_chunk(client, chunk, company=company, model=model)
+                result = await extract_chunk(
+                    client, chunk, company=company, model=model, prompt=prompt
+                )
             except (BudgetExceededError, RateLimitedError):
                 # Out of quota: the rest of the chunks would fail too, so stop the run.
                 raise
