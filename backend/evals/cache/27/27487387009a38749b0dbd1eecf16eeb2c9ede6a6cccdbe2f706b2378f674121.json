@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\n\nOn the Q3 2020 earnings call, Michele Buck said (metric):\nQuote: \"We gained market share across almost every market on our core chocolate category.\"\nClaim: Hershey reports that it gained market share across almost every market in its core chocolate category.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-17 · Item 1. BUSINESS\nThe Hershey Company was incorporated under the laws of the State of Delaware on October 24, 1927 as a successor to a business founded in 1894 by Milton S. Hershey. In this report, the terms “Hershey,” “Company,” “we,” “us” or “our” mean The Hershey Company and its wholly-owned subsidiaries and entities in which it has a controlling financial interest, unless the context indicates otherwise.\n\nHershey is a global confectionery leader known for bringing goodness to the world through chocolate, sweets, mints, gum and other great tasting snacks. We are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We market, sell and distribute our products under more than 90 brand names in approximately 85 countries worldwide.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-17 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOVERVIEW\n\nHershey is a global confectionery leader known for bringing goodness to the world through chocolate, sweets, mints, gum and other great tasting snacks. We are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We market, sell and distribute our products under more than 90 brand names in approximately 85 countries worldwide.\n\nOur principal product offerings include chocolate and non-chocolate confectionery products; gum and mint refreshment products; pantry items, such as baking ingredients, toppings and beverages; and snack items such as spreads, meat snacks, bars and snack bites and mixes, popcorn and protein bars and cookies.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-17 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nBUSINESS MODEL AND GROWTH STRATEGY\n\nWe are the largest producer of quality chocolate in North America, a leading snack maker in the United States and a global leader in chocolate and non-chocolate confectionery. We report our operations through two segments: North America and International and Other.\n\nOur vision is to be an innovative snacking powerhouse. We aspire to be a leader in meeting consumers' evolving snacking needs while strengthening the capabilities that drive our growth. We are focused on four strategic imperatives to ensure the Company's success now and in the future:\n\n•Drive Core Confection Business and Broaden Participation in Snacking. We continue to be the undisputed leader in U.S. confection by taking actions to deepen our consumer connections and utilize our beloved brands to deliver meaningful innovation, while also diversifying our portfolio to capture profitable and incremental growth across the broader snacking continuum.\n\n◦Our products frequently play an important role in special moments among family and friends. Seasons are an important part of our business model and for consumers, they are highly anticipated, cherished times, centered around traditions. For us, it’s an opportunity for our brands to be part of many connections during the year when family and friends gather."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The 10‑K passage describes Hershey’s business and market presence but does not mention any market‑share gains in its core chocolate category, so it does not address the claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"This passage repeats the company’s overview and product categories without any reference to market‑share performance, so it is unrelated to the claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The passage outlines strategic imperatives and product focus but contains no statement about market‑share gains in the core chocolate category, making it unrelated.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1414,
+  "completion_tokens": 535,
+  "latency_ms": 1239.3732000055024,
+  "attempts": 1
+ }
+}

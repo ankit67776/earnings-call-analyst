@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Ryan Lance said (risk):\nQuote: \"By the way, we've been asked about how we view risk in the event of a change in leadership in Washington.\"\nClaim: ConocoPhillips identifies a risk that a change in leadership in Washington could create headwinds for the industry.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. RISK FACTORS\nDomestic and worldwide political and economic developments could damage our operations and materially reduce our profitability and cash flows.\n\nActions of the U.S., state, local and foreign governments, through sanctions, tax and other legislation, executive order and commercial restrictions, could reduce our operating profitability both in the U.S. and abroad. In certain locations, restrictions on our operations; special taxes or tax assessments; and payment transparency regulations that could require us to disclose competitively sensitive information or might cause us to violate non-disclosure laws of other countries have been imposed or proposed by governments or certain interest groups. For example, in 2020 a ballot initiative known as the Fair Share Act was proposed in the state of Alaska, which, if enacted would have increased the state’s share of production revenues and required producers to publicly disclose additional financial information. Although ultimately defeated, similar initiatives may be proposed and may be successful in the future. The change in control of Congress and the White House because of the 2020 election increases the possibility of the promulgation of more stringent regulations of our operations and the enactment of tax law changes that may adversely affect the fossil fuel industry. In addition, the current administration may use the Congressional Review Act to repeal the regulations finalized in the last five months of the prior administration. We also cannot rule out the possibility of similar regulatory shifts and attendant cost and market access implications in other international jurisdictions.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. RISK FACTORS › Existing and future laws, regulations and internal initiatives relating to global climate change, such as limitations on GHG emissions, may impact or limit our business plans, result in significant expenditures, promote alternative uses of energy or reduce demand for our products.\nFurthermore, increasing attention to global climate change has resulted in an increased likelihood of governmental investigations and private litigation, which could increase our costs or otherwise adversely affect our business. Beginning in 2017, cities, counties, governments and other entities in several states in the U.S. have filed lawsuits against oil and gas companies, including ConocoPhillips, seeking compensatory damages and equitable relief to abate alleged climate change impacts. Additional lawsuits with similar allegations are expected to be filed. The amounts claimed by plaintiffs are unspecified and the legal and factual issues involved in these cases are unprecedented. ConocoPhillips believes these lawsuits are factually and legally meritless and are an inappropriate vehicle to address the challenges associated with climate change and will vigorously defend against such lawsuits. The ultimate outcome and impact to us cannot be predicted with certainty, and we could incur substantial legal costs associated with defending these and similar lawsuits in the future.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. RISK FACTORS\nThe market value of our common stock could decline if large amounts of our common stock are sold now that the Concho acquisition has been consummated.\n\nWe issued shares of ConocoPhillips common stock to former Concho stockholders. Former Concho stockholders may decide not to hold the shares of ConocoPhillips common stock that they received in the Merger, and ConocoPhillips stockholders may decide to reduce their investment in ConocoPhillips as a result of the changes to ConocoPhillips’ investment profile as a result of the Merger. Other Concho stockholders, such as funds with limitations on their permitted holdings of stock in individual issuers, may be required to sell the shares of ConocoPhillips common stock that they received in the Merger. Such sales of ConocoPhillips common stock could have the effect of depressing the market price for ConocoPhillips common stock."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The 10‑K states that a change in control of Congress and the White House could increase the possibility of more stringent regulations, which is a risk about leadership change; the call quote also references risk of a change in Washington leadership. This aligns with the claim.\",\"verdict\":\"consistent\",\"filing_quote\":\"The change in control of Congress and the White House because of the 2020 election increases the possibility of more stringent regulations of our operations and the enactment of tax law changes that may adversely affect the fossil fuel industry.\"},{\"source\":\"F2\",\"reason\":\"The 10‑K passage discusses climate‑change related laws and lawsuits, not a change in Washington leadership; it does not address the claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The 10‑K passage concerns stock price effects from the Concho acquisition, unrelated to leadership change risk; it does not address the claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1533,
+  "completion_tokens": 1045,
+  "latency_ms": 1906.9411999989825,
+  "attempts": 1
+ }
+}

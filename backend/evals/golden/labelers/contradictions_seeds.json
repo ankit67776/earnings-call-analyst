@@ -1,0 +1,179 @@
+{
+  "annotator": "c",
+  "seeds": [
+    {
+      "from": "COP-13",
+      "rank": 1,
+      "edit": "timing",
+      "claim": "ConocoPhillips reports Q3 2020 curtailments of about 90,000 barrels per day and says it did not start restoring curtailed volumes until September 2020.",
+      "quote": "curtailments in the quarter of about 90,000 barrels a day, and we didn't start bringing any of those volumes back until September.",
+      "contradicts": ["we began restoring production from voluntary curtailments in July"],
+      "why": "The 10-K says ConocoPhillips began restoring curtailed production in July 2020, so restoration cannot have first started in September."
+    },
+    {
+      "from": "COP-34",
+      "rank": 1,
+      "edit": "number",
+      "claim": "ConocoPhillips says its refocused exploration program accounts for about $200 million of the annual G&A and G&G savings announced in October 2020.",
+      "quote": "we will continue focusing our exploration effort on our existing business units, such as Alaska, Norway, Malaysia. So that refocused exploration program is about $200 million of the G&A and G&G savings we just announced.",
+      "contradicts": ["$100 million of G&A and G&G due to a refocused exploration program"],
+      "why": "The 10-K itemizes the October 2020 savings announcement with $100 million of G&A and G&G from the refocused exploration program, not about $200 million."
+    },
+    {
+      "from": "COP-39",
+      "rank": 1,
+      "edit": "number",
+      "claim": "ConocoPhillips will not invest above a $40 per barrel cost of supply, which it defines as the WTI price that yields a 15% after-tax return.",
+      "quote": "but the most important of which is that we're not going to invest above an incremental cost of supply of $40 a barrel, and cost of supply for us is the WTI price that gets us a 15% after-tax return, fully burdened.",
+      "contradicts": ["Cost of supply is the WTI equivalent price that generates a 10 percent after-tax return on a point-forward and fully burdened basis."],
+      "why": "The 10-K defines cost of supply as the WTI price giving a 10 percent after-tax return, while the call defines the same measure at 15%."
+    },
+    {
+      "from": "COP-45",
+      "rank": 1,
+      "edit": "number",
+      "claim": "ConocoPhillips says its board just raised the quarterly dividend from $0.42 to $0.48 per share as it targets returning over 30% of cash to shareholders.",
+      "quote": "We are targeting over 30% of our cash back to the shareholder, and the board just raised the quarterly dividend from 42 cents to 48 cents a share.",
+      "contradicts": [
+        "an increase to our quarterly dividend of $0.42 per share to $0.43 per share",
+        "In October 2020, we announced an increase to our quarterly dividend from $0.42 per share to $0.43 per share"
+      ],
+      "why": "The 10-K says the October 2020 increase took the quarterly dividend from $0.42 to $0.43 per share, not to $0.48."
+    },
+    {
+      "from": "COP-22",
+      "rank": 1,
+      "edit": "negation",
+      "claim": "ConocoPhillips says the 2020 Alaska ballot measure passed, imposing a production tax increase with two adverse effects.",
+      "quote": "the ballot measure passed, so now there's a tax increase on production. and that's going to have two problems, two adverse effects.",
+      "contradicts": ["Although ultimately defeated, similar initiatives may be proposed and may be successful in the future."],
+      "why": "The 10-K says the 2020 Alaska Fair Share Act ballot initiative was ultimately defeated, so it cannot have passed."
+    },
+    {
+      "from": "COP-23",
+      "rank": 2,
+      "edit": "entity",
+      "claim": "ConocoPhillips received a favorable BLM record of decision in late 2020 for its Willow project in the Kuparuk River Unit, keeping the project on schedule.",
+      "quote": "we got a favorable record of decision from the BLM on Willow, up in the Kuparuk River Unit, after more than two years of process. So that keeps us on track with the project timeline.",
+      "contradicts": ["Willow Discovery in the Bear Tooth Unit in the National Petroleum Reserve-Alaska (NPR-A)"],
+      "why": "The 10-K places the Willow Discovery in the Bear Tooth Unit in NPR-A, not the Kuparuk River Unit."
+    },
+    {
+      "from": "HSY-17",
+      "rank": 1,
+      "edit": "number",
+      "claim": "HERSHEY CO says cocoa futures traded between about $1.50 and $1.80 per pound in 2020 and expects the 2020 and 2021 crops to bear on costs next year.",
+      "quote": "You know, cocoa futures have traded between about $1.50 and $1.80 a pound this year, and next year you're going to have the 2020 and 2021 crops of cocoa start to bear the lid.",
+      "contradicts": ["During 2020, average cocoa futures contract prices increased compared with 2019 and traded in a range between $1.00 and $1.29 per pound"],
+      "why": "The 10-K says 2020 cocoa futures traded between $1.00 and $1.29 per pound, so they cannot have traded between $1.50 and $1.80 that year."
+    },
+    {
+      "from": "HSY-21",
+      "rank": 1,
+      "edit": "number",
+      "claim": "HERSHEY CO had C-Store share gains of about 120 basis points in Q3 2020 and says IRI measured channels cover only about half of its U.S. confectionery retail business.",
+      "quote": "So we have share gains of about 120 basis points in Q3 in that channel, and keep in mind the IRI measured channels only cover about half of our U.S. confectionery retail business.",
+      "contradicts": ["The CMG consumer takeaway and market share information reflect measured channels of distribution accounting for approximately 90% of our U.S. confectionery retail business."],
+      "why": "The 10-K says the IRI measured channels account for approximately 90% of Hershey's U.S. confectionery retail business, not about half."
+    },
+    {
+      "from": "HSY-23",
+      "rank": 2,
+      "edit": "number",
+      "claim": "HERSHEY CO says freight is roughly 10% of COGS and that its cost of sales rose about 9% in 2019, largely on freight.",
+      "quote": "You know, it's roughly 10% of COGS overall, and it's a big part of why our cost of sales was up about 9% last year.",
+      "contradicts": ["Cost of sales increased 3.5% in 2019 compared with 2018."],
+      "why": "The 10-K says 2019 cost of sales rose 3.5%, while the call says it rose about 9% last year (2019)."
+    },
+    {
+      "from": "HSY-03",
+      "rank": 2,
+      "edit": "direction",
+      "claim": "HERSHEY CO plans to bring marketing investment back to historical levels after cutting total advertising by about 4% in 2019.",
+      "quote": "we definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically, especially after we pulled total advertising down about 4% back in 2019.",
+      "contradicts": ["Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America."],
+      "why": "The 10-K says total advertising and related consumer marketing expenses rose 4.2% in 2019, while the call says they fell about 4% that year."
+    },
+    {
+      "from": "HSY-10",
+      "rank": 1,
+      "edit": "direction",
+      "claim": "HERSHEY CO says it will keep executing its supply chain despite major disruption to its supply of ingredients and packaging during the pandemic.",
+      "quote": "we will continue to drive our outstanding programming and also continue to execute supply chain with Exxon, even though we've had major disruption in our supply of ingredients and packaging.",
+      "contradicts": ["To date, there has been minimal disruption to our supply chain network, including the supply of our ingredients, packaging or other sourced materials"],
+      "why": "The 10-K says there has been only minimal disruption to the supply of ingredients and packaging to date, while the call says that disruption has been major."
+    },
+    {
+      "from": "HSY-22",
+      "rank": 3,
+      "edit": "negation",
+      "claim": "HERSHEY CO warns that rising freight costs will have a bigger impact because it does not hedge any of its commodities.",
+      "quote": "If it continues to rise, it'll have a bigger impact right now, because we don't hedge any of our commodities, we just buy at spot.",
+      "contradicts": ["Although we use forward contracts and commodity futures and options contracts where possible to hedge commodity prices"],
+      "why": "The 10-K says Hershey uses forward contracts, futures and options to hedge commodity prices, while the call says it hedges none of its commodities."
+    },
+    {
+      "from": "SITM-34",
+      "rank": 1,
+      "edit": "number",
+      "claim": "SITIME Corp says its 2019 revenue was only around $60 million.",
+      "quote": "SiTime's revenue is still pretty small in comparison, we did only around $60 million last year",
+      "contradicts": ["For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively."],
+      "why": "The 10-K reports 2019 revenue of $84.1 million, while the call puts last year's (2019) revenue at around $60 million."
+    },
+    {
+      "from": "SITM-33",
+      "rank": 1,
+      "edit": "number",
+      "claim": "SITIME Corp says its SAM is $1.5 billion of an $8 billion TAM, with clock ICs alone representing about $3 billion.",
+      "quote": "SAM at $1.5 billion, SAM out of an $8 billion total TAM, and clock ICs alone are about $3 billion of that TAM",
+      "contradicts": ["we believe clock ICs represent an approximate $1.0 billion total addressable market"],
+      "why": "The 10-K estimates the clock IC total addressable market at about $1.0 billion, while the call puts it at about $3 billion."
+    },
+    {
+      "from": "SITM-35",
+      "rank": 1,
+      "edit": "direction",
+      "claim": "SITIME Corp says quartz struggles with high-volume, small-size products but handles vibration and shock better than its MEMS technology.",
+      "quote": "And that's an area where we think that quartz technology has difficulty getting to a high volume, small size product, although quartz does handle vibration and shock better than our MEMS does.",
+      "contradicts": [
+        "MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes",
+        "quartz timing devices, largely unchanged in decades, have many inherent limitations, including limited frequency ranges, sensitivity to rapid temperature changes, vibration and mechanical shock"
+      ],
+      "why": "The 10-K says MEMS is more resistant to vibration and mechanical shock than quartz, the opposite of the call's comparison."
+    },
+    {
+      "from": "SITM-08",
+      "rank": 2,
+      "edit": "entity",
+      "claim": "SITIME Corp says manufacturing MEMS in high volume is hard and that TSMC fabricates all of its MEMS wafers.",
+      "quote": "manufacturing MEMS products in high volume is not easy, and that's why we have TSMC fabbing all of our MEMS wafers",
+      "contradicts": ["We currently rely on Bosch and TSMC as our primary foundries and suppliers for our MEMS timing devices and analog circuits, respectively"],
+      "why": "The 10-K says Bosch is the primary foundry for SiTime's MEMS devices and TSMC makes its analog circuits, so TSMC cannot be fabbing all the MEMS wafers."
+    },
+    {
+      "from": "SITM-15",
+      "rank": 3,
+      "edit": "timing",
+      "claim": "SITIME Corp paid off its $35 million of bank debt in the last week of September 2020 and ended Q3 2020 with no bank debt.",
+      "quote": "We had $35 million in bank debt going into the quarter, but we paid this off entirely in the last week of September and finished the quarter with no bank debt",
+      "contradicts": [
+        "as we paid in full all of our debt on July 24, 2020",
+        "On July 24, 2020 we repaid $35.0 million of outstanding indebtedness under our revolving line of credit agreement"
+      ],
+      "why": "The 10-K says SiTime repaid the $35.0 million and paid all its debt in full on July 24, 2020, not in the last week of September."
+    },
+    {
+      "from": "SITM-21",
+      "rank": 2,
+      "edit": "negation",
+      "claim": "SITIME Corp says it incurred no interest expense in 2020 because it carried no bank debt at any point in the year.",
+      "quote": "We haven't incurred any interest expense at all in 2020, since we haven't carried any bank debt this year",
+      "contradicts": [
+        "Interest Expense | $(726) | $(1,714) | $988 | (58%)",
+        "a shorter term on our outstanding revolving short-term debt as we paid in full all of our debt on July 24, 2020"
+      ],
+      "why": "The 10-K reports $726 thousand of 2020 interest expense on revolving debt that was outstanding until July 24, 2020, so SiTime did have debt and interest expense that year."
+    }
+  ]
+}

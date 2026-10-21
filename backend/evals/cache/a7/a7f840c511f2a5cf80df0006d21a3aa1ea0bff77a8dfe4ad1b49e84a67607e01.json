@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"We expect Q4 to be another great quarter with continued sequential revenue growth, gross margin expansion, and increasing net income\"\nClaim: SITIME Corp expects Q4 2020 to have continued sequential revenue growth, gross margin expansion, and increasing net income.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nResults of Operations\n\nThe following table summarizes our results of operations for the periods presented.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands, except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\nCost of revenue | 58,224 | 44,516 | 13,708 | 31%\nGross profit | 57,932 | 39,558 | 18,374 | 46%\nOperating expenses:\nResearch and development | 31,652 | 23,795 | 7,857 | 33%\nSelling, general and administrative | 34,893 | 20,636 | 14,257 | 69%\nTotal operating expenses | 66,545 | 44,431 | 22,114 | 50%\nLoss from operations | (8,613) | (4,873) | (3,740) | 77%\nInterest expense | (726) | (1,714) | 988 | (58%)\nOther expense, net | (32) | (28) | (4) | 14%\nLoss before income taxes | (9,371) | (6,615) | (2,756) | 42%\nIncome tax (expense) benefit | (1) | 8 | (9) | (113%)\nNet loss attributable to common stockholders and comprehensive loss | $(9,372) | $(6,607) | $(2,765) | 42%\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nResearch and Development\n\nOur research and development efforts are focused on the design and development of next-generation silicon timing systems solutions. Our research and development expense consists primarily of personnel costs, which include stock-based compensation, pre-production engineering mask costs, software license and intellectual property expenses, design tools and prototype-related expenses, facility costs, supplies, professional and consulting fees, and allocated overhead costs. We expense research and development costs as incurred. We believe that continued investment in our products and services is important for our future growth and acquisition of new customers and, as a result, we expect our research and development expenses to continue to increase in absolute dollars. However, we expect our research and development expense to fluctuate as a percentage of revenue from period to period depending on the timing of these expenses.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage reports FY2020 actual revenue, gross profit and net loss; claim is about expected Q4 2020 sequential growth and margin expansion, which the passage does not address.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage discusses expectations for R&D expense, not revenue growth, gross margin, or net income for Q4 2020, so it does not relate to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage provides FY2020 revenue figures and drivers, not guidance for Q4 2020 performance, thus unrelated to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1595,
+  "completion_tokens": 575,
+  "latency_ms": 1811.594100028742,
+  "attempts": 1
+ }
+}

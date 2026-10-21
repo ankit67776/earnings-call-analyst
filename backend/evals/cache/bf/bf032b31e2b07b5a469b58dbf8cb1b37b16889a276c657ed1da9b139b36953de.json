@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (risk):\nQuote: \"multiple points of failure potentially\"\nClaim: SITIME Corp faces a risk of multiple points of failure in its supply chain.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nIf one or more of these vendors terminates its relationship with us, or if we encounter any problems with our manufacturing supply chain, our ability to ship our solutions to our customers on time and in the quantity required would be adversely affected, which in turn could cause an unanticipated decline in our sales and loss of customers. In addition, the inability of our customers or their contract manufacturers to obtain sufficient supplies of third-party components used with our products could result in a decline in the demand of our products and a loss of sales.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nWe depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\n\nWe operate an outsourced manufacturing business model. As a result, we rely on third parties for all of our manufacturing operations, including wafer fabrication, assembly, and testing. Although we use multiple third-party supplier sources, we depend on these third parties to supply us with material of a requested quantity in a timely manner that meets our standards for yield, cost, and manufacturing quality. The manufacturing processes of our third-party suppliers for our products require specialized technology that requires certain raw materials. Except for our agreement with Bosch for MEMS wafers, we do not have any long-term supply agreements with any of our other manufacturing suppliers. These third-party manufacturers often serve customers that are larger than us or require a greater portion of their services, which may decrease our relative importance and negotiating leverage with these third parties.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nAlthough we maintain business disruption insurance, this insurance may not be adequate to cover any losses we may experience as a result of such difficulties. Any of these factors could result in manufacturing and supply problems, and delays in our ability to provide our solutions to our customers on a timely basis, or at all. If we experience manufacturing problems at a particular location, we may be required to transfer manufacturing to a new location or supplier. Converting or transferring manufacturing from a primary location or supplier to a backup facility could be expensive and could take several quarters or more. During such a transition, we would be required to meet customer demand from our then-existing inventory, as well as any partially finished goods that could be modified to the required product specifications. In addition, our end customers may require requalification with a new wafer manufacturer. We typically maintain at least a six-month supply of our MEMS wafers for which Bosch is our primary supplier. We do not otherwise maintain sufficient inventory to address a lengthy transition period. As a result, we may not be able to meet customer needs during such a transition, which could damage our customer relationships."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Both the claim and the passage identify a risk in the supply chain; the passage notes dependence on third‑party vendors and that problems or terminations would disrupt shipments, matching the claim of multiple failure points.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"If one or more of these vendors terminates its relationship with us, or if we encounter any problems with our manufacturing supply chain, our ability to ship our solutions ... would be adversely affected\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage describes reliance on multiple third‑party suppliers and the risk that any could fail, which aligns with the claim that the company faces a risk of multiple points of failure in its supply chain.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"Although we use multiple third‑party supplier sources, we depend on these third parties to supply us with material of a requested quantity in a timely manner\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage outlines potential manufacturing and supply problems, backup‑supplier transitions, and insurance limits, all indicating risk of multiple failure points in the supply chain, consistent with the claim.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"Any of these factors could result in manufacturing and supply problems, and delays in our ability to provide our solutions to our customers on a timely basis, or at all\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1384,
+  "completion_tokens": 783,
+  "latency_ms": 2781.9510999834165,
+  "attempts": 1
+ }
+}

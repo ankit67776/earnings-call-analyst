@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (metric):\nQuote: \"SAM at $1.5 billion, SAM out of an $8 billion total TAM, and clock ICs alone are about $3 billion of that TAM\"\nClaim: SITIME Corp says its SAM is $1.5 billion of an $8 billion TAM, with clock ICs alone representing about $3 billion.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSignificant Market Opportunity for Timing Solutions\n\nAccording to Dedalus Consulting - 2019 Frequency Control Components Global Markets, End-Users, Applications & Competitors: Analysis & Forecasts and our estimates, the global timing market was over $7.7 billion as of 2018 and is expected to grow to $10.1 billion by 2024. Dedalus Consulting estimates that oscillators and standalone resonators represented approximately $3.8 billion and $2.9 billion total addressable markets, respectively, as of 2018. Based on our internal estimates, we believe clock ICs represent an approximate $1.0 billion total addressable market. As a subset of the broader timing market, the market for MEMS oscillators is projected to grow from $0.1 billion in 2018 to $0.6 billion by 2024, representing a CAGR of 35.2%, according to Yole Développement’s report “Status of MEMS Industry 2019.”\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nKey Building Blocks of Timing Solutions\n\nTiming solutions comprise three key building blocks: resonators, oscillators, and clock ICs. While simpler systems generally require only an external resonator coupled with a basic embedded oscillator circuit, more complex systems require advanced timing solutions that may integrate a variety of resonators, oscillators, and clock ICs in a single chip package. The complexity of these timing solutions increases significantly when the performance requirements of the systems that use them increase, such as electronic systems required to support the 5G communication network infrastructure.\n\nThe key building blocks of SiTime’s timing solutions are:\n\n• Resonators – mechanical silicon structures that vibrate at a precise frequency and provide the core accuracy and stability in oscillator systems;\n\n• Oscillators – active systems that combine resonators with analog mixed-signal ICs that cause the resonators to vibrate, generating accurate and stable clock signals; and\n\n• Clock ICs – integrated analog mixed-signal circuits that use phase-locked loops (“PLLs”), clock dividers, and drivers, and have multiple clock signals on the output of the system. Clock ICs require resonators and oscillators for timing references and may integrate these components into complex systems.\n\nThese three building blocks may be used individually or in combination, depending on the end product’s performance, price, and size requirements.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nOur Products\n\nOur silicon timing products are designed to address a wide range of applications across a broad array of end markets. Our product portfolio encompasses oscillators, clock ICs, and resonators. The programmability of our product platforms enables us to generate solutions quickly to customer specifications.\n\nToday, we primarily supply oscillator products that comprise a MEMS resonator and an analog mixed-signal IC that are integrated into a package. The following table illustrates our current portfolio of promoted products by target end market:"
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"F1 states clock ICs represent an approximate $1.0 billion total addressable market, whereas the claim says $3 billion; F1 also cites a global timing market of $7.7 billion, not $8 billion.\",\"verdict\":\"contradiction\",\"filing_quote\":\"Based on our internal estimates, we believe clock ICs represent an approximate $1.0 billion total addressable market.\"},{\"source\":\"F2\",\"reason\":\"F2 describes the building blocks of SiTime’s timing solutions but provides no numeric TAM, SAM, or clock IC market figures.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"F3 outlines product portfolio and target markets but contains no numeric TAM, SAM, or clock IC market figures.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1415,
+  "completion_tokens": 787,
+  "latency_ms": 1372.050299993134,
+  "attempts": 1
+ }
+}

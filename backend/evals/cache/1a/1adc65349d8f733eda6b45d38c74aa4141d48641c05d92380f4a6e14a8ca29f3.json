@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (risk):\nQuote: \"And that's an area where we think that quartz technology has difficulty getting to a high volume, small size product, although quartz does handle vibration and shock better than our MEMS does.\"\nClaim: SITIME Corp says quartz struggles with high-volume, small-size products but handles vibration and shock better than its MEMS technology.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSilicon Timing Solutions Poised to Disrupt the Market\n\nIn recent years, advances in silicon-based manufacturing and packaging techniques have allowed the development of alternatives to quartz crystal technology. We believe that silicon MEMS is an ideal technology for resonator design. Specifically, its ability to integrate with other circuits in standard semiconductor packages has made scalable standard silicon manufacturing possible for resonators and broader timing technology. MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes, and are less susceptible to frequency jumps. These technologies are also inherently well-suited to produce timing solutions that are small, and offer high performance, robustness and programmability. Timing solutions based on these technologies are manufactured using semiconductor processes in fabrication plants with high capacity, allowing for cost-effective high-volume manufacturing.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nLimitations of Legacy Quartz-based Solutions\n\nFor the past 70 years, quartz crystal has been the predominant technology of choice for resonators and will continue to play a role in the timing market. In a quartz oscillator, a quartz crystal resonator is paired with a silicon-based clock IC in a ceramic package. However, quartz timing devices, largely unchanged in decades, have many inherent limitations, including limited frequency ranges, sensitivity to rapid temperature changes, vibration and mechanical shock, susceptibility to frequency jumps at particular temperatures, and limited programmability. Quartz devices must be housed in ceramic packaging, and thus are difficult to integrate into standard semiconductor packages. Quartz products require dedicated manufacturing facilities and have relatively long lead times due to the need to specify various characteristics well in advance of production, without the ability to reconfigure them during the design cycle. In addition, as electronic systems become more complex, feature-rich, and robust, they require more sophisticated timing systems that can seamlessly integrate a variety of resonators, oscillators, and clock ICs in various system-level combinations. This seamless integration is more difficult with legacy quartz systems.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nAerospace and Defense\n\nTiming devices used in aerospace and defense applications such as rockets and satellites need to withstand extreme vibration forces and temperature gradients during operation. Quartz-based solutions can be impacted by vibrating forces acting on the whole system. MEMS timing devices are well-suited for these applications, as they provide up to 40 times better stability under vibration than comparable quartz-based solutions."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Claim says quartz handles vibration and shock better than MEMS; F1 states MEMS are more resistant to vibration and shock, contradicting the claim.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"MEMS ... are more resistant to vibration, mechanical shock, and temperature changes, ... well-suited to produce timing solutions that are small, and offer high performance, robustness and programmability.\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Claim asserts quartz handles vibration and shock better than MEMS; F2 describes quartz as sensitive to vibration and mechanical shock, contradicting the claim.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"sensitivity to rapid temperature changes, vibration and mechanical shock, susceptibility to frequency jumps\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Claim says quartz handles vibration better than MEMS; F3 says MEMS provide up to 40 times better stability under vibration than quartz, directly contradicting the claim.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"MEMS timing devices are well-suited for these applications, as they provide up to 40 times better stability under vibration than comparable quartz-based solutions\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1309,
+  "completion_tokens": 907,
+  "latency_ms": 2509.155499996268,
+  "attempts": 1
+ }
+}

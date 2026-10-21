@@ -1,0 +1,24 @@
+{
+  "note": "Disagreements between annotators a and b, settled by a third reader who saw both labels without knowing whose they were.",
+  "labels": [
+    {"claim": "COP-06", "rank": 3, "label": "consistent",
+     "quote": "We must achieve the anticipated improvement in free cash flow generation and returns and achieve the planned cost savings",
+     "why": "The 10-K states the same expectation for the Concho deal, an anticipated free cash flow improvement plus planned cost savings, which supports the accretion claim in part; framing it as a risk does not conflict."},
+    {"claim": "HSY-03", "rank": 2, "label": "unrelated", "quote": "",
+     "why": "The passage reports 2020 actual advertising spend and says nothing about the plan to bring investment back to historical levels."},
+    {"claim": "HSY-06", "rank": 3, "label": "unrelated", "quote": "",
+     "why": "The quote never says what \"that\" is, so it makes no checkable claim; the passage only describes long-term international strategy."},
+    {"claim": "SITM-04", "rank": 1, "label": "unrelated", "quote": "",
+     "why": "A general second-half seasonality pattern with no assurance it continues does not speak to a Q4 2020 revenue record."},
+    {"claim": "SITM-06", "rank": 2, "label": "unrelated", "quote": "",
+     "why": "The fragment never says what minimizes the system-level impact; the passage only shares the temperature theme while comparing silicon and quartz in industrial use."},
+    {"claim": "SITM-06", "rank": 3, "label": "unrelated", "quote": "",
+     "why": "Listing temperature change as an automotive requirement does not confirm the subjectless fragment about minimizing system-level impact."},
+    {"claim": "SITM-23", "rank": 2, "label": "unrelated", "quote": "",
+     "why": "MegaChips' year-end ownership percentage is a different measure from the Q4 basic share count and only implies a share total by arithmetic."},
+    {"claim": "SITM-30", "rank": 3, "label": "unrelated", "quote": "",
+     "why": "The passage confirms quartz uses ceramic packaging but says nothing about the call's actual point, two suppliers and occasional shortages."},
+    {"claim": "SITM-36", "rank": 2, "label": "unrelated", "quote": "",
+     "why": "\"That's where we would shine\" has no stated referent, so the passage's general silicon advantages cannot confirm it."}
+  ]
+}

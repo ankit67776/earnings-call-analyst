@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (guidance):\nQuote: \"We anticipate that continued strength in the fourth quarter will allow for SciTime to set another quarterly revenue record\"\nClaim: SITIME Corp anticipates that continued strength in the fourth quarter will allow it to set another quarterly revenue record.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSeasonality\n\nOur revenue is subject to some seasonal variation. Based on the production schedules of key customers, our products typically see stronger revenue in the second half of our fiscal year. However, there can be no assurance that this trend will continue.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nCorporate Information\n\nWe were incorporated in Delaware on December 3, 2003. Our principal executive offices are located at 5451 Patrick Henry Drive, Santa Clara, California 95054, and our telephone number is (408) 328-4400. Our corporate website address is www.sitime.com. Information found on, or accessible through, our website is not a part of, and is not incorporated into, this Annual Report on Form 10-K. Unless the context requires otherwise, references in this Annual Report on Form 10-K to “SiTime,” “the company,” “we,” “us” and “our” refer to SiTime Corporation and its wholly-owned subsidiaries on a consolidated basis.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue Recognition\n\nWe derive our revenue from product sales to distributors and resellers, who in turn sell to original equipment manufacturers or other end customers. We recognize product revenue, at a point in time, upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products. Variable consideration is estimated and reflected as an adjustment to the transaction price. We determine variable consideration, which consists primarily of price adjustments and product returns by estimating the amount of consideration we expect to receive from our customers based on historical experience of price adjustments and product returns. Initial estimates of price adjustments and product returns are updated at the end of each reporting period if additional information becomes available. Changes to our estimated variable consideration were not material for the periods presented. Since our performance obligations relate to contracts with a duration of less than one year, we do not disclose the aggregate amount of the transaction price allocated to performance obligations that are unsatisfied or partially unsatisfied at the end of the reporting period.\n\nAs a practical expedient, we record the incremental costs of obtaining a contract, consisting primarily of sales commissions, when incurred because the amortization period is one year or less. The costs are recorded within sales and marketing expenses."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"F1 talks about general seasonal revenue trends and uncertainty, not about an anticipated Q4 revenue record, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"F2 provides corporate address and incorporation details, which are unrelated to the revenue record claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"F3 describes revenue recognition policies, not the company's expectation of setting a Q4 revenue record, so it is unrelated.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1295,
+  "completion_tokens": 543,
+  "latency_ms": 1791.153799975291,
+  "attempts": 1
+ }
+}

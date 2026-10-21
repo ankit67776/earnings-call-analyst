@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"we're still anticipating that we will do a sell down in Alaska.\"\nClaim: ConocoPhillips still plans to sell down its Alaska assets.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nAlaska North Slope Gas In 2016, we, along with affiliates of Exxon Mobil Corporation, BP p.l.c. and Alaska Gasline Development Corporation (AGDC), a state-owned corporation, completed preliminary FEED technical work for a potential LNG project which would liquefy and export natural gas from Alaska’s North Slope and deliver it to market. In 2016, we, along with the affiliates of ExxonMobil and BP, indicated our intention not to progress into the next phase of the project due to changes in the economic environment, however, AGDC decided to continue on its own, focusing primarily on permitting efforts. Currently, AGDC is in the process of seeking new sponsors for the project. Given current market conditions, we no longer believe the project will advance and since there is no current market, we recorded a before-tax impairment of $841 million for the entire associated carrying value of capitalized undeveloped leasehold costs and an equity method investment related to our Alaska North Slope Gas asset. We remain willing to sell our Alaska North Slope Gas to interested parties on a competitive basis if a market materializes in the future. For additional information related to this impairment, See Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nConsolidated Results\n\nA summary of the company’s net income (loss) attributable to ConocoPhillips by business segment follows:\n\nMillions of Dollars\nYears Ended December 31 | 2020 | 2019 | 2018\nAlaska | $(719) | 1,520 | 1,814\nLower 48 | (1,122) | 436 | 1,747\nCanada | (326) | 279 | 63\nEurope, Middle East and North Africa | 448 | 3,170 | 2,594\nAsia Pacific | 962 | 1,483 | 1,342\nOther International | (64) | 263 | 364\nCorporate and Other | (1,880) | 38 | (1,667)\nNet income (loss) attributable to ConocoPhillips | $(2,701) | 7,189 | 6,257\n\n2020 vs. 2019\n\nNet income (loss) attributable to ConocoPhillips decreased $9.9 billion in 2020. The decrease was mainly due to:\n\n● Lower realized commodity prices.\n\n● Lower sales volumes due to normal field decline, asset dispositions and production curtailments. For additional information related to dispositions, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● An unrealized loss of $855 million after-tax on our Cenovus Energy (CVE) common shares in 2020, as compared to a $649 million after-tax unrealized gain on those shares in 2019."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage only describes Alaska segment production, contribution, and financial loss, with no reference to any plan or intention to sell Alaska assets.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage states \\\"We remain willing to sell our Alaska North Slope Gas to interested parties on a competitive basis if a market materializes in the future,\\\" indicating an intention to sell Alaska assets, which aligns with the claim of still planning a sell‑down.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"We remain willing to sell our Alaska North Slope Gas to interested parties on a competitive basis if a market materializes in the future.\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage provides segment net‑income figures and discusses overall financial results, without mentioning any sell‑down plans for Alaska assets.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1859,
+  "completion_tokens": 727,
+  "latency_ms": 2151.8458999926224,
+  "attempts": 1
+ }
+}

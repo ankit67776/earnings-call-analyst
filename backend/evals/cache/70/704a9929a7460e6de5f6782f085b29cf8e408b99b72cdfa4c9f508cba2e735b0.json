@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (metric):\nQuote: \"SiTime's revenue is still pretty small in comparison, we did only around $60 million last year\"\nClaim: SITIME Corp says its 2019 revenue was only around $60 million.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nOur revenue in recent periods may not be indicative of future performance and our revenue may fluctuate over time.\n\nOur recent revenue should not be considered indicative of our future performance. For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively. You should not rely on our revenue for any previous quarterly or annual periods as any indication of our revenue for future fiscal periods. As we grow our business, our revenue may fluctuate in future periods due to a number of reasons, which may include slowing demand for our products, increasing competition, the impact of the COVID-19 pandemic, a decrease in the growth of our overall market or market saturation, and challenges and our failure to capitalize on growth opportunities.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nWe have an accumulated deficit and have incurred net losses in the past, and we may continue to incur net losses in the future.\n\nAs of December 31, 2020 and 2019, we had an accumulated deficit of $63.4 million, and $54.0 million, respectively. We generated net losses of $9.4 million, and $6.6 million in the years ended December 31, 2020 and 2019, respectively. The loss in 2019 was primarily due to a decrease in revenue from customers in Asia primarily as a result of lower sales volume, as well as a reduction in revenue from our largest end customer. The loss in 2020 was primarily due to increased stock-based compensation expenses in connection with our initial public offering in late 2019 and additional costs related to being a public company. We may continue to incur net losses in the future.\n\nWe expect to continue to make significant investments to support our research and development, sales and marketing and general and administrative functions. As a public company, we also continue to incur significant additional legal, accounting, and other expenses. If our revenue growth does not exceed the growth of these anticipated expenses, we may not be able to achieve or sustain profitability, and our stock price could decline."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Claim says 2019 revenue was around $60M, but passage reports $84.1M for 2019, a clear mismatch.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively.\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Claim states 2019 revenue ~ $60M, while passage lists $84,074 thousand ($84.1M) for 2019, contradicting the claim.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"Revenue | $116,156 | $84,074 | $32,082 | 38%\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage discusses net losses and revenue trends but provides no specific 2019 revenue figure, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1501,
+  "completion_tokens": 594,
+  "latency_ms": 1923.8650999905076,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (risk):\nQuote: \"There were some reports of some stumbles in fabs in the Asian markets\"\nClaim: SITIME Corp faces a risk that stumbles in Asian fabs could impact its supply chain.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nIf one or more of these vendors terminates its relationship with us, or if we encounter any problems with our manufacturing supply chain, our ability to ship our solutions to our customers on time and in the quantity required would be adversely affected, which in turn could cause an unanticipated decline in our sales and loss of customers. In addition, the inability of our customers or their contract manufacturers to obtain sufficient supplies of third-party components used with our products could result in a decline in the demand of our products and a loss of sales.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nWe currently rely on ASE, Carsem, and UTAC for assembly and testing, as well as Daishinku and UTAC for ceramic packaging for some of our products. Certain of our manufacturing, packaging, assembly, and testing facilities are located outside of the United States, including Malaysia, Taiwan, and Thailand, where we are subject to increased risk of political and economic instability, difficulties in managing operations, difficulties in enforcing contracts and our intellectual property, severe weather, and employment and labor difficulties. Additionally, public health crises, such as an outbreak of contagious diseases like the COVID-19 pandemic, may affect the production capabilities of our suppliers, including as a result of quarantines, closures of production facilities, lack of supplies, or delays caused by restrictions on travel or work-from-home orders. For example, on March 16, 2020, the government of Malaysia announced measures to restrict movement in that country in an effort to suppress the number of COVID-19 cases. The restrictions have been extended several times, currently until August 2021. These restrictions could limit our suppliers’ ability to operate their manufacturing facilities in that country.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nIf market demand for wafers or production and assembly materials increases, if a supplier of our wafers fails to procure materials needed for manufacture of our products, or if a supplier of our wafers ceases or suspends operations, our supply of wafers and other materials could become limited. We currently have a ten-year supply agreement with Bosch for the fabrication of our MEMS wafers. This agreement expires in 2027 and may be terminated with three years’ advance notice beginning in February 2024. We currently rely on Bosch for our MEMS fabrication, and TSMC for our analog circuits fabrication, and any disruption in their supply of wafers or any increases in their wafer or materials prices could adversely affect our gross margins and our ability to meet customer demands in a timely manner, or at all, and lead to reduced revenue. There is currently a number of industry-wide supply constraints affecting the supply of analog circuits manufactured by certain foundries, including TSMC, which may limit our ability to fully satisfy an increase in demand for some of our products. Moreover, wafers constitute a large portion of our product cost. If we are unable to negotiate volume discounts or otherwise purchase wafers at favorable prices and in sufficient quantities in a timely manner, our gross margins would be adversely affected."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"Both the call and the 10‑K acknowledge that problems with third‑party fabs or supply chain disruptions could hurt SITIME’s ability to ship products, indicating a risk of Asian fab stumbles affecting supply.\",\"verdict\":\"consistent\",\"filing_quote\":\"If one or more of these vendors terminates its relationship with us, or if we encounter any problems with our manufacturing supply chain, our ability to ship our solutions to our customers on time and in the quantity required would be adversely affected.\"},{\"source\":\"F2\",\"reason\":\"The 10‑K explicitly notes that facilities in Malaysia, Taiwan, and Thailand expose SITIME to increased risk, aligning with the call’s mention of stumbles in Asian fabs impacting supply chain.\",\"verdict\":\"consistent\",\"filing_quote\":\"Certain of our manufacturing, packaging, assembly, and testing facilities are located outside of the United States, including Malaysia, Taiwan, and Thailand, where we are subject to increased risk of political and economic instability, difficulties in managing operations, difficulties in enforcing contracts and our intellectual property, severe weather, and employment and labor difficulties.\"},{\"source\":\"F3\",\"reason\":\"The 10‑K discusses potential supply limitations from wafer suppliers, including those in Asia (e.g., TSMC), which supports the claim that Asian fab stumbles could impact supply chain.\",\"verdict\":\"consistent\",\"filing_quote\":\"If market demand for wafers or production and assembly materials increases, if a supplier of our wafers fails to procure materials needed for manufacture of our products, or if a supplier of our wafers ceases or suspends operations, our supply of wafers and other materials could become limited.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1500,
+  "completion_tokens": 1137,
+  "latency_ms": 2451.3749000034295,
+  "attempts": 1
+ }
+}

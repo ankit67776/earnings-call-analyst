@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\n\nOn the Q3 2020 earnings call, Michele Buck said (guidance):\nQuote: \"we definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically.\"\nClaim: HERSHEY CO plans to increase advertising and marketing spend to historical levels in 2021.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-17 · Item 1A. RISK FACTORS\nIncreased marketplace competition could hurt our business.\n\nThe global confectionery packaged goods industry is intensely competitive and consolidation in this industry continues. Some of our competitors are large companies that have significant resources and substantial international operations. We continue to experience increased levels of in-store activity for other snack items, which has pressured confectionery category growth. In order to protect our existing market share or capture increased market share in this highly competitive retail environment, we may be required to increase expenditures for promotions and advertising, and must continue to introduce and establish new products. Due to inherent risks in the marketplace associated with advertising and new product introductions, including uncertainties about trade and consumer acceptance, increased expenditures may not prove successful in maintaining or enhancing our market share and could result in lower sales and profits. In addition, we may incur increased credit and other business risks because we operate in a highly competitive retail environment.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-17 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nSelling, Marketing and Administrative\n\n2020 compared with 2019\n\nSelling, marketing and administrative (“SM&A”) expenses decreased $15.0 million or 0.8% in 2020. Total advertising and related consumer marketing expenses decreased 2.0% driven by media cost efficiencies and select brand investment optimization related to COVID-19 in International and Other segments. SM&A expenses, excluding advertising and related consumer marketing, decreased approximately 0.1% in 2020 due to savings in travel and meeting expenses related to COVID-19 travel restrictions and project timing shifts.\n\n2019 compared with 2018\n\nSM&A expenses increased $31.1 million or 1.7% in 2019. Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America. SM&A expenses, excluding advertising and related consumer marketing, increased approximately 0.2% in 2019 due to incremental expenses from Pirate Brands and ONE Brands, as well as higher employee related compensation, which more than offset reductions in our base spending from the Margin for Growth Program.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-17 · Item 1. BUSINESS\nCompetition\n\nMany of our confectionery brands enjoy wide consumer acceptance and are among the leading brands sold in the marketplace in North America and certain international markets. We sell our brands in highly competitive markets with many other global multinational, national, regional and local firms. Some of our competitors are large companies with significant resources and substantial international operations. Competition in our product categories is based on product innovation, product quality, price, brand recognition and loyalty, effectiveness of marketing and promotional activity, the ability to identify and satisfy consumer preferences, as well as convenience and service. We have also experienced increased competition from other snack items, and we are focused on expanding the boundaries of our core confection brands to capture new snacking occasions."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The passage discusses a risk that advertising and promotion expenditures may need to increase, but it does not state that Hershey plans to increase spend to historical levels in 2021.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"The passage reports 2020 advertising expenses decreased and provides historical comparisons, but makes no statement about a 2021 plan to raise spend to historical levels.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The passage describes competitive pressures and marketing importance, but does not mention any plan to increase advertising spend to historical levels in 2021.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1388,
+  "completion_tokens": 527,
+  "latency_ms": 947.5226999929873,
+  "attempts": 1
+ }
+}

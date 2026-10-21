@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (guidance):\nQuote: \"And I'm thinking two, three, four years out, particularly in consumer products, perhaps in phone applications.\"\nClaim: SITIME Corp expects to launch high‑frequency resonator products in two to four years, especially for consumer phone applications.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSilicon Timing Solutions Poised to Disrupt the Market\n\nIn recent years, advances in silicon-based manufacturing and packaging techniques have allowed the development of alternatives to quartz crystal technology. We believe that silicon MEMS is an ideal technology for resonator design. Specifically, its ability to integrate with other circuits in standard semiconductor packages has made scalable standard silicon manufacturing possible for resonators and broader timing technology. MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes, and are less susceptible to frequency jumps. These technologies are also inherently well-suited to produce timing solutions that are small, and offer high performance, robustness and programmability. Timing solutions based on these technologies are manufactured using semiconductor processes in fabrication plants with high capacity, allowing for cost-effective high-volume manufacturing.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nLimitations of Legacy Quartz-based Solutions\n\nFor the past 70 years, quartz crystal has been the predominant technology of choice for resonators and will continue to play a role in the timing market. In a quartz oscillator, a quartz crystal resonator is paired with a silicon-based clock IC in a ceramic package. However, quartz timing devices, largely unchanged in decades, have many inherent limitations, including limited frequency ranges, sensitivity to rapid temperature changes, vibration and mechanical shock, susceptibility to frequency jumps at particular temperatures, and limited programmability. Quartz devices must be housed in ceramic packaging, and thus are difficult to integrate into standard semiconductor packages. Quartz products require dedicated manufacturing facilities and have relatively long lead times due to the need to specify various characteristics well in advance of production, without the ability to reconfigure them during the design cycle. In addition, as electronic systems become more complex, feature-rich, and robust, they require more sophisticated timing systems that can seamlessly integrate a variety of resonators, oscillators, and clock ICs in various system-level combinations. This seamless integration is more difficult with legacy quartz systems.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nOverview\n\nWe are a leading provider of silicon timing solutions. Our timing solutions are the heartbeat of our customers’ electronic systems, solve complex timing problems and enable industry-leading products. We provide solutions that are differentiated by high performance and reliability, programmability, small size, and low power consumption. Our products have been designed into over 250 applications across our target markets, including communications and enterprise, automotive, industrial, aerospace, and mobile, Internet of Thing (“IoT”), and consumer. Our current solutions include various types of oscillators, as well as resonators and clock integrated circuits (“ICs”). Our all-silicon solutions are based on three fundamental areas of expertise: micro-electro-mechanical systems (“MEMS”), analog mixed-signal design capabilities, and advanced system-level integration expertise. This expertise allows us to design MEMS resonators, analog circuits, as well as systems and packaging, and put these all together to deliver a system level solution that solves customers’ complex timing problems. In this aspect, we are different than quartz-based providers, who typically have expertise in designing and manufacturing resonators, but typically outsource the analog and packaging. We are also different in that our MEMS resonators are made with silicon, while the quartz suppliers use quartz crystal technology. Our timing solutions are designed to be resilient to environmental stresses. For the communications and enterprise market, our timing solutions provide high performance and resilience in dense, less-controlled environments that experience harsh conditions–an advantage as equipment moves closer to the customer with the rollout of 5G."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage describes silicon MEMS advantages and manufacturing but does not mention any future product launch timeline or consumer phone applications.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage discusses limitations of quartz technology and market context, with no reference to a planned 2‑4 year launch of high‑frequency resonators for phones.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage outlines current product portfolio and target markets, including consumer, but provides no timeline or expectation of launching new resonator products in two to four years.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1528,
+  "completion_tokens": 390,
+  "latency_ms": 1546.5716000180691,
+  "attempts": 1
+ }
+}

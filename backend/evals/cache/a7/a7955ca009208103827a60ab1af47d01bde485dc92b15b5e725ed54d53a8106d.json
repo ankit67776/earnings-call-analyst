@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"If you look at our expectations for the exit rate for this year for U.S. tight oil, it's somewhere between 6.5 and 7 million barrels a day\"\nClaim: ConocoPhillips expects the exit rate for U.S. tight oil to be between 6.5 and 7 million barrels a day in 2020\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $23.57 | 40.87 | 48.73\nNatural gas liquids ($ per bbl) | 5.41 | 19.87 | 43.70\nBitumen ($ per bbl) | 8.02 | 31.72 | 22.29\nNatural gas ($ per mcf) | 1.21 | 0.49 | 1.00\n\n*Average sales prices include unutilized transportation costs. **Average prices for sales of bitumen produced excludes additional value realized from the purchase and sale of third-party volumes for optimization of our pipeline capacity between Canada and the U.S. Gulf Coast.\n\nOur Canadian operations consist of the Surmont oil sands development in Alberta and the liquids-rich Montney unconventional play in British Columbia. In 2020, Canada contributed 9 percent of our consolidated liquids production and 3 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Canada operations reported a loss of $326 million in 2020 compared with earnings of $279 million in 2019. Earnings decreased mainly due to:\n\n● Lower realized bitumen prices.\n\n● Higher DD&A expenses, primarily due to increased volumes and DD&A rates from Montney production.\n\n● Lower bitumen sales due to production curtailments at Surmont.\n\nEarnings were positively impacted by:\n\n● Increased Montney production from Pad 1 & 2 wells online and partial year production from the Kelt acquisition completed in August of 2020.\n\nProduction Total average production increased 7 MBOED in 2020 compared with 2019. The production increase was primarily due to:\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.12 | 64.12 | 70.86\nNatural gas ($ per mcf) | 2.91 | 3.19 | 2.48\n\nThe Alaska segment primarily explores for, produces, transports and markets crude oil, NGLs and natural gas. In 2020, Alaska contributed 28 percent of our consolidated liquids production and less than 1 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Alaska reported a loss of $719 million in 2020, compared with earnings of $1,520 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil prices.\n\n● A $648 million after-tax impairment associated with the carrying value of our Alaska North Slope Gas assets. For additional information, see Note 7—Suspended Wells and Exploration Expenses, in the Notes to Consolidated Financial Statements.\n\n● Lower sales volumes, primarily due to normal field decline and production curtailments at our operated assets on the North Slope—the Greater Kuparuk Area (GKA) and Western North Slope (WNS).\n\n● Higher DD&A expenses, primarily from increased DD&A rates due to price-related downward reserve revisions, partly offset by lower production volumes.\n\n● Increased exploration expenses, primarily due to higher dry hole costs and expenses related to the early cancellation of our winter exploration program.\n\nEarnings were positively impacted by:\n\n● Lower production and operating expenses, primarily associated with lower transportation and terminaling costs as well as lower activities across our assets.\n\nProduction Average production decreased 20 MBOED in 2020 compared with 2019, primarily due to:"
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage discusses Lower 48 production contribution and price impacts, but does not mention any exit rate or U.S. tight oil expectations, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage describes Canadian operations and production figures, with no reference to U.S. tight oil exit rates, making it unrelated to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage covers Alaska segment production and pricing, and contains no information about U.S. tight oil exit rates, so it is unrelated to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1965,
+  "completion_tokens": 423,
+  "latency_ms": 1688.100100000156,
+  "attempts": 1
+ }
+}

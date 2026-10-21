@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (metric):\nQuote: \"Non-GAAP gross margins during the quarter were 52.1%, up 530 basis points over Q2\"\nClaim: SITIME Corp’s non‑GAAP gross margin for Q3 2020 was 52.1%, up 530 basis points from Q2.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Cost of Revenue, Gross Profit, and Gross Margin\nGross margin was higher by 3% in the year ended December 31, 2020 compared to the same period in 2019. The gross margin for the year ended 2019 included a benefit of 3% or $2.5 million from sale of previously reserved inventory. The gross margin excluding the benefit to the gross margin from the sale of the previously reserved inventory increased by 6% year over year from higher sales volume and an increase in ASPs offset in part by higher other manufacturing costs.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nCost of Revenue, Gross Profit, and Gross Margin\n\nCost of revenue consists of wafers acquired from third-party foundries, assembly, packaging, and test cost of our products paid to third-party contract manufacturers, and personnel and other costs associated with our manufacturing operations. Cost of revenue also includes depreciation of production equipment, inventory write-downs, amortization of internally developed software, shipping and handling costs, and allocation of overhead and facility costs. We also include credits for rebates received from foundries to cost of revenue.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nCost of Revenue | $58,224 | $44,516 | $13,708 | 31%\nGross Profit | 57,932 | 39,558 | 18,374 | 46%\nGross Margin | 50% | 47%\n\nGross profit increased by $18.4 million in the year ended December 31, 2020 compared to the same period in 2019. The gross profit for the year ended 2019 included a benefit of $2.5 million from the sale of previously reserved inventory. Gross profit excluding this benefit of $2.5 million increased a net $20.9 million year over year mainly from higher sales volume and an increase in ASPs which were offset in part by higher other manufacturing and overhead costs of $2.1 million.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Pricing, Product Cost, and Product Mix\nGross margin, or gross profit as a percentage of revenue, has been, and will continue to be, affected by a variety of factors, including ASPs, and product mix in a given period, material costs, yields, inventory write-downs and manufacturing operations costs. We believe the primary driver of gross margin is the ASPs negotiated between us and our customers relative to material costs and yield improvement. As our products mature and unit volumes increase, we expect their ASPs to decline. These declines often coincide with improvements in manufacturing yields and lower wafer, assembly, and testing costs, which offset some or all of the margin reduction that results from lower ASPs. However, we expect our gross margin to fluctuate on a quarterly basis as a result of changes in ASPs due to new product introductions, existing product transitions into high-volume manufacturing, manufacturing costs, and our product mix."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage discusses annual gross margin changes for FY2020 versus 2019, not the Q3 2020 non‑GAAP gross margin figure of 52.1% mentioned on the call.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"It provides the FY2020 gross margin (50%) and year‑over‑year change, without any quarterly or non‑GAAP data, so it does not address the Q3 2020 52.1% claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage describes factors influencing gross margin and expects quarterly fluctuations, but gives no specific Q3 2020 non‑GAAP margin or basis‑point change.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1466,
+  "completion_tokens": 472,
+  "latency_ms": 1574.9745999928564,
+  "attempts": 1
+ }
+}

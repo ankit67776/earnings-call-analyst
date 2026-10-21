@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"We expect fourth quarter revenue will be up 10% to 15% sequentially\"\nClaim: SITIME Corp expects Q4 2020 revenue to be up 10% to 15% sequentially.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nOur target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\n\nOur target markets include the enterprise and telecommunications infrastructure, automotive, industrial, IoT and mobile, and aerospace and defense markets. Substantially all of our revenue for the years ended December 31, 2020 and 2019 was derived from sales in the IoT and mobile, industrial, and consumer markets. In 2017, we began introducing products for the automotive market. In addition, within the timing market, substantially all of our revenue to date has been attributable to sales of MEMS oscillators. We recently introduced products into the clock IC market, which we began sampling in the second quarter of 2019, and we intend to further focus on clock IC and timing sync solutions in the future. Any deterioration in our target customer or product markets or reduction in capital spending to support these markets could lead to a reduction in demand for our products, which would adversely affect our revenue and results of operations. Further, if our target customer markets, including the 5G communications or IoT and mobile markets, do not grow or develop in ways that we currently expect, demand for our technology may not materialize as expected, which would also negatively impact our business, financial condition, and results of operations.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nRevenue\n\nWe derive revenue primarily from sales of silicon timing products to distributors and resellers who in turn sell to our end customers. We also sell products directly to end customers who integrate our products into their applications. Our sales are made pursuant to standard purchase orders which may be cancelled, reduced, or rescheduled, with little or no notice. We recognize product revenue upon shipment when we satisfy our performance obligations as evidenced by the transfer of control of our products to customers. We measure revenue based on the amount of consideration we expect to be entitled to in exchange for products.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nRevenue | $116,156 | $84,074 | $32,082 | 38%\n\nRevenue increased by $32.1 million, or 38%, for 2020 compared to 2019. The increase was primarily related to 27% higher sales volume year over year and an increase in average selling price of our products of $0.02. The increase in sales volume was driven by higher demand for our products from new and existing customers, including new design wins at our existing customers.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nAvailable Information\n\nOur website is located at https://www.sitime.com. Copies of our Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to these reports filed or furnished pursuant to Section 13(a) or 15(d) of the Exchange Act, are available, free of charge, on our investor relations website as soon as reasonably practicable after we file such material electronically with or furnish it to the Securities and Exchange Commission (the “SEC”). The SEC also maintains a website that contains our SEC filings. The address of the website is www.sec.gov."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The passage discusses risk factors and market conditions, not a specific revenue expectation for Q4 2020.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"The passage provides year‑end revenue figures for 2020 versus 2019, not a Q4 2020 revenue guidance.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The passage describes website information, unrelated to revenue guidance.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1497,
+  "completion_tokens": 418,
+  "latency_ms": 1108.197099994868,
+  "attempts": 1
+ }
+}

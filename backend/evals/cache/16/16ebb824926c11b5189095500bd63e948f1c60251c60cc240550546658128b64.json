@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (metric):\nQuote: \"SAM at $1.5 billion, SAM out of an $8 billion total TAM\"\nClaim: SITIME Corp’s SAM is $1.5 billion out of an $8 billion total TAM.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSignificant Market Opportunity for Timing Solutions\n\nAccording to Dedalus Consulting - 2019 Frequency Control Components Global Markets, End-Users, Applications & Competitors: Analysis & Forecasts and our estimates, the global timing market was over $7.7 billion as of 2018 and is expected to grow to $10.1 billion by 2024. Dedalus Consulting estimates that oscillators and standalone resonators represented approximately $3.8 billion and $2.9 billion total addressable markets, respectively, as of 2018. Based on our internal estimates, we believe clock ICs represent an approximate $1.0 billion total addressable market. As a subset of the broader timing market, the market for MEMS oscillators is projected to grow from $0.1 billion in 2018 to $0.6 billion by 2024, representing a CAGR of 35.2%, according to Yole Développement’s report “Status of MEMS Industry 2019.”\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nIoT and Mobile\n\nThe IoT revolution will enable the proliferation of billions of internet-connected devices in industrial and consumer applications. These devices can range from personal wearable devices to electronics embedded in appliances and industrial machinery. Many of these devices need to package a significant amount of electronics in a limited battery-powered and size-constrained form factor, while still requiring high performance and high accuracy. Due to the ability to integrate with ICs, we believe silicon-based timing solutions are well-suited to optimize footprint, reliability, and power consumption of the overall system within IoT and mobile devices.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nAvailable Information\n\nOur website is located at https://www.sitime.com. Copies of our Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to these reports filed or furnished pursuant to Section 13(a) or 15(d) of the Exchange Act, are available, free of charge, on our investor relations website as soon as reasonably practicable after we file such material electronically with or furnish it to the Securities and Exchange Commission (the “SEC”). The SEC also maintains a website that contains our SEC filings. The address of the website is www.sec.gov."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage provides market size figures for the overall timing market and sub‑segments, but does not mention a $1.5 billion SAM or an $8 billion TAM.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage discusses IoT device applications and timing solutions without any quantitative TAM or SAM figures.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage only gives website and filing information and contains no market size data.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1267,
+  "completion_tokens": 389,
+  "latency_ms": 1871.5319000184536,
+  "attempts": 1
+ }
+}

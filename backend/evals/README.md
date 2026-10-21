@@ -181,3 +181,82 @@ uv run python -m evals.chat --readme
 uv run python -m evals.chat --offline --min-answered 0.9 --min-refusal 0.9 --min-faithful 0.75
 uv run python -m evals.judge_agreement score golden/labelers/chat_judge_d.json
 ```
+
+## Contradiction golden set
+
+`golden/contradictions.json` holds every claim the pipeline pulled from the three Q3
+2020 calls (111, by `gpt-oss-20b`, after dropping 4 that analysts rather than executives
+said), each with the three 10-K passages stage 1 retrieved for it: 333 claim-passage
+pairs. The candidates are recorded, so the labels stay tied to exact pairs when passages
+are re-cut or search is retuned.
+
+### How the labels were made
+
+Two annotators (Claude, working independently from the pair text only, before any
+verifier had run) labeled all 333 pairs, one front to back and one back to front
+(`labelers/contradictions_{a,b}.json`), with one of three labels:
+
+- **contradiction**: the call quote and the passage are about the same thing (same
+  measure, scope and period, or the same fact about the company) and can't both be
+  true: figures that differ by more than rounding, opposite directions, or one saying
+  something is so and the other that it isn't.
+- **consistent**: the passage states the same thing, or something that supports it.
+- **unrelated**: the passage doesn't speak to what the quote states.
+
+Not contradictions: a forecast, target or plan against a different actual result or a
+later, revised target; a risk the 10-K says could happen against a confident tone on
+the call; figures for different periods or scopes (a quarter and the year, a segment
+and the company, adjusted and reported); rounding and wording. The call quote is judged,
+not the model's summary of it.
+
+They agreed on 324 of 333 pairs (97%). Neither found a contradiction: on these calls,
+management said nothing the 10-K contradicts. All 9 disagreements were consistent
+against unrelated; a third reader settled them without knowing who said what
+(`contradictions_adjudication.json`). Gold: 36 consistent, 297 unrelated.
+
+### Seeded contradictions
+
+With no real contradictions, recall can't be measured on real pairs. So a fourth
+annotator wrote seeded ones (`labelers/contradictions_seeds.json`): 18 claims, 6 per
+company, each a real claim rewritten as little as possible to contradict a statement in
+one of its 10-K passages (a changed figure, a flipped direction, a negation, a date or a
+counterparty), mostly from pairs both annotators called consistent. Stage 1 retrieves
+candidates for the edited claim as it would for a real one, so a seed missed by
+retrieval counts against recall too. Then two annotators labeled the seeded claims'
+pairs blind, the same way as the real ones: a 10-K often states a fact in more than one
+place (Bosch as the MEMS foundry is in both Item 1 and Item 1A), so a seed can
+contradict several of its candidates, or none. Disclosure: at first only the passage a
+seed was written against counted as contradicted and its other candidates as
+unrelated. Early verifier runs flagged some of those other candidates, which on
+inspection did contradict the seed, so the seeded pairs were labeled properly instead.
+The annotators who did it never saw a verdict, but the decision to relabel came from
+seeing results, and it raised measured precision.
+
+### Scoring
+
+A pair counts as flagged only as the app would show it: a contradiction verdict whose
+10-K quote is found in the passage.
+
+- **Precision**: the share of flagged pairs labeled contradiction (real and seeded).
+- **Recall**: the share of pairs labeled contradiction that were flagged.
+- **Seeded caught**: the share of seeded claims flagged against a passage they contradict.
+- **False alarms**: the share of real claims flagged even though none of their pairs is
+  a contradiction: how often an analyst would be sent chasing nothing.
+- **Verdict agreement**: the share of real pairs whose verdict matches the label.
+- **10-K quotes found**: the share of the verifier's 10-K quotes (for contradiction and
+  consistent verdicts) located in the passage.
+
+One disclosure: the "later, revised target" clause was added to the verifier prompt
+after a 10-claim probe (COP-01 to COP-10) showed it flagging the call's $500 million
+synergy target against the 10-K's raised $750 million one. The annotators' guide had the
+same definitions throughout and they labeled that pair unrelated.
+
+```bash
+uv run python -m app.contradictions claims                 # extract claims from the calls
+uv run python -m evals.build_contradictions claims         # record claims + candidates
+uv run python -m evals.build_contradictions check evals/golden/labelers/contradictions_a.json
+uv run python -m evals.build_contradictions agreement
+uv run python -m evals.build_contradictions seeds          # add seeded claims (needs the DB)
+uv run python -m evals.build_contradictions merge
+uv run python -m evals.contradictions --model openai/gpt-oss-120b --model openai/gpt-oss-20b --readme
+```

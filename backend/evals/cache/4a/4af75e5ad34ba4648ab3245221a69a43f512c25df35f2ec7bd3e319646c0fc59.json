@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\n\nOn the Q3 2020 earnings call, Michele Buck said (guidance):\nQuote: \"we definitely plan on taking our investment levels to where we would like them to be and more in line with where they have been historically, especially after we pulled total advertising down about 4% back in 2019.\"\nClaim: HERSHEY CO plans to bring marketing investment back to historical levels after cutting total advertising by about 4% in 2019.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-17 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nSelling, Marketing and Administrative\n\n2020 compared with 2019\n\nSelling, marketing and administrative (“SM&A”) expenses decreased $15.0 million or 0.8% in 2020. Total advertising and related consumer marketing expenses decreased 2.0% driven by media cost efficiencies and select brand investment optimization related to COVID-19 in International and Other segments. SM&A expenses, excluding advertising and related consumer marketing, decreased approximately 0.1% in 2020 due to savings in travel and meeting expenses related to COVID-19 travel restrictions and project timing shifts.\n\n2019 compared with 2018\n\nSM&A expenses increased $31.1 million or 1.7% in 2019. Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America. SM&A expenses, excluding advertising and related consumer marketing, increased approximately 0.2% in 2019 due to incremental expenses from Pirate Brands and ONE Brands, as well as higher employee related compensation, which more than offset reductions in our base spending from the Margin for Growth Program.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-17 · Item 1A. RISK FACTORS › Our financial results may be adversely impacted by the failure to successfully execute or integrate acquisitions, divestitures and joint ventures.\nIn 2020, we successfully completed the divestitures of Krave and the Scharffen Berger and Dagoba brands as we better prioritize resources against assets and brands that fit our business model and scale capabilities. Additionally, over the last several years, we have continued to invest in our snacks portfolio, specifically with the acquisitions of ONE Brands, LLC in September 2019, Pirate Brands in October 2018 and Amplify Snack Brands, Inc. in January 2018, respectively. While we believe significant operating synergies can be obtained in connection with these acquisitions, achievement of these synergies will be driven by our ability to successfully leverage Hershey's resources, expertise, capability-building, distribution locations and customer base. In addition, these acquisitions are important steps in our journey to expand our breadth in snacking, as they should enable us to bring scale and category management capabilities to a key sub-segment of the warehouse snack aisle. If we are unable to successfully couple Hershey’s scale and expertise in brand building with ONE Brands, Pirate Brands and Amplify's existing operations, it may impact our ability to expand our snacking footprint at our desired pace.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-17 · Item 1A. RISK FACTORS\nIncreased marketplace competition could hurt our business.\n\nThe global confectionery packaged goods industry is intensely competitive and consolidation in this industry continues. Some of our competitors are large companies that have significant resources and substantial international operations. We continue to experience increased levels of in-store activity for other snack items, which has pressured confectionery category growth. In order to protect our existing market share or capture increased market share in this highly competitive retail environment, we may be required to increase expenditures for promotions and advertising, and must continue to introduce and establish new products. Due to inherent risks in the marketplace associated with advertising and new product introductions, including uncertainties about trade and consumer acceptance, increased expenditures may not prove successful in maintaining or enhancing our market share and could result in lower sales and profits. In addition, we may incur increased credit and other business risks because we operate in a highly competitive retail environment."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"10-K states total advertising increased 4.2% in 2019, while claim says it was cut about 4% in 2019, so they cannot both be true.\",\"verdict\":\"contradiction\",\"filing_quote\":\"Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America.\"},{\"source\":\"F2\",\"reason\":\"Passage discusses acquisitions, not marketing investment levels or 2019 advertising cuts.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"Passage discusses potential future advertising increases due to competition, not the 2019 cut or plan to return to historical levels.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1533,
+  "completion_tokens": 1156,
+  "latency_ms": 1710.5797999975039,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,2714 @@
+{
+ "annotator": "a",
+ "labels": [
+  {
+   "claim": "COP-01",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Describes the completed Concho deal; says nothing about market feedback."
+  },
+  {
+   "claim": "COP-01",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk factor; does not address market feedback."
+  },
+  {
+   "claim": "COP-01",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Concho debt exchange; does not address market feedback."
+  },
+  {
+   "claim": "COP-02",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gives deal consideration and assumed debt, not the combined enterprise value."
+  },
+  {
+   "claim": "COP-02",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Standalone total assets of $63 billion is a different measure and scope than the combined enterprise value."
+  },
+  {
+   "claim": "COP-02",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk factor; no enterprise size."
+  },
+  {
+   "claim": "COP-03",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic low cost of supply portfolio wording; no resource base size or $40 threshold."
+  },
+  {
+   "claim": "COP-03",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Concho deal terms; no resource base figure."
+  },
+  {
+   "claim": "COP-03",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 prices and earnings; not the resource base."
+  },
+  {
+   "claim": "COP-04",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Deal completion; no mention of publishing a cost of supply curve."
+  },
+  {
+   "claim": "COP-04",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk factor; not about a cost of supply curve."
+  },
+  {
+   "claim": "COP-04",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cost savings and portfolio; no cost of supply curve publication."
+  },
+  {
+   "claim": "COP-05",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "The change in control of Congress and the White House because of the 2020 election increases the possibility of the promulgation of more stringent regulations of our operations",
+   "why": "10-K names the change of leadership in Washington as a regulatory and tax risk."
+  },
+  {
+   "claim": "COP-05",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Climate litigation; not about a leadership change in Washington."
+  },
+  {
+   "claim": "COP-05",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Stock sale risk after the Concho deal; unrelated."
+  },
+  {
+   "claim": "COP-06",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Later $750 million savings expectation is an updated plan, not the $500 million target or accretion; plans change."
+  },
+  {
+   "claim": "COP-06",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "$350 million covers annual expense savings only, a different measure from cost and capital savings; accretion not addressed."
+  },
+  {
+   "claim": "COP-06",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic integration risk; does not address accretion."
+  },
+  {
+   "claim": "COP-07",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Deal terms; nothing about returning 30% of CFO."
+  },
+  {
+   "claim": "COP-07",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Debt exchange; nothing about the shareholder returns target."
+  },
+  {
+   "claim": "COP-07",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk; no shareholder returns target."
+  },
+  {
+   "claim": "COP-08",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Deal completion; no capex announcement."
+  },
+  {
+   "claim": "COP-08",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cost savings; no pro forma capex."
+  },
+  {
+   "claim": "COP-08",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "In February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion.",
+   "why": "Combined-company 2021 capital was announced in February 2021, shortly after the deal closed."
+  },
+  {
+   "claim": "COP-09",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "the timing, pace and extent of the recovery is still unknown",
+   "why": "10-K also says the timing and pace of recovery remain unknown."
+  },
+  {
+   "claim": "COP-09",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "The speed and extent of any recovery remains uncertain",
+   "why": "10-K says the speed and extent of recovery remain uncertain."
+  },
+  {
+   "claim": "COP-09",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk; not about market recovery."
+  },
+  {
+   "claim": "COP-10",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2021 capital and production are for the combined company, a different scope from the standalone Q4 baseline."
+  },
+  {
+   "claim": "COP-10",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Combined-company 2021 production guidance; different scope."
+  },
+  {
+   "claim": "COP-10",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Combined-company 2021 guidance; different scope."
+  },
+  {
+   "claim": "COP-11",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific net income; different measure."
+  },
+  {
+   "claim": "COP-11",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; different measure."
+  },
+  {
+   "claim": "COP-11",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year operating cash flow of $4.8 billion; different period from the quarter."
+  },
+  {
+   "claim": "COP-12",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada segment net income; no settlements."
+  },
+  {
+   "claim": "COP-12",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2018 PDVSA settlement; does not speak to the quarter's $130 million items."
+  },
+  {
+   "claim": "COP-12",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; no settlements."
+  },
+  {
+   "claim": "COP-13",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "Curtailments in the third quarter averaged approximately 90 MBOED",
+   "why": "10-K states third-quarter curtailments averaged about 90 MBOED."
+  },
+  {
+   "claim": "COP-13",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year Surmont-only curtailment; different scope and period."
+  },
+  {
+   "claim": "COP-13",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year 2020 figure in a property section; different period from the third-quarter total."
+  },
+  {
+   "claim": "COP-14",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; not quarterly CFO guidance."
+  },
+  {
+   "claim": "COP-14",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska net income; not quarterly CFO guidance."
+  },
+  {
+   "claim": "COP-14",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific net income; not quarterly CFO guidance."
+  },
+  {
+   "claim": "COP-15",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "EMENA segment net income; not APLNG distributions."
+  },
+  {
+   "claim": "COP-15",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific net income; not distributions received."
+  },
+  {
+   "claim": "COP-15",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; not APLNG distributions."
+  },
+  {
+   "claim": "COP-16",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada net income; not fourth-quarter distributions."
+  },
+  {
+   "claim": "COP-16",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; not fourth-quarter distributions."
+  },
+  {
+   "claim": "COP-16",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska net income; not fourth-quarter distributions."
+  },
+  {
+   "claim": "COP-17",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year summary items; no equity affiliate distributions figure."
+  },
+  {
+   "claim": "COP-17",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada net income; not distributions."
+  },
+  {
+   "claim": "COP-17",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific net income; not distributions."
+  },
+  {
+   "claim": "COP-18",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Accounting for contingency ranges; not the CFO estimate range."
+  },
+  {
+   "claim": "COP-18",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Equity affiliate sales prices; not distribution uncertainty."
+  },
+  {
+   "claim": "COP-18",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG pricing and external engagement; unrelated."
+  },
+  {
+   "claim": "COP-19",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year results summary; no CFO range."
+  },
+  {
+   "claim": "COP-19",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 net income; unrelated."
+  },
+  {
+   "claim": "COP-19",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Dividend and liquidity; not the CFO range."
+  },
+  {
+   "claim": "COP-20",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk factor; neither confirms nor rules out added deal value."
+  },
+  {
+   "claim": "COP-20",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "The combined companies are expected to capture approximately $750 million of annual cost and capital savings by 2022.",
+   "why": "Expected savings rose to $750 million, above the $500 million commitment, supporting added value from the deal."
+  },
+  {
+   "claim": "COP-20",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2021 capital plan and restructuring; not incremental deal value."
+  },
+  {
+   "claim": "COP-21",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Equity affiliate sales prices; not distributions guidance."
+  },
+  {
+   "claim": "COP-21",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific net income; not distributions guidance."
+  },
+  {
+   "claim": "COP-21",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada net income; unrelated."
+  },
+  {
+   "claim": "COP-22",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "in 2020 a ballot initiative known as the Fair Share Act was proposed in the state of Alaska, which, if enacted would have increased the state’s share of production revenues",
+   "why": "10-K confirms the Alaska ballot measure would have raised the state's take from production."
+  },
+  {
+   "claim": "COP-22",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Ballot initiatives restricting development and fracking; a different measure from the production tax."
+  },
+  {
+   "claim": "COP-22",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska segment results; not the ballot measure."
+  },
+  {
+   "claim": "COP-23",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "China Penglai fields; unrelated."
+  },
+  {
+   "claim": "COP-23",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "The initial development plan for the Willow Discovery, approved in the fourth quarter",
+   "why": "Willow development plan was approved in Q4 2020, in line with the favorable decision."
+  },
+  {
+   "claim": "COP-23",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Concho deal; unrelated."
+  },
+  {
+   "claim": "COP-24",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 results; no concept selection or FEED."
+  },
+  {
+   "claim": "COP-24",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "EMENA results; no FEED timing."
+  },
+  {
+   "claim": "COP-24",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asia Pacific results; no FEED timing."
+  },
+  {
+   "claim": "COP-25",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk; unrelated to the ballot measure."
+  },
+  {
+   "claim": "COP-25",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Stock sale risk; unrelated."
+  },
+  {
+   "claim": "COP-25",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic risk from ballot initiatives restricting development, not the production tax measure or this project's timing."
+  },
+  {
+   "claim": "COP-26",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company-wide 2021 capital and production; not the project's first production date."
+  },
+  {
+   "claim": "COP-26",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Production outlook; no project first production date."
+  },
+  {
+   "claim": "COP-26",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Malaysian projects, not the U.S. project discussed on the call."
+  },
+  {
+   "claim": "COP-27",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska segment results; no sell down."
+  },
+  {
+   "claim": "COP-27",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Willingness to sell North Slope Gas if a market appears is not an anticipated sell down."
+  },
+  {
+   "claim": "COP-27",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Consolidated results; no sell down."
+  },
+  {
+   "claim": "COP-28",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2021 production includes Concho; different scope from standalone volumes."
+  },
+  {
+   "claim": "COP-28",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Revenue and equity earnings changes; not volume guidance."
+  },
+  {
+   "claim": "COP-28",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 results; not volume guidance."
+  },
+  {
+   "claim": "COP-29",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Deal completion; no capital guidance timing."
+  },
+  {
+   "claim": "COP-29",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "In February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion.",
+   "why": "Combined-company 2021 capital was announced in February 2021, after the deal closed."
+  },
+  {
+   "claim": "COP-29",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Debt exchange; no capital guidance."
+  },
+  {
+   "claim": "COP-30",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Safe harbor boilerplate."
+  },
+  {
+   "claim": "COP-30",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2021 production includes Concho; different scope from the standalone scenario."
+  },
+  {
+   "claim": "COP-30",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Combined-company capital plan; different scope."
+  },
+  {
+   "claim": "COP-31",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Carbon tax compliance costs; a different measure from emissions project spending."
+  },
+  {
+   "claim": "COP-31",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG pricing in project approval; no spending figure."
+  },
+  {
+   "claim": "COP-31",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Climate regulation; no spending figure."
+  },
+  {
+   "claim": "COP-32",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We have set a target to reduce our gross operated (scope 1 and 2) emissions intensity by 35 to 45 percent from 2016 levels by 2030",
+   "why": "10-K states the 35 to 45 percent emissions intensity target."
+  },
+  {
+   "claim": "COP-32",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "We have set a target to reduce our gross operated (scope 1 and 2) emissions intensity by 35 to 45 percent from 2016 levels by 2030",
+   "why": "10-K states the 35 to 45 percent emissions intensity target."
+  },
+  {
+   "claim": "COP-32",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "we committed to a reduction of our gross operated (scope 1 and 2) emissions intensity",
+   "why": "10-K confirms the committed emissions intensity reduction."
+  },
+  {
+   "claim": "COP-33",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Integration risk; not demand."
+  },
+  {
+   "claim": "COP-33",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "The speed and extent of any recovery remains uncertain",
+   "why": "10-K says oil demand fell and the speed of recovery remains uncertain."
+  },
+  {
+   "claim": "COP-33",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Compensation risk; unrelated."
+  },
+  {
+   "claim": "COP-34",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "$100 million of G&A and G&G due to a refocused exploration program",
+   "why": "10-K confirms a refocused exploration program producing savings."
+  },
+  {
+   "claim": "COP-34",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Reserve replacement risk; not the exploration capital cut."
+  },
+  {
+   "claim": "COP-34",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada net income; unrelated."
+  },
+  {
+   "claim": "COP-35",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "QG3 gross gas output; different scope from the 8 BCF a day figure."
+  },
+  {
+   "claim": "COP-35",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Indonesia gas production; different scope."
+  },
+  {
+   "claim": "COP-35",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Norway production; different scope."
+  },
+  {
+   "claim": "COP-36",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Effective tax rate mix; not a statutory rate change."
+  },
+  {
+   "claim": "COP-36",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG regulation factors; unrelated."
+  },
+  {
+   "claim": "COP-36",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "the enactment of tax law changes that may adversely affect the fossil fuel industry",
+   "why": "10-K flags possible tax law changes after the 2020 election."
+  },
+  {
+   "claim": "COP-37",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asset retirement obligations; not IDC tax treatment."
+  },
+  {
+   "claim": "COP-37",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Asset retirement obligations; not IDC tax treatment."
+  },
+  {
+   "claim": "COP-37",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cautionary list has no IDC or tax item."
+  },
+  {
+   "claim": "COP-38",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 results; not the U.S. tight oil industry exit rate."
+  },
+  {
+   "claim": "COP-38",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada results; not the U.S. tight oil industry exit rate."
+  },
+  {
+   "claim": "COP-38",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska results; not the U.S. tight oil industry exit rate."
+  },
+  {
+   "claim": "COP-39",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "In setting our capital plans, we exercise a rigorous approach that evaluates projects using this cost of supply criteria",
+   "why": "10-K says investments are screened on cost of supply."
+  },
+  {
+   "claim": "COP-39",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Brent prices and free cash flow goal; no cost of supply threshold."
+  },
+  {
+   "claim": "COP-39",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 results; unrelated."
+  },
+  {
+   "claim": "COP-40",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG pricing; not project pacing."
+  },
+  {
+   "claim": "COP-40",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Production uncertainties; not project pacing flexibility."
+  },
+  {
+   "claim": "COP-40",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Indonesia assets; unrelated."
+  },
+  {
+   "claim": "COP-41",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We have joined the World Bank Flaring Initiative to work towards zero routine flaring of gas by 2030",
+   "why": "10-K says the company joined the World Bank initiative toward zero routine flaring."
+  },
+  {
+   "claim": "COP-41",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "We also endorsed the World Bank Zero Routine Flaring by 2030 initiative",
+   "why": "10-K says the company endorsed the World Bank Zero Routine Flaring initiative."
+  },
+  {
+   "claim": "COP-41",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG pricing and engagement; not flaring."
+  },
+  {
+   "claim": "COP-42",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A boilerplate."
+  },
+  {
+   "claim": "COP-42",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "EPA methane rules; not company methane monitoring."
+  },
+  {
+   "claim": "COP-42",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Climate regulation factors; unrelated."
+  },
+  {
+   "claim": "COP-43",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "APLNG description; unrelated."
+  },
+  {
+   "claim": "COP-43",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Canada assets; unrelated."
+  },
+  {
+   "claim": "COP-43",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 description; no methane monitoring coverage."
+  },
+  {
+   "claim": "COP-44",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We have set a target to reduce our gross operated (scope 1 and 2) emissions intensity by 35 to 45 percent from 2016 levels by 2030",
+   "why": "10-K states the same 35 to 45 percent by 2030 target."
+  },
+  {
+   "claim": "COP-44",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "We have set a target to reduce our gross operated (scope 1 and 2) emissions intensity by 35 to 45 percent from 2016 levels by 2030",
+   "why": "10-K states the same 35 to 45 percent by 2030 target."
+  },
+  {
+   "claim": "COP-44",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "GHG pricing and engagement; no intensity target."
+  },
+  {
+   "claim": "COP-45",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "Combined, our dividend and repurchases represented 57 percent of our net cash provided by operating activities.",
+   "why": "2020 dividends and buybacks were 57 percent of operating cash flow, above the 30 percent target."
+  },
+  {
+   "claim": "COP-45",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Dividend increase and buyback timing; no return percentage."
+  },
+  {
+   "claim": "COP-45",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "EMENA net income; unrelated."
+  },
+  {
+   "claim": "COP-S01",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "we began restoring production from voluntary curtailments in July",
+   "why": "Q3 curtailments of ~90 MBOED match, but the 10-K says restoration began in July while the call says no volumes came back until September."
+  },
+  {
+   "claim": "COP-S01",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lower 48 full-year earnings drivers; no Q3 curtailment volume or restoration timing."
+  },
+  {
+   "claim": "COP-S01",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year 2020 curtailment figure vs a Q3 quarterly figure; different period."
+  },
+  {
+   "claim": "COP-S02",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "$100 million of G&A and G&G due to a refocused exploration program",
+   "why": "Same October 2020 savings announcement: 10-K attributes $100 million to the refocused exploration program, the call says about $200 million."
+  },
+  {
+   "claim": "COP-S02",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "we refocused our exploration program and announced our intent to pursue a managed exit from certain areas",
+   "why": "Confirms the exploration program was refocused with exits from non-core areas; gives no savings figure."
+  },
+  {
+   "claim": "COP-S02",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "March/April 2020 capital and operating cost cuts, not the October exploration-related G&A and G&G savings."
+  },
+  {
+   "claim": "COP-S03",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "Cost of supply is the WTI equivalent price that generates a 10 percent after-tax return on a point-forward and fully burdened basis.",
+   "why": "The 10-K defines cost of supply at a 10 percent after-tax return; the call defines it at 15%."
+  },
+  {
+   "claim": "COP-S03",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Brent prices and free cash flow principles; no cost of supply threshold or definition."
+  },
+  {
+   "claim": "COP-S03",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Workforce and commodity price factors; nothing on cost of supply."
+  },
+  {
+   "claim": "COP-S04",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "In October 2020, we announced an increase to our quarterly dividend from $0.42 per share to $0.43 per share",
+   "why": "Same dividend raise from $0.42, but the 10-K says to $0.43, not $0.48."
+  },
+  {
+   "claim": "COP-S04",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "In October 2020, we announced that our Board of Directors approved an increase to our quarterly dividend of $0.42 per share to $0.43 per share.",
+   "why": "Board-approved raise was $0.42 to $0.43, conflicting with the call's $0.42 to $0.48."
+  },
+  {
+   "claim": "COP-S04",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Compensation risk review; nothing on dividends or cash returns."
+  },
+  {
+   "claim": "COP-S05",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska segment results; no mention of the ballot measure or a production tax increase."
+  },
+  {
+   "claim": "COP-S05",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "Although ultimately defeated, similar initiatives may be proposed and may be successful in the future.",
+   "why": "The 10-K says the 2020 Alaska ballot initiative raising the state's production take was defeated; the call says it passed."
+  },
+  {
+   "claim": "COP-S05",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Alaska production table and Prudhoe Bay operations; nothing on the ballot measure or taxes."
+  },
+  {
+   "claim": "COP-S06",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "Willow Discovery in the Bear Tooth Unit in the National Petroleum Reserve-Alaska (NPR-A)",
+   "why": "The 10-K places Willow in the Bear Tooth Unit in NPR-A; the call places it in the Kuparuk River Unit (Q4 plan approval itself agrees)."
+  },
+  {
+   "claim": "COP-S06",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Describes Greater Kuparuk Area fields and drilling; does not mention Willow or the BLM decision."
+  },
+  {
+   "claim": "COP-S06",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Greater Prudhoe Area production and drilling; nothing on Willow."
+  },
+  {
+   "claim": "HSY-01",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Office reopening and supply chain status; says nothing about the call's forward-looking statements."
+  },
+  {
+   "claim": "HSY-01",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Describes COVID-19 operational measures, not the call's safe-harbor statement."
+  },
+  {
+   "claim": "HSY-01",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "The 10-K's own MD&A forward-looking disclaimer, a different set of statements, and no COVID-19 mention."
+  },
+  {
+   "claim": "HSY-02",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; no volume outlook."
+  },
+  {
+   "claim": "HSY-02",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operational measures; no volume outlook."
+  },
+  {
+   "claim": "HSY-02",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Office reopening and supply chain; no volume outlook."
+  },
+  {
+   "claim": "HSY-03",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Risk that competition may force higher promotion spend; not the stated plan to restore investment."
+  },
+  {
+   "claim": "HSY-03",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Reports 2020 actual advertising decline; does not speak to the plan to bring investment back to historical levels."
+  },
+  {
+   "claim": "HSY-03",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General description of competition; no investment plan."
+  },
+  {
+   "claim": "HSY-04",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lists India among operations; no India growth figure."
+  },
+  {
+   "claim": "HSY-04",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; nothing on India."
+  },
+  {
+   "claim": "HSY-04",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company history and description; nothing on India."
+  },
+  {
+   "claim": "HSY-05",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company description; no market share gains."
+  },
+  {
+   "claim": "HSY-05",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Overview of products; no market share gains."
+  },
+  {
+   "claim": "HSY-05",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Strategy and leadership position; does not report share gains across markets."
+  },
+  {
+   "claim": "HSY-06",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Segment description; does not speak to the vague plan in the quote."
+  },
+  {
+   "claim": "HSY-06",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General growth strategy; does not speak to the quote."
+  },
+  {
+   "claim": "HSY-06",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Long-term international strategy; the quote is too vague and does not concern this statement."
+  },
+  {
+   "claim": "HSY-07",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Mentions Mexico operations only; nothing on front-of-pack labeling."
+  },
+  {
+   "claim": "HSY-07",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Competition risk; nothing on Mexico labeling."
+  },
+  {
+   "claim": "HSY-07",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Brand list including a Mexico brand; nothing on labeling changes."
+  },
+  {
+   "claim": "HSY-08",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Sustainability; not market share."
+  },
+  {
+   "claim": "HSY-08",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Share repurchases (stock), not market share."
+  },
+  {
+   "claim": "HSY-08",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Net income and EPS; not market share outlook."
+  },
+  {
+   "claim": "HSY-09",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Share repurchases (stock), not market share."
+  },
+  {
+   "claim": "HSY-09",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Equity structure; not market share."
+  },
+  {
+   "claim": "HSY-09",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Sustainability; not market share."
+  },
+  {
+   "claim": "HSY-10",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Reports minimal supply chain disruption to date; does not speak to the stated plan to keep executing programming and supply chain."
+  },
+  {
+   "claim": "HSY-10",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Employee training programs, not marketing programming or supply chain."
+  },
+  {
+   "claim": "HSY-10",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Employee engagement and ESG; unrelated to the plan."
+  },
+  {
+   "claim": "HSY-11",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Office reopening; no two-point impact figure."
+  },
+  {
+   "claim": "HSY-11",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operational measures; no quantified impact."
+  },
+  {
+   "claim": "HSY-11",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year International segment sales; different measure and scope from the quarter's two-point impact."
+  },
+  {
+   "claim": "HSY-12",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Office reopening; no outlook for COVID costs."
+  },
+  {
+   "claim": "HSY-12",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Current plant safety measures; does not address whether costs go away next year."
+  },
+  {
+   "claim": "HSY-12",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2020 COVID-related plant costs; does not speak to the expectation for next year."
+  },
+  {
+   "claim": "HSY-13",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; no holiday outlook."
+  },
+  {
+   "claim": "HSY-13",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year net income table; a forecast against a different-period actual."
+  },
+  {
+   "claim": "HSY-13",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Office reopening; no holiday outlook."
+  },
+  {
+   "claim": "HSY-14",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General seasonality; no early-shipment impact on Q4."
+  },
+  {
+   "claim": "HSY-14",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Pricing risk; nothing on holiday shipment timing."
+  },
+  {
+   "claim": "HSY-14",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operational measures; nothing on Q4 timing."
+  },
+  {
+   "claim": "HSY-15",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Says seasons matter generally; no outlook for next Halloween or Easter."
+  },
+  {
+   "claim": "HSY-15",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; no seasonal outlook."
+  },
+  {
+   "claim": "HSY-15",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company overview; no seasonal outlook."
+  },
+  {
+   "claim": "HSY-16",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; no category figures."
+  },
+  {
+   "claim": "HSY-16",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company description; no category figures."
+  },
+  {
+   "claim": "HSY-16",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year takeaway and share figures; the quote's period and scope differ and no category decline is stated."
+  },
+  {
+   "claim": "HSY-17",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2020 cocoa futures prices; nothing on the living income differential next year."
+  },
+  {
+   "claim": "HSY-17",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Peanuts, almonds and derivative sensitivity; not cocoa crop premiums."
+  },
+  {
+   "claim": "HSY-17",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cocoa hedging and other commodities; nothing on the 2020/2021 crop premium."
+  },
+  {
+   "claim": "HSY-18",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MD&A introduction; no gross margin outlook."
+  },
+  {
+   "claim": "HSY-18",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company overview; no gross margin outlook."
+  },
+  {
+   "claim": "HSY-18",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Pricing risk factor; not next year's gross margin drivers."
+  },
+  {
+   "claim": "HSY-19",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Sustainability; not productivity goals."
+  },
+  {
+   "claim": "HSY-19",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Employee engagement; not productivity goals."
+  },
+  {
+   "claim": "HSY-19",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Employees and ESG; not productivity goals."
+  },
+  {
+   "claim": "HSY-20",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year takeaway across combined channels; different period and scope from Q3 C-store growth."
+  },
+  {
+   "claim": "HSY-20",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operational measures; no C-store figures."
+  },
+  {
+   "claim": "HSY-20",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "International segment description; not U.S. C-store."
+  },
+  {
+   "claim": "HSY-21",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year CMG share gain across all measured channels; different period and scope from Q3 C-store share."
+  },
+  {
+   "claim": "HSY-21",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Net income table; not market share."
+  },
+  {
+   "claim": "HSY-21",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operational measures; not market share."
+  },
+  {
+   "claim": "HSY-22",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "offset increased raw material, energy or other input costs, including packaging, freight, direct labor, overhead and employee benefits, or if our sales volume decreases significantly, there could be a negative impact on our financial condition and results of operations",
+   "why": "Both say rising freight costs would hurt results."
+  },
+  {
+   "claim": "HSY-22",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Supply chain disruption, not freight cost increases."
+  },
+  {
+   "claim": "HSY-22",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Raw material and energy commodity costs; does not mention freight."
+  },
+  {
+   "claim": "HSY-23",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "2019 margin drivers; no freight share of COGS."
+  },
+  {
+   "claim": "HSY-23",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Freight raised cost of sales in 2020 but no share of COGS given."
+  },
+  {
+   "claim": "HSY-23",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lists transportation as an input cost; no share of COGS."
+  },
+  {
+   "claim": "HSY-S07",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "During 2020, average cocoa futures contract prices increased compared with 2019 and traded in a range between $1.00 and $1.29 per pound",
+   "why": "2020 cocoa futures range of $1.00 to $1.29 cannot contain the call's 2020 range of about $1.50 to $1.80."
+  },
+  {
+   "claim": "HSY-S07",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cocoa cost vs futures caveat and sugar, corn, dairy prices; no cocoa futures range."
+  },
+  {
+   "claim": "HSY-S07",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Peanut and almond prices and derivative sensitivity; nothing on cocoa futures."
+  },
+  {
+   "claim": "HSY-S08",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "The CMG consumer takeaway and market share information reflect measured channels of distribution accounting for approximately 90% of our U.S. confectionery retail business.",
+   "why": "10-K says IRI measured channels cover about 90% of U.S. confectionery retail; the call says only about half."
+  },
+  {
+   "claim": "HSY-S08",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 operations update; nothing on market share or IRI coverage."
+  },
+  {
+   "claim": "HSY-S08",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic competition risk factor; no share figures or channel coverage."
+  },
+  {
+   "claim": "HSY-S09",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "The decrease was driven primarily by to the higher freight and logistics costs",
+   "why": "Supports freight as a main 2019 cost driver; gives a gross margin change, not a cost of sales growth rate."
+  },
+  {
+   "claim": "HSY-S09",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "Cost of sales increased 3.5% in 2019 compared with 2018.",
+   "why": "2019 cost of sales rose 3.5% per the 10-K, not about 9% as said on the call."
+  },
+  {
+   "claim": "HSY-S09",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "North America segment sales and income; segment scope, no total cost of sales figure."
+  },
+  {
+   "claim": "HSY-S10",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "Total advertising and related consumer marketing expenses increased 4.2% driven by advertising increases in North America.",
+   "why": "10-K says 2019 total advertising rose 4.2%; the call says it was pulled down about 4% in 2019."
+  },
+  {
+   "claim": "HSY-S10",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Acquisitions and divestitures risk; nothing on advertising spend."
+  },
+  {
+   "claim": "HSY-S10",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Risk that advertising may need to increase; no actual 2019 advertising change."
+  },
+  {
+   "claim": "HSY-S11",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "To date, there has been minimal disruption to our supply chain network, including the supply of our ingredients, packaging or other sourced materials",
+   "why": "10-K reports minimal disruption to ingredient and packaging supply; the call says major disruption."
+  },
+  {
+   "claim": "HSY-S11",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Lists possible pandemic risks to supply; does not say whether disruption occurred."
+  },
+  {
+   "claim": "HSY-S11",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "COVID-19 plant and store operations; nothing on ingredient or packaging supply."
+  },
+  {
+   "claim": "HSY-S12",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "Although we use forward contracts and commodity futures and options contracts where possible to hedge commodity prices",
+   "why": "10-K says Hershey hedges commodity prices; the call says it hedges none and buys at spot."
+  },
+  {
+   "claim": "HSY-S12",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "We use futures and options contracts and other commodity derivative instruments in combination with forward purchasing of cocoa products, sugar, corn products, certain dairy products, natural gas and diesel fuel primarily to mitigate price volatility",
+   "why": "10-K describes futures, options and forward purchasing across commodities, conflicting with not hedging any commodities."
+  },
+  {
+   "claim": "HSY-S12",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Pricing elasticity risk; nothing on hedging practice."
+  },
+  {
+   "claim": "SITM-01",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year 2020 revenue, not Q3 quarterly revenue."
+  },
+  {
+   "claim": "SITM-01",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Annual revenue risk factor; says nothing about Q3 revenue."
+  },
+  {
+   "claim": "SITM-01",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Website and filing availability boilerplate."
+  },
+  {
+   "claim": "SITM-02",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year revenue; no Q3 guidance range."
+  },
+  {
+   "claim": "SITM-02",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic risk that guidance may be missed; no range stated."
+  },
+  {
+   "claim": "SITM-02",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Annual revenue risk factor; no Q3 guidance."
+  },
+  {
+   "claim": "SITM-03",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Year-over-year annual growth, not Q3 sequential growth."
+  },
+  {
+   "claim": "SITM-03",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Target-market risk factor; no quarterly growth."
+  },
+  {
+   "claim": "SITM-03",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Annual revenue risk factor; no sequential figure."
+  },
+  {
+   "claim": "SITM-04",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General second-half seasonality, not a Q4 2020 revenue record."
+  },
+  {
+   "claim": "SITM-04",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Corporate information boilerplate."
+  },
+  {
+   "claim": "SITM-04",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Revenue recognition policy."
+  },
+  {
+   "claim": "SITM-05",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's own supplier transition risk, not the quartz industry's points of failure."
+  },
+  {
+   "claim": "SITM-05",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Silicon vs quartz performance in industrial use; nothing on quartz supply."
+  },
+  {
+   "claim": "SITM-05",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's own supply chain risk, not the quartz infrastructure."
+  },
+  {
+   "claim": "SITM-06",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Revenue fluctuation factors; nothing on temperature or system impact."
+  },
+  {
+   "claim": "SITM-06",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Shares the temperature theme but does not address minimizing system-level impact stated in the fragmentary quote."
+  },
+  {
+   "claim": "SITM-06",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Automotive environment requirements; does not speak to what the fragmentary quote states."
+  },
+  {
+   "claim": "SITM-07",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Market size figures, not cumulative units shipped."
+  },
+  {
+   "claim": "SITM-07",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Counts part numbers shipped, a different measure from oscillator units."
+  },
+  {
+   "claim": "SITM-07",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Says oscillator shipments began in 2006; no cumulative unit count."
+  },
+  {
+   "claim": "SITM-08",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Says silicon allows cost-effective high-volume manufacturing; does not address how hard MEMS volume production is."
+  },
+  {
+   "claim": "SITM-08",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "only a few foundry vendors have the capability to manufacture our most advanced solutions, in particular with respect to our MEMS solution",
+   "why": "Few vendors able to make MEMS supports that high-volume MEMS manufacturing is not easy."
+  },
+  {
+   "claim": "SITM-08",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Product quality bullet points; nothing on manufacturing difficulty."
+  },
+  {
+   "claim": "SITM-09",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Website and filing availability boilerplate."
+  },
+  {
+   "claim": "SITM-09",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Corporate information boilerplate."
+  },
+  {
+   "claim": "SITM-09",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General seasonality; no guidance raise."
+  },
+  {
+   "claim": "SITM-10",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year revenue and growth, not Q3 figures."
+  },
+  {
+   "claim": "SITM-10",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Annual revenue risk factor; no Q3 figures."
+  },
+  {
+   "claim": "SITM-10",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Target-market risk factor."
+  },
+  {
+   "claim": "SITM-11",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP gross margin change, not Q3 non-GAAP margin."
+  },
+  {
+   "claim": "SITM-11",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP gross margin of 50%, different period and measure."
+  },
+  {
+   "claim": "SITM-11",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no Q3 figure."
+  },
+  {
+   "claim": "SITM-12",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP operating expenses, not Q3 non-GAAP."
+  },
+  {
+   "claim": "SITM-12",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year SG&A change; not Q3 non-GAAP opex."
+  },
+  {
+   "claim": "SITM-12",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year results table; different period and basis."
+  },
+  {
+   "claim": "SITM-13",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year interest expense, not the Q3 figure."
+  },
+  {
+   "claim": "SITM-13",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Cash and interest rate risk; no Q3 interest expense."
+  },
+  {
+   "claim": "SITM-13",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year results table; different period."
+  },
+  {
+   "claim": "SITM-14",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP net loss and cash flow, not Q3 non-GAAP net income."
+  },
+  {
+   "claim": "SITM-14",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP results; different period and basis."
+  },
+  {
+   "claim": "SITM-14",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Financing cash flows; nothing on Q3 net income."
+  },
+  {
+   "claim": "SITM-15",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We paid down all our debt in the year 2020.",
+   "why": "Confirms all debt was paid off in 2020."
+  },
+  {
+   "claim": "SITM-15",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "On July 24, 2020 we repaid $35.0 million of outstanding indebtedness under our revolving line of credit agreement",
+   "why": "Confirms the $35 million repayment during Q3."
+  },
+  {
+   "claim": "SITM-15",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "as we paid in full all of our debt on July 24, 2020",
+   "why": "Confirms all debt was paid in full in July 2020, within Q3."
+  },
+  {
+   "claim": "SITM-16",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year actuals; does not address the Q4 outlook."
+  },
+  {
+   "claim": "SITM-16",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "R&D expense description and outlook."
+  },
+  {
+   "claim": "SITM-16",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year revenue; Q4 forecast not addressed."
+  },
+  {
+   "claim": "SITM-17",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Target-market risk factor."
+  },
+  {
+   "claim": "SITM-17",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year revenue; forecast vs full-year actual."
+  },
+  {
+   "claim": "SITM-17",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Website and filing availability boilerplate."
+  },
+  {
+   "claim": "SITM-18",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year revenue; Q4 forecast vs annual actual."
+  },
+  {
+   "claim": "SITM-18",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Annual revenue risk factor."
+  },
+  {
+   "claim": "SITM-18",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Target-market risk factor."
+  },
+  {
+   "claim": "SITM-19",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no Q4 margin."
+  },
+  {
+   "claim": "SITM-19",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gross margin risk factor."
+  },
+  {
+   "claim": "SITM-19",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year GAAP margin change; different period and basis."
+  },
+  {
+   "claim": "SITM-20",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year SG&A; Q4 opex forecast not addressed."
+  },
+  {
+   "claim": "SITM-20",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year operating expenses; different period."
+  },
+  {
+   "claim": "SITM-20",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year results table."
+  },
+  {
+   "claim": "SITM-21",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We paid down all our debt in the year 2020.",
+   "why": "Supports that the company no longer had bank debt."
+  },
+  {
+   "claim": "SITM-21",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "as we paid in full all of our debt on July 24, 2020",
+   "why": "Debt fully repaid in July 2020 supports having no bank debt."
+  },
+  {
+   "claim": "SITM-21",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "We recently repaid all of our outstanding indebtedness under our revolving line of credit",
+   "why": "Confirms no outstanding bank debt remained."
+  },
+  {
+   "claim": "SITM-22",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year tax figure; Q4 forecast is a different period."
+  },
+  {
+   "claim": "SITM-22",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Income tax accounting policy."
+  },
+  {
+   "claim": "SITM-22",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "NOL carryforward risk factor."
+  },
+  {
+   "claim": "SITM-23",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Offering history and MegaChips stake; no basic share count."
+  },
+  {
+   "claim": "SITM-23",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "MegaChips holding at year end; not the Q4 basic weighted share count."
+  },
+  {
+   "claim": "SITM-23",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Accumulated deficit risk factor."
+  },
+  {
+   "claim": "SITM-24",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "R&D stock comp expense; no RSU dilution share count."
+  },
+  {
+   "claim": "SITM-24",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Financing cash flows; no dilution figure."
+  },
+  {
+   "claim": "SITM-24",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SG&A description; no dilution figure."
+  },
+  {
+   "claim": "SITM-25",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year R&D stock comp increase; not the Q4 forecast."
+  },
+  {
+   "claim": "SITM-25",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year SG&A stock comp increase; different period."
+  },
+  {
+   "claim": "SITM-25",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Stock comp accounting policy; no Q4 amount."
+  },
+  {
+   "claim": "SITM-26",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Target-market risk factor."
+  },
+  {
+   "claim": "SITM-26",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic guidance risk; no EPS range."
+  },
+  {
+   "claim": "SITM-26",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Automotive market description."
+  },
+  {
+   "claim": "SITM-27",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no Q2 to Q3 change."
+  },
+  {
+   "claim": "SITM-27",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year margin change, not quarter over quarter."
+  },
+  {
+   "claim": "SITM-27",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gross margin risk factor."
+  },
+  {
+   "claim": "SITM-28",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no Q4 guidance."
+  },
+  {
+   "claim": "SITM-28",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gross margin risk factor."
+  },
+  {
+   "claim": "SITM-28",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Foundry yield risk factor."
+  },
+  {
+   "claim": "SITM-29",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Generic supply chain risk; no reports of Asian fab problems."
+  },
+  {
+   "claim": "SITM-29",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Risk of COVID restrictions on suppliers abroad, not reports of fab stumbles."
+  },
+  {
+   "claim": "SITM-29",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Industry-wide foundry supply constraints, not fab stumbles in Asia."
+  },
+  {
+   "claim": "SITM-30",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's supplier transition risk; nothing on quartz ceramic package supply."
+  },
+  {
+   "claim": "SITM-30",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Names SiTime's own ceramic packaging vendors; does not address worldwide quartz package supply or shortages."
+  },
+  {
+   "claim": "SITM-30",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Notes quartz needs ceramic packages but says nothing about supplier count or shortages."
+  },
+  {
+   "claim": "SITM-31",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's own supply chain risk; the fragment refers to the quartz supply chain."
+  },
+  {
+   "claim": "SITM-31",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's outsourced manufacturing; does not speak to the fragment."
+  },
+  {
+   "claim": "SITM-31",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "SiTime's supplier transition risk; does not speak to the fragment."
+  },
+  {
+   "claim": "SITM-32",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "IoT market description; no SAM figure."
+  },
+  {
+   "claim": "SITM-32",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gives TAM figures by segment, not SiTime's SAM."
+  },
+  {
+   "claim": "SITM-32",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Corporate information boilerplate."
+  },
+  {
+   "claim": "SITM-33",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "the global timing market was over $7.7 billion as of 2018 and is expected to grow to $10.1 billion by 2024",
+   "why": "Total timing market of over $7.7 billion growing supports an $8 billion TAM; SAM not addressed."
+  },
+  {
+   "claim": "SITM-33",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "IoT market description; no SAM or TAM figure."
+  },
+  {
+   "claim": "SITM-33",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Website and filing availability boilerplate."
+  },
+  {
+   "claim": "SITM-34",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively.",
+   "why": "Annual revenue of $84.1M and $116.2M fits the rough around-$100M scale."
+  },
+  {
+   "claim": "SITM-34",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "Revenue | $116,156 | $84,074 | $32,082 | 38%",
+   "why": "Annual revenue of $84.1M and $116.2M fits the rough around-$100M scale."
+  },
+  {
+   "claim": "SITM-34",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Corporate information boilerplate."
+  },
+  {
+   "claim": "SITM-35",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes, and are less susceptible to frequency jumps.",
+   "why": "Silicon's advantages over quartz support quartz struggling on frequency and reliability."
+  },
+  {
+   "claim": "SITM-35",
+   "rank": 2,
+   "label": "consistent",
+   "quote": "quartz timing devices, largely unchanged in decades, have many inherent limitations, including limited frequency ranges, sensitivity to rapid temperature changes, vibration and mechanical shock",
+   "why": "States quartz limitations in frequency range and reliability."
+  },
+  {
+   "claim": "SITM-35",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Describes SiTime's own technology; does not address quartz."
+  },
+  {
+   "claim": "SITM-36",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Fragment makes no checkable claim; passage covers quartz limitations."
+  },
+  {
+   "claim": "SITM-36",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Fragment makes no checkable claim; passage is general silicon advantages."
+  },
+  {
+   "claim": "SITM-36",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Competition risk factor."
+  },
+  {
+   "claim": "SITM-37",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Silicon technology description; no timeline for consumer or phone products."
+  },
+  {
+   "claim": "SITM-37",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Quartz limitations; no product timeline."
+  },
+  {
+   "claim": "SITM-37",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Company overview; no timeline for phone applications."
+  },
+  {
+   "claim": "SITM-38",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Infrastructure timing needs and 5G speeds; nothing on 5G breadth, rollout length or opportunity."
+  },
+  {
+   "claim": "SITM-38",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Timing building blocks; only notes 5G raises complexity."
+  },
+  {
+   "claim": "SITM-38",
+   "rank": 3,
+   "label": "consistent",
+   "quote": "as 5G communications networks evolve, we expect that they will require higher precision from a greater number of oscillators and timing devices.",
+   "why": "Supports 5G being a growing opportunity for timing devices."
+  },
+  {
+   "claim": "SITM-39",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Growth-management risk; no opex-to-revenue growth goal."
+  },
+  {
+   "claim": "SITM-39",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "R&D outlook; no half-rate goal."
+  },
+  {
+   "claim": "SITM-39",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year opex table; a long-term goal is not tested by one year's figures."
+  },
+  {
+   "claim": "SITM-40",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Growth-management risk factor."
+  },
+  {
+   "claim": "SITM-40",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "R&D outlook."
+  },
+  {
+   "claim": "SITM-40",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Full-year SG&A growth; different period from the quarter discussed."
+  },
+  {
+   "claim": "SITM-41",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Growth-management risk factor."
+  },
+  {
+   "claim": "SITM-41",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Website and filing availability boilerplate."
+  },
+  {
+   "claim": "SITM-41",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "R&D outlook; no Q4 opex vs revenue growth."
+  },
+  {
+   "claim": "SITM-42",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no 60% target."
+  },
+  {
+   "claim": "SITM-42",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Wafer supply risk factor."
+  },
+  {
+   "claim": "SITM-42",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gross margin risk factor."
+  },
+  {
+   "claim": "SITM-43",
+   "rank": 1,
+   "label": "unrelated",
+   "quote": "",
+   "why": "General gross margin drivers; no annual expansion target."
+  },
+  {
+   "claim": "SITM-43",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Gross margin risk factor."
+  },
+  {
+   "claim": "SITM-43",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Wafer supply risk factor."
+  },
+  {
+   "claim": "SITM-S13",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "For the years ended December 31, 2020 and 2019, our revenue was $116.2 million, and $84.1 million, respectively.",
+   "why": "2019 revenue was $84.1 million, not around $60 million."
+  },
+  {
+   "claim": "SITM-S13",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "Revenue | $116,156 | $84,074 | $32,082 | 38%",
+   "why": "Revenue table shows 2019 revenue of $84.1 million vs around $60 million on the call."
+  },
+  {
+   "claim": "SITM-S13",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Accumulated deficit and net losses; no 2019 revenue figure."
+  },
+  {
+   "claim": "SITM-S14",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "Based on our internal estimates, we believe clock ICs represent an approximate $1.0 billion total addressable market.",
+   "why": "Clock IC TAM is about $1.0 billion per the 10-K vs about $3 billion on the call (the ~$8 billion total TAM agrees)."
+  },
+  {
+   "claim": "SITM-S14",
+   "rank": 2,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Describes timing building blocks; no market size figures."
+  },
+  {
+   "claim": "SITM-S14",
+   "rank": 3,
+   "label": "unrelated",
+   "quote": "",
+   "why": "Product portfolio overview; no SAM or TAM figures."
+  },
+  {
+   "claim": "SITM-S15",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes",
+   "why": "10-K says MEMS is more resistant to vibration and shock; the call says quartz handles them better than MEMS."
+  },
+  {
+   "claim": "SITM-S15",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "quartz timing devices, largely unchanged in decades, have many inherent limitations, including limited frequency ranges, sensitivity to rapid temperature changes, vibration and mechanical shock",
+   "why": "10-K names vibration and shock sensitivity as an inherent quartz limitation, conflicting with quartz handling them better than MEMS."
+  },
+  {
+   "claim": "SITM-S15",
+   "rank": 3,
+   "label": "contradiction",
+   "quote": "MEMS timing devices are well-suited for these applications, as they provide up to 40 times better stability under vibration than comparable quartz-based solutions.",
+   "why": "10-K says MEMS has up to 40 times better vibration stability than quartz, the reverse of the call."
+  },
+  {
+   "claim": "SITM-S16",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "We use Robert Bosch LLC (“Bosch”) in Germany and Taiwan Semiconductor Manufacturing Company (“TSMC”) in Taiwan as our primary foundries and suppliers for our MEMS timing devices and analog mixed-signal circuit ICs, respectively.",
+   "why": "Bosch is the MEMS foundry and TSMC makes the analog ICs; the call says TSMC fabs all MEMS wafers."
+  },
+  {
+   "claim": "SITM-S16",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "We currently rely on Bosch and TSMC as our primary foundries and suppliers for our MEMS timing devices and analog circuits, respectively",
+   "why": "MEMS comes from Bosch, analog circuits from TSMC, conflicting with TSMC fabbing all MEMS wafers."
+  },
+  {
+   "claim": "SITM-S16",
+   "rank": 3,
+   "label": "contradiction",
+   "quote": "We currently rely on Bosch for our MEMS fabrication, and TSMC for our analog circuits fabrication",
+   "why": "10-K says Bosch fabricates the MEMS wafers under a supply agreement, not TSMC."
+  },
+  {
+   "claim": "SITM-S17",
+   "rank": 1,
+   "label": "consistent",
+   "quote": "We paid down all our debt in the year 2020.",
+   "why": "Agrees that all debt was paid off during 2020; gives no date."
+  },
+  {
+   "claim": "SITM-S17",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "On July 24, 2020 we repaid $35.0 million of outstanding indebtedness under our revolving line of credit agreement",
+   "why": "The $35 million was repaid on July 24, 2020, not in the last week of September."
+  },
+  {
+   "claim": "SITM-S17",
+   "rank": 3,
+   "label": "contradiction",
+   "quote": "as we paid in full all of our debt on July 24, 2020",
+   "why": "Debt was paid in full on July 24, 2020, conflicting with a payoff in the last week of September."
+  },
+  {
+   "claim": "SITM-S18",
+   "rank": 1,
+   "label": "contradiction",
+   "quote": "We paid down all our debt in the year 2020.",
+   "why": "Paying down debt in 2020 means debt was carried in 2020, conflicting with no bank debt this year."
+  },
+  {
+   "claim": "SITM-S18",
+   "rank": 2,
+   "label": "contradiction",
+   "quote": "Interest Expense | $(726) | $(1,714) | $988 | (58%)",
+   "why": "10-K reports $726 thousand of 2020 interest expense on debt repaid July 24, 2020; the call says no interest expense in 2020."
+  },
+  {
+   "claim": "SITM-S18",
+   "rank": 3,
+   "label": "contradiction",
+   "quote": "On July 24, 2020 we repaid $35.0 million of outstanding indebtedness under our revolving line of credit agreement with The Bank of Tokyo-Mitsubishi UFJ, Ltd.",
+   "why": "$35 million of bank debt was outstanding until July 24, 2020, so bank debt was carried in 2020."
+  }
+ ]
+}

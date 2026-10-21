@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"Stock-based compensation expense will be approximately $5.5 million up from Q3 due to the higher stock price and a few new higher grants\"\nClaim: SITIME Corp expects Q4 2020 stock‑based compensation expense to be approximately $5.5 million, up from Q3.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Research and Development\nResearch and development expense increased by $7.9 million, or 33%, for the year ended December 31, 2020 compared to the same period in 2019, primarily due to an increase in stock-based compensation expense of $5.2 million. This in turn was due to the timing of grants of employee equity awards upon the completion of our initial public offering in November 2019 and new performance-based award grants in the year ended December 31, 2020. The remaining increase was primarily due to increased headcount and impairment charges of $1.0 million related to the cost of software that were in the process of development for internal use. The related products for which the software was developed to support in production were abandoned as we changed our roadmap and improved the final desired technical specifications required of the new products.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nSales, General and Administrative\n\nSales, general and administrative expense consists of personnel costs, including stock-based compensation, professional and consulting fees, accounting and audit fees, legal costs, field application engineering support, travel costs, advertising expenses, and allocated overhead costs. We expect sales, general and administrative expense to continue to increase in absolute dollars as we increase our personnel and grow our operations, although it may fluctuate as a percentage of revenue from period to period depending on the timing of these expenses.\n\nSelling, general and administrative expense increased by $14.3 million, or 69%, for the year ended December 31, 2020 compared to the same period in 2019, primarily due to higher stock-based compensation expense of $9.6 million and higher personnel costs of $3.3 million largely related to increased headcount and remaining increase due to additional expenses for services related to the requirements of being a public company.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nStock-Based Compensation\n\nStock-based compensation expense is measured at the grant date based on the fair value of the equity award and is recognized as expense over the requisite service period, which is generally the vesting period. We have elected to recognize forfeitures as they occur.\n\nThe fair value of each restricted stock unit is estimated based on the market price of our common shares on the date of grant.\n\nWe amortize stock-based compensation expense for time-based awards under the straight-line attribution method over the vesting period. Stock-based compensation expense for performance-based awards is recognized when it becomes probable that the performance conditions will be met. We amortize stock-based compensation expense for performance-based awards using the accelerated method."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The passage reports a year‑end increase in R&D expense due to $5.2 million in stock‑based compensation, not a Q4 forecast.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"The passage reports a year‑end increase in SG&A expense due to $9.6 million in stock‑based compensation, not a Q4 forecast.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The passage explains accounting methodology for stock‑based compensation, no figures or Q4 forecast.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1370,
+  "completion_tokens": 882,
+  "latency_ms": 1558.1675000139512,
+  "attempts": 1
+ }
+}

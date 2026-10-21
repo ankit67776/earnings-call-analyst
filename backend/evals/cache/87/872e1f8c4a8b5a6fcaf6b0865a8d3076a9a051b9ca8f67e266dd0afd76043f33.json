@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"we expect fourth quarter non-GAAP EPS will be between $0.28 and $0.32 per share\"\nClaim: SITIME Corp expects Q4 2020 non‑GAAP EPS to be between $0.28 and $0.32 per share.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nOur target customer and product markets may not grow or develop as we currently expect, and if we fail to penetrate new markets and scale successfully within those markets, our revenue and financial condition would be harmed.\n\nOur target markets include the enterprise and telecommunications infrastructure, automotive, industrial, IoT and mobile, and aerospace and defense markets. Substantially all of our revenue for the years ended December 31, 2020 and 2019 was derived from sales in the IoT and mobile, industrial, and consumer markets. In 2017, we began introducing products for the automotive market. In addition, within the timing market, substantially all of our revenue to date has been attributable to sales of MEMS oscillators. We recently introduced products into the clock IC market, which we began sampling in the second quarter of 2019, and we intend to further focus on clock IC and timing sync solutions in the future. Any deterioration in our target customer or product markets or reduction in capital spending to support these markets could lead to a reduction in demand for our products, which would adversely affect our revenue and results of operations. Further, if our target customer markets, including the 5G communications or IoT and mobile markets, do not grow or develop in ways that we currently expect, demand for our technology may not materialize as expected, which would also negatively impact our business, financial condition, and results of operations.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nOur actual operating results may not meet our guidance and expectations, which would likely cause our stock price to decline.\n\nFrom time to time, we may release guidance in our earnings releases, earnings conference calls, or otherwise, regarding our future performance that represent our management’s estimates as of the date of release. If given, this guidance, which will include forward-looking statements, will be based on projections prepared by our management. Projections are based upon a number of assumptions and estimates that, while presented with numerical specificity, are inherently subject to significant business, economic, and competitive uncertainties and contingencies, many of which are beyond our control, such as the uncertainty around the impact of the COVID-19 pandemic. The principal reason that we expect to release guidance is to provide a basis for our management to discuss our business outlook with analysts and stockholders. With or without our guidance, analysts, and other third parties may publish expectations regarding our business, financial condition, and results of operations. We do not accept any responsibility for any projections or reports published by any such third parties. Guidance is necessarily speculative in nature, and it can be expected that some or all of the assumptions of the guidance furnished by us will not materialize or will vary significantly from actual results. If our actual performance does not meet or exceed our guidance or expectations, the trading price of our common stock is likely to decline.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nAutomotive\n\nFor automotive applications, timing technology must perform reliably over the life of an automobile in an environment characterized by vibration, mechanical shocks, electromagnetic interference, wide temperature ranges, and rapid temperature change. The AECC (Automotive Edge Computing Consortium) estimated in 2020 that “data traffic from connected vehicles will exceed 1,000 times the present volume, surpassing 10 exabytes per month by 2025.” These communication systems will require precise timing. We believe silicon-based timing can address many of the challenges associated with this demanding automotive ecosystem."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The passage discusses market risks and revenue sources, not Q4 2020 non‑GAAP EPS guidance.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"The passage talks about guidance in general terms, but does not provide specific Q4 2020 non‑GAAP EPS figures.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The passage describes automotive applications, unrelated to EPS guidance.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1512,
+  "completion_tokens": 570,
+  "latency_ms": 1400.3984999726526,
+  "attempts": 1
+ }
+}

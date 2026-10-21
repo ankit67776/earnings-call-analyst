@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (event):\nQuote: \"we got a favorable record of decision from the blm after more than two years of uh process So that keeps us on track with the project timeline.\"\nClaim: ConocoPhillips received a favorable record of decision from the BLM after more than two years of process, keeping the Willow project on track with its timeline.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nPenglai 49.0 % CNOOC 30 - - 30\n\nTotal China | 30 | - | - | 30\n\nPenglai The Penglai 19-3, 19-9 and 25-6 fields are located in the Bohai Bay Block 11/05 and are in various stages of development. Phase 1 and 2 include production from all three Penglai oil fields.\n\nWellhead Platform J Project in the Penglai 19-9 Field achieved first production in 2016. This project consisted of 62 wells that have all been completed and brought online as of December 2020.\n\nThe Phase 3 Project in the Penglai 19-3 and 19-9 fields consists of three new wellhead platforms and a central processing platform. First production from Phase 3 was achieved in 2018 for two wellhead platforms and in 2020 for the third wellhead platform. This project could include up to 186 wells, 91 of which have been completed and brought online as of December 2020.\n\nThe Phase 4A Project in the Penglai 25-6 Field consists of one new wellhead platform and achieved first production in December 2020. This project could include up to 62 new wells, two of which have been completed and brought online as of December 2020.\n\nPanyu We have a production license for Panyu 4-1 in Block 15/34. If a development occurs, our production license is for 15 years upon commencement of production.\n\nExploration Exploration activities in the Bohai Penglai Field during 2020 consisted of two successful appraisal wells supporting future developments in the Bohai Bay Block 11/05.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES › Average Daily Net Production\nExploration Appraisal of the Willow Discovery in the Bear Tooth Unit in the National Petroleum Reserve-Alaska (NPR-A) continued with the drilling of two of four planned appraisal wells before the early cancellation of the 2020 program as part of our COVID-19 response. The reduced 2020 appraisal program consisted of drilling a horizontal well in the eastern portion of the field, informing the reservoir’s connectivity, and a vertical well in the field’s southern extent, reducing the original oil in place uncertainty. The initial development plan for the Willow Discovery, approved in the fourth quarter, does not include the Cassin Discovery from 2013; therefore, we recognized dry hole expense for two previously suspended Cassin wells in 2020.\n\nIn 2020, exploration of the Harpoon Complex—Harpoon, Lower Harpoon and West Harpoon—commenced. One exploration well of a planned three-well program was drilled before the early cancellation of our 2020 winter drilling season in response to COVID-19. The well was expensed as a dry hole after evaluations confirmed the well intersected sub-commercial volumes of hydrocarbons in the upper Harpoon interval which will not be developed. Future exploration plans include returning to the Harpoon Complex to explore the remaining potential.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nCompleted Acquisition of Concho Resources Inc.\n\nOn January 15, 2021, we completed our acquisition of Concho Resources Inc. (Concho), an independent oil and gas exploration and production company with operations across New Mexico and West Texas. The addition of complementary acreage in the Delaware and Midland Basins creates a sizeable Permian presence to augment our leading unconventional positions in the Eagle Ford and Bakken in the Lower 48 and the Montney in Canada.\n\nConsideration for the all-stock transaction was valued at $13.1 billion, in which 1.46 shares of ConocoPhillips common stock was exchanged for each outstanding share of Concho common stock, resulting in the issuance of approximately 286 million shares of ConocoPhillips common stock. We also assumed $3.9 billion in aggregate principal amount of outstanding debt for Concho, which was recorded at fair value of $4.7 billion as of the closing date. The combined companies are expected to capture approximately $750 million of annual cost and capital savings by 2022. For additional information related to this transaction, see Note 25— Acquisition of Concho Resources Inc. in the Notes to Consolidated Financial Statements."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage discusses Penglai projects in China and production details, with no mention of the Willow project, BLM, or a record of decision.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage describes appraisal drilling for the Willow Discovery in Alaska but does not address any BLM record of decision or project timeline.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage covers the acquisition of Concho Resources and contains no information about the Willow project, BLM, or a record of decision.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1726,
+  "completion_tokens": 430,
+  "latency_ms": 1658.13860000344,
+  "attempts": 1
+ }
+}

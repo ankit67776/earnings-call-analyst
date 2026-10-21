@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Bill Bullock said (risk):\nQuote: \"the second one that would be fairly significant would be removal of IDCs, particularly in our capital program, and needing to depreciate those over time\"\nClaim: ConocoPhillips faces a risk that removal of IDCs could require depreciation of capital program assets over time\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Asset Retirement Obligations and Environmental Costs\nNormally, changes in asset removal obligations are reflected in the income statement as increases or decreases to DD&A over the remaining life of the assets. However, for assets at or nearing the end of their operations, as well as previously sold assets for which we retained the asset removal obligation, an increase in the asset removal obligation can result in an immediate charge to earnings, because any increase in PP&E due to the increased obligation would immediately be subject to impairment, due to the low fair value of these properties.\n\nIn addition to asset removal obligations, under the above or similar contracts, permits and regulations, we have certain environmental-related projects. These are primarily related to remediation activities required by Canada and various states within the U.S. at exploration and production sites. Future environmental remediation costs are difficult to estimate because they are subject to change due to such factors as the uncertain magnitude of cleanup costs, the unknown time and extent of such remedial actions that may be required, and the determination of our liability in proportion to that of other responsible parties. See Note 9— Asset Retirement Obligations and Accrued Environmental Costs, in the Notes to Consolidated Financial Statements, for additional information.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAsset Retirement Obligations and Environmental Costs\n\nUnder various contracts, permits and regulations, we have material legal obligations to remove tangible equipment and restore the land or seabed at the end of operations at operational sites. Our largest asset removal obligations involve plugging and abandonment of wells, removal and disposal of offshore oil and gas platforms around the world, as well as oil and gas production facilities and pipelines in Alaska. The fair values of obligations for dismantling and removing these facilities are recorded as a liability and an increase to PP&E at the time of installation of the asset based on estimated discounted costs. Fair value is estimated using a present value approach, incorporating assumptions about estimated amounts and timing of settlements and impacts of the use of technologies. Estimating future asset removal costs requires significant judgement. Most of these removal obligations are many years, or decades, in the future and the contracts and regulations often have vague descriptions of what removal practices and criteria must be met when the removal event actually occurs. The carrying value of our asset retirement obligation estimate is sensitive to inputs such as asset removal technologies and costs, regulatory and other compliance considerations, expenditure timing, and other inputs into valuation of the obligation, including discount and inflation rates, which are all subject to change between the time of initial recognition of the liability and future settlement of our obligation.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › CAUTIONARY STATEMENT FOR THE PURPOSES OF THE “SAFE HARBOR” PROVISIONS OF THE PRIVATE SECURITIES LITIGATION REFORM ACT OF 1995\n● The impact of significant declines in prices for crude oil, bitumen, natural gas, LNG and NGLs, which may result in recognition of impairment charges on our long-lived assets, leaseholds and nonconsolidated equity investments.\n\n● Potential failures or delays in achieving expected reserve or production levels from existing and future oil and gas developments, including due to operating hazards, drilling risks and the inherent uncertainties in predicting reserves and reservoir performance.\n\n● Reductions in reserves replacement rates, whether as a result of the significant declines in commodity prices or otherwise.\n\n● Unsuccessful exploratory drilling activities or the inability to obtain access to exploratory acreage.\n\n● Unexpected changes in costs or technical requirements for constructing, modifying or operating E&P facilities.\n\n● Legislative and regulatory initiatives addressing environmental concerns, including initiatives addressing the impact of global climate change or further regulating hydraulic fracturing, methane emissions, flaring or water disposal.\n\n● Lack of, or disruptions in, adequate and reliable transportation for our crude oil, bitumen, natural gas, LNG and NGLs.\n\n● Inability to timely obtain or maintain permits, including those necessary for construction, drilling and/or development, or inability to make capital expenditures required to maintain compliance with any necessary permits or applicable laws or regulations.\n\n● Failure to complete definitive agreements and feasibility studies for, and to complete construction of, announced and future E&P and LNG development in a timely manner (if at all) or on budget."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage says asset removal obligations affect DD&A (depreciation) over the assets' remaining life, matching the claim that removal could require depreciation over time.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"changes in asset removal obligations are reflected in the income statement as increases or decreases to DD&A over the remaining life of the assets.\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage describes that removal obligations are recorded as a liability and increase to PP&E, implying future depreciation, aligning with the claim about depreciation risk from removal.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"The fair values of obligations for dismantling and removing these facilities are recorded as a liability and an increase to PP&E at the time of installation of the asset based on estimated discounted costs.\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage lists general risk factors unrelated to IDC removal or depreciation of capital program assets.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1712,
+  "completion_tokens": 739,
+  "latency_ms": 2055.919800011907,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"but the most important of which is that we're not going to invest above an incremental cost of supply of $40 a barrel.\"\nClaim: ConocoPhillips will not invest above an incremental cost of supply of $40 a barrel.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Environment\no Maintain capital allocation discipline. We participate in a commodity price-driven and capital-intensive industry, with varying lead times from when an investment decision is made to the time an asset is operational and generates cash flow. As a result, we must invest significant capital dollars to explore for new oil and gas fields, develop newly discovered fields, maintain existing fields, and construct pipelines and LNG facilities. We allocate capital across a geographically diverse, low cost of supply resource base, which combined with legacy assets results in low production decline. Cost of supply is the WTI equivalent price that generates a 10 percent after-tax return on a point-forward and fully burdened basis. Fully burdened includes capital infrastructure, foreign exchange, price related inflation and G&A. In setting our capital plans, we exercise a rigorous approach that evaluates projects using this cost of supply criteria, which we believe will lead to value maximization and cash flow expansion using an optimized investment pace, not production growth for growth’s sake. Our cash allocation priorities call for the investment of sufficient capital to sustain production and pay the existing dividend. Additional capital may be allocated toward growth, but discipline will be maintained.\n\nIn February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion. The plan includes $5.1 billion to sustain current production and $0.4 billion for investment in major projects, primarily in Alaska, in addition to ongoing exploration appraisal activity.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nBusiness Environment\n\nBrent crude oil prices averaged $42 per barrel in 2020, compared with $64 per barrel in 2019. The energy industry has periodically experienced this type of volatility due to fluctuating supply-and-demand conditions and such volatility may persist for the foreseeable future. Commodity prices are the most significant factor impacting our profitability and related reinvestment of operating cash flows into our business. Our strategy is to create value through price cycles by delivering on the foundational principles that underpin our value proposition; free cash flow generation, a strong balance sheet, commitment to differential returns of and on capital, and ESG leadership.\n\nOperational and Financial Factors Affecting Profitability The focus areas we believe will drive our success through the price cycles include:\n\n● Free cash flow generation. This is a core principle of our value proposition. Our goal is to achieve strong free cash flow by exercising capital discipline, controlling our costs, and safely and reliably delivering production. Throughout the price cycles, we expect to make capital investments sufficient to sustain production. Free cash flow provides funds that are available to return to shareholders, strengthen the balance sheet to deliver on our priorities through the price cycles, or reinvest back into the business for future cash flow expansion.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"Passage discusses capital allocation discipline and cost of supply criteria but does not mention a $40 per barrel threshold.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"Passage discusses commodity prices, strategy, and free cash flow but does not reference a $40 per barrel investment threshold.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"Passage lists average sales prices but does not mention a $40 per barrel investment threshold.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1760,
+  "completion_tokens": 719,
+  "latency_ms": 1511.6750999877695,
+  "attempts": 1
+ }
+}

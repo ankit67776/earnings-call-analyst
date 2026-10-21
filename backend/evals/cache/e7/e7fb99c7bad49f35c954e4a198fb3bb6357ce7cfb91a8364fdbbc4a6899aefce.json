@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: HERSHEY CO\n\nOn the Q3 2020 earnings call, Steve Voskuil said (guidance):\nQuote: \"That will take away a little bit from the fourth quarter, maybe on the order of 50 basis points.\"\nClaim: HERSHEY CO expects the early holiday shipping to reduce fourth‑quarter sales by about 50 basis points.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-17 · Item 1. BUSINESS\nWorking Capital, Seasonality and Backlog\n\nOur sales are typically higher during the third and fourth quarters of the year, representing seasonal and holiday-related sales patterns. We manufacture primarily for stock and typically fill customer orders within a few days of receipt. Therefore, the backlog of any unfilled orders is not material to our total annual sales. Additional information relating to our cash flows from operations and working capital practices is provided in our Management’s Discussion and Analysis.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-17 · Item 1A. RISK FACTORS\nPrice increases may not be sufficient to offset cost increases and maintain profitability or may result in sales volume declines associated with pricing elasticity.\n\nWe may be able to pass some or all raw material, energy and other input cost increases to customers by increasing the selling prices of our products or decreasing the size of our products; however, higher product prices or decreased product sizes may also result in a reduction in sales volume and/or consumption. If we are not able to increase our selling prices or reduce product sizes sufficiently, or in a timely manner, to offset increased raw material, energy or other input costs, including packaging, freight, direct labor, overhead and employee benefits, or if our sales volume decreases significantly, there could be a negative impact on our financial condition and results of operations.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-17 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nTRENDS AFFECTING OUR BUSINESS\n\nOn March 11, 2020, the World Health Organization designated the novel coronavirus, COVID-19, as a global pandemic. COVID-19 was first detected in Wuhan City, Hubei Province, China and continued to spread, significantly impacting various markets around the world, including the U.S. Various policies and initiatives have been implemented to reduce the global transmission of COVID-19.\n\nLocal, state and national governments continue to emphasize the importance of food supply during this pandemic and asked that food manufacturers and retailers remain open to meet the needs of our communities. Employee safety is our first priority, and as a result, we put preparedness plans in place at our manufacturing facilities. Our manufacturing facilities are currently open; however, we have adjusted shift schedules, enforced social distancing, increased sanitation and adjusted time and attendance policies for worker absenteeism. Our sales teams continue to support community food supplies, while adhering to social distancing guidelines, implementing flexible hours, reducing person-to-person interaction and increasing safety measures. At the onset of the pandemic, the Company temporarily closed all Hershey's Chocolate World stores in the U.S. (3 locations), Niagara Falls (Ontario) and Singapore; however, since July, all locations were re-opened on a limited capacity basis with increased safety measures and enforced social distancing."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"F1 discusses seasonality and backlog but does not mention early holiday shipping or any impact on Q4 sales.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"F2 addresses price and cost risks, not holiday shipping or Q4 sales impact.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"F3 describes COVID‑19 effects, not holiday shipping or Q4 sales impact.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1360,
+  "completion_tokens": 399,
+  "latency_ms": 881.81400000758,
+  "attempts": 1
+ }
+}

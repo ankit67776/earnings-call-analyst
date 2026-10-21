@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Ryan Lance said (metric):\nQuote: \"we were moving over 8 BCF of gas a day\"\nClaim: ConocoPhillips moved over 8 BCF of gas a day\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nQatargas Operating QG3 30.0 % Company Limited 13 8 371 83\n\nTotal Qatar | 13 | 8 | 371 | 83\n\nQG3 is an integrated development jointly owned by Qatar Petroleum (68.5 percent), ConocoPhillips (30 percent) and Mitsui & Co., Ltd. (1.5 percent). QG3 consists of upstream natural gas production facilities, which produce approximately 1.4 billion gross cubic feet per day of natural gas from Qatar’s North Field over a 25-year life, in addition to a 7.8 million gross tonnes-per-year LNG facility. LNG is shipped in leased LNG carriers destined for sale globally.\n\nQG3 executed the development of the onshore and offshore assets as a single integrated development with Qatargas 4 (QG4), a joint venture between Qatar Petroleum and Royal Dutch Shell plc. This included the joint development of offshore facilities situated in a common offshore block in the North Field, as well as the construction of two identical LNG process trains and associated gas treating facilities for both the QG3 and QG4 joint ventures. Production from the LNG trains and associated facilities is combined and shared.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nSouth Sumatra 54 % ConocoPhillips 2 - 290 50\n\nTotal Indonesia | 2 | - | 290 | 50\n\nDuring 2020, we operated two PSCs in Indonesia: the Corridor Block located in South Sumatra, and Kualakurun in Central Kalimantan. Currently, we have production from the Corridor Block.\n\nSouth Sumatra The Corridor PSC consists of two oil fields and seven producing natural gas fields. Natural gas is supplied from the Grissik and Suban gas processing plants to the Duri steamflood in central Sumatra and to markets in Singapore, Batam and West Java. In 2019, we were awarded a 20-year extension, with new terms, of the Corridor PSC. Under these terms, we retain a majority interest and continue as operator for at least three years after 2023 and retain a participating interest until 2043.\n\nExploration We entered into the Central Kalimantan Kualakurun Block PSC in 2015 with an exploration period of six years. We completed the firm working commitment program in 2017, which included satellite mapping and a 740-kilometer 2-D seismic acquisition program. After completion of prospect evaluation, both PSC contractors decided to relinquish rights and return this block to the government.\n\nTransportation We are a 35 percent owner of a consortium company that has a 40 percent ownership in PT Transportasi Gas Indonesia, which owns and operates the Grissik to Duri and Grissik to Singapore natural gas pipelines.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nGreater Ekofisk Area 30.7-35.1 % ConocoPhillips 46 2 39 55 Heidrun 24.0 Equinor 12 1 32 18 Aasta Hansteen 10.0 Equinor - - 82 14 Troll 1.6 Equinor 2 - 54 11 Alvheim 20.0 Aker BP 8 - 13 10 Visund 9.1 Equinor 2 1 40 10 Other Various Equinor 8 - 10 9\n\nTotal Norway | 78 | 4 | 270 | 127\n\nThe Greater Ekofisk Area is located approximately 200 miles offshore Stavanger, Norway, in the North Sea, and comprises four producing fields: Ekofisk, Eldfisk, Embla and Tor. The Tor II redevelopment achieved first production in December 2020. Crude oil is exported to Teesside, England, and the natural gas is exported to Emden, Germany. The Ekofisk and Eldfisk fields consist of several production platforms and facilities, with development drilling continuing over the coming years.\n\nThe Heidrun Field is located in the Norwegian Sea. Produced crude oil is stored in a floating storage unit and exported via shuttle tankers. Part of the natural gas is currently injected into the reservoir for optimization of crude oil production, some gas is transported for use as feedstock in a methanol plant in Norway, in which we own an 18 percent interest, and the remainder is transported to Europe via gas processing terminals in Norway."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage reports QG3 producing about 1.4 BCF/day, not ConocoPhillips moving over 8 BCF/day; different metric and no mention of 8 BCF, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage describes Indonesian gas supply operations with no volume figure, providing no information about an 8 BCF/day movement claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage mentions gas export destinations but gives no production or movement volume, thus does not speak to the claim of >8 BCF/day.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1727,
+  "completion_tokens": 641,
+  "latency_ms": 1711.2009000120452,
+  "attempts": 1
+ }
+}

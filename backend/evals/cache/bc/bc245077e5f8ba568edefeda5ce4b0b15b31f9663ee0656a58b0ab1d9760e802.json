@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"we're targeting gross margin expansion of maybe three points a year.\"\nClaim: SITIME Corp plans to increase gross margins by approximately three percentage points each year.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Pricing, Product Cost, and Product Mix\nGross margin, or gross profit as a percentage of revenue, has been, and will continue to be, affected by a variety of factors, including ASPs, and product mix in a given period, material costs, yields, inventory write-downs and manufacturing operations costs. We believe the primary driver of gross margin is the ASPs negotiated between us and our customers relative to material costs and yield improvement. As our products mature and unit volumes increase, we expect their ASPs to decline. These declines often coincide with improvements in manufacturing yields and lower wafer, assembly, and testing costs, which offset some or all of the margin reduction that results from lower ASPs. However, we expect our gross margin to fluctuate on a quarterly basis as a result of changes in ASPs due to new product introductions, existing product transitions into high-volume manufacturing, manufacturing costs, and our product mix.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › Our gross margins may fluctuate due to a variety of factors, which could negatively impact our results of operations and our financial condition.\nBecause we do not operate our own manufacturing, assembly, or testing facilities, we may not be able to reduce our costs as rapidly as companies that operate their own facilities, and our costs may even increase, which could further reduce our gross margins. We rely primarily on obtaining yield improvements and volume-based cost reductions to drive cost reductions in the manufacture of existing products, introducing new products that incorporate advanced features and optimize die size, and other price and performance factors that enable us to increase revenue while maintaining gross margins. To the extent that such cost reductions or revenue increases do not occur at a sufficient level and in a timely manner, our business, financial condition, and results of operations could be adversely affected.\n\nIn addition, we maintain an inventory of our products at various stages of production and in some cases as finished good inventory. We hold these inventories in anticipation of customer orders. If those customer orders do not materialize in a timely manner, we may have excess or obsolete inventory which we would have to reserve or write-down, and our gross margins would be adversely affected.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nIf market demand for wafers or production and assembly materials increases, if a supplier of our wafers fails to procure materials needed for manufacture of our products, or if a supplier of our wafers ceases or suspends operations, our supply of wafers and other materials could become limited. We currently have a ten-year supply agreement with Bosch for the fabrication of our MEMS wafers. This agreement expires in 2027 and may be terminated with three years’ advance notice beginning in February 2024. We currently rely on Bosch for our MEMS fabrication, and TSMC for our analog circuits fabrication, and any disruption in their supply of wafers or any increases in their wafer or materials prices could adversely affect our gross margins and our ability to meet customer demands in a timely manner, or at all, and lead to reduced revenue. There is currently a number of industry-wide supply constraints affecting the supply of analog circuits manufactured by certain foundries, including TSMC, which may limit our ability to fully satisfy an increase in demand for some of our products. Moreover, wafers constitute a large portion of our product cost. If we are unable to negotiate volume discounts or otherwise purchase wafers at favorable prices and in sufficient quantities in a timely manner, our gross margins would be adversely affected."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage describes factors influencing gross margin and expects quarterly fluctuations, but does not mention any planned annual margin increase of three points.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage lists risk factors that could cause margin fluctuations and discusses cost‑reduction efforts, without stating a target of three‑point annual margin expansion.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage outlines supply‑chain risks that could adversely affect gross margins, but provides no guidance about a planned three‑point yearly margin increase.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1537,
+  "completion_tokens": 466,
+  "latency_ms": 2273.237799992785,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (risk):\nQuote: \"manufacturing MEMS products in high volume is not easy\"\nClaim: SITIME Corp acknowledges that manufacturing MEMS products in high volume is not easy.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nSilicon Timing Solutions Poised to Disrupt the Market\n\nIn recent years, advances in silicon-based manufacturing and packaging techniques have allowed the development of alternatives to quartz crystal technology. We believe that silicon MEMS is an ideal technology for resonator design. Specifically, its ability to integrate with other circuits in standard semiconductor packages has made scalable standard silicon manufacturing possible for resonators and broader timing technology. MEMS and silicon-based technologies can operate in a wide range of frequencies, are more resistant to vibration, mechanical shock, and temperature changes, and are less susceptible to frequency jumps. These technologies are also inherently well-suited to produce timing solutions that are small, and offer high performance, robustness and programmability. Timing solutions based on these technologies are manufactured using semiconductor processes in fabrication plants with high capacity, allowing for cost-effective high-volume manufacturing.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors › We depend on third parties for our wafer fabrication, assembly, and testing operations, which exposes us to certain risks that may harm our business.\nTo ensure continued wafer supply, we may be required to establish alternative wafer supply sources, which could require significant expenditures and limit our negotiating leverage. We currently rely on Bosch and TSMC as our primary foundries and suppliers for our MEMS timing devices and analog circuits, respectively, and only a few foundry vendors have the capability to manufacture our most advanced solutions, in particular with respect to our MEMS solution. If we engage alternative supply sources, we may incur additional costs and encounter difficulties and/or delays in qualifying the supply sources. For example, we have a license agreement with Bosch under which Bosch granted us a license to use certain patents. Under this agreement, we are required to pay a royalty fee to Bosch if we engage third parties to manufacture, or if we decide to manufacture ourselves, certain generations of our MEMS wafers through March 31, 2024. In addition, shipments could be significantly delayed while these sources are qualified for volume production. If we are unable to maintain our relationship with Bosch or TSMC, our ability to produce high-quality products could suffer, which in turn could harm our business, financial condition, and results of operations.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business › Our Solutions and Technology\n• High quality and reliability: The combination of our design and manufacturing processes enables us to produce high quality products with long-term reliability. Our solutions offer low sensitivity to electromagnetic energy, mechanical shock, vibration, airflow, and temperature gradients.\n\n• Flexible integration: Our MEMS resonators and clock ICs allow a wide range of packaging and integration methodologies to support various levels of size, cost, and electrical, thermal, and mechanical performance.\n\n• Leveraged product development: Our solutions employ different combinations of MEMS and circuit components, enabling us to generate a vast number of custom part numbers, including over 30,000 uniquely programmable part numbers shipped as of December 31, 2020.\n\n• Rapid time to market: Our solutions can typically be delivered within weeks of initial customer order and configuration, enabling us to reduce our end customers’ time to market."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage says high‑volume manufacturing is cost‑effective and enabled by high‑capacity processes, implying it is feasible, while the claim states it is not easy; the statements conflict.\",\n      \"verdict\": \"contradiction\",\n      \"filing_quote\": \"allowing cost-effective high-volume manufacturing\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage lists risk factors about reliance on third‑party foundries, potential extra costs, and delays in qualifying sources for volume production, which aligns with the claim that high‑volume MEMS manufacturing is not easy.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"encounter difficulties and/or delays in qualifying the supply sources... shipments could be significantly delayed while these sources qualified for volume production\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage describes product quality and rapid time‑to‑market but does not address the difficulty of high‑volume manufacturing, so it does not speak to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1418,
+  "completion_tokens": 968,
+  "latency_ms": 2914.048000006005,
+  "attempts": 1
+ }
+}

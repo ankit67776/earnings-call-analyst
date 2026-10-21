@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"First production will be at the end of next year, so we don't expect that will be affected at all.\"\nClaim: ConocoPhillips expects first production at the end of 2021, unaffected by a change in administration.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nOutlook\n\nProduction and Capital In February 2021, we announced 2021 operating plan capital for the combined company of $5.5 billion. The plan includes $5.1 billion to sustain current production and $0.4 billion for investment in major projects, primarily in Alaska, in addition to ongoing exploration appraisal activity.\n\nThe operating plan capital budget of $5.5 billion is expected to deliver production from the combined company of approximately 1.5 MMBOED in 2021. This production guidance excludes Libya.\n\nRestructuring As a result of the acquisition of Concho, we commenced a restructuring program in the first quarter of 2021 in association with combining the operations of the two companies. We expect to incur significant non-recurring transaction and acquisition-related costs in 2021 for employee severance payments; incremental pension benefit costs related to the workforce reductions; employee retention costs; employee relocations; fees paid to financial, legal, and accounting advisors; and filing fees. We currently cannot estimate these costs, as well as other unanticipated items, and expect to recognize the majority of these expenses in the first quarter of 2021.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Significant Changes in Capital\nThe level of absolute production volumes, as well as product and location mix, impacts our cash flows. Full-year production averaged 1,127 MBOED in 2020. Full-year production excluding Libya averaged 1,118 MBOED in 2020. Adjusting for estimated curtailments of approximately 80 MBOED; closed acquisitions and dispositions; and excluding Libya; production for 2020 was 1,176 MBOED. Production in 2021 is expected to be approximately 1.5 MMBOED, reflecting the impact from the Concho acquisition. Future production is subject to numerous uncertainties, including, among others, the volatile crude oil and natural gas price environment, which may impact investment decisions; the effects of price changes on production sharing and variable-royalty contracts; acquisition and disposition of fields; field production decline rates; new technologies; operating efficiencies; timing of startups and major turnarounds; political instability; weather-related disruptions; and the addition of proved reserves through exploratory success and their timely and cost-effective development. While we actively manage these factors, production levels can cause variability in cash flows, although generally this variability has not been as significant as that caused by commodity prices.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nBlock G\n\nMalikai We hold a 35 percent working interest in Malikai. This field achieved first production in December 2016 via the Malikai Tension Leg Platform, ramping to peak production in 2018. The KMU-1 exploration well was completed and started producing through the Malikai platform in 2018. Malikai Phase 2 development, a six-well drilling campaign, commenced in 2020, with first oil anticipated in 2021.\n\nSiakap North-Petai We hold a 21 percent working interest in the unitized Siakap North-Petai (SNP) oil field. First oil from SNP Phase 2, a four-well program, is anticipated in the fourth quarter of 2021."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"F1 discusses 2021 production guidance but does not mention first production timing; the claim is about first production at end of 2021. No overlap.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"F2 provides 2021 production volume expectations but no reference to first production timing; the claim concerns first production at end of 2021. No overlap.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"F3 states Malikai Phase 2 first oil anticipated in 2021 and Siakap North-Petai first oil anticipated in Q4 2021, matching the claim that first production is expected at the end of 2021.\",\"verdict\":\"consistent\",\"filing_quote\":\"Malikai Phase 2 development, a six-well drilling campaign, commenced in 2020, with first oil anticipated in 2021.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1501,
+  "completion_tokens": 655,
+  "latency_ms": 1160.3889000034542,
+  "attempts": 1
+ }
+}

@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Dominic Macklon said (event):\nQuote: \"commitment to zero routine flaring, and that's the World Bank initiative there, so we've committed to that.\"\nClaim: ConocoPhillips has committed to zero routine flaring as part of the World Bank initiative.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Business Environment\n● ESG Leadership. Safety and environmental stewardship, including the operating integrity of our assets, remain our highest priorities, and we are committed to protecting the health and safety of everyone who has a role in our operations and the communities in which we operate. We strive to conduct our business with respect and care for both the local and global environment and systematically manage risk to drive sustainable business growth. Demonstrating our commitment to sustainability and environmental stewardship, in October 2020, we announced our adoption of a Paris-aligned climate risk framework as part of our continued leadership in ESG excellence. This comprehensive climate risk strategy should enable us to sustainably meet global energy demand while delivering competitive returns through the energy transition. We have set a target to reduce our gross operated (scope 1 and 2) emissions intensity by 35 to 45 percent from 2016 levels by 2030, with an ambition to achieve net zero by 2050 for operated emissions. We are advocating for reduction of scope 3 end-use emissions intensity through our support for a U.S. carbon price and reaffirmed our commitment to the Climate Leadership Council. We have joined the World Bank Flaring Initiative to work towards zero routine flaring of gas by 2030 and are the first U.S.-based oil and gas company to adopt a Paris-aligned climate risk strategy.\n\n● Add to our proved reserve base. We primarily add to our proved reserve base in three ways:\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. RISK FACTORS › Existing and future laws, regulations and internal initiatives relating to global climate change, such as limitations on GHG emissions, may impact or limit our business plans, result in significant expenditures, promote alternative uses of energy or reduce demand for our products.\nAs a result, we may experience declines in commodity prices or incur substantial capital expenditures and compliance, operating, maintenance and remediation costs, any of which may have an adverse effect on our business and results of operations.\n\nIn October 2020, we announced the adoption of a Paris-aligned climate risk framework, whereby we committed to a reduction of our gross operated (scope 1 and 2) emissions intensity, with an ambition to achieve net zero by 2050 from operated emissions. We also endorsed the World Bank Zero Routine Flaring by 2030 initiative, with an ambition to meet that goal by 2025 and reaffirmed our commitment to advocate for reduction of scope 3 emissions intensity through our support for a U.S. carbon price. Compliance with, and achievement of, climate change related internal initiatives such as the foregoing may increase costs, require us to purchase emission credits, or limit or impact our business plans, potentially resulting in the reduction to the economic end-of-field life of certain assets and an impairment of the associated net book value.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● Portfolio choices: Our corporate authorization process requires all qualifying projects to include a GHG price in their project approval economics. Different GHG prices are used depending on the region or jurisdiction. Projects in jurisdictions with existing GHG pricing regimes incorporate the existing GHG price and forecast into their economics. Projects where no existing GHG pricing regime exists utilize a scenario forecast from our internally consistent World Energy Model. In this way, both existing and emerging regulatory requirements are considered in our decision-making. The company does not use an estimated market cost of GHG emissions when assessing reserves in jurisdictions without existing GHG regulations.\n\n● External engagement: Our external engagement aims to differentiate ConocoPhillips within the oil and gas sector with our approach to managing climate-related risk. We are a Founding Member of the Climate Leadership Council (CLC), an international policy institute founded in collaboration with business and environmental interests to develop a carbon dividend plan. Participation in the CLC provides another opportunity for ongoing dialogue about carbon pricing and framing the issues in alignment with our public policy principles. We also belong to and fund Americans For Carbon Dividends, the education and advocacy branch of the CLC."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage states ConocoPhillips joined the World Bank Flaring Initiative to work towards zero routine flaring, matching the claim of a commitment.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"We have joined the World Bank Flaring Initiative to work towards zero routine flaring of gas by 2030\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage says ConocoPhillips endorsed the World Bank Zero Routine Flaring initiative and aims to meet the goal, aligning with the claim.\",\n      \"verdict\": \"consistent\",\n      \"filing_quote\": \"We also endorsed the World Bank Zero Routine Flaring by 2030 initiative, with an ambition to meet that goal by 2025\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage discusses GHG pricing and external engagement, with no reference to routine flaring or the World Bank initiative.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1646,
+  "completion_tokens": 617,
+  "latency_ms": 1678.5698000021512,
+  "attempts": 1
+ }
+}

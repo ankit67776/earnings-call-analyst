@@ -40,6 +40,9 @@ jobs:
       # Replays recorded passages, answers and judge verdicts the same way.
       - name: Cited chat eval
         run: uv run python -m evals.chat --offline --min-answered 0.9 --min-refusal 0.9 --min-faithful 0.75
+      # Replays the verifier's recorded verdicts on the labeled claim-10-K pairs.
+      - name: Contradiction finder eval
+        run: uv run python -m evals.contradictions --offline --min-precision 0.75 --min-seeded 0.85
 
   frontend:
     runs-on: ubuntu-latest

@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (metric):\nQuote: \"We spent about $90 million this year between capital and operating costs on those projects.\"\nClaim: ConocoPhillips spent about $90 million this year on capital and operating costs for greenhouse gas intensity projects.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● The U.S. EPA’s announcement on March 29, 2010 (published as “Interpretation of Regulations that Determine Pollutants Covered by Clean Air Act Permitting Programs,” 75 Fed. Reg. 17004 (April 2, 2010)), and the EPA’s and U.S. Department of Transportation’s joint promulgation of a Final Rule on April 1, 2010, that triggers regulation of GHGs under the Clean Air Act, may trigger more climate-based claims for damages, and may result in longer agency review time for development projects.\n\n● The U.S. EPA’s announcement on January 14, 2015, outlining a series of steps it plans to take to address methane and smog-forming volatile organic compound emissions from the oil and gas industry. The U.S. government established a goal of reducing the 2012 levels in methane emissions from the oil and gas industry by 40 to 45 percent by 2025.\n\n● Carbon taxes in certain jurisdictions. Our cost of compliance with Norwegian carbon tax legislation in 2020 was approximately $29 million (net share before-tax). We also incur a carbon tax for emissions from fossil fuel combustion in our British Columbia and Alberta operations in Canada, totaling approximately $3.5 million (net share before-tax).\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● Portfolio choices: Our corporate authorization process requires all qualifying projects to include a GHG price in their project approval economics. Different GHG prices are used depending on the region or jurisdiction. Projects in jurisdictions with existing GHG pricing regimes incorporate the existing GHG price and forecast into their economics. Projects where no existing GHG pricing regime exists utilize a scenario forecast from our internally consistent World Energy Model. In this way, both existing and emerging regulatory requirements are considered in our decision-making. The company does not use an estimated market cost of GHG emissions when assessing reserves in jurisdictions without existing GHG regulations.\n\n● External engagement: Our external engagement aims to differentiate ConocoPhillips within the oil and gas sector with our approach to managing climate-related risk. We are a Founding Member of the Climate Leadership Council (CLC), an international policy institute founded in collaboration with business and environmental interests to develop a carbon dividend plan. Participation in the CLC provides another opportunity for ongoing dialogue about carbon pricing and framing the issues in alignment with our public policy principles. We also belong to and fund Americans For Carbon Dividends, the education and advocacy branch of the CLC.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● The agreement reached in Paris in December 2015 at the 21st Conference of the Parties to the United Nations Framework Convention on Climate Change, setting out a process for achieving global emission reductions. The new administration has recommitted the United States to the Paris Agreement, and a significant number of U.S. state and local governments and major corporations headquartered in the U.S. have also announced related commitments.\n\nIn the U.S., some additional form of regulation may be forthcoming in the future at the federal and state levels with respect to GHG emissions. Such regulation could take any of several forms that may result in the creation of additional costs in the form of taxes, the restriction of output, investments of capital to maintain compliance with laws and regulations, or required acquisition or trading of emission allowances. We are working to continuously improve operational and energy efficiency through resource and energy conservation throughout our operations.\n\nCompliance with changes in laws and regulations that create a GHG tax, emission trading scheme or GHG reduction policies could significantly increase our costs, reduce demand for fossil energy derived products, impact the cost and availability of capital and increase our exposure to litigation. Such laws and regulations could also increase demand for less carbon intensive energy sources, including natural gas. The ultimate impact on our financial performance, either positive or negative, will depend on a number of factors, including but not limited to:\n\n● Whether and to what extent legislation or regulation is enacted."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage only details carbon tax costs ($29M and $3.5M) and regulatory background, with no mention of $90 million spent on capital and operating costs for GHG projects.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage describes the corporate authorization process and external climate engagement, but provides no spending amount related to capital or operating costs for GHG intensity projects.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage discusses potential future GHG regulations and possible cost impacts, without stating any actual $90 million expenditure on capital or operating costs.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1665,
+  "completion_tokens": 491,
+  "latency_ms": 1479.9130000028526,
+  "attempts": 1
+ }
+}

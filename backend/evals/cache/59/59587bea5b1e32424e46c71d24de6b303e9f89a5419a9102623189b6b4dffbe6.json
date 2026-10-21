@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"We can adjust the pace of any given project by a year or so.\"\nClaim: ConocoPhillips can adjust the pace of any given project by a year or so.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● Portfolio choices: Our corporate authorization process requires all qualifying projects to include a GHG price in their project approval economics. Different GHG prices are used depending on the region or jurisdiction. Projects in jurisdictions with existing GHG pricing regimes incorporate the existing GHG price and forecast into their economics. Projects where no existing GHG pricing regime exists utilize a scenario forecast from our internally consistent World Energy Model. In this way, both existing and emerging regulatory requirements are considered in our decision-making. The company does not use an estimated market cost of GHG emissions when assessing reserves in jurisdictions without existing GHG regulations.\n\n● External engagement: Our external engagement aims to differentiate ConocoPhillips within the oil and gas sector with our approach to managing climate-related risk. We are a Founding Member of the Climate Leadership Council (CLC), an international policy institute founded in collaboration with business and environmental interests to develop a carbon dividend plan. Participation in the CLC provides another opportunity for ongoing dialogue about carbon pricing and framing the issues in alignment with our public policy principles. We also belong to and fund Americans For Carbon Dividends, the education and advocacy branch of the CLC.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Significant Changes in Capital\nThe level of absolute production volumes, as well as product and location mix, impacts our cash flows. Full-year production averaged 1,127 MBOED in 2020. Full-year production excluding Libya averaged 1,118 MBOED in 2020. Adjusting for estimated curtailments of approximately 80 MBOED; closed acquisitions and dispositions; and excluding Libya; production for 2020 was 1,176 MBOED. Production in 2021 is expected to be approximately 1.5 MMBOED, reflecting the impact from the Concho acquisition. Future production is subject to numerous uncertainties, including, among others, the volatile crude oil and natural gas price environment, which may impact investment decisions; the effects of price changes on production sharing and variable-royalty contracts; acquisition and disposition of fields; field production decline rates; new technologies; operating efficiencies; timing of startups and major turnarounds; political instability; weather-related disruptions; and the addition of proved reserves through exploratory success and their timely and cost-effective development. While we actively manage these factors, production levels can cause variability in cash flows, although generally this variability has not been as significant as that caused by commodity prices.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. BUSINESS AND PROPERTIES\nAverage Daily Net Production\n\nSouth Sumatra 54 % ConocoPhillips 2 - 290 50\n\nTotal Indonesia | 2 | - | 290 | 50\n\nDuring 2020, we operated two PSCs in Indonesia: the Corridor Block located in South Sumatra, and Kualakurun in Central Kalimantan. Currently, we have production from the Corridor Block.\n\nSouth Sumatra The Corridor PSC consists of two oil fields and seven producing natural gas fields. Natural gas is supplied from the Grissik and Suban gas processing plants to the Duri steamflood in central Sumatra and to markets in Singapore, Batam and West Java. In 2019, we were awarded a 20-year extension, with new terms, of the Corridor PSC. Under these terms, we retain a majority interest and continue as operator for at least three years after 2023 and retain a participating interest until 2043.\n\nExploration We entered into the Central Kalimantan Kualakurun Block PSC in 2015 with an exploration period of six years. We completed the firm working commitment program in 2017, which included satellite mapping and a 740-kilometer 2-D seismic acquisition program. After completion of prospect evaluation, both PSC contractors decided to relinquish rights and return this block to the government.\n\nTransportation We are a 35 percent owner of a consortium company that has a 40 percent ownership in PT Transportasi Gas Indonesia, which owns and operates the Grissik to Duri and Grissik to Singapore natural gas pipelines."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage talks about GHG pricing and external engagement, with no reference to adjusting project timelines, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"It lists production uncertainties such as timing of startups, but does not state that ConocoPhillips can adjust a project's pace by a year, so it does not speak to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage describes PSC extensions and operating interests, not the ability to change a project's schedule by about a year, thus unrelated to the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1657,
+  "completion_tokens": 642,
+  "latency_ms": 3100.5949000100372,
+  "attempts": 1
+ }
+}

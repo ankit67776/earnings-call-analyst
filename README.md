@@ -111,6 +111,42 @@ a second labeler graded the same answers blind: they agreed on 85% of sentence v
 and 83% of correctness verdicts, and put the share of fully supported sentences at 83%
 against the judge's 81%.
 
+**Contradiction finder** checks what executives said on the call against the 10-K in
+two stages. Claims are pulled from the call by `gpt-oss-20b` (executives only: a first
+small call works out who speaks for the company, and analysts' assertions are dropped).
+Each claim is a query for hybrid search over the 10-K, and a verifier model judges it
+against each of the top three passages, quoting the 10-K text its verdict rests on. A
+contradiction is shown only when that quote is found in the filing. Two annotators
+labeled all 333 claim-passage pairs from the three calls (97% agreement) and found no
+real contradictions: management said nothing the 10-K contradicts. So recall is
+measured on 18 seeded contradictions, real claims rewritten to contradict one of their
+10-K passages (a changed figure, a flipped direction, a negation), and every flag on a
+real claim is a false alarm.
+
+<!-- eval:contradictions -->
+| Verifier | Precision | Recall | Seeded caught | False alarms | Verdict agreement | 10-K quotes found | Tokens per claim |
+|---|---|---|---|---|---|---|---|
+| openai/gpt-oss-120b | 86% (28 flagged) | 86% | 94% | 3% | 88% | 90% | 2,098 |
+| openai/gpt-oss-20b | 85% (27 flagged) | 82% | 78% | 3% | 90% | 97% | 2,247 |
+
+111 claims from three Q3 2020 calls, each judged against the top 3 10-K passages retrieved for it (333 labeled pairs, 0 real contradictions), plus 18 seeded contradictions (54 pairs); prompt v1.
+<!-- /eval:contradictions -->
+
+Stage 1 found the contradicted passage for all 18 seeds, so every miss is the
+verifier's. `gpt-oss-120b` caught 17; the one it missed moved the Willow project to a
+different unit (Kuparuk River instead of Bear Tooth). `gpt-oss-20b` caught 14, missing
+two changed figures and a flipped direction as well. Both raised a false alarm on 3 of
+the 111 real claims, each time setting the call against 10-K text that only sounds like
+the same thing: a quarter's category trend against full-year takeaway, distributions
+from affiliates against dividends paid to shareholders, "making MEMS in high volume is
+not easy" against "cost-effective high-volume manufacturing", and (20b only) "around
+$100 million" of revenue with no year against the 10-K's two years. The quote check cost
+one correct verdict, whose 10-K quote was stitched together with "..."; that seed was
+still caught on another passage. The app uses `gpt-oss-120b` for its higher recall at
+the same false-alarm rate. Live mode, which needs speed, will have to accept
+`gpt-oss-20b` missing about one planted contradiction in five, or keep 120b for this
+check.
+
 See [backend/evals/README.md](backend/evals/README.md) for how each golden set was made
 and how every metric is defined.
 

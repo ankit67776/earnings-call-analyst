@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Dominic Macklon said (event):\nQuote: \"the introduction of continuous methane monitoring.\"\nClaim: ConocoPhillips is introducing continuous methane monitoring.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nManagement’s Discussion and Analysis is the company’s analysis of its financial performance and of significant trends that may affect future performance. It should be read in conjunction with the financial statements and notes, and supplemental oil and gas disclosures included elsewhere in this report. It contains forward-looking statements including, without limitation, statements relating to the company’s plans, strategies, objectives, expectations and intentions that are made pursuant to the “safe harbor” provisions of the Private Securities Litigation Reform Act of 1995. The words “anticipate,” “believe,” “budget,” “continue,” “could,” “effort,” “estimate,” “expect,” “forecast,” “goal,” “guidance,” “intend,” “may,” “objective,” “outlook,” “plan,” “potential,” “predict,” “projection,” “seek,” “should,” “target,” “will,” “would,” and similar expressions identify forward-looking statements. The company does not undertake to update, revise or correct any of the forward-looking information unless required to do so under the federal securities laws. Readers are cautioned that such forward-looking statements should be read in conjunction with the company’s disclosures under the heading: “CAUTIONARY STATEMENT FOR THE PURPOSES OF THE ‘SAFE HARBOR’ PROVISIONS OF THE PRIVATE SECURITIES LITIGATION REFORM ACT OF 1995,” beginning on page 75.\n\nThe terms “earnings” and “loss” as used in Management’s Discussion and Analysis refer to net income (loss) attributable to ConocoPhillips.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● The U.S. EPA’s announcement on March 29, 2010 (published as “Interpretation of Regulations that Determine Pollutants Covered by Clean Air Act Permitting Programs,” 75 Fed. Reg. 17004 (April 2, 2010)), and the EPA’s and U.S. Department of Transportation’s joint promulgation of a Final Rule on April 1, 2010, that triggers regulation of GHGs under the Clean Air Act, may trigger more climate-based claims for damages, and may result in longer agency review time for development projects.\n\n● The U.S. EPA’s announcement on January 14, 2015, outlining a series of steps it plans to take to address methane and smog-forming volatile organic compound emissions from the oil and gas industry. The U.S. government established a goal of reducing the 2012 levels in methane emissions from the oil and gas industry by 40 to 45 percent by 2025.\n\n● Carbon taxes in certain jurisdictions. Our cost of compliance with Norwegian carbon tax legislation in 2020 was approximately $29 million (net share before-tax). We also incur a carbon tax for emissions from fossil fuel combustion in our British Columbia and Alberta operations in Canada, totaling approximately $3.5 million (net share before-tax).\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS › Contingencies\n● The timing of the introduction of such legislation or regulation.\n\n● The nature of the legislation (such as a cap and trade system or a tax on emissions) or regulation.\n\n● The price placed on GHG emissions (either by the market or through a tax).\n\n● The GHG reductions required.\n\n● The price and availability of offsets.\n\n● The amount and allocation of allowances.\n\n● Technological and scientific developments leading to new products or services.\n\n● Any potential significant physical effects of climate change (such as increased severe weather events, changes in sea levels and changes in temperature).\n\n● Whether, and the extent to which, increased compliance costs are ultimately reflected in the prices of our products and services.\n\nClimate Change Litigation Beginning in 2017, governmental and other entities in several states in the U.S. have filed lawsuits against oil and gas companies, including ConocoPhillips, seeking compensatory damages and equitable relief to abate alleged climate change impacts. Additional lawsuits with similar allegations are expected to be filed. The amounts claimed by plaintiffs are unspecified and the legal and factual issues involved in these cases are unprecedented. ConocoPhillips believes these lawsuits are factually and legally meritless and are an inappropriate vehicle to address the challenges associated with climate change and will vigorously defend against such lawsuits."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"The passage only describes forward‑looking statement language and does not mention methane monitoring, so it does not address the claim.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"The passage discusses EPA methane emission goals and carbon taxes but gives no information about ConocoPhillips implementing continuous methane monitoring.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"The passage lists possible technological developments and climate‑related contingencies but does not state that continuous methane monitoring is being introduced.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1691,
+  "completion_tokens": 368,
+  "latency_ms": 1452.4336999893421,
+  "attempts": 1
+ }
+}

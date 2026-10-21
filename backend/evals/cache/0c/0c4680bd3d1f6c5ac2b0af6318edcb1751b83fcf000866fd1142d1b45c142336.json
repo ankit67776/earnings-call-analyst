@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Rajesh Vashist said (risk):\nQuote: \"environmental disruptors, such as temperature change, minimizes the system-level impact\"\nClaim: SITIME Corp notes that environmental disruptors, such as temperature change, can impact system-level performance.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nOur revenue and operating results may fluctuate from period to period, which could cause our stock price to fluctuate.\n\nOur revenue and operating results have fluctuated in the past and may fluctuate from period to period in the future due to a variety of factors, many of which are beyond our control. Factors relating to our business that may contribute to these fluctuations include the following factors, as well as other factors described elsewhere in this report:\n\n• the impact of the COVID-19 pandemic on our business, suppliers, and customers\n\n• customer demand and product life cycles;\n\n• the receipt, reduction, or cancellation of, or changes in the forecasts or timing of, orders by customers;\n\n• fluctuations in the levels of inventories held by our distributors or end customers;\n\n• the gain or loss of significant customers;\n\n• supply chain disruptions, delays, shortages, and capacity limitations as a result of COVID-19 pandemic or other reasons;\n\n• market acceptance of our products and our customers’ products;\n\n• our ability to develop, introduce, and market new products and technologies on a timely basis;\n\n• the timing and extent of product development costs;\n\n• new product announcements and introductions by us or our competitors;\n\n• our research and development costs and related new product expenditures and our ability to achieve cost reductions in a timely or predictable manner;\n\n• seasonality and fluctuations in sales by product manufacturers that incorporate our silicon timing systems solutions into their products;\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nIndustrial\n\nIndustrial equipment, ranging from factory machinery to medical devices, is often exposed to environments characterized by temperature fluctuation, mechanical shocks, vibration, and electromagnetic interference. We believe silicon-based timing solutions can perform better than legacy quartz-based solutions in demanding industrial environments at comparable cost and with lower power consumption and higher reliability.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1. Business\nAutomotive\n\nFor automotive applications, timing technology must perform reliably over the life of an automobile in an environment characterized by vibration, mechanical shocks, electromagnetic interference, wide temperature ranges, and rapid temperature change. The AECC (Automotive Edge Computing Consortium) estimated in 2020 that “data traffic from connected vehicles will exceed 1,000 times the present volume, surpassing 10 exabytes per month by 2025.” These communication systems will require precise timing. We believe silicon-based timing can address many of the challenges associated with this demanding automotive ecosystem."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"F1 lists risk factors such as COVID‑19, supply chain, etc., but does not mention environmental disruptors or temperature change impacting performance.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"F2 states that industrial equipment is exposed to temperature fluctuation and that silicon‑based timing solutions perform better in demanding environments, implying environmental disruptors affect system‑level performance.\",\"verdict\":\"consistent\",\"filing_quote\":\"Industrial equipment, ranging from factory machinery to medical devices, is often exposed to environments characterized by temperature fluctuation, mechanical shocks, vibration, and electromagnetic interference.\"},{\"source\":\"F3\",\"reason\":\"F3 describes automotive environments with wide temperature ranges and rapid temperature change, noting silicon‑based timing can address these challenges, indicating environmental disruptors impact performance.\",\"verdict\":\"consistent\",\"filing_quote\":\"For automotive applications, timing technology must perform reliably over the life of an automobile in an environment characterized by vibration, mechanical shocks, electromagnetic interference, wide temperature ranges, and rapid temperature change.\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1278,
+  "completion_tokens": 1324,
+  "latency_ms": 2408.136399986688,
+  "attempts": 1
+ }
+}

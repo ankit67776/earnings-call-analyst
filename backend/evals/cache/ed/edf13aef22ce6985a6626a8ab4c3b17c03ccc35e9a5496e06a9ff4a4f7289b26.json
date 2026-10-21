@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: CONOCOPHILLIPS\n\nOn the Q3 2020 earnings call, Matt Fox said (guidance):\nQuote: \"we're working towards a concept selection and moving to feed by the end of this year.\"\nClaim: ConocoPhillips plans to move to feed by the end of 2020.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $35.17 | 55.30 | 62.99\nNatural gas liquids ($ per bbl) | 12.13 | 16.83 | 27.30\nNatural gas ($ per mcf) | 1.65 | 2.12 | 2.82\n\nThe Lower 48 segment consists of operations located in the contiguous U.S. and the Gulf of Mexico. During 2020, the Lower 48 contributed 40 percent of our consolidated liquids production and 44 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income (Loss) Attributable to ConocoPhillips Lower 48 reported a loss of $1,122 million in 2020, compared with earnings of $436 million in 2019. Earnings were negatively impacted by:\n\n● Lower realized crude oil, NGL and natural gas prices.\n\n● Lower crude oil sales volumes due to normal field decline and production curtailments.\n\n● Higher impairments, primarily related to developed properties in our non-core assets which were written down to fair value due to lower commodity prices and development plan changes. See Note 8—Impairments and Note 14—Fair Value Measurement, for additional information.\n\nEarnings were positively impacted by:\n\n● Lower exploration expenses, primarily due to the absence of a combined $197 million after-tax of leasehold impairment and dry hole costs associated with our decision to discontinue exploration activities in the Central Louisiana Austin Chalk.\n\n● Lower DD&A expenses, primarily due to normal field decline and production curtailments, partly offset by increased DD&A rates due to price-related downward reserve revisions.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $43.30 | 64.94 | 70.71\nNatural gas liquids ($ per bbl) | 23.27 | 29.37 | 36.87\nNatural gas ($ per mcf) | 3.23 | 4.92 | 7.65\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Europe, Middle East and North Africa segment consists of operations principally located in the Norwegian sector of the North Sea; the Norwegian Sea; Qatar; Libya; and commercial and terminalling operations in the U.K. In 2020, our Europe, Middle East and North Africa operations contributed 13 percent of our consolidated liquids production and 20 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Earnings for Europe, Middle East and North Africa operations of $448 million decreased $2,722 million in 2020 compared with 2019. The decrease in earnings was primarily due to:\n\n● The absence of a $2.1 billion after-tax gain associated with the completion of the sale of two ConocoPhillips U.K. subsidiaries. For additional information, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower equity in earnings of affiliates, primarily due to lower LNG sales prices.\n\n● Lower realized crude oil prices in Norway.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS\nAverage Sales Prices\n\nCrude oil ($ per bbl) | $42.84 | 65.02 | 70.93\nNatural gas liquids ($ per bbl) | 33.21 | 37.85 | 47.20\nNatural gas ($ per mcf) | 5.39 | 5.91 | 6.15\n\n*Prior periods have been updated to reflect the Middle East Business Unit moving from Asia Pacific to the Europe, Middle East and North Africa segment. See Note 24—Segment Disclosures and Related Information in the Notes to Consolidated Financial Statements for additional information.\n\nThe Asia Pacific segment has operations in China, Indonesia, Malaysia and Australia. During 2020, Asia Pacific contributed 10 percent of our consolidated liquids production and 32 percent of our consolidated natural gas production.\n\n2020 vs. 2019\n\nNet Income Attributable to ConocoPhillips Asia Pacific reported earnings of $962 million in 2020, compared with $1,483 million in 2019. The decrease in earnings was mainly due to:\n\n● Lower sales volumes, primarily from lower LNG sales due to the Australia-West divestiture; lower crude oil sales volumes in Malaysia, primarily due to production curtailments; and lower crude oil sales volumes in China due to the expiration of the Panyu production license. For more information related to our Australia-West divestiture, see Note 4—Asset Acquisitions and Dispositions in the Notes to Consolidated Financial Statements.\n\n● Lower realized commodity prices.\n\n● Lower equity in earnings of affiliates from APLNG, mainly due to lower LNG sales prices.\n\n● The absence of a $164 million income tax benefit related to deepwater incentive tax credits from the Malaysia Block G."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"The 10-K passage discusses financial results and segment contributions, not feed plans or concept selection.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"The 10-K passage discusses financial results and segment contributions, not feed plans or concept selection.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"The 10-K passage discusses financial results and segment contributions, not feed plans or concept selection.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1911,
+  "completion_tokens": 313,
+  "latency_ms": 961.2031999968167,
+  "attempts": 1
+ }
+}

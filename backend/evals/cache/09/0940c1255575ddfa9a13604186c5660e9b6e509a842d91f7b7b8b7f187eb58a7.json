@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-120b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"The basic share count in Q4 will be approximately 17.0 million shares\"\nClaim: SITIME Corp expects a basic share count of approximately 17.0 million shares in Q4 2020.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations › Overview\nWe operate a fabless business model, allowing us to focus on the design, sales, and marketing of our products, quickly scale production, and significantly reduce our capital expenditures. We leverage our global network of distributors and resellers to address the broad set of end markets we serve. For our largest accounts, dedicated sales personnel work with the end customer to ensure that our solutions fully address the end customer’s timing needs. Our smaller customers work directly with our distributors to select the optimum timing solution for their needs.\n\nWe were acquired by MegaChips in 2014 and were a wholly-owned subsidiary of MegaChips, a fabless semiconductor company based in Japan and traded on the Tokyo Stock Exchange, until November 25, 2019. On November 25, 2019, we completed the initial public offering of shares of our common stock. On June 16, 2020, we completed a follow-on public offering, in which we issued and sold 1,525,000 shares of our common stock and MegaChips sold 2,500,000 shares of our common stock held by them. MegaChips continues to be our largest stockholder and held approximately 43.7% of our common stock as of December 31, 2020.\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nRisks Related to MegaChips Corporation’s Ownership Position in Our Common Stock\n\nAs long as MegaChips holds a significant amount of our stock, our other shareholders’ ability to influence matters requiring stockholder approval will be limited.\n\nMegaChips owns 7,500,000 shares of our common stock, representing approximately 43.7% of our outstanding common stock as of December 31, 2020. For so long as MegaChips or its successors in interest, continue to hold the largest ownership position in our outstanding common stock, we expect MegaChips to continue to hold at least one out of seven seats on our board of directors, to be able to elect members of our board of directors, and could replace our entire board of directors. As long as MegaChips continues to be our largest stockholder, it will continue to have significant influence over us.\n\nFor example, as long as MegaChips continues to hold a significant or the largest ownership position in our outstanding common stock, MegaChips may have the ability to control or otherwise affect the outcome of any stockholder vote during this period. As a result, MegaChips will have the ability to exert significant influence over many matters affecting us, either through its board representative or as a stockholder, including:\n\n• determinations with respect to our business plans and policies, including the appointment and removal of our officers;\n\n• any determinations with respect to mergers and other business combinations;\n\n• our acquisition or disposition of assets;\n\n• our financing activities;\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nWe have an accumulated deficit and have incurred net losses in the past, and we may continue to incur net losses in the future.\n\nAs of December 31, 2020 and 2019, we had an accumulated deficit of $63.4 million, and $54.0 million, respectively. We generated net losses of $9.4 million, and $6.6 million in the years ended December 31, 2020 and 2019, respectively. The loss in 2019 was primarily due to a decrease in revenue from customers in Asia primarily as a result of lower sales volume, as well as a reduction in revenue from our largest end customer. The loss in 2020 was primarily due to increased stock-based compensation expenses in connection with our initial public offering in late 2019 and additional costs related to being a public company. We may continue to incur net losses in the future.\n\nWe expect to continue to make significant investments to support our research and development, sales and marketing and general and administrative functions. As a public company, we also continue to incur significant additional legal, accounting, and other expenses. If our revenue growth does not exceed the growth of these anticipated expenses, we may not be able to achieve or sustain profitability, and our stock price could decline."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\n  \"judgments\": [\n    {\n      \"source\": \"F1\",\n      \"reason\": \"Passage discusses IPO share issuances and ownership percentages, but does not mention the basic share count or Q4 2020 expectations.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F2\",\n      \"reason\": \"Passage describes MegaChips' ownership of 7.5 million shares (43.7%) and related risks, without reference to a 17.0 million basic share count or Q4 2020 guidance.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    },\n    {\n      \"source\": \"F3\",\n      \"reason\": \"Passage covers accumulated deficit and net losses, unrelated to share count guidance for Q4 2020.\",\n      \"verdict\": \"unrelated\",\n      \"filing_quote\": \"\"\n    }\n  ]\n}",
+  "model": "openai/gpt-oss-120b",
+  "provider": "groq",
+  "prompt_tokens": 1663,
+  "completion_tokens": 387,
+  "latency_ms": 1860.2051999769174,
+  "attempts": 1
+ }
+}

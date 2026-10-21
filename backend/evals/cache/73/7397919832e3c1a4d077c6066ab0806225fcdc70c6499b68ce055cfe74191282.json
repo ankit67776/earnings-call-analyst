@@ -1,0 +1,77 @@
+{
+ "request": {
+  "model": "openai/gpt-oss-20b",
+  "messages": [
+   {
+    "role": "system",
+    "content": "You check what a company's executives said on an earnings call against the company's annual report (Form 10-K), as a careful analyst would. You get one claim from the call and a few numbered 10-K passages found by search. For each passage, decide how it bears on the claim:\n\n- contradiction: both are about the same thing (the same measure, scope and period, or the same fact about the company) and they can't both be true: figures that differ by more than rounding, opposite directions, or one saying something is so and the other that it isn't.\n- consistent: the passage states the same thing, or something that agrees with it.\n- unrelated: the passage doesn't speak to what the claim states, or covers a different period, segment or measure.\n\nNot contradictions:\n- A forecast, target or plan, and a different actual result for that period or a later, revised target. Plans change; that's news, not a contradiction.\n- A risk the 10-K says could happen, and executives sounding confident on the call.\n- Figures for different periods or scopes: a quarter and the full year, one segment and the whole company, adjusted (non-GAAP) and reported figures.\n- Rounding, different wording, or one side giving more detail.\nFlag a contradiction only when an analyst shown the two quotes side by side would agree they can't both be true.\n\nThe call quote is what was said; the claim sentence summarizes it to help you read it. The transcript is a machine transcription, so a misspelled name is still the same name.\n\nFor each passage, give a short reason first (what each side says), then the verdict, and filing_quote: the clause of the passage the verdict rests on, copied exactly, character for character, at most about 40 words. Leave filing_quote empty when the passage is unrelated."
+   },
+   {
+    "role": "user",
+    "content": "Company: SITIME Corp\n\nOn the Q3 2020 earnings call, Art Chadwick said (guidance):\nQuote: \"Income taxes will be nominal and less than $50,000 for the quarter\"\nClaim: SITIME Corp expects Q4 2020 income taxes to be nominal and less than $50,000.\n\n10-K passages:\n\n[F1] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nIncome Tax Benefit (Expense)\n\nIncome tax expense consists primarily of state income taxes and income taxes in certain foreign jurisdictions in which we conduct business. We have a full valuation allowance for deferred tax assets as the realization of the full amount of our deferred tax asset is uncertain, including NOL, carryforwards, and tax credits related primarily to research and development. We expect to maintain this full valuation allowance until realization of the deferred tax assets becomes more likely than not. At December 31, 2020 and 2019, we had federal NOL carry-forwards of approximately $201.5 million and $156.5 million, respectively, and state NOL carry-forwards of approximately $64.0 million and $63.7 million, respectively. We had research and development tax credit carryforwards of approximately $3.9 million and $3.9 million, respectively for U.S. federal income tax purposes and $3.6 million and $3.6 million, respectively for state income tax purposes. Of the federal NOL carryforwards, approximately $148.4 million will expire in various years through 2036, if not utilized, and approximately $53.1 million will carry forward indefinitely. NOL carryforwards for state income tax purposes, if not utilized, will expire in various years through 2040. The research and development credit carryforwards for federal tax purposes will expire in various years through 2038, and state tax credits carry forward indefinitely.\n\nYear Ended December 31, | Change 2020 vs 2019\n2020 | 2019 | $ | %\n(in thousands except percentage)\nIncome tax (expense) benefit | $(1) | $8 | $(9) | (113%)\n\n[F2] 10-K for fiscal 2020, filed 2021-02-16 · Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations\nIncome Taxes\n\nDeferred tax liabilities and assets are recognized for the expected future tax consequences of temporary differences between financial statement carrying amounts and the tax basis of assets and liabilities and net operating loss and tax credit carryforwards. Valuation allowances are established when necessary to reduce deferred tax assets to a level which, more likely than not, will be realized.\n\nA tax position can be recognized only if it is more likely than not to be sustained based solely on its technical merits as of the reporting date and then only in an amount more likely than not to be sustained upon review by the tax authorities. We consider many factors when evaluating and estimating its tax positions and tax benefits, which may require periodic adjustments and which may not accurately anticipate actual outcomes.\n\n[F3] 10-K for fiscal 2020, filed 2021-02-16 · Item 1A. Risk Factors\nWe might not be able to utilize a significant portion of our net operating loss carryforwards and research and development tax credit carryforwards.\n\nAs of December 31, 2020, we had U.S. federal and state net operating loss (“NOL”) carryforwards of approximately $201.5 million and $64.0 million, respectively, and U.S. federal and state research and development tax credit carryforwards of approximately $3.9 million and $3.6 million, respectively. The U.S. federal NOL carryforwards begin to expire in 2025 and the state NOL carryforwards begin to expire in 2028. The U.S. federal research and development tax credit carryforwards begin to expire in 2025 and the state research and development tax credit carryforwards carry forward indefinitely. These net operating loss and U.S. federal tax credit carryforwards could expire unused and/or be unavailable to offset future income tax liabilities. In addition, under Section 382 of the Internal Revenue Code of 1986, as amended (the “Code”), and corresponding provisions of California state law, if a corporation undergoes an “ownership change,” which is generally defined as a greater than 50% change, by value, in its equity ownership over a three-year period, the corporation’s ability to use its pre-change net operating loss carryforwards and other pre-change tax attributes to offset its post-change income may be limited. We completed a Section 382 analysis and determined an ownership change occurred in 2014 and concluded that it had no impact on U.S. federal and California net operating losses or on U.S. federal research and development credits. Our initial public offering in November 2019 did not result in a change in ownership of greater than 50% under Section 382."
+   }
+  ],
+  "max_tokens": 2500,
+  "temperature": 0.0,
+  "reasoning_effort": "medium",
+  "json_schema": {
+   "$defs": {
+    "Judgment": {
+     "properties": {
+      "source": {
+       "description": "Label of the 10-K passage, e.g. F2",
+       "type": "string"
+      },
+      "reason": {
+       "description": "What each side says, and why that's the verdict",
+       "type": "string"
+      },
+      "verdict": {
+       "enum": [
+        "contradiction",
+        "consistent",
+        "unrelated"
+       ],
+       "type": "string"
+      },
+      "filing_quote": {
+       "description": "Exact text from the passage the verdict rests on; empty if unrelated",
+       "type": "string"
+      }
+     },
+     "required": [
+      "source",
+      "reason",
+      "verdict",
+      "filing_quote"
+     ],
+     "type": "object",
+     "additionalProperties": false
+    }
+   },
+   "properties": {
+    "judgments": {
+     "items": {
+      "$ref": "#/$defs/Judgment"
+     },
+     "type": "array"
+    }
+   },
+   "required": [
+    "judgments"
+   ],
+   "type": "object",
+   "additionalProperties": false
+  },
+  "schema_name": "Judgments"
+ },
+ "completion": {
+  "text": "{\"judgments\":[{\"source\":\"F1\",\"reason\":\"F1 reports a year‑end income tax benefit of $(1) thousand for 2020, but does not provide a Q4 figure; it does not address the claim about Q4 taxes.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F2\",\"reason\":\"F2 discusses deferred tax accounting and valuation allowances but gives no specific tax expense amounts or periods, so it does not address the Q4 tax claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"},{\"source\":\"F3\",\"reason\":\"F3 outlines risks related to NOL carryforwards and tax credits, with no mention of actual tax expense amounts or Q4 figures, so it is unrelated to the claim.\",\"verdict\":\"unrelated\",\"filing_quote\":\"\"}]}",
+  "model": "openai/gpt-oss-20b",
+  "provider": "groq",
+  "prompt_tokens": 1717,
+  "completion_tokens": 715,
+  "latency_ms": 1424.2719000321813,
+  "attempts": 1
+ }
+}
