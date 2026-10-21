@@ -22,8 +22,10 @@ export async function generateMetadata({ params }: PageProps<"/calls/[id]">): Pr
 }
 
 export default async function CallPage({ params, searchParams }: PageProps<"/calls/[id]">) {
-  const call = await load((await params).id);
+  const id = (await params).id;
+  // The transcript stands on its own if the contradiction check can't be loaded.
+  const [call, checks] = await Promise.all([load(id), api.callChecks(Number(id)).catch(() => null)]);
   const { t } = await searchParams;
   const at = typeof t === "string" && /^\d+(\.\d+)?$/.test(t) ? Number(t) : null;
-  return <Transcript key={at ?? "top"} call={call} at={at} />;
+  return <Transcript key={at ?? "top"} call={call} checks={checks} at={at} />;
 }

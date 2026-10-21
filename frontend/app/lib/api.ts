@@ -1,4 +1,5 @@
 import type {
+  CallChecks,
   CallDetail,
   Company,
   DocumentDetail,
@@ -32,4 +33,5 @@ export const api = {
   usage: () => get<Usage>("/api/usage"),
   companies: () => get<Company[]>("/api/companies"),
   call: (id: number) => get<CallDetail>(`/api/calls/${id}`),
+  callChecks: (id: number) => get<CallChecks>(`/api/calls/${id}/contradictions`),
 };

@@ -197,3 +197,46 @@ export interface ChatAnswer {
   retrieval_ms: number;
   cached: boolean;
 }
+
+// /api/calls/{id}/contradictions (backend/app/queries.py, get_call_checks).
+export type Verdict = "contradiction" | "consistent" | "unrelated";
+
+export interface ClaimCheck {
+  rank: number;
+  // null: the verifier returned no verdict for this passage.
+  verdict: Verdict | null;
+  reason: string | null;
+  // A contradiction whose 10-K quote was found in the passage: the only kind shown.
+  flagged: boolean;
+  // The 10-K text the verdict rests on, as filed; null if it wasn't found.
+  quote: string | null;
+  match: MatchKind | null;
+  passage_id: number;
+  title: string;
+  section: string | null;
+  document_id: number | null;
+  paragraph_id: string | null;
+  model: string;
+}
+
+export interface CallClaim {
+  id: number;
+  position: number;
+  type: ClaimType;
+  claim: string;
+  speaker: string;
+  // The transcript's text, and seconds into the call where it starts.
+  quote: string;
+  at: number;
+  model: string;
+  checks: ClaimCheck[];
+}
+
+export interface CallChecks {
+  call_id: number;
+  claims: CallClaim[];
+  checked: number;
+  flagged: number;
+  claims_model: string | null;
+  verifier_model: string | null;
+}

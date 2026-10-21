@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 
 import { companyName, plural, timestamp } from "@/app/lib/format";
-import type { CallDetail, CallSegment } from "@/app/lib/types";
+import type { CallChecks, CallDetail, CallSegment } from "@/app/lib/types";
 import TopBar, { Crumb } from "@/app/top-bar";
+import Checks from "./checks";
 
 interface Turn {
   speaker: string;
@@ -28,7 +29,15 @@ function segmentAt(segments: CallSegment[], at: number): number | null {
   return hit?.position ?? null;
 }
 
-export default function Transcript({ call, at }: { call: CallDetail; at: number | null }) {
+export default function Transcript({
+  call,
+  checks,
+  at,
+}: {
+  call: CallDetail;
+  checks: CallChecks | null;
+  at: number | null;
+}) {
   const runs = useMemo(() => turns(call.segments), [call.segments]);
   const speakers = [...new Set(call.segments.map((s) => s.speaker).filter(Boolean))];
   const target = at === null ? null : segmentAt(call.segments, at);
@@ -77,6 +86,7 @@ export default function Transcript({ call, at }: { call: CallDetail; at: number 
               {plural(speakers.length, "speaker")}: {speakers.join(", ")}
             </p>
           )}
+          {checks && <Checks checks={checks} />}
           <div className="mt-8 space-y-5">
             {runs.map((turn) => (
               <section
