@@ -70,8 +70,16 @@ class Replay:
         self.sent = 0.0
         self._started: float | None = None
 
+    def start(self) -> None:
+        """Start the clock: the call is now under way. Sending starts it too, but a caller
+        that starts it first (before connecting to the provider) makes audio that would
+        have been spoken while connecting go out at once, as from a live feed's buffer."""
+        if self._started is None:
+            self._started = self._clock()
+
     async def chunks(self) -> AsyncIterator[bytes]:
-        self._started = self._clock()
+        self.start()
+        assert self._started is not None
         for body, end in self._chunks:
             wait = self._started + end / self.speed - self._clock()
             if wait > 0:

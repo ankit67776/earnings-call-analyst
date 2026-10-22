@@ -9,7 +9,8 @@ class Settings(BaseSettings):
     # Run the job worker inside the API process (handy locally; use `python -m app.jobs
     # work` as a separate process instead when deploying).
     worker_in_api: bool = True
-    # Optional until Phase 5 (live mode).
+    # Not used yet: live sessions fan out inside the API process. Needed only if the API
+    # runs as several processes.
     redis_url: str = ""
 
     # Pipelines call the LLM through one provider-agnostic client, so models can be
@@ -43,6 +44,8 @@ class Settings(BaseSettings):
     live_stt_provider: str = "deepgram"
     live_stt_model: str = "nova-3"
     live_stt_cache_dir: str = ".cache/live_stt"
+    # One JSON-lines log per live session: every event with the time it was published.
+    live_log_dir: str = ".cache/live_sessions"
     deepgram_api_key: str = ""
 
     # Embeddings go through one client too: "provider/model", where the provider is

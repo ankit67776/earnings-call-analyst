@@ -53,12 +53,20 @@ export default function Transcript({
     <>
       <TopBar
         actions={
-          <Link
-            href={`/ask?ticker=${call.ticker}`}
-            className="inline-flex h-8 items-center rounded-md bg-ink px-3 font-medium text-sheet hover:bg-ink/85"
-          >
-            Ask about {name}
-          </Link>
+          <>
+            <Link
+              href={`/calls/${call.id}/live`}
+              className="inline-flex h-8 items-center rounded-md border border-line-strong bg-sheet px-3 font-medium hover:bg-canvas"
+            >
+              Play live
+            </Link>
+            <Link
+              href={`/ask?ticker=${call.ticker}`}
+              className="inline-flex h-8 items-center rounded-md bg-ink px-3 font-medium text-sheet hover:bg-ink/85"
+            >
+              Ask about {name}
+            </Link>
+          </>
         }
       >
         <Crumb href="/">Library</Crumb>

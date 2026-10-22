@@ -240,3 +240,51 @@ export interface CallChecks {
   claims_model: string | null;
   verifier_model: string | null;
 }
+
+// Live mode (backend/app/live/session.py): a call replayed as if it were happening now,
+// followed over a WebSocket. `start`/`end` are seconds into the recording; `received`,
+// `published` and `elapsed` are seconds since the session began.
+export interface LiveWord {
+  text: string;
+  start: number;
+  end: number;
+  // Deepgram's diarization label, numbered from 0 as speakers are heard.
+  speaker: number | null;
+}
+
+export type LiveStatus = "live" | "done" | "stopped" | "failed";
+
+export interface LiveSession {
+  type: "session";
+  id: string;
+  call_id: number;
+  status: LiveStatus;
+  error: string | null;
+  provider: string;
+  model: string;
+  // Plays back a recorded stream on its original timing rather than streaming afresh.
+  recorded: boolean;
+  offset: number;
+  duration: number;
+  speed: number;
+  position: number;
+  elapsed: number;
+}
+
+export interface LiveTranscriptEvent {
+  type: "interim" | "final" | "utterance_end";
+  start: number;
+  end: number;
+  words: LiveWord[];
+  received: number;
+  published: number;
+}
+
+export interface LiveEnd {
+  type: "end";
+  status: LiveStatus;
+  error: string | null;
+  published: number;
+}
+
+export type LiveEvent = LiveSession | LiveTranscriptEvent | LiveEnd;

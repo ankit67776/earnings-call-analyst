@@ -183,6 +183,7 @@ and how every metric is defined.
 - **Frontend:** Next.js (App Router, TypeScript, Tailwind)
 - **AI:** provider-agnostic LLM client: Groq free tier (gpt-oss-120b for analysis and chat, gpt-oss-20b for live), Claude optional; Whisper on Groq for batch STT, Deepgram for live STT; provider-agnostic embedding client (Voyage and Gemini, compared on the retrieval eval)
 - **Retrieval:** hybrid search, Postgres full-text search plus pgvector, fused by reciprocal rank
+- **Live:** the API replays a call's audio into Deepgram in real time and pushes the transcript to every open tab over a WebSocket, fanned out inside the process (no Redis); the browser plays the audio in step with it
 
 ## Run locally
 ```bash

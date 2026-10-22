@@ -1,17 +1,24 @@
 import asyncio
 import logging
+from collections.abc import Awaitable, Callable
 from contextlib import asynccontextmanager, suppress
+from pathlib import Path
 from typing import Annotated, Any
 
 import asyncpg
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi import Depends, FastAPI, HTTPException, Query, Request, WebSocket, WebSocketDisconnect
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field, field_validator
 
 from app import db, jobs, queries
+from app.calls import earnings21
+from app.calls.stt import STTError
 from app.chat.answer import ask, to_json
 from app.config import settings
 from app.embeddings import EmbeddingClient, EmbeddingError, get_embedding_client
 from app.filings.tenk import ITEMS
+from app.live.session import LiveSessions
+from app.live.stt import StreamRequest, get_live_transcriber
 from app.llm import BudgetExceededError, LLMClient, LLMError, RateLimitedError, get_llm_client
 
 logger = logging.getLogger(__name__)
@@ -20,6 +27,11 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.pool = await db.create_pool() if settings.database_url else None
+    app.state.live = LiveSessions(
+        get_live_transcriber,
+        request=StreamRequest(model=settings.live_stt_model),
+        log_dir=Path(settings.live_log_dir),
+    )
     worker = None
     if app.state.pool is not None and settings.worker_in_api:
         if settings.groq_api_key and settings.sec_user_agent:
@@ -29,6 +41,7 @@ async def lifespan(app: FastAPI):
     try:
         yield
     finally:
+        await app.state.live.aclose()
         if worker is not None:
             worker.cancel()
             with suppress(asyncio.CancelledError):
@@ -197,6 +210,33 @@ async def get_call(call_id: int, pool: Pool) -> dict[str, Any]:
     return call
 
 
+# Finds a call's audio file, or None when it has none.
+AudioLookup = Callable[[int], Awaitable[Path | None]]
+
+
+def get_audio_lookup(pool: Pool) -> AudioLookup:
+    async def lookup(call_id: int) -> Path | None:
+        async with pool.acquire() as conn:
+            source = await conn.fetchval("select source from calls where id = $1", call_id)
+        if not source or not source.startswith("earnings21:"):
+            return None
+        path = earnings21.audio_path(source.removeprefix("earnings21:"))
+        return path if path.exists() else None
+
+    return lookup
+
+
+Audio = Annotated[AudioLookup, Depends(get_audio_lookup)]
+
+
+@app.get("/api/calls/{call_id}/audio")
+async def get_call_audio(call_id: int, audio: Audio) -> FileResponse:
+    path = await audio(call_id)
+    if path is None:
+        raise HTTPException(404, "no audio for this call")
+    return FileResponse(path, media_type="audio/mpeg")
+
+
 @app.get("/api/calls/{call_id}/contradictions")
 async def get_call_contradictions(call_id: int, pool: Pool) -> dict[str, Any]:
     """The call's claims, each with the verifier's verdicts against the 10-K."""
@@ -239,3 +279,73 @@ async def chat(body: ChatRequest, pool: Pool, llm: LLM, embeddings: Embeddings) 
         except (LLMError, EmbeddingError) as e:
             raise HTTPException(502, str(e)) from e
     return to_json(result)
+
+
+def get_live(request: Request) -> LiveSessions:
+    return request.app.state.live
+
+
+Live = Annotated[LiveSessions, Depends(get_live)]
+
+
+class LiveStart(BaseModel):
+    call_id: int
+    # Stream to the provider even when a recorded run exists (spends STT credit).
+    fresh: bool = False
+
+
+@app.post("/api/live/sessions", status_code=201)
+async def start_live_session(body: LiveStart, live: Live, audio: Audio) -> dict[str, Any]:
+    """Replay a call as if it were happening now, or join its running session."""
+    path = await audio(body.call_id)
+    if path is None:
+        raise HTTPException(404, "no audio for this call")
+    try:
+        session = await live.start(body.call_id, path, fresh=body.fresh)
+    except STTError as e:
+        raise HTTPException(503, str(e)) from e
+    return session.snapshot()
+
+
+@app.get("/api/live/sessions")
+def list_live_sessions(live: Live, call_id: int) -> list[dict[str, Any]]:
+    """The call's latest session, running or finished, if it has one."""
+    session = live.latest(call_id)
+    return [session.snapshot()] if session is not None else []
+
+
+@app.delete("/api/live/sessions/{session_id}")
+async def stop_live_session(session_id: str, live: Live) -> dict[str, Any]:
+    session = live.get(session_id)
+    if session is None:
+        raise HTTPException(404, "no such live session")
+    await session.stop()
+    return session.snapshot()
+
+
+@app.websocket("/api/live/sessions/{session_id}/events")
+async def live_events(websocket: WebSocket, session_id: str) -> None:
+    """The session's state and history so far, then each event as it happens. Closes
+    after the end event, or with 1013 if the tab falls too far behind."""
+    session = websocket.app.state.live.get(session_id)
+    await websocket.accept()
+    if session is None:
+        await websocket.close(code=4404, reason="no such live session")
+        return
+    backlog, subscriber = session.subscribe()
+    try:
+        for event in backlog:
+            await websocket.send_json(event)
+        event = backlog[-1]
+        while event["type"] != "end":
+            queued = await subscriber.queue.get()
+            if queued is None:
+                await websocket.close(code=1013, reason="fell behind; reconnect to catch up")
+                return
+            event = queued
+            await websocket.send_json(event)
+        await websocket.close()
+    except WebSocketDisconnect:
+        pass
+    finally:
+        session.unsubscribe(subscriber)

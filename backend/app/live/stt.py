@@ -290,6 +290,11 @@ class LiveTranscriber:
                     await task
         self._cache_put(key, request, source.describe(), recorded)
 
+    def has_recording(self, source: AudioSource, request: StreamRequest) -> bool:
+        """Whether streaming this would replay a recorded run."""
+        key = _cache_key(self.provider.name, request, source.describe())
+        return self._cache_dir is not None and self._path(key).exists()
+
     def _cache_get(self, key: str) -> list[Update] | None:
         if self._cache_dir is None:
             return None
