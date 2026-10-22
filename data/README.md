@@ -53,6 +53,17 @@ uv run python -m app.retrieval index
 uv run python -m app.retrieval embed voyage/voyage-4 gemini/gemini-embedding-2
 ```
 
+Live mode replays a call's MP3 into Deepgram's streaming API as if the call were
+happening now: frame-aligned chunks of about 0.1 s, each sent once its audio would have
+been spoken. Each run is recorded under `backend/.cache/live_stt` and replayed when the
+same audio is streamed again at the same speed.
+
+```bash
+cd backend
+uv run python -m app.live listen COP --minutes 2              # 1x, first two minutes
+uv run python -m app.live listen SITM --start 30 --minutes 5 --no-cache   # fresh run
+```
+
 Groq's free tier allows 7,200 audio seconds an hour per model, so the three calls (157
 minutes) can wait on the hourly limit; the transcriber honours the retry-after and caches
 every response. Voyage without a payment method allows 3 requests and 10K tokens a

@@ -104,6 +104,26 @@ The references live in `data/raw` (gitignored), so this eval runs locally, not i
 uv run python -m evals.wer --model whisper-large-v3 --model whisper-large-v3-turbo --readme
 ```
 
+`live_stt.py` streams the same calls into Deepgram at 1x, start to end, and scores the
+joined final results with the same WER and entity metrics. It runs two configurations:
+numbers and dates written out (what live mode uses) and spoken. The gap between them is
+how much of the WER is formatting.
+
+- **Speakers right**: live mode has no reference diarization, so Deepgram's speaker
+  labels are scored. Each label is matched to the reference speaker it shares the most
+  correctly transcribed words with, biggest overlaps first and no speaker twice, and a
+  word counts when its label's match is its speaker. A label that merges two people
+  loses the smaller one's words; a person split over two labels loses one label's words.
+
+All calls stream at once, so a run takes as long as the longest call (63 minutes).
+Faster replay doesn't save time: Deepgram works through a stream at about 1.25x real
+time, and audio sent faster only queues up. Runs are recorded in `.cache/live_stt`, so
+re-scoring is free.
+
+```bash
+uv run python -m evals.live_stt --readme
+```
+
 ## Retrieval golden set
 
 `golden/retrieval.json` holds 120 questions about the three companies, each tied to the

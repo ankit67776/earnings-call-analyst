@@ -152,6 +152,14 @@ def speaker_accuracy(
     tokens: list[RefToken], names: dict[int, str], segments: list[LabeledSegment]
 ) -> float:
     """Share of correctly transcribed words attributed to the reference's speaker."""
+    pairs = aligned_speakers(tokens, names, segments)
+    return sum(ref == hyp for ref, hyp in pairs) / len(pairs) if pairs else 0.0
+
+
+def aligned_speakers(
+    tokens: list[RefToken], names: dict[int, str], segments: list[LabeledSegment]
+) -> list[tuple[str | None, str]]:
+    """(reference speaker, transcript speaker) for every correctly transcribed word."""
     ref: list[str] = []
     ref_speakers: list[str | None] = []
     piece: list[RefToken] = []
@@ -175,7 +183,7 @@ def speaker_accuracy(
         hyp.extend(out)
         hyp_speakers.extend([s.speaker] * len(out))
     out = jiwer.process_words(" ".join(ref), " ".join(hyp))
-    right = total = 0
+    pairs = []
     for chunk in out.alignments[0]:
         if chunk.type == "equal":
             for i, j in zip(
@@ -183,9 +191,8 @@ def speaker_accuracy(
                 range(chunk.hyp_start_idx, chunk.hyp_end_idx),
                 strict=True,
             ):
-                total += 1
-                right += ref_speakers[i] == hyp_speakers[j]
-    return right / total if total else 0.0
+                pairs.append((ref_speakers[i], hyp_speakers[j]))
+    return pairs
 
 
 def _group(token: RefToken) -> str | None:

@@ -57,6 +57,34 @@ reference diarization, matched to Whisper's segments by time, and split mid-segm
 where word timestamps show the speaker changing; 99.9% of correctly transcribed words
 land with the reference speaker.
 
+**Live transcription** replays each call's audio into Deepgram's streaming API as if
+the call were happening now, and scores the joined final results the same way. Live
+mode can't use the dataset's speaker turns, so speakers come from Deepgram's
+diarization: each of its speaker labels is matched to the reference speaker it shares
+the most words with, and a word counts when its label matches its speaker.
+
+<!-- eval:live-stt -->
+| Transcript | WER | SITM WER | HSY WER | COP WER | Number words wrong | Name words wrong | Speakers right |
+|---|---|---|---|---|---|---|---|
+| Batch: whisper-large-v3 | 9.6% | 7.5% | 6.3% | 13.6% | 8.0% | 20.8% | reference turns |
+| Live: nova-3 | 11.8% | 8.4% | 9.9% | 15.5% | 10.9% | 19.1% | 76.2% |
+| Live: nova-3, numbers as spoken | 11.7% | 7.8% | 9.8% | 15.5% | 10.4% | 19.2% | 77.9% |
+
+3 calls, 157 minutes of audio, each streamed start to end at 1x. Same references and normalizer as above.
+<!-- /eval:live-stt -->
+
+Live transcription costs about 2 points of WER over batch Whisper, mostly scattered
+deletions. Writing numbers and dates the way a reader expects ("11/04/2020") costs only
+0.1 points against the spoken form, so live mode keeps it. Of the stretches of 15 or
+more words Deepgram dropped, three are the operator's "press star one" instructions,
+one on each call, and one spans the end of an analyst's question and the start of the
+answer on the SiTime call. Diarization is the weak part. On SiTime and ConocoPhillips
+86% of words land with the right speaker. Hershey's call is Q&A only, with 19 speakers,
+and Deepgram used 6 labels: the phone-line analysts are pooled under two of them, and
+the executives' labels take in some analysts' words too. So live mode can't treat a
+label as one person. The two live runs differ by 2 points on speakers: streaming
+diarization isn't exactly repeatable.
+
 **Retrieval** is scored on 118 questions written by two independent annotators from 84
 sampled passages, half from the calls and half from the 10-Ks. The questions paraphrase
 rather than copy the passage, the way an analyst would ask. A retrieved passage counts

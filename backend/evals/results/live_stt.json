@@ -1,0 +1,158 @@
+[
+  {
+    "name": "nova-3",
+    "provider": "deepgram",
+    "request": {
+      "model": "nova-3",
+      "smart_format": true,
+      "diarize": true,
+      "endpointing_ms": 300
+    },
+    "replay_speed": 1.0,
+    "calls": 3,
+    "audio_minutes": 156.7,
+    "wer": 0.1182,
+    "ref_words": 26419,
+    "substitutions": 821,
+    "deletions": 1956,
+    "insertions": 347,
+    "numbers_error": 0.1088,
+    "names_error": 0.1906,
+    "entity_words": {
+      "numbers": 1553,
+      "names": 509
+    },
+    "speaker_accuracy": 0.7623,
+    "by_call": {
+      "SITM": {
+        "earnings21_id": "4385072",
+        "wer": 0.0842,
+        "ref_words": 6509,
+        "substitutions": 135,
+        "deletions": 328,
+        "insertions": 85,
+        "numbers_error": 0.0893,
+        "names_error": 0.2211,
+        "entity_words": {
+          "numbers": 515,
+          "names": 95
+        },
+        "speaker_accuracy": 0.8561,
+        "speakers_found": 8,
+        "speakers_in_reference": 10
+      },
+      "HSY": {
+        "earnings21_id": "4385939",
+        "wer": 0.0987,
+        "ref_words": 9118,
+        "substitutions": 183,
+        "deletions": 660,
+        "insertions": 57,
+        "numbers_error": 0.1037,
+        "names_error": 0.1867,
+        "entity_words": {
+          "names": 166,
+          "numbers": 463
+        },
+        "speaker_accuracy": 0.5875,
+        "speakers_found": 6,
+        "speakers_in_reference": 19
+      },
+      "COP": {
+        "earnings21_id": "4382825",
+        "wer": 0.1553,
+        "ref_words": 10792,
+        "substitutions": 503,
+        "deletions": 968,
+        "insertions": 205,
+        "numbers_error": 0.1304,
+        "names_error": 0.1815,
+        "entity_words": {
+          "numbers": 575,
+          "names": 248
+        },
+        "speaker_accuracy": 0.8565,
+        "speakers_found": 15,
+        "speakers_in_reference": 18
+      }
+    }
+  },
+  {
+    "name": "nova-3, numbers as spoken",
+    "provider": "deepgram",
+    "request": {
+      "model": "nova-3",
+      "smart_format": false,
+      "diarize": true,
+      "endpointing_ms": 300
+    },
+    "replay_speed": 1.0,
+    "calls": 3,
+    "audio_minutes": 156.7,
+    "wer": 0.1165,
+    "ref_words": 26419,
+    "substitutions": 827,
+    "deletions": 1914,
+    "insertions": 338,
+    "numbers_error": 0.1043,
+    "names_error": 0.1925,
+    "entity_words": {
+      "numbers": 1553,
+      "names": 509
+    },
+    "speaker_accuracy": 0.7794,
+    "by_call": {
+      "SITM": {
+        "earnings21_id": "4385072",
+        "wer": 0.078,
+        "ref_words": 6509,
+        "substitutions": 139,
+        "deletions": 291,
+        "insertions": 78,
+        "numbers_error": 0.0777,
+        "names_error": 0.2211,
+        "entity_words": {
+          "numbers": 515,
+          "names": 95
+        },
+        "speaker_accuracy": 0.8454,
+        "speakers_found": 8,
+        "speakers_in_reference": 10
+      },
+      "HSY": {
+        "earnings21_id": "4385939",
+        "wer": 0.0984,
+        "ref_words": 9118,
+        "substitutions": 182,
+        "deletions": 660,
+        "insertions": 55,
+        "numbers_error": 0.1015,
+        "names_error": 0.1867,
+        "entity_words": {
+          "names": 166,
+          "numbers": 463
+        },
+        "speaker_accuracy": 0.6028,
+        "speakers_found": 7,
+        "speakers_in_reference": 19
+      },
+      "COP": {
+        "earnings21_id": "4382825",
+        "wer": 0.1551,
+        "ref_words": 10792,
+        "substitutions": 506,
+        "deletions": 963,
+        "insertions": 205,
+        "numbers_error": 0.1304,
+        "names_error": 0.1855,
+        "entity_words": {
+          "numbers": 575,
+          "names": 248
+        },
+        "speaker_accuracy": 0.8931,
+        "speakers_found": 13,
+        "speakers_in_reference": 18
+      }
+    }
+  }
+]

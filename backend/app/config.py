@@ -37,6 +37,12 @@ class Settings(BaseSettings):
     stt_provider: str = "groq"
     stt_model: str = "whisper-large-v3"
     stt_cache_dir: str = ".cache/stt"
+
+    # Live speech-to-text: Deepgram's streaming API. Each run is recorded on disk and
+    # replayed when the same audio is streamed again with the same settings.
+    live_stt_provider: str = "deepgram"
+    live_stt_model: str = "nova-3"
+    live_stt_cache_dir: str = ".cache/live_stt"
     deepgram_api_key: str = ""
 
     # Embeddings go through one client too: "provider/model", where the provider is
